@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Beranda — Kemenbud Data Kebudayaan</title>
+    <title>Platform Data Kebudayaan Indonesia</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
-        rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Leaflet CSS -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Leaflet -->
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIINfQ3x7Kf9G1s7s7s7s7s7s7s7s7s7s="
-        crossorigin=""
-    />
+    >
 
     <style>
 
-        /* =========================================
+        /* =========================================================
            ROOT
-        ========================================= */
+        ========================================================= */
 
         :root {
             --cream: #F7F3EA;
@@ -43,6 +43,7 @@
 
             --green: #1FA971;
             --green-dark: #178257;
+            --green-bg: #E8F7F0;
 
             --amber: #C1862B;
             --amber-bg: #FBEEDA;
@@ -55,3587 +56,2769 @@
             --radius-sm: 8px;
 
             --shadow:
-                0 10px 30px -12px rgba(60,45,20,0.18);
+                0 10px 30px -12px rgba(60, 45, 20, 0.18);
         }
 
-
-        /* =========================================
-           RESET
-        ========================================= */
-
-        *,
-        *::before,
-        *::after {
+        * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family:
-                'Plus Jakarta Sans',
-                -apple-system,
-                BlinkMacSystemFont,
-                'Segoe UI',
-                sans-serif;
-
             background: var(--cream);
             color: var(--ink);
-
-            -webkit-font-smoothing: antialiased;
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.6;
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
-        button {
+        button,
+        select {
             font-family: inherit;
-            cursor: pointer;
         }
 
-        img {
-            max-width: 100%;
-            display: block;
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
         }
 
-
-        /* =========================================
+        /* =========================================================
            TOPBAR
-        ========================================= */
+        ========================================================= */
 
         .topbar {
-            background: var(--paper);
+            height: 76px;
+            background: rgba(255, 255, 255, 0.96);
             border-bottom: 1px solid var(--border);
+
+            display: flex;
+            align-items: center;
 
             position: sticky;
             top: 0;
-
             z-index: 1000;
+
+            backdrop-filter: blur(12px);
         }
 
         .topbar-inner {
-            max-width: 1180px;
-
-            margin: 0 auto;
+            width: min(1180px, calc(100% - 40px));
+            margin: auto;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
-
-            padding: 16px 28px;
-
-            gap: 24px;
+            gap: 30px;
         }
 
         .brand {
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-shrink: 0;
         }
 
-        .brand-logo {
-            width: 38px;
-            height: 38px;
-            flex: 0 0 auto;
-        }
+        .brand-mark {
+            width: 42px;
+            height: 42px;
 
-        .brand-text {
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--gold),
+                    var(--gold-dark)
+                );
+
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
 
-            line-height: 1.1;
-
-            font-size: 13px;
+            color: white;
             font-weight: 700;
-
-            color: var(--ink);
+            font-size: 17px;
         }
 
-        .brand-text small {
-            font-weight: 500;
+        .brand-text strong {
+            display: block;
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .brand-text span {
             color: var(--muted);
             font-size: 11px;
         }
 
-
-        /* =========================================
-           NAVIGATION
-        ========================================= */
-
         .nav {
             display: flex;
             align-items: center;
-            justify-content: center;
-
-            gap: 30px;
-
-            font-weight: 600;
-            font-size: 14.5px;
-
-            color: var(--gold-dark);
-
-            flex: 1;
+            gap: 28px;
         }
 
         .nav a {
-            color: var(--gold-dark);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink-soft);
 
-            opacity: .85;
-
-            padding: 6px 2px;
-
-            position: relative;
-
-            transition: opacity .15s;
+            transition: 0.2s ease;
         }
 
-        .nav a:hover {
-            opacity: 1;
-        }
-
+        .nav a:hover,
         .nav a.active {
-            color: var(--ink);
-            opacity: 1;
-        }
-
-        .nav a.active::after {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            right: 0;
-
-            bottom: -19px;
-
-            height: 3px;
-
-            background: var(--gold);
-
-            border-radius: 2px;
-        }
-
-
-        /* =========================================
-           BUTTON
-        ========================================= */
-
-        .btn-outline-gold {
-            border: 1.5px solid var(--gold);
-
-            background: transparent;
             color: var(--gold-dark);
-
-            padding: 9px 22px;
-
-            border-radius: 999px;
-
-            font-weight: 700;
-            font-size: 13.5px;
-
-            transition:
-                background .15s,
-                color .15s;
         }
 
-        .btn-outline-gold:hover {
-            background: var(--gold);
-            color: #fff;
+        .login-btn {
+            background: var(--ink);
+            color: white !important;
+
+            padding: 10px 18px;
+            border-radius: 9px;
         }
 
-
-        /* =========================================
-           PAGE
-        ========================================= */
-
-        .page-shell {
-            max-width: 1180px;
-
-            margin: 0 auto;
-
-            padding:
-                36px 28px 60px;
+        .login-btn:hover {
+            background: var(--gold-dark);
         }
 
-
-        /* =========================================
+        /* =========================================================
            HERO
-        ========================================= */
+        ========================================================= */
 
         .hero {
-            padding: 60px 0 40px;
+            padding: 85px 0 75px;
+        }
 
-            text-align: center;
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 7px 12px;
+            border-radius: 999px;
+
+            background: var(--gold-pale);
+            color: var(--gold-dark);
+
+            font-size: 11px;
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--gold-dark);
+            border-radius: 50%;
         }
 
         .hero h1 {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 36px;
-
-            line-height: 1.25;
-
-            margin:
-                0 0 14px;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(40px, 5vw, 64px);
+            line-height: 1.08;
+            margin-bottom: 22px;
+            letter-spacing: -1.5px;
         }
 
-        .hero p {
-            max-width: 560px;
+        .hero h1 span {
+            color: var(--gold-dark);
+        }
 
-            margin:
-                0 auto 26px;
-
+        .hero-description {
+            max-width: 610px;
             color: var(--ink-soft);
-
-            font-size: 15.5px;
-
-            line-height: 1.6;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
         }
 
-        .hero-actions {
+        .hero-buttons {
             display: flex;
-
+            flex-wrap: wrap;
             gap: 12px;
+        }
 
+        .btn {
+            border: none;
+            cursor: pointer;
+
+            padding: 13px 21px;
+            border-radius: 9px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
+
+            transition: 0.2s ease;
         }
 
         .btn-primary {
             background: var(--ink);
-            color: #fff;
-
-            border: none;
-
-            padding:
-                13px 26px;
-
-            border-radius: 10px;
-
-            font-weight: 700;
-            font-size: 14.5px;
-
-            transition: opacity .15s;
-
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
+            color: white;
         }
 
         .btn-primary:hover {
-            opacity: .9;
+            background: var(--gold-dark);
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: #fff;
-
+            background: white;
+            color: var(--ink);
             border: 1px solid var(--border);
-
-            padding:
-                13px 26px;
-
-            border-radius: 10px;
-
-            font-weight: 700;
-            font-size: 14.5px;
-
-            transition: border-color .15s;
-
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
         }
 
         .btn-secondary:hover {
             border-color: var(--gold);
-        }
-
-
-        /* =========================================
-           STATISTICS
-        ========================================= */
-
-        .stat-strip {
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 16px;
-
-            margin:
-                44px 0 52px;
-        }
-
-        .mini-card {
-            background: #fff;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 14px;
-
-            padding: 22px;
-
-            text-align: center;
-
-            box-shadow:
-                0 4px 16px -6px
-                rgba(60,45,20,0.06);
-        }
-
-        .mini-card .value {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 26px;
-
-            font-weight: 800;
-
             color: var(--gold-dark);
         }
 
-        .mini-card .label {
-            color: var(--muted);
-
-            font-size: 13px;
-
-            margin-top: 6px;
+        .hero-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow);
         }
 
+        .hero-card-label {
+            color: var(--muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
 
-        /* =========================================
+        .hero-card-number {
+            font-family: "Playfair Display", serif;
+            font-size: 50px;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .hero-card-text {
+            color: var(--ink-soft);
+            font-size: 13px;
+        }
+
+        .hero-card-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 22px 0;
+        }
+
+        .hero-card-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .hero-mini strong {
+            display: block;
+            font-size: 20px;
+        }
+
+        .hero-mini span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+            padding: 0 0 70px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+
+            overflow: hidden;
+        }
+
+        .stat-card {
+            padding: 28px 25px;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat-card:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-family: "Playfair Display", serif;
+            font-size: 34px;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        /* =========================================================
            MAP SECTION
-        ========================================= */
+        ========================================================= */
 
         .map-section {
-            background: #fff;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 20px;
-
-            padding:
-                32px 34px;
-
-            box-shadow: var(--shadow);
-
-            margin-top: 12px;
+            padding: 75px 0 100px;
+            background: #F1ECE1;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
-
-        /* =========================================
-           MAP HEADER
-        ========================================= */
-
-        .map-header {
+        .section-heading {
             display: flex;
-
-            align-items: flex-start;
-
+            align-items: flex-end;
             justify-content: space-between;
-
-            flex-wrap: wrap;
-
-            gap: 20px;
-
-            padding-bottom: 24px;
-
-            border-bottom:
-                1px solid var(--border);
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        .map-title-group h2 {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 24px;
-
-            margin:
-                0 0 6px;
-
-            color: var(--ink);
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 10px;
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 36px;
+            line-height: 1.15;
+            margin-bottom: 10px;
         }
 
-        .badge-tag {
-            background: var(--amber-bg);
+        .section-heading p {
+            color: var(--ink-soft);
+            max-width: 650px;
+            font-size: 14px;
+        }
+
+        .section-badge {
+            white-space: nowrap;
+
+            padding: 8px 13px;
+            border-radius: 999px;
+
+            background: white;
+            border: 1px solid var(--border);
 
             color: var(--gold-dark);
 
-            font-size: 11.5px;
-
+            font-size: 11px;
             font-weight: 700;
-
-            padding:
-                3px 10px;
-
-            border-radius: 999px;
-
-            letter-spacing: .02em;
         }
 
-        .map-title-group p {
-            margin: 0;
-
-            color: var(--ink-soft);
-
-            font-size: 14px;
-
-            max-width: 620px;
-
-            line-height: 1.5;
-        }
-
-
-        /* =========================================
-           MAP CONTROLS
-        ========================================= */
+        /* Controls */
 
         .map-controls {
             display: flex;
-
-            gap: 10px;
-
-            align-items: center;
-
             flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
         }
 
-        .select-styled {
+        .select-wrapper {
+            position: relative;
+        }
+
+        .map-select {
             appearance: none;
-            -webkit-appearance: none;
 
-            background:
-                #fff
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A87F3C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
-                no-repeat
-                right 14px center;
+            min-width: 230px;
 
-            border:
-                1.5px solid var(--border);
+            padding: 12px 40px 12px 15px;
 
-            padding:
-                10px 38px 10px 14px;
-
-            border-radius: 10px;
-
-            font-size: 13.5px;
-
-            font-weight: 600;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 9px;
 
             color: var(--ink);
-
-            outline: none;
+            font-size: 13px;
+            font-weight: 600;
 
             cursor: pointer;
-
-            transition:
-                border-color .15s;
+            outline: none;
         }
 
-        .select-styled:hover,
-        .select-styled:focus {
+        .map-select:focus {
             border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201, 161, 90, 0.12);
         }
 
+        .select-arrow {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
 
-        /* =========================================
-           MAP GRID
-        ========================================= */
+            pointer-events: none;
+            color: var(--muted);
+        }
 
-        .map-body-grid {
+        /* Main map layout */
+
+        .map-layout {
             display: grid;
-
-            grid-template-columns:
-                1.9fr 1.1fr;
-
+            grid-template-columns: minmax(0, 1.6fr) minmax(350px, 0.9fr);
             gap: 28px;
-
-            margin-top: 24px;
-
             align-items: stretch;
         }
 
+        .map-card {
+            background: #F7F2E8;
 
-        /* =========================================
-           MAP CARD
-        ========================================= */
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
 
-        .map-canvas-card {
-            background:
-                radial-gradient(
-                    circle at center,
-                    #FDFBF7 0%,
-                    #F5EFE3 100%
-                );
+            padding: 14px;
 
-            border:
-                1px solid var(--border);
-
-            border-radius: 16px;
-
-            padding:
-                18px 20px 22px;
-
-            position: relative;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: space-between;
-
-            overflow: hidden;
-
-            min-height: 500px;
+            box-shadow: var(--shadow);
         }
 
-        .map-canvas-toolbar {
+        .map-card-header {
             display: flex;
-
+            align-items: center;
             justify-content: space-between;
 
-            align-items: center;
+            padding: 3px 7px 12px;
+        }
 
-            font-size: 12px;
+        .map-legend {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
 
             color: var(--muted);
-
-            font-weight: 600;
-
-            gap: 10px;
-
-            flex-wrap: wrap;
+            font-size: 11px;
         }
 
-        .map-legend-items {
-            display: flex;
-
-            gap: 12px;
-
-            align-items: center;
-
-            flex-wrap: wrap;
-        }
-
-        .map-legend-items span {
+        .legend-item {
             display: inline-flex;
-
             align-items: center;
-
-            gap: 5px;
+            gap: 7px;
         }
 
         .legend-dot {
             width: 10px;
             height: 10px;
-
             border-radius: 50%;
-
             display: inline-block;
         }
 
-
-        /* =========================================
-           LEAFLET MAP
-        ========================================= */
-
-        .svg-map-wrapper {
-            position: relative;
-
-            width: 100%;
-
-            flex: 1;
-
-            min-height: 430px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            margin: 10px 0;
+        .legend-selected {
+            background: var(--gold-dark);
         }
+
+        .legend-data {
+            background: #D8C59D;
+        }
+
+        .legend-focus {
+            background: #E7D6B3;
+        }
+
+        .map-total {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           LEAFLET MAP
+        ========================================================= */
 
         #indonesiaMap {
             width: 100%;
             height: 430px;
 
             border-radius: 14px;
-
             overflow: hidden;
 
-            background: #F5EFE3;
-
-            z-index: 1;
+            background: #F4EEE2;
         }
 
         .leaflet-container {
-            font-family:
-                'Plus Jakarta Sans',
-                sans-serif;
-
-            background: #F5EFE3;
+            background: #F4EEE2 !important;
+            font-family: "DM Sans", sans-serif;
         }
 
         .leaflet-control-zoom {
-            border:
-                1px solid var(--border) !important;
-
-            box-shadow:
-                var(--shadow) !important;
+            border: 1px solid var(--border) !important;
+            box-shadow: 0 4px 15px rgba(60, 45, 20, 0.1) !important;
         }
 
         .leaflet-control-zoom a {
-            color:
-                var(--gold-dark) !important;
+            background: #fff !important;
+            color: var(--ink) !important;
+            border-color: var(--border) !important;
         }
 
-
-        /* =========================================
-           POPUP
-        ========================================= */
-
-        .leaflet-popup-content-wrapper {
-            border-radius: 12px;
-
-            box-shadow:
-                0 10px 30px
-                rgba(60,45,20,.18);
+        .leaflet-control-zoom a:hover {
+            background: var(--cream) !important;
+            color: var(--gold-dark) !important;
         }
 
-        .leaflet-popup-content {
-            margin:
-                14px 16px;
-
-            font-size: 13px;
-
-            color: var(--ink);
+        .leaflet-control-attribution {
+            background: rgba(255,255,255,.8) !important;
+            color: var(--muted) !important;
+            font-size: 9px !important;
         }
 
-        .map-popup-title {
-            font-family:
-                'Poppins',
-                sans-serif;
+        .province-tooltip {
+            background: var(--ink) !important;
+            color: white !important;
 
-            font-size: 15px;
+            border: none !important;
+            border-radius: 7px !important;
 
+            padding: 7px 10px !important;
+
+            box-shadow: 0 5px 15px rgba(0,0,0,.15) !important;
+
+            font-size: 11px !important;
+            font-weight: 700 !important;
+        }
+
+        .province-tooltip::before {
+            border-top-color: var(--ink) !important;
+        }
+
+        .map-loading {
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            background: rgba(255,255,255,.95);
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            padding: 14px 18px;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            box-shadow: var(--shadow);
+
+            z-index: 1000;
+        }
+
+        .map-wrapper {
+            position: relative;
+        }
+
+        .map-error {
+            display: none;
+
+            position: absolute;
+            z-index: 1001;
+
+            left: 20px;
+            right: 20px;
+            top: 20px;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: var(--red-bg);
+            color: var(--red);
+
+            border: 1px solid rgba(192,57,43,.15);
+
+            font-size: 12px;
+        }
+
+        .map-footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+
+            border-top: 1px dashed var(--border);
+
+            padding: 12px 7px 2px;
+
+            margin-top: 10px;
+
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           DETAIL PANEL
+        ========================================================= */
+
+        .detail-card {
+            background: #FBF8F1;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+
+            padding: 22px;
+
+            box-shadow: var(--shadow);
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+
+            margin-bottom: 7px;
+        }
+
+        .detail-title {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            line-height: 1.2;
+        }
+
+        .detail-zone {
+            background: var(--amber-bg);
+            color: var(--amber);
+
+            border-radius: 999px;
+
+            padding: 6px 11px;
+
+            font-size: 10px;
             font-weight: 700;
+
+            white-space: nowrap;
+        }
+
+        .detail-status {
+            display: inline-flex;
+            align-items: center;
+
+            align-self: flex-start;
+
+            background: var(--green-bg);
+            color: var(--green-dark);
+
+            padding: 5px 9px;
+            border-radius: 999px;
+
+            font-size: 10px;
+            font-weight: 600;
+
+            margin-bottom: 20px;
+        }
+
+        .detail-status.pending {
+            background: var(--amber-bg);
+            color: var(--amber);
+        }
+
+        .detail-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+
+            margin-bottom: 22px;
+        }
+
+        .detail-stat {
+            background: white;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            padding: 14px;
+        }
+
+        .detail-stat strong {
+            display: block;
+
+            font-family: "Playfair Display", serif;
+            font-size: 23px;
+            line-height: 1;
 
             margin-bottom: 5px;
         }
 
-        .map-popup-data {
+        .detail-stat span {
+            display: block;
+
             color: var(--ink-soft);
-
-            line-height: 1.7;
+            font-size: 11px;
+            line-height: 1.35;
         }
 
-        .map-popup-data strong {
-            color:
-                var(--gold-dark);
-        }
-
-
-        /* =========================================
-           MAP FOOTER
-        ========================================= */
-
-        .map-canvas-footer {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            font-size: 11.5px;
-
+        .detail-subtitle {
             color: var(--muted);
 
-            border-top:
-                1px dashed var(--border);
-
-            padding-top: 10px;
-
-            margin-top: 8px;
-
-            gap: 10px;
-
-            flex-wrap: wrap;
-        }
-
-
-        /* =========================================
-           DETAIL PANEL
-        ========================================= */
-
-        .map-info-panel {
-            background: #FAF7F0;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 16px;
-
-            padding:
-                24px 22px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: space-between;
-        }
-
-        .panel-head {
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: flex-start;
-
-            margin-bottom: 14px;
-
-            gap: 10px;
-        }
-
-        .panel-region-name {
-            font-family: 'Poppins', sans-serif;
-
-            font-size: 22px;
-
-            color: var(--ink);
-
+            font-size: 11px;
             font-weight: 700;
-
-            margin:
-                0 0 4px;
-        }
-
-        .panel-region-status {
-            font-size: 11.5px;
-
-            font-weight: 600;
-
-            color: var(--green-dark);
-
-            background: #E3F5EC;
-
-            padding:
-                3px 9px;
-
-            border-radius: 6px;
-
-            display: inline-block;
-        }
-
-        .panel-zone-badge {
-            font-size: 11.5px;
-
-            font-weight: 700;
-
-            color: var(--gold-dark);
-
-            background: var(--amber-bg);
-
-            padding:
-                4px 10px;
-
-            border-radius: 8px;
-
-            letter-spacing: .03em;
-        }
-
-
-        /* =========================================
-           METRICS
-        ========================================= */
-
-        .panel-metrics {
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 10px;
-
-            margin:
-                16px 0;
-        }
-
-        .metric-box {
-            background: #fff;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 10px;
-
-            padding:
-                12px 14px;
-        }
-
-        .metric-box .m-num {
-            font-family:
-                'Poppins',
-                sans-serif;
-
-            font-size: 20px;
-
-            font-weight: 800;
-
-            color: var(--ink);
-
-            line-height: 1.2;
-        }
-
-        .metric-box .m-title {
-            font-size: 11.5px;
-
-            color: var(--ink-soft);
-
-            margin-top: 4px;
-
-            font-weight: 500;
-
-            line-height: 1.3;
-        }
-
-
-        /* =========================================
-           PROGRAM LIST
-        ========================================= */
-
-        .panel-program-list {
-            margin:
-                14px 0 20px;
-        }
-
-        .panel-program-list h5 {
-            font-size: 12.5px;
 
             text-transform: uppercase;
+            letter-spacing: .3px;
 
-            letter-spacing: .04em;
-
-            color: var(--muted);
-
-            margin:
-                0 0 10px;
-
-            font-weight: 700;
+            margin-bottom: 10px;
         }
 
         .program-tags {
             display: flex;
-
             flex-wrap: wrap;
+            gap: 7px;
 
-            gap: 6px;
+            margin-bottom: 24px;
         }
 
-        .prog-chip {
-            background: #fff;
+        .program-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
 
-            border:
-                1px solid var(--border);
+            background: white;
 
-            padding:
-                5px 10px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
 
-            border-radius: 6px;
-
-            font-size: 11.5px;
-
-            font-weight: 600;
+            padding: 6px 9px;
 
             color: var(--ink-soft);
 
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 5px;
+            font-size: 10px;
+            line-height: 1.3;
         }
 
-        .prog-chip::before {
-            content: "";
-
-            width: 6px;
-            height: 6px;
+        .tag-dot {
+            width: 5px;
+            height: 5px;
 
             border-radius: 50%;
-
             background: var(--gold);
         }
 
+        .empty-data {
+            color: var(--muted);
+            font-size: 11px;
+            padding: 8px 0;
+        }
 
-        /* =========================================
-           CTA PANEL
-        ========================================= */
+        .detail-button {
+            width: 100%;
 
-        .panel-cta-btn {
+            margin-top: auto;
+
+            padding: 14px;
+
             background: var(--ink);
+            color: white;
 
-            color: #fff;
+            border-radius: 9px;
 
-            padding:
-                12px 18px;
-
-            border-radius: 10px;
-
+            font-size: 12px;
             font-weight: 700;
-
-            font-size: 13.5px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 8px;
-
-            transition: all .15s;
-
-            border: none;
 
             text-align: center;
 
-            width: 100%;
+            transition: .2s ease;
         }
 
-        .panel-cta-btn:hover {
+        .detail-button:hover {
             background: var(--gold-dark);
-
-            color: #fff;
         }
 
+        .detail-button.disabled {
+            background: #D9D2C5;
+            color: #8B8172;
+            pointer-events: none;
+        }
 
-        /* =========================================
+        /* =========================================================
            FOOTER
-        ========================================= */
+        ========================================================= */
 
-        .site-footer {
-            background: var(--paper);
+        footer {
+            background: var(--ink);
+            color: white;
 
-            border-top:
-                1px solid var(--border);
-
-            margin-top: 56px;
+            padding: 45px 0;
         }
 
         .footer-inner {
-            max-width: 1180px;
-
-            margin: 0 auto;
-
-            padding:
-                44px 28px 24px;
-
-            display: grid;
-
-            grid-template-columns:
-                1.6fr 1fr 1fr 1fr;
-
-            gap: 32px;
-        }
-
-        .footer-brand {
             display: flex;
-
-            gap: 14px;
-        }
-
-        .footer-brand-text h4 {
-            margin: 0;
-
-            font-size: 15px;
-        }
-
-        .footer-brand-text p {
-            margin:
-                6px 0 0;
-
-            color: var(--muted);
-
-            font-size: 13px;
-
-            line-height: 1.6;
-        }
-
-        .footer-col h5 {
-            font-size: 13px;
-
-            text-transform: uppercase;
-
-            letter-spacing: .04em;
-
-            color: var(--muted);
-
-            margin:
-                0 0 14px;
-        }
-
-        .footer-col a {
-            display: block;
-
-            color: var(--ink-soft);
-
-            font-size: 14px;
-
-            margin-bottom: 10px;
-        }
-
-        .footer-col a:hover {
-            color: var(--gold-dark);
-        }
-
-        .footer-contact-item {
-            display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            color: var(--ink-soft);
-
-            font-size: 14px;
-
-            margin-bottom: 10px;
-        }
-
-        .footer-bottom {
-            border-top:
-                1px solid var(--border);
-
-            padding:
-                16px 28px;
-
-            max-width: 1180px;
-
-            margin: 0 auto;
-
-            display: flex;
-
             justify-content: space-between;
-
             align-items: center;
-
-            color: var(--muted);
-
-            font-size: 12.5px;
-
-            gap: 20px;
+            gap: 30px;
         }
 
-        .social-dots {
-            display: flex;
-
-            gap: 10px;
+        .footer-brand strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 4px;
         }
 
-        .social-dots span {
-            width: 28px;
-            height: 28px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius: 8px;
-
-            display: inline-block;
+        .footer-brand span {
+            color: #AFA79A;
+            font-size: 11px;
         }
 
+        .footer-copy {
+            color: #AFA79A;
+            font-size: 11px;
+            text-align: right;
+        }
 
-        /* =========================================
+        /* =========================================================
            RESPONSIVE
-        ========================================= */
+        ========================================================= */
 
-        @media(max-width: 980px) {
-
-            .map-body-grid {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-        @media(max-width: 900px) {
+        @media (max-width: 980px) {
 
             .nav {
                 display: none;
             }
 
-            .footer-inner {
-                grid-template-columns:
-                    1fr 1fr;
+            .hero-grid {
+                grid-template-columns: 1fr;
             }
 
+            .hero-card {
+                max-width: 600px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat-card:nth-child(-n+2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .map-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .detail-card {
+                min-height: 500px;
+            }
         }
 
-        @media(max-width: 800px) {
+        @media (max-width: 650px) {
 
-            .stat-strip {
-                grid-template-columns:
-                    1fr 1fr;
+            .container {
+                width: min(100% - 28px, 1180px);
             }
 
-        }
-
-        @media(max-width: 600px) {
-
-            .page-shell {
-                padding-left: 16px;
-                padding-right: 16px;
+            .topbar-inner {
+                width: calc(100% - 28px);
             }
 
-            .map-section {
-                padding:
-                    22px 16px;
+            .brand-text {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 0;
             }
 
             .hero h1 {
-                font-size: 28px;
+                font-size: 39px;
             }
 
-            .hero-actions {
-                flex-direction: column;
-            }
-
-            .stat-strip {
-                grid-template-columns: 1fr;
-            }
-
-            .map-title-group h2 {
-                font-size: 20px;
-
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-            #indonesiaMap {
-                height: 350px;
-            }
-
-            .svg-map-wrapper {
-                min-height: 350px;
-            }
-
-            .panel-metrics {
+            .stats-grid {
                 grid-template-columns: 1fr 1fr;
             }
 
-            .footer-inner {
-                grid-template-columns: 1fr;
+            .stat-card {
+                padding: 20px 16px;
             }
 
-            .footer-bottom {
-                flex-direction: column;
+            .stat-number {
+                font-size: 28px;
+            }
 
+            .section-heading {
+                flex-direction: column;
                 align-items: flex-start;
             }
 
+            .section-heading h2 {
+                font-size: 30px;
+            }
+
+            .map-layout {
+                gap: 16px;
+            }
+
+            .map-card,
+            .detail-card {
+                padding: 12px;
+            }
+
+            #indonesiaMap {
+                height: 360px;
+            }
+
+            .map-footer {
+                flex-direction: column;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-copy {
+                text-align: left;
+            }
         }
 
     </style>
 </head>
 
-
 <body>
 
+    <!-- =========================================================
+         TOPBAR
+    ========================================================= -->
 
-<!-- =========================================
-     TOPBAR
-========================================= -->
+    <header class="topbar">
 
-<header class="topbar">
+        <div class="topbar-inner">
 
-    <div class="topbar-inner">
+            <a href="beranda.html" class="brand">
 
-        <div class="brand">
+                <div class="brand-mark">
+                    KB
+                </div>
 
-            <svg
-                class="brand-logo"
-                fill="none"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg">
-
-                <g fill="#C9A15A">
-
-                    <path
-                        d="M24 4c1.2 3 1.2 6-1 8.2
-                        2.6-1 5.4-1 7.6 1.2
-                        -1 2.6-3.2 3.8-6.2 3.6
-                        2.4 1.6 3.8 4 3.4 7.2
-                        -2.8.2-5-1-6.4-3.4
-                        -.2 3-1.6 5.2-4.2 6.4
-                        -1.4-2.6-1-5.4 1-7.6
-                        -2.8.8-5.6.2-7.4-2
-                        1.4-2.4 3.8-3.4 6.6-2.8
-                        -2-1.8-3-4.4-2.2-7.4
-                        2.8.2 4.8 1.8 5.8 4.4
-                        C21 8.6 22 6 24 4z">
-                    </path>
-
-                    <circle
-                        cx="24"
-                        cy="24"
-                        r="3.4">
-                    </circle>
-
-                </g>
-
-            </svg>
-
-            <div class="brand-text">
-
-                Kementerian Kebudayaan
-
-                <small>
-                    Republik Indonesia
-                </small>
-
-            </div>
-
-        </div>
-
-
-        <nav class="nav">
-
-            <a
-                class="active"
-                href="beranda.html">
-                Beranda
-            </a>
-
-            <a href="statistik-program.html">
-                Statistik Program
-            </a>
-
-            <a href="data-program.html">
-                Data Program
-            </a>
-
-            <a href="tentang.html">
-                Tentang
-            </a>
-
-        </nav>
-
-
-        <a
-            class="btn-outline-gold"
-            href="login.html">
-
-            LOG IN
-
-        </a>
-
-    </div>
-
-</header>
-
-
-
-<!-- =========================================
-     MAIN
-========================================= -->
-
-<main class="page-shell">
-
-
-    <!-- HERO -->
-
-    <div class="hero">
-
-        <h1>
-
-            Data Kebudayaan Indonesia,
-            <br/>
-
-            terkelola dan dapat diakses publik
-
-        </h1>
-
-
-        <p>
-
-            Platform Pengelolaan dan Visualisasi
-            Data Kebudayaan — melacak program,
-            SDM, dan sebaran kegiatan budaya
-            di seluruh Indonesia.
-
-        </p>
-
-
-        <div class="hero-actions">
-
-            <a
-                class="btn-primary"
-                href="data-program.html">
-
-                Lihat Data Program
+                <div class="brand-text">
+                    <strong>Data Kebudayaan</strong>
+                    <span>Kementerian Kebudayaan</span>
+                </div>
 
             </a>
 
+            <nav class="nav">
 
-            <a
-                class="btn-secondary"
-                href="statistik-program.html">
+                <a href="beranda.html" class="active">
+                    Beranda
+                </a>
 
-                Lihat Statistik
+                <a href="statistik-program.html">
+                    Statistik Program
+                </a>
 
-            </a>
+                <a href="data-program.html">
+                    Data Program
+                </a>
 
-        </div>
+                <a href="tentang.html">
+                    Tentang
+                </a>
 
-    </div>
+                <a href="login.html" class="login-btn">
+                    Masuk
+                </a>
 
-
-
-    <!-- STATISTICS -->
-
-    <div class="stat-strip">
-
-        <div class="mini-card">
-
-            <div class="value">
-                128
-            </div>
-
-            <div class="label">
-                Total Program
-            </div>
+            </nav>
 
         </div>
 
+    </header>
 
-        <div class="mini-card">
 
-            <div class="value">
-                4.512
+    <!-- =========================================================
+         HERO
+    ========================================================= -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="container">
+
+                <div class="hero-grid">
+
+                    <div>
+
+                        <div class="eyebrow">
+                            <span class="eyebrow-dot"></span>
+                            PLATFORM DATA KEBUDAYAAN
+                        </div>
+
+                        <h1>
+                            Data Kebudayaan Indonesia,
+                            <span>terkelola dan dapat diakses publik.</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            Platform terintegrasi untuk pengelolaan,
+                            pemantauan, dan visualisasi data kebudayaan
+                            Indonesia dari tingkat provinsi hingga nasional.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <a
+                                href="#peta-persebaran"
+                                class="btn btn-primary"
+                            >
+                                Jelajahi Peta
+                            </a>
+
+                            <a
+                                href="data-program.html"
+                                class="btn btn-secondary"
+                            >
+                                Lihat Data Program
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-card">
+
+                        <div class="hero-card-label">
+                            Cakupan Nasional
+                        </div>
+
+                        <div class="hero-card-number">
+                            38
+                        </div>
+
+                        <div class="hero-card-text">
+                            Provinsi Indonesia
+                        </div>
+
+                        <div class="hero-card-divider"></div>
+
+                        <div class="hero-card-row">
+
+                            <div class="hero-mini">
+                                <strong>514</strong>
+                                <span>Kabupaten/Kota</span>
+                            </div>
+
+                            <div class="hero-mini">
+                                <strong>6</strong>
+                                <span>Program Utama</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="label">
-                SDM Terdaftar
+        </section>
+
+
+        <!-- =====================================================
+             STATS
+        ===================================================== -->
+
+        <section class="stats">
+
+            <div class="container">
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-number">128</div>
+                        <div class="stat-label">
+                            Total Program
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">4.512</div>
+                        <div class="stat-label">
+                            SDM Kebudayaan
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">38</div>
+                        <div class="stat-label">
+                            Total Provinsi
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-number">216</div>
+                        <div class="stat-label">
+                            Wilayah Terdata
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
-        </div>
+        </section>
 
 
-        <div class="mini-card">
+        <!-- =====================================================
+             MAP
+        ===================================================== -->
 
-            <div class="value">
-                38
-            </div>
+        <section
+            class="map-section"
+            id="peta-persebaran"
+        >
 
-            <div class="label">
-                Total Provinsi
-            </div>
+            <div class="container">
 
-        </div>
+                <div class="section-heading">
 
+                    <div>
 
-        <div class="mini-card">
+                        <h2>
+                            Peta Persebaran
+                            Kebudayaan Indonesia
+                        </h2>
 
-            <div class="value">
-                216
-            </div>
+                        <p>
+                            Pilih atau klik salah satu provinsi pada
+                            peta untuk melihat informasi kebudayaan
+                            dan program yang tersedia.
+                        </p>
 
-            <div class="label">
-                Total Kota
-            </div>
+                    </div>
 
-        </div>
-
-    </div>
-
-
-
-    <!-- =========================================
-         MAP SECTION
-    ========================================== -->
-
-    <section
-        class="map-section"
-        id="peta-persebaran">
-
-
-        <!-- MAP HEADER -->
-
-        <div class="map-header">
-
-            <div class="map-title-group">
-
-                <h2>
-
-                    Peta Persebaran
-                    Kebudayaan Indonesia
-
-                    <span class="badge-tag">
+                    <div class="section-badge">
                         Dapobud Terpadu
-                    </span>
-
-                </h2>
-
-
-                <p>
-
-                    Klik pada salah satu provinsi
-                    di peta atau pilih dari daftar
-                    untuk melihat rincian sebaran
-                    program, SDM kebudayaan,
-                    cagar budaya, dan komunitas
-                    terdaftar.
-
-                </p>
-
-            </div>
-
-
-            <!-- CONTROLS -->
-
-            <div class="map-controls">
-
-
-                <!-- PROVINSI -->
-
-                <select
-                    aria-label="Pilih Provinsi"
-                    class="select-styled"
-                    id="provinsiSelect">
-
-                    <option value="semua">
-                        Semua Provinsi
-                    </option>
-
-                    <option value="Aceh">
-                        Aceh
-                    </option>
-
-                    <option value="Sumatera Utara">
-                        Sumatera Utara
-                    </option>
-
-                    <option value="Sumatera Barat">
-                        Sumatera Barat
-                    </option>
-
-                    <option value="Riau">
-                        Riau
-                    </option>
-
-                    <option value="Jambi">
-                        Jambi
-                    </option>
-
-                    <option value="Sumatera Selatan">
-                        Sumatera Selatan
-                    </option>
-
-                    <option value="Bengkulu">
-                        Bengkulu
-                    </option>
-
-                    <option value="Lampung">
-                        Lampung
-                    </option>
-
-                    <option value="Kepulauan Bangka Belitung">
-                        Kepulauan Bangka Belitung
-                    </option>
-
-                    <option value="Kepulauan Riau">
-                        Kepulauan Riau
-                    </option>
-
-                    <option value="DKI Jakarta">
-                        DKI Jakarta
-                    </option>
-
-                    <option value="Jawa Barat">
-                        Jawa Barat
-                    </option>
-
-                    <option value="Jawa Tengah">
-                        Jawa Tengah
-                    </option>
-
-                    <option value="Daerah Istimewa Yogyakarta">
-                        Daerah Istimewa Yogyakarta
-                    </option>
-
-                    <option value="Jawa Timur">
-                        Jawa Timur
-                    </option>
-
-                    <option value="Banten">
-                        Banten
-                    </option>
-
-                    <option value="Bali">
-                        Bali
-                    </option>
-
-                    <option value="Nusa Tenggara Barat">
-                        Nusa Tenggara Barat
-                    </option>
-
-                    <option value="Nusa Tenggara Timur">
-                        Nusa Tenggara Timur
-                    </option>
-
-                    <option value="Kalimantan Barat">
-                        Kalimantan Barat
-                    </option>
-
-                    <option value="Kalimantan Tengah">
-                        Kalimantan Tengah
-                    </option>
-
-                    <option value="Kalimantan Selatan">
-                        Kalimantan Selatan
-                    </option>
-
-                    <option value="Kalimantan Timur">
-                        Kalimantan Timur
-                    </option>
-
-                    <option value="Kalimantan Utara">
-                        Kalimantan Utara
-                    </option>
-
-                    <option value="Sulawesi Utara">
-                        Sulawesi Utara
-                    </option>
-
-                    <option value="Sulawesi Tengah">
-                        Sulawesi Tengah
-                    </option>
-
-                    <option value="Sulawesi Selatan">
-                        Sulawesi Selatan
-                    </option>
-
-                    <option value="Sulawesi Tenggara">
-                        Sulawesi Tenggara
-                    </option>
-
-                    <option value="Gorontalo">
-                        Gorontalo
-                    </option>
-
-                    <option value="Sulawesi Barat">
-                        Sulawesi Barat
-                    </option>
-
-                    <option value="Maluku">
-                        Maluku
-                    </option>
-
-                    <option value="Maluku Utara">
-                        Maluku Utara
-                    </option>
-
-                    <option value="Papua Barat">
-                        Papua Barat
-                    </option>
-
-                    <option value="Papua">
-                        Papua
-                    </option>
-
-                    <option value="Papua Selatan">
-                        Papua Selatan
-                    </option>
-
-                    <option value="Papua Tengah">
-                        Papua Tengah
-                    </option>
-
-                    <option value="Papua Pegunungan">
-                        Papua Pegunungan
-                    </option>
-
-                    <option value="Papua Barat Daya">
-                        Papua Barat Daya
-                    </option>
-
-                </select>
-
-
-                <!-- PROGRAM -->
-
-                <select
-                    aria-label="Filter Program"
-                    class="select-styled"
-                    id="programFilterSelect">
-
-                    <option value="semua">
-                        Semua Program
-                    </option>
-
-                    <option value="pemajuan">
-                        Pemajuan Kebudayaan
-                    </option>
-
-                    <option value="sdm">
-                        Bimtek &amp; SDM
-                    </option>
-
-                    <option value="cagar">
-                        Cagar Budaya &amp; WBTb
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- MAP + DETAIL -->
-
-        <div class="map-body-grid">
-
-
-            <!-- =====================================
-                 MAP
-            ====================================== -->
-
-            <div class="map-canvas-card">
-
-
-                <!-- TOOLBAR -->
-
-                <div class="map-canvas-toolbar">
-
-                    <div class="map-legend-items">
-
-                        <span>
-
-                            <i
-                                class="legend-dot"
-                                style="background:#A87F3C;">
-                            </i>
-
-                            Terpilih
-
-                        </span>
-
-
-                        <span>
-
-                            <i
-                                class="legend-dot"
-                                style="background:#E8DECA;">
-                            </i>
-
-                            Terdata
-
-                        </span>
-
-
-                        <span>
-
-                            <i
-                                class="legend-dot"
-                                style="background:#C9A15A;">
-                            </i>
-
-                            Sorotan
-
-                        </span>
-
-                    </div>
-
-
-                    <span>
-                        Peta 38 Provinsi Indonesia
-                    </span>
-
-                </div>
-
-
-
-                <!-- ACTUAL MAP -->
-
-                <div class="svg-map-wrapper">
-
-                    <div
-                        id="indonesiaMap"
-                        aria-label="Peta Interaktif Kebudayaan Indonesia">
                     </div>
 
                 </div>
 
 
+                <!-- CONTROLS -->
 
-                <!-- MAP FOOTER -->
+                <div class="map-controls">
 
-                <div class="map-canvas-footer">
+                    <div class="select-wrapper">
 
-                    <span>
-                        💡 Klik wilayah pada peta
-                        untuk melihat detail
-                    </span>
+                        <select
+                            id="provinsiSelect"
+                            class="map-select"
+                        >
+                            <option value="">
+                                Pilih Provinsi
+                            </option>
+                        </select>
 
-                    <span>
-                        Pemutakhiran: BSLPK Kemenbud 2026
-                    </span>
+                        <span class="select-arrow">
+                            ▼
+                        </span>
+
+                    </div>
+
+
+                    <div class="select-wrapper">
+
+                        <select
+                            id="programFilterSelect"
+                            class="map-select"
+                        >
+
+                            <option value="semua">
+                                Semua Program
+                            </option>
+
+                            <option value="pemajuan">
+                                Pemajuan Kebudayaan
+                            </option>
+
+                            <option value="sdm">
+                                SDM Kebudayaan
+                            </option>
+
+                            <option value="cagar">
+                                Cagar Budaya
+                            </option>
+
+                        </select>
+
+                        <span class="select-arrow">
+                            ▼
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </div>
+
+                <!-- MAP + DETAIL -->
+
+                <div class="map-layout">
 
 
+                    <!-- ================= MAP CARD ================= -->
 
-            <!-- =====================================
-                 DETAIL PANEL
-            ====================================== -->
+                    <div class="map-card">
 
-            <aside
-                class="map-info-panel"
-                id="panelDetail">
+                        <div class="map-card-header">
+
+                            <div class="map-legend">
+
+                                <span class="legend-item">
+
+                                    <span
+                                        class="legend-dot legend-selected"
+                                    ></span>
+
+                                    Terpilih
+
+                                </span>
+
+                                <span class="legend-item">
+
+                                    <span
+                                        class="legend-dot legend-data"
+                                    ></span>
+
+                                    Terdata
+
+                                </span>
+
+                                <span class="legend-item">
+
+                                    <span
+                                        class="legend-dot legend-focus"
+                                    ></span>
+
+                                    Sorotan
+
+                                </span>
+
+                            </div>
+
+                            <div class="map-total">
+                                Peta 38 Provinsi Indonesia
+                            </div>
+
+                        </div>
 
 
-                <div>
+                        <div class="map-wrapper">
+
+                            <div
+                                id="indonesiaMap"
+                            ></div>
+
+                            <div
+                                id="mapLoading"
+                                class="map-loading"
+                            >
+                                Memuat peta Indonesia...
+                            </div>
+
+                            <div
+                                id="mapError"
+                                class="map-error"
+                            >
+                                Peta gagal dimuat.
+                                Pastikan halaman dijalankan melalui
+                                Live Server dan koneksi internet tersedia.
+                            </div>
+
+                        </div>
 
 
-                    <div class="panel-head">
+                        <div class="map-footer">
+
+                            <span>
+                                💡 Klik wilayah pada peta
+                                untuk melihat detail
+                            </span>
+
+                            <span>
+                                Batas wilayah: GeoJSON 38 provinsi
+                            </span>
+
+                        </div>
+
+                    </div>
 
 
-                        <div>
+                    <!-- ================= DETAIL CARD ================= -->
+
+                    <aside
+                        class="detail-card"
+                        id="detailCard"
+                    >
+
+                        <div class="detail-top">
 
                             <h3
-                                class="panel-region-name"
-                                id="detNamaProvinsi">
-
+                                class="detail-title"
+                                id="detNamaProvinsi"
+                            >
                                 Jawa Tengah
-
                             </h3>
 
-
                             <span
-                                class="panel-region-status"
-                                id="detStatus">
-
-                                ● Data Terverifikasi Aktif
-
+                                class="detail-zone"
+                                id="detZona"
+                            >
+                                Zona Jawa
                             </span>
 
                         </div>
 
 
-                        <span
-                            class="panel-zone-badge"
-                            id="detZona">
-
-                            Zona Jawa
-
-                        </span>
-
-                    </div>
+                        <div
+                            class="detail-status"
+                            id="detStatus"
+                        >
+                            ● Data Terverifikasi Aktif
+                        </div>
 
 
+                        <!-- DETAIL STATISTICS -->
 
-                    <!-- METRICS -->
+                        <div class="detail-stats">
 
-                    <div class="panel-metrics">
+                            <div class="detail-stat">
 
+                                <strong
+                                    id="detProgram"
+                                >
+                                    18
+                                </strong>
 
-                        <div class="metric-box">
-
-                            <div
-                                class="m-num"
-                                id="detProgram">
-
-                                18
+                                <span>
+                                    Total Program
+                                    Kebudayaan
+                                </span>
 
                             </div>
 
-                            <div class="m-title">
 
-                                Total Program
-                                Kebudayaan
+                            <div class="detail-stat">
+
+                                <strong
+                                    id="detSdm"
+                                >
+                                    642
+                                </strong>
+
+                                <span>
+                                    SDM Kebudayaan
+                                    Terdaftar
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-stat">
+
+                                <strong
+                                    id="detCagar"
+                                >
+                                    124
+                                </strong>
+
+                                <span>
+                                    Cagar Budaya
+                                    &amp; WBTb
+                                </span>
+
+                            </div>
+
+
+                            <div class="detail-stat">
+
+                                <strong
+                                    id="detKomunitas"
+                                >
+                                    48
+                                </strong>
+
+                                <span>
+                                    Lembaga /
+                                    Komunitas
+                                </span>
 
                             </div>
 
                         </div>
 
 
-                        <div class="metric-box">
+                        <!-- PROGRAM -->
 
-                            <div
-                                class="m-num"
-                                id="detSdm">
-
-                                642
-
-                            </div>
-
-                            <div class="m-title">
-
-                                SDM Kebudayaan
-                                Terdaftar
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="metric-box">
-
-                            <div
-                                class="m-num"
-                                id="detCagar">
-
-                                124
-
-                            </div>
-
-                            <div class="m-title">
-
-                                Cagar Budaya
-                                &amp; WBTb
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="metric-box">
-
-                            <div
-                                class="m-num"
-                                id="detKomunitas">
-
-                                48
-
-                            </div>
-
-                            <div class="m-title">
-
-                                Lembaga /
-                                Komunitas
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- PROGRAM PRIORITAS -->
-
-                    <div class="panel-program-list">
-
-                        <h5>
+                        <div class="detail-subtitle">
                             Program Prioritas Berjalan
-                        </h5>
+                        </div>
 
 
                         <div
                             class="program-tags"
-                            id="detProgramTags">
+                            id="detProgramTags"
+                        >
+
+                            <span class="program-tag">
+                                <span class="tag-dot"></span>
+                                Bimtek &amp; Sertifikasi SDM
+                            </span>
+
+                            <span class="program-tag">
+                                <span class="tag-dot"></span>
+                                Pemajuan Desa Budaya
+                            </span>
+
+                            <span class="program-tag">
+                                <span class="tag-dot"></span>
+                                MTN Kesenian Rakyat
+                            </span>
+
+                            <span class="program-tag">
+                                <span class="tag-dot"></span>
+                                Apresiasi Kebudayaan Indonesia
+                            </span>
+
+                            <span class="program-tag">
+                                <span class="tag-dot"></span>
+                                Konservasi Candi &amp; Situs
+                            </span>
 
                         </div>
 
-                    </div>
+
+                        <a
+                            href="data-program.html?provinsi=Jawa%20Tengah"
+                            class="detail-button"
+                            id="detBtnLink"
+                        >
+                            Eksplorasi Data Provinsi Ini →
+                        </a>
+
+                    </aside>
 
                 </div>
 
-
-
-                <!-- CTA -->
-
-                <div>
-
-                    <a
-                        class="panel-cta-btn"
-                        href="data-program.html"
-                        id="detBtnLink">
-
-                        Eksplorasi Data Provinsi Ini →
-
-                    </a>
-
-                </div>
-
-            </aside>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-
-<!-- =========================================
-     FOOTER
-========================================= -->
-
-<footer class="site-footer">
-
-
-    <div class="footer-inner">
-
-
-        <div class="footer-brand">
-
-
-            <svg
-                class="brand-logo"
-                fill="none"
-                viewBox="0 0 48 48"
-                xmlns="http://www.w3.org/2000/svg">
-
-                <g fill="#C9A15A">
-
-                    <path
-                        d="M24 4c1.2 3 1.2 6-1 8.2
-                        2.6-1 5.4-1 7.6 1.2
-                        -1 2.6-3.2 3.8-6.2 3.6
-                        2.4 1.6 3.8 4 3.4 7.2
-                        -2.8.2-5-1-6.4-3.4
-                        -.2 3-1.6 5.2-4.2 6.4
-                        -1.4-2.6-1-5.4 1-7.6
-                        -2.8.8-5.6.2-7.4-2
-                        1.4-2.4 3.8-3.4 6.6-2.8
-                        -2-1.8-3-4.4-2.2-7.4
-                        2.8.2 4.8 1.8 5.8 4.4
-                        C21 8.6 22 6 24 4z">
-                    </path>
-
-                    <circle
-                        cx="24"
-                        cy="24"
-                        r="3.4">
-                    </circle>
-
-                </g>
-
-            </svg>
-
-
-            <div class="footer-brand-text">
-
-                <h4>
-                    Kementerian Kebudayaan
-                    <br/>
-                    Republik Indonesia
-                </h4>
-
-                <p>
-                    Platform Pengelolaan dan
-                    Visualisasi Data Kebudayaan —
-                    Direktorat BSLPK
-                </p>
-
             </div>
 
-        </div>
+        </section>
 
+    </main>
 
 
-        <div class="footer-col">
+    <!-- =========================================================
+         FOOTER
+    ========================================================= -->
 
-            <h5>
-                Tautan
-            </h5>
+    <footer>
 
-            <a href="beranda.html">
-                Beranda
-            </a>
+        <div class="container">
 
-            <a href="statistik-program.html">
-                Statistik Program
-            </a>
+            <div class="footer-inner">
 
-            <a href="data-program.html">
-                Data Program
-            </a>
-
-            <a href="tentang.html">
-                Tentang
-            </a>
-
-        </div>
-
-
-
-        <div class="footer-col">
-
-            <h5>
-                Bantuan
-            </h5>
-
-            <a href="tentang.html">
-                Panduan (Juknis)
-            </a>
-
-            <a href="tentang.html">
-                FAQ
-            </a>
-
-            <a href="#">
-                Dasar Hukum
-            </a>
-
-        </div>
-
-
-
-        <div class="footer-col">
-
-            <h5>
-                Kontak
-            </h5>
-
-            <div class="footer-contact-item">
-                ✉️ kontak@kemenbud.go.id
-            </div>
-
-            <div class="footer-contact-item">
-                ☎️ Call center 178
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="footer-bottom">
-
-        <span>
-            © 2026 Kementerian Kebudayaan Republik Indonesia.
-            Hak cipta dilindungi.
-        </span>
-
-
-        <div class="social-dots">
-
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </div>
-
-    </div>
-
-</footer>
-
-
-
-<!-- =========================================
-     LEAFLET JS
-========================================= -->
-
-<script
-    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    crossorigin="">
-</script>
-
-
-
-<script>
-
-/* =====================================================
-   DATA KEBUDAYAAN PROVINSI
-   ===================================================== */
-
-const dataProvinsi = {
-
-    "Aceh": {
-        zona: "Zona Sumatera",
-        program: 12,
-        sdm: 320,
-        cagar: 61,
-        komunitas: 27,
-        tags: [
-            "Pemajuan Seni Aceh",
-            "Pelestarian Tari Tradisi",
-            "Bimtek SDM Kebudayaan",
-            "Pelindungan Warisan Budaya"
-        ]
-    },
-
-    "Sumatera Utara": {
-        zona: "Zona Sumatera",
-        program: 14,
-        sdm: 380,
-        cagar: 76,
-        komunitas: 32,
-        tags: [
-            "Geopark Kaldera Toba",
-            "Tenun Ulos Berkelanjutan",
-            "Festival Gondang Sabangunan",
-            "Pemajuan Aksara Batak"
-        ]
-    },
-
-    "Sumatera Barat": {
-        zona: "Zona Sumatera",
-        program: 16,
-        sdm: 412,
-        cagar: 88,
-        komunitas: 39,
-        tags: [
-            "Warisan Tambang Ombilin",
-            "Pekan Randai Tradisi",
-            "Konservasi Rumah Gadang",
-            "Festival Kuliner Rendang"
-        ]
-    },
-
-    "Riau": {
-        zona: "Zona Sumatera",
-        program: 13,
-        sdm: 350,
-        cagar: 64,
-        komunitas: 30,
-        tags: [
-            "Pelestarian Melayu",
-            "Festival Budaya Melayu",
-            "Bimtek Pelaku Seni",
-            "Pelindungan Warisan Budaya"
-        ]
-    },
-
-    "Jambi": {
-        zona: "Zona Sumatera",
-        program: 11,
-        sdm: 290,
-        cagar: 55,
-        komunitas: 25,
-        tags: [
-            "Candi Muaro Jambi",
-            "Pelestarian Batik Jambi",
-            "Pemajuan Seni Tradisi",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Sumatera Selatan": {
-        zona: "Zona Sumatera",
-        program: 15,
-        sdm: 410,
-        cagar: 82,
-        komunitas: 35,
-        tags: [
-            "Pelestarian Songket",
-            "Festival Sriwijaya",
-            "Pemajuan Seni Tradisi",
-            "Registrasi Cagar Budaya"
-        ]
-    },
-
-    "Bengkulu": {
-        zona: "Zona Sumatera",
-        program: 10,
-        sdm: 250,
-        cagar: 48,
-        komunitas: 22,
-        tags: [
-            "Pelestarian Tabot",
-            "Seni Tradisi Bengkulu",
-            "Bimtek Kebudayaan",
-            "Digitalisasi Budaya"
-        ]
-    },
-
-    "Lampung": {
-        zona: "Zona Sumatera",
-        program: 14,
-        sdm: 370,
-        cagar: 70,
-        komunitas: 31,
-        tags: [
-            "Pelestarian Kain Tapis",
-            "Festival Krakatau",
-            "Pemajuan Seni Lampung",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Kepulauan Bangka Belitung": {
-        zona: "Zona Sumatera",
-        program: 8,
-        sdm: 190,
-        cagar: 35,
-        komunitas: 18,
-        tags: [
-            "Pelestarian Tradisi Melayu",
-            "Festival Budaya",
-            "Pemajuan Seni",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Kepulauan Riau": {
-        zona: "Zona Sumatera",
-        program: 9,
-        sdm: 210,
-        cagar: 40,
-        komunitas: 20,
-        tags: [
-            "Pelestarian Budaya Melayu",
-            "Festival Bahari",
-            "Warisan Budaya Pesisir",
-            "Pemajuan Seni"
-        ]
-    },
-
-    "DKI Jakarta": {
-        zona: "Zona Khusus Ibu Kota",
-        program: 24,
-        sdm: 810,
-        cagar: 98,
-        komunitas: 72,
-        tags: [
-            "Festival Seni Urban",
-            "Digitalisasi Arsip Budaya",
-            "Diplomasi Budaya Global",
-            "Pekan Kebudayaan Nasional"
-        ]
-    },
-
-    "Jawa Barat": {
-        zona: "Zona Jawa",
-        program: 19,
-        sdm: 520,
-        cagar: 110,
-        komunitas: 53,
-        tags: [
-            "Revitalisasi Angklung",
-            "Pemberdayaan Desa Adat",
-            "Bimtek Pelaku Teater Sunda",
-            "Registrasi Cagar Budaya"
-        ]
-    },
-
-    "Jawa Tengah": {
-        zona: "Zona Jawa",
-        program: 18,
-        sdm: 642,
-        cagar: 124,
-        komunitas: 48,
-        tags: [
-            "Bimtek & Sertifikasi SDM",
-            "Pemajuan Desa Budaya",
-            "MTN Kesenian Rakyat",
-            "Apresiasi Kebudayaan Indonesia",
-            "Konservasi Candi & Situs"
-        ]
-    },
-
-    "Daerah Istimewa Yogyakarta": {
-        zona: "Zona Jawa",
-        program: 22,
-        sdm: 590,
-        cagar: 142,
-        komunitas: 64,
-        tags: [
-            "Sumbu Filosofis Warisan Dunia",
-            "Pelestarian Keraton & Wayang",
-            "Fasilitasi Sanggar Tari",
-            "Dana Abadi Kebudayaan"
-        ]
-    },
-
-    "Jawa Timur": {
-        zona: "Zona Jawa",
-        program: 20,
-        sdm: 605,
-        cagar: 135,
-        komunitas: 58,
-        tags: [
-            "Revitalisasi Reog Ponorogo",
-            "Pusaka Majapahit Trowulan",
-            "Pemberdayaan Sanggar Karawitan",
-            "Festival Jaranan"
-        ]
-    },
-
-    "Banten": {
-        zona: "Zona Jawa",
-        program: 15,
-        sdm: 430,
-        cagar: 91,
-        komunitas: 42,
-        tags: [
-            "Pelestarian Debus",
-            "Budaya Baduy",
-            "Revitalisasi Seni Tradisi",
-            "Bimtek Kebudayaan"
-        ]
-    },
-
-    "Bali": {
-        zona: "Zona Bali-Nusra",
-        program: 21,
-        sdm: 730,
-        cagar: 165,
-        komunitas: 95,
-        tags: [
-            "Pelestarian Seni Pura & Subak",
-            "Perlindungan Hak Cipta Komunal",
-            "Festival Kesenian Bali",
-            "Bimtek Kurator Adat"
-        ]
-    },
-
-    "Nusa Tenggara Barat": {
-        zona: "Zona Bali-Nusra",
-        program: 13,
-        sdm: 330,
-        cagar: 71,
-        komunitas: 32,
-        tags: [
-            "Pelestarian Tenun Sasak",
-            "Festival Bau Nyale",
-            "Pemajuan Seni Tradisi",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Nusa Tenggara Timur": {
-        zona: "Zona Bali-Nusra",
-        program: 13,
-        sdm: 310,
-        cagar: 68,
-        komunitas: 30,
-        tags: [
-            "Pelindungan Tenun Ikat NTT",
-            "Konservasi Kampung Adat Bena",
-            "Festival Pasola Sumba",
-            "Bimtek Musik Sasando"
-        ]
-    },
-
-    "Kalimantan Barat": {
-        zona: "Zona Kalimantan",
-        program: 12,
-        sdm: 270,
-        cagar: 59,
-        komunitas: 26,
-        tags: [
-            "Pelestarian Budaya Dayak",
-            "Festival Naik Dango",
-            "Pemajuan Seni Tradisi",
-            "Bimtek Kebudayaan"
-        ]
-    },
-
-    "Kalimantan Tengah": {
-        zona: "Zona Kalimantan",
-        program: 11,
-        sdm: 240,
-        cagar: 52,
-        komunitas: 24,
-        tags: [
-            "Pelestarian Budaya Dayak",
-            "Festival Isen Mulang",
-            "Pemajuan Seni",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Kalimantan Selatan": {
-        zona: "Zona Kalimantan",
-        program: 13,
-        sdm: 280,
-        cagar: 60,
-        komunitas: 29,
-        tags: [
-            "Pelestarian Sasirangan",
-            "Budaya Banjar",
-            "Festival Budaya",
-            "Pemajuan Seni"
-        ]
-    },
-
-    "Kalimantan Timur": {
-        zona: "Zona Kalimantan",
-        program: 15,
-        sdm: 290,
-        cagar: 62,
-        komunitas: 28,
-        tags: [
-            "Harmonisasi Budaya Kawasan IKN",
-            "Festival Keraton Kutai Kartanegara",
-            "Pelestarian Sape & Tari Dayak"
-        ]
-    },
-
-    "Kalimantan Utara": {
-        zona: "Zona Kalimantan",
-        program: 8,
-        sdm: 170,
-        cagar: 31,
-        komunitas: 16,
-        tags: [
-            "Pelestarian Budaya Dayak",
-            "Pemajuan Seni Tradisi",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Sulawesi Utara": {
-        zona: "Zona Sulawesi",
-        program: 12,
-        sdm: 280,
-        cagar: 57,
-        komunitas: 25,
-        tags: [
-            "Festival Tulude",
-            "Pelestarian Musik Tradisi",
-            "Pemajuan Seni",
-            "Bimtek Kebudayaan"
-        ]
-    },
-
-    "Sulawesi Tengah": {
-        zona: "Zona Sulawesi",
-        program: 11,
-        sdm: 250,
-        cagar: 51,
-        komunitas: 23,
-        tags: [
-            "Pelestarian Kaili",
-            "Festival Danau Poso",
-            "Pemajuan Seni",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Sulawesi Selatan": {
-        zona: "Zona Sulawesi",
-        program: 17,
-        sdm: 445,
-        cagar: 94,
-        komunitas: 41,
-        tags: [
-            "Pusaka Maritim Pinisi Bulukumba",
-            "Pelestarian Adat Toraja",
-            "Festival La Galigo",
-            "Pemugaran Benteng Somba Opu"
-        ]
-    },
-
-    "Sulawesi Tenggara": {
-        zona: "Zona Sulawesi",
-        program: 10,
-        sdm: 230,
-        cagar: 47,
-        komunitas: 21,
-        tags: [
-            "Pelestarian Tenun Buton",
-            "Budaya Tolaki",
-            "Pemajuan Seni",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Gorontalo": {
-        zona: "Zona Sulawesi",
-        program: 8,
-        sdm: 180,
-        cagar: 34,
-        komunitas: 17,
-        tags: [
-            "Pelestarian Karawo",
-            "Festival Hulonthalo",
-            "Pemajuan Seni",
-            "Bimtek Kebudayaan"
-        ]
-    },
-
-    "Sulawesi Barat": {
-        zona: "Zona Sulawesi",
-        program: 8,
-        sdm: 175,
-        cagar: 32,
-        komunitas: 16,
-        tags: [
-            "Pelestarian Sandeq",
-            "Budaya Mandar",
-            "Festival Budaya",
-            "Pemajuan Seni"
-        ]
-    },
-
-    "Maluku": {
-        zona: "Zona Maluku",
-        program: 10,
-        sdm: 220,
-        cagar: 44,
-        komunitas: 20,
-        tags: [
-            "Pelestarian Budaya Maluku",
-            "Festival Pela Gandong",
-            "Pemajuan Musik Tradisi",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Maluku Utara": {
-        zona: "Zona Maluku",
-        program: 9,
-        sdm: 200,
-        cagar: 39,
-        komunitas: 19,
-        tags: [
-            "Kesultanan Ternate",
-            "Pelestarian Rempah",
-            "Pemajuan Seni Tradisi",
-            "Bimtek Kebudayaan"
-        ]
-    },
-
-    "Papua Barat": {
-        zona: "Zona Papua",
-        program: 8,
-        sdm: 170,
-        cagar: 31,
-        komunitas: 15,
-        tags: [
-            "Pelestarian Budaya Papua",
-            "Festival Teluk Cenderawasih",
-            "Pemajuan Seni Tradisi",
-            "Bimtek SDM"
-        ]
-    },
-
-    "Papua": {
-        zona: "Zona Papua",
-        program: 14,
-        sdm: 265,
-        cagar: 54,
-        komunitas: 26,
-        tags: [
-            "Festival Danau Sentani",
-            "Warisan Budaya Noken",
-            "Pemberdayaan Ukir Asmat",
-            "Perlindungan Bahasa Daerah Terancam"
-        ]
-    },
-
-    "Papua Selatan": {
-        zona: "Zona Papua",
-        program: 7,
-        sdm: 150,
-        cagar: 27,
-        komunitas: 13,
-        tags: [
-            "Pelestarian Budaya Marind",
-            "Festival Budaya Papua",
-            "Pemajuan Seni Tradisi"
-        ]
-    },
-
-    "Papua Tengah": {
-        zona: "Zona Papua",
-        program: 7,
-        sdm: 145,
-        cagar: 25,
-        komunitas: 12,
-        tags: [
-            "Pelestarian Budaya Mee",
-            "Pemajuan Seni Tradisi",
-            "Bimtek Kebudayaan"
-        ]
-    },
-
-    "Papua Pegunungan": {
-        zona: "Zona Papua",
-        program: 6,
-        sdm: 130,
-        cagar: 22,
-        komunitas: 11,
-        tags: [
-            "Pelestarian Budaya Pegunungan",
-            "Perlindungan Bahasa Daerah",
-            "Pemajuan Seni"
-        ]
-    },
-
-    "Papua Barat Daya": {
-        zona: "Zona Papua",
-        program: 7,
-        sdm: 155,
-        cagar: 29,
-        komunitas: 14,
-        tags: [
-            "Pelestarian Budaya Raja Ampat",
-            "Festival Budaya Pesisir",
-            "Pemajuan Seni Tradisi"
-        ]
-    }
-
-};
-
-
-/* =====================================================
-   ELEMENT DETAIL PANEL
-===================================================== */
-
-const provSelect =
-    document.getElementById(
-        'provinsiSelect'
-    );
-
-const programFilterSelect =
-    document.getElementById(
-        'programFilterSelect'
-    );
-
-const detNama =
-    document.getElementById(
-        'detNamaProvinsi'
-    );
-
-const detStatus =
-    document.getElementById(
-        'detStatus'
-    );
-
-const detZona =
-    document.getElementById(
-        'detZona'
-    );
-
-const detProgram =
-    document.getElementById(
-        'detProgram'
-    );
-
-const detSdm =
-    document.getElementById(
-        'detSdm'
-    );
-
-const detCagar =
-    document.getElementById(
-        'detCagar'
-    );
-
-const detKomunitas =
-    document.getElementById(
-        'detKomunitas'
-    );
-
-const detTags =
-    document.getElementById(
-        'detProgramTags'
-    );
-
-const detBtnLink =
-    document.getElementById(
-        'detBtnLink'
-    );
-
-
-/* =====================================================
-   INITIALIZE LEAFLET MAP
-===================================================== */
-
-const map =
-    L.map(
-        'indonesiaMap',
-        {
-            center: [-2.5, 118],
-            zoom: 5,
-
-            minZoom: 4,
-            maxZoom: 8,
-
-            zoomControl: true,
-
-            attributionControl: true
-        }
-    );
-
-
-/*
-    Kita tidak menggunakan tile map.
-    Background dibuat bersih supaya cocok
-    dengan desain dashboard.
-*/
-
-
-/* =====================================================
-   GEOJSON LAYER
-===================================================== */
-
-let geojsonLayer = null;
-
-
-/* =====================================================
-   FILTER DATA
-===================================================== */
-
-let currentFilter = 'semua';
-
-
-/* =====================================================
-   GET DATA VALUE
-===================================================== */
-
-function getDataValue(
-    provinceName
-) {
-
-    const data =
-        dataProvinsi[provinceName];
-
-    if (!data) {
-        return 0;
-    }
-
-
-    if (
-        currentFilter === 'pemajuan'
-    ) {
-
-        return data.program;
-
-    }
-
-
-    if (
-        currentFilter === 'sdm'
-    ) {
-
-        return data.sdm;
-
-    }
-
-
-    if (
-        currentFilter === 'cagar'
-    ) {
-
-        return data.cagar;
-
-    }
-
-
-    return data.program;
-}
-
-
-/* =====================================================
-   PROVINCE COLOR
-===================================================== */
-
-function getProvinceColor(
-    provinceName
-) {
-
-    const value =
-        getDataValue(
-            provinceName
-        );
-
-
-    if (
-        currentFilter === 'sdm'
-    ) {
-
-        if (value >= 700) {
-            return '#A87F3C';
-        }
-
-        if (value >= 500) {
-            return '#C9A15A';
-        }
-
-        if (value >= 300) {
-            return '#DEC99F';
-        }
-
-        return '#E8DECA';
-
-    }
-
-
-    if (
-        currentFilter === 'cagar'
-    ) {
-
-        if (value >= 140) {
-            return '#A87F3C';
-        }
-
-        if (value >= 90) {
-            return '#C9A15A';
-        }
-
-        if (value >= 50) {
-            return '#DEC99F';
-        }
-
-        return '#E8DECA';
-
-    }
-
-
-    /* Default / Program */
-
-    if (value >= 20) {
-        return '#A87F3C';
-    }
-
-    if (value >= 15) {
-        return '#C9A15A';
-    }
-
-    if (value >= 10) {
-        return '#DEC99F';
-    }
-
-    return '#E8DECA';
-}
-
-
-/* =====================================================
-   DEFAULT PROVINCE STYLE
-===================================================== */
-
-function getProvinceStyle(
-    feature
-) {
-
-    const provinceName =
-        feature.properties.PROVINSI;
-
-
-    return {
-
-        fillColor:
-            getProvinceColor(
-                provinceName
-            ),
-
-        weight: 1.2,
-
-        opacity: 1,
-
-        color: '#FFFFFF',
-
-        fillOpacity: .9
-
-    };
-}
-
-
-/* =====================================================
-   HIGHLIGHT
-===================================================== */
-
-function highlightProvince(
-    event
-) {
-
-    const layer =
-        event.target;
-
-
-    layer.setStyle({
-
-        weight: 2.5,
-
-        color: '#A87F3C',
-
-        fillColor: '#C9A15A',
-
-        fillOpacity: 1
-
-    });
-
-
-    layer.bringToFront();
-}
-
-
-/* =====================================================
-   RESET HIGHLIGHT
-===================================================== */
-
-function resetProvince(
-    event
-) {
-
-    if (
-        geojsonLayer
-    ) {
-
-        geojsonLayer.resetStyle(
-            event.target
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   CLICK PROVINCE
-===================================================== */
-
-function clickProvince(
-    event
-) {
-
-    const layer =
-        event.target;
-
-
-    const provinceName =
-        layer.feature
-            .properties
-            .PROVINSI;
-
-
-    updateDetail(
-        provinceName
-    );
-
-
-    map.fitBounds(
-        layer.getBounds(),
-        {
-            padding: [35, 35],
-
-            maxZoom: 7
-        }
-    );
-
-
-    layer.openPopup();
-}
-
-
-/* =====================================================
-   POPUP CONTENT
-===================================================== */
-
-function createPopup(
-    provinceName
-) {
-
-    const data =
-        dataProvinsi[
-            provinceName
-        ];
-
-
-    if (!data) {
-
-        return `
-            <div class="map-popup-title">
-                ${provinceName}
-            </div>
-
-            <div class="map-popup-data">
-                Belum ada data kebudayaan.
-            </div>
-        `;
-
-    }
-
-
-    return `
-
-        <div class="map-popup-title">
-            ${provinceName}
-        </div>
-
-        <div class="map-popup-data">
-
-            Total Program:
-            <strong>
-                ${data.program}
-            </strong>
-
-            <br>
-
-            SDM:
-            <strong>
-                ${data.sdm.toLocaleString('id-ID')}
-            </strong>
-
-            <br>
-
-            Cagar Budaya & WBTb:
-            <strong>
-                ${data.cagar}
-            </strong>
-
-            <br>
-
-            Lembaga / Komunitas:
-            <strong>
-                ${data.komunitas}
-            </strong>
-
-        </div>
-
-    `;
-}
-
-
-/* =====================================================
-   SET EACH PROVINCE
-===================================================== */
-
-function onEachProvince(
-    feature,
-    layer
-) {
-
-    const provinceName =
-        feature.properties.PROVINSI;
-
-
-    const data =
-        dataProvinsi[
-            provinceName
-        ];
-
-
-    /* TOOLTIP */
-
-    layer.bindTooltip(
-
-        `
-            <strong>
-                ${provinceName}
-            </strong>
-
-            <br>
-
-            ${
-                data
-                    ? `${data.program} Program • ${data.sdm.toLocaleString('id-ID')} SDM`
-                    : 'Belum ada data'
-            }
-        `,
-
-        {
-            sticky: true,
-
-            direction: 'top',
-
-            opacity: .95
-        }
-
-    );
-
-
-    /* POPUP */
-
-    layer.bindPopup(
-        createPopup(
-            provinceName
-        )
-    );
-
-
-    /* EVENTS */
-
-    layer.on({
-
-        mouseover:
-            highlightProvince,
-
-        mouseout:
-            resetProvince,
-
-        click:
-            clickProvince
-
-    });
-
-}
-
-
-/* =====================================================
-   LOAD GEOJSON
-===================================================== */
-
-/*
-    Dataset GeoJSON 38 provinsi.
-
-    Untuk testing kita menggunakan raw GitHub.
-
-    Untuk project final, sebaiknya download
-    file GeoJSON dan simpan:
-
-        data/
-        └── indonesia-38-provinces.geojson
-
-    Kemudian URL diganti menjadi:
-
-        data/indonesia-38-provinces.geojson
-*/
-
-const GEOJSON_URL =
-    'https://gist.githubusercontent.com/denyherianto/aae0dd09837a4cfd7c834e28a5ed4b8c/raw/indonesia-38-provinces.geojson';
-
-
-fetch(
-    GEOJSON_URL
-)
-
-.then(
-    response => {
-
-        if (
-            !response.ok
-        ) {
-
-            throw new Error(
-                'GeoJSON gagal dimuat.'
-            );
-
-        }
-
-        return response.json();
-
-    }
-)
-
-.then(
-    geoData => {
-
-
-        /* CREATE GEOJSON */
-
-        geojsonLayer =
-            L.geoJSON(
-                geoData,
-                {
-
-                    style:
-                        getProvinceStyle,
-
-                    onEachFeature:
-                        onEachProvince
-
-                }
-            )
-            .addTo(map);
-
-
-        /* FIT INDONESIA */
-
-        map.fitBounds(
-            geojsonLayer.getBounds(),
-            {
-                padding: [20, 20]
-            }
-        );
-
-
-        /* DEFAULT */
-
-        updateDetail(
-            'Jawa Tengah'
-        );
-
-    }
-)
-
-.catch(
-    error => {
-
-        console.error(
-            error
-        );
-
-
-        document.getElementById(
-            'indonesiaMap'
-        ).innerHTML = `
-
-            <div style="
-                height:100%;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                text-align:center;
-                padding:30px;
-                color:#948B7A;
-                font-size:13px;
-                line-height:1.6;
-            ">
-
-                <div>
+                <div class="footer-brand">
 
                     <strong>
-                        Peta gagal dimuat
+                        Platform Data Kebudayaan Indonesia
                     </strong>
 
-                    <br>
+                    <span>
+                        Kementerian Kebudayaan Republik Indonesia
+                    </span>
 
-                    Pastikan komputer
-                    terhubung ke internet.
+                </div>
 
+                <div class="footer-copy">
+                    © 2026 Kementerian Kebudayaan.
+                    Seluruh hak cipta dilindungi.
                 </div>
 
             </div>
 
-        `;
+        </div>
 
-    }
-);
-
-
-/* =====================================================
-   UPDATE DETAIL PANEL
-===================================================== */
-
-function updateDetail(
-    provinceName
-) {
-
-    const data =
-        dataProvinsi[
-            provinceName
-        ];
+    </footer>
 
 
-    if (!data) {
-        return;
-    }
+    <!-- =========================================================
+         LEAFLET JS
+    ========================================================= -->
+
+    <script
+        src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    ></script>
 
 
-    /* NAME */
+    <script>
 
-    detNama.textContent =
-        provinceName;
+        /* =========================================================
+           DATA PROVINSI
+           
+           DATA INI ADALAH DATA YANG SUDAH ADA PADA PROJECT KAMU.
+           Untuk provinsi lain yang belum memiliki data,
+           panel akan menampilkan "Data belum tersedia".
+        ========================================================= */
+
+        const dataProvinsi = {
+
+            "Jawa Tengah": {
+                zona: "Zona Jawa",
+                status: "● Data Terverifikasi Aktif",
+                program: 18,
+                sdm: 642,
+                cagar: 124,
+                komunitas: 48,
+                tags: [
+                    "Bimtek & Sertifikasi SDM",
+                    "Pemajuan Desa Budaya",
+                    "MTN Kesenian Rakyat",
+                    "Apresiasi Kebudayaan Indonesia",
+                    "Konservasi Candi & Situs"
+                ]
+            },
+
+            "DKI Jakarta": {
+                zona: "Zona Jawa",
+                status: "● Data Terverifikasi Aktif",
+                program: 21,
+                sdm: 721,
+                cagar: 86,
+                komunitas: 63,
+                tags: [
+                    "Pemajuan Kebudayaan",
+                    "Bimtek & Sertifikasi SDM",
+                    "Apresiasi Kebudayaan Indonesia",
+                    "Penguatan Kelembagaan"
+                ]
+            },
+
+            "DI Yogyakarta": {
+                zona: "Zona Jawa",
+                status: "● Data Terverifikasi Aktif",
+                program: 24,
+                sdm: 584,
+                cagar: 157,
+                komunitas: 71,
+                tags: [
+                    "Pemajuan Kebudayaan",
+                    "MTN Kesenian Rakyat",
+                    "Konservasi Candi & Situs",
+                    "Apresiasi Kebudayaan Indonesia"
+                ]
+            },
+
+            "Jawa Barat": {
+                zona: "Zona Jawa",
+                status: "● Data Terverifikasi Aktif",
+                program: 19,
+                sdm: 618,
+                cagar: 112,
+                komunitas: 55,
+                tags: [
+                    "Pemajuan Desa Budaya",
+                    "Bimtek & Sertifikasi SDM",
+                    "Apresiasi Kebudayaan Indonesia"
+                ]
+            },
+
+            "Jawa Timur": {
+                zona: "Zona Jawa",
+                status: "● Data Terverifikasi Aktif",
+                program: 22,
+                sdm: 697,
+                cagar: 138,
+                komunitas: 61,
+                tags: [
+                    "Pemajuan Kebudayaan",
+                    "MTN Kesenian Rakyat",
+                    "Bimtek & Sertifikasi SDM",
+                    "Konservasi Candi & Situs"
+                ]
+            },
+
+            "Bali": {
+                zona: "Zona Bali & Nusa Tenggara",
+                status: "● Data Terverifikasi Aktif",
+                program: 17,
+                sdm: 491,
+                cagar: 103,
+                komunitas: 57,
+                tags: [
+                    "Pemajuan Kebudayaan",
+                    "Pemajuan Desa Budaya",
+                    "Apresiasi Kebudayaan Indonesia",
+                    "Penguatan Kelembagaan"
+                ]
+            },
+
+            "Sumatera Utara": {
+                zona: "Zona Sumatera",
+                status: "● Data Terverifikasi Aktif",
+                program: 15,
+                sdm: 438,
+                cagar: 94,
+                komunitas: 43,
+                tags: [
+                    "Bimtek & Sertifikasi SDM",
+                    "Pemajuan Kebudayaan",
+                    "Apresiasi Kebudayaan Indonesia"
+                ]
+            },
+
+            "Sumatera Barat": {
+                zona: "Zona Sumatera",
+                status: "● Data Terverifikasi Aktif",
+                program: 16,
+                sdm: 452,
+                cagar: 87,
+                komunitas: 46,
+                tags: [
+                    "Pemajuan Desa Budaya",
+                    "Bimtek & Sertifikasi SDM",
+                    "MTN Kesenian Rakyat"
+                ]
+            },
+
+            "Kalimantan Timur": {
+                zona: "Zona Kalimantan",
+                status: "● Data Terverifikasi Aktif",
+                program: 13,
+                sdm: 382,
+                cagar: 61,
+                komunitas: 39,
+                tags: [
+                    "Pemajuan Kebudayaan",
+                    "Penguatan Kelembagaan",
+                    "Bimtek & Sertifikasi SDM"
+                ]
+            },
+
+            "Sulawesi Selatan": {
+                zona: "Zona Sulawesi",
+                status: "● Data Terverifikasi Aktif",
+                program: 16,
+                sdm: 417,
+                cagar: 78,
+                komunitas: 45,
+                tags: [
+                    "Pemajuan Kebudayaan",
+                    "MTN Kesenian Rakyat",
+                    "Apresiasi Kebudayaan Indonesia"
+                ]
+            },
+
+            "Nusa Tenggara Timur": {
+                zona: "Zona Bali & Nusa Tenggara",
+                status: "● Data Terverifikasi Aktif",
+                program: 11,
+                sdm: 304,
+                cagar: 52,
+                komunitas: 31,
+                tags: [
+                    "Pemajuan Desa Budaya",
+                    "Bimtek & Sertifikasi SDM",
+                    "Penguatan Kelembagaan"
+                ]
+            },
+
+            "Papua": {
+                zona: "Zona Papua",
+                status: "● Data Terverifikasi Aktif",
+                program: 10,
+                sdm: 287,
+                cagar: 41,
+                komunitas: 28,
+                tags: [
+                    "Pemajuan Kebudayaan",
+                    "Pemajuan Desa Budaya",
+                    "Penguatan Kelembagaan"
+                ]
+            }
+
+        };
 
 
-    /* STATUS */
+        /* =========================================================
+           NAMA PROVINSI
+        ========================================================= */
 
-    detStatus.textContent =
-        '● Data Terverifikasi Aktif';
+        const provinceNameMap = {
 
+            "Daerah Khusus Ibukota Jakarta":
+                "DKI Jakarta",
 
-    /* ZONE */
+            "Daerah Istimewa Yogyakarta":
+                "DI Yogyakarta"
 
-    detZona.textContent =
-        data.zona;
-
-
-    /* METRICS */
-
-    detProgram.textContent =
-        data.program;
+        };
 
 
-    detSdm.textContent =
-        data.sdm.toLocaleString(
-            'id-ID'
+        /* =========================================================
+           ZONA INDONESIA
+        ========================================================= */
+
+        const zoneGroups = {
+
+            "Zona Sumatera": [
+                "Aceh",
+                "Sumatera Utara",
+                "Sumatera Barat",
+                "Riau",
+                "Jambi",
+                "Sumatera Selatan",
+                "Bengkulu",
+                "Lampung",
+                "Kepulauan Bangka Belitung",
+                "Kepulauan Riau"
+            ],
+
+            "Zona Jawa": [
+                "DKI Jakarta",
+                "Jawa Barat",
+                "Jawa Tengah",
+                "DI Yogyakarta",
+                "Jawa Timur",
+                "Banten"
+            ],
+
+            "Zona Bali & Nusa Tenggara": [
+                "Bali",
+                "Nusa Tenggara Barat",
+                "Nusa Tenggara Timur"
+            ],
+
+            "Zona Kalimantan": [
+                "Kalimantan Barat",
+                "Kalimantan Tengah",
+                "Kalimantan Selatan",
+                "Kalimantan Timur",
+                "Kalimantan Utara"
+            ],
+
+            "Zona Sulawesi": [
+                "Sulawesi Utara",
+                "Sulawesi Tengah",
+                "Sulawesi Selatan",
+                "Sulawesi Tenggara",
+                "Gorontalo",
+                "Sulawesi Barat"
+            ],
+
+            "Zona Maluku": [
+                "Maluku",
+                "Maluku Utara"
+            ],
+
+            "Zona Papua": [
+                "Papua",
+                "Papua Barat",
+                "Papua Selatan",
+                "Papua Tengah",
+                "Papua Pegunungan",
+                "Papua Barat Daya"
+            ]
+
+        };
+
+
+        function getZone(provinceName) {
+
+            for (const zone in zoneGroups) {
+
+                if (
+                    zoneGroups[zone]
+                        .includes(provinceName)
+                ) {
+                    return zone;
+                }
+
+            }
+
+            return "Zona Indonesia";
+
+        }
+
+
+        /* =========================================================
+           MAP INITIALIZATION
+        ========================================================= */
+
+        const map = L.map(
+            "indonesiaMap",
+            {
+                zoomControl: true,
+                attributionControl: true,
+
+                scrollWheelZoom: false,
+
+                doubleClickZoom: true,
+
+                dragging: true
+            }
         );
 
 
-    detCagar.textContent =
-        data.cagar;
+        map.setView(
+            [-2.5, 118],
+            5
+        );
 
 
-    detKomunitas.textContent =
-        data.komunitas;
+        /* =========================================================
+           STYLE
+        ========================================================= */
+
+        const defaultProvinceStyle = {
+
+            color: "#FFFFFF",
+
+            weight: 1.15,
+
+            opacity: 1,
+
+            fillColor: "#D8C59D",
+
+            fillOpacity: 0.88
+
+        };
 
 
-    /* TAGS */
+        const selectedProvinceStyle = {
 
-    detTags.innerHTML = '';
+            color: "#241F18",
+
+            weight: 3,
+
+            opacity: 1,
+
+            fillColor: "#C1862B",
+
+            fillOpacity: 1
+
+        };
 
 
-    data.tags.forEach(
-        tag => {
+        const hoverProvinceStyle = {
 
-            const chip =
-                document.createElement(
-                    'span'
+            color: "#241F18",
+
+            weight: 2.4,
+
+            opacity: 1,
+
+            fillColor: "#C9A15A",
+
+            fillOpacity: 0.95
+
+        };
+
+
+        const mutedProvinceStyle = {
+
+            color: "#FFFFFF",
+
+            weight: 1,
+
+            opacity: 0.8,
+
+            fillColor: "#E5DDCE",
+
+            fillOpacity: 0.48
+
+        };
+
+
+        /* =========================================================
+           GLOBAL VARIABLES
+        ========================================================= */
+
+        let geoJsonLayer = null;
+
+        let provinceLayers = {};
+
+        let selectedProvince = "Jawa Tengah";
+
+        let currentFilter = "semua";
+
+
+        /* =========================================================
+           ELEMENTS
+        ========================================================= */
+
+        const provinceSelect =
+            document.getElementById(
+                "provinsiSelect"
+            );
+
+        const programFilterSelect =
+            document.getElementById(
+                "programFilterSelect"
+            );
+
+        const mapLoading =
+            document.getElementById(
+                "mapLoading"
+            );
+
+        const mapError =
+            document.getElementById(
+                "mapError"
+            );
+
+
+        /* =========================================================
+           NORMALIZE NAME
+        ========================================================= */
+
+        function getProvinceName(feature) {
+
+            const geoName =
+                feature &&
+                feature.properties &&
+                (
+                    feature.properties.PROVINSI ||
+                    feature.properties.provinsi ||
+                    feature.properties.NAME_1 ||
+                    feature.properties.name
                 );
 
-            chip.className =
-                'prog-chip';
+            if (!geoName) {
+                return "Provinsi";
+            }
 
-            chip.textContent =
-                tag;
-
-            detTags.appendChild(
-                chip
+            return (
+                provinceNameMap[geoName] ||
+                geoName
             );
 
         }
-    );
 
 
-    /* BUTTON */
+        /* =========================================================
+           CHECK DATA
+        ========================================================= */
 
-    detBtnLink.href =
-        `data-program.html?provinsi=${encodeURIComponent(provinceName)}`;
+        function getProvinceData(name) {
 
+            return dataProvinsi[name] || null;
 
-    /* DROPDOWN */
-
-    if (
-        provSelect.value !==
-        provinceName
-    ) {
-
-        provSelect.value =
-            provinceName;
-
-    }
+        }
 
 
-    /* HIGHLIGHT */
+        /* =========================================================
+           UPDATE DETAIL PANEL
+        ========================================================= */
 
-    highlightSelectedProvince(
-        provinceName
-    );
+        function updateDetail(provinceName) {
 
-}
-
-
-/* =====================================================
-   HIGHLIGHT SELECTED PROVINCE
-===================================================== */
-
-function highlightSelectedProvince(
-    provinceName
-) {
-
-    if (!geojsonLayer) {
-        return;
-    }
+            selectedProvince =
+                provinceName;
 
 
-    geojsonLayer.eachLayer(
-        layer => {
-
-            const name =
-                layer.feature
-                    .properties
-                    .PROVINSI;
+            const data =
+                getProvinceData(provinceName);
 
 
-            if (
-                name ===
-                provinceName
-            ) {
+            /* Nama */
 
-                layer.setStyle({
+            document
+                .getElementById(
+                    "detNamaProvinsi"
+                )
+                .textContent =
+                provinceName;
 
-                    weight: 3,
 
-                    color: '#241F18',
+            /* Zona */
 
-                    fillColor: '#A87F3C',
+            document
+                .getElementById(
+                    "detZona"
+                )
+                .textContent =
+                data
+                    ? data.zona
+                    : getZone(provinceName);
 
-                    fillOpacity: 1
 
-                });
+            const statusElement =
+                document.getElementById(
+                    "detStatus"
+                );
 
-                layer.bringToFront();
+
+            const programElement =
+                document.getElementById(
+                    "detProgram"
+                );
+
+            const sdmElement =
+                document.getElementById(
+                    "detSdm"
+                );
+
+            const cagarElement =
+                document.getElementById(
+                    "detCagar"
+                );
+
+            const komunitasElement =
+                document.getElementById(
+                    "detKomunitas"
+                );
+
+            const tagsContainer =
+                document.getElementById(
+                    "detProgramTags"
+                );
+
+            const button =
+                document.getElementById(
+                    "detBtnLink"
+                );
+
+
+            /* ==============================================
+               JIKA DATA TERSEDIA
+            ============================================== */
+
+            if (data) {
+
+                statusElement.textContent =
+                    data.status;
+
+                statusElement.classList.remove(
+                    "pending"
+                );
+
+
+                programElement.textContent =
+                    data.program.toLocaleString(
+                        "id-ID"
+                    );
+
+
+                sdmElement.textContent =
+                    data.sdm.toLocaleString(
+                        "id-ID"
+                    );
+
+
+                cagarElement.textContent =
+                    data.cagar.toLocaleString(
+                        "id-ID"
+                    );
+
+
+                komunitasElement.textContent =
+                    data.komunitas.toLocaleString(
+                        "id-ID"
+                    );
+
+
+                /* Program tags */
+
+                tagsContainer.innerHTML = "";
+
+
+                data.tags.forEach(
+                    function(tag) {
+
+                        const tagElement =
+                            document.createElement(
+                                "span"
+                            );
+
+                        tagElement.className =
+                            "program-tag";
+
+                        tagElement.innerHTML = `
+                            <span class="tag-dot"></span>
+                            ${tag}
+                        `;
+
+                        tagsContainer.appendChild(
+                            tagElement
+                        );
+
+                    }
+                );
+
+
+                /* Button */
+
+                button.classList.remove(
+                    "disabled"
+                );
+
+
+                button.textContent =
+                    "Eksplorasi Data Provinsi Ini →";
+
+
+                button.href =
+                    "data-program.html?provinsi=" +
+                    encodeURIComponent(
+                        provinceName
+                    );
 
             }
+
+
+            /* ==============================================
+               JIKA DATA BELUM TERSEDIA
+            ============================================== */
 
             else {
 
-                geojsonLayer.resetStyle(
-                    layer
+                statusElement.textContent =
+                    "● Data Provinsi Belum Tersedia";
+
+                statusElement.classList.add(
+                    "pending"
                 );
+
+
+                programElement.textContent =
+                    "—";
+
+                sdmElement.textContent =
+                    "—";
+
+                cagarElement.textContent =
+                    "—";
+
+                komunitasElement.textContent =
+                    "—";
+
+
+                tagsContainer.innerHTML = `
+                    <div class="empty-data">
+                        Data kebudayaan untuk
+                        ${provinceName}
+                        belum terhubung pada dataset saat ini.
+                    </div>
+                `;
+
+
+                button.classList.add(
+                    "disabled"
+                );
+
+
+                button.textContent =
+                    "Data Belum Tersedia";
+
+
+                button.href = "#";
 
             }
 
         }
-    );
-
-}
 
 
-/* =====================================================
-   PROVINCE DROPDOWN
-===================================================== */
+        /* =========================================================
+           SET ACTIVE PROVINCE
+        ========================================================= */
 
-provSelect.addEventListener(
-    'change',
-    function () {
-
-        const province =
-            this.value;
-
-
-        /* SEMUA */
-
-        if (
-            province === 'semua'
+        function setActiveProvince(
+            provinceName,
+            zoom = false
         ) {
 
-            if (
-                geojsonLayer
-            ) {
-
-                geojsonLayer.eachLayer(
-                    layer => {
-
-                        geojsonLayer.resetStyle(
-                            layer
-                        );
-
-                    }
-                );
+            selectedProvince =
+                provinceName;
 
 
-                map.fitBounds(
-                    geojsonLayer.getBounds(),
-                    {
-                        padding: [20, 20]
-                    }
-                );
-
-            }
-
-            return;
-        }
-
-
-        /* UPDATE PANEL */
-
-        updateDetail(
-            province
-        );
-
-
-        /* ZOOM */
-
-        if (
-            geojsonLayer
-        ) {
-
-            geojsonLayer.eachLayer(
-                layer => {
-
-                    const name =
-                        layer.feature
-                            .properties
-                            .PROVINSI;
-
+            Object.entries(
+                provinceLayers
+            ).forEach(
+                function([name, layer]) {
 
                     if (
-                        name ===
-                        province
+                        name === provinceName
                     ) {
 
-                        map.fitBounds(
-                            layer.getBounds(),
-                            {
-                                padding: [40, 40],
-
-                                maxZoom: 7
-                            }
+                        layer.setStyle(
+                            selectedProvinceStyle
                         );
 
+                    } else {
 
-                        layer.openPopup();
+                        layer.setStyle(
+                            getProvinceStyle(
+                                name
+                            )
+                        );
 
                     }
 
                 }
             );
 
+
+            updateDetail(
+                provinceName
+            );
+
+
+            if (
+                provinceSelect.value !==
+                provinceName
+            ) {
+
+                provinceSelect.value =
+                    provinceName;
+
+            }
+
+
+            if (
+                zoom &&
+                provinceLayers[provinceName]
+            ) {
+
+                const selectedLayer =
+                    provinceLayers[
+                        provinceName
+                    ];
+
+
+                try {
+
+                    map.fitBounds(
+                        selectedLayer.getBounds(),
+                        {
+                            padding: [25, 25],
+                            maxZoom: 7
+                        }
+                    );
+
+                } catch (error) {
+
+                    console.warn(
+                        "Tidak dapat melakukan zoom.",
+                        error
+                    );
+
+                }
+
+            }
+
         }
 
-    }
-);
+
+        /* =========================================================
+           FILTER STYLE
+        ========================================================= */
+
+        function getProvinceStyle(
+            provinceName
+        ) {
+
+            const data =
+                getProvinceData(
+                    provinceName
+                );
 
 
-/* =====================================================
-   PROGRAM FILTER
-===================================================== */
+            /* Provinsi aktif */
 
-programFilterSelect.addEventListener(
-    'change',
-    function () {
+            if (
+                provinceName ===
+                selectedProvince
+            ) {
 
-        currentFilter =
-            this.value;
+                return selectedProvinceStyle;
+
+            }
 
 
-        if (!geojsonLayer) {
-            return;
+            /* Semua */
+
+            if (
+                currentFilter ===
+                "semua"
+            ) {
+
+                return defaultProvinceStyle;
+
+            }
+
+
+            /* Tidak memiliki data */
+
+            if (!data) {
+
+                return mutedProvinceStyle;
+
+            }
+
+
+            /* Program */
+
+            if (
+                currentFilter ===
+                "pemajuan"
+            ) {
+
+                return {
+                    ...defaultProvinceStyle,
+                    fillColor: "#C9A15A",
+                    fillOpacity: 0.95
+                };
+
+            }
+
+
+            /* SDM */
+
+            if (
+                currentFilter ===
+                "sdm"
+            ) {
+
+                return {
+                    ...defaultProvinceStyle,
+                    fillColor: "#B9985A",
+                    fillOpacity: 0.95
+                };
+
+            }
+
+
+            /* Cagar */
+
+            if (
+                currentFilter ===
+                "cagar"
+            ) {
+
+                return {
+                    ...defaultProvinceStyle,
+                    fillColor: "#A87F3C",
+                    fillOpacity: 0.95
+                };
+
+            }
+
+
+            return defaultProvinceStyle;
+
         }
 
 
-        /*
-            Refresh warna seluruh provinsi.
-        */
+        /* =========================================================
+           APPLY FILTER
+        ========================================================= */
 
-        geojsonLayer.eachLayer(
-            layer => {
+        function applyFilter() {
+
+            currentFilter =
+                programFilterSelect.value;
+
+
+            Object.entries(
+                provinceLayers
+            ).forEach(
+                function([name, layer]) {
+
+                    layer.setStyle(
+                        getProvinceStyle(
+                            name
+                        )
+                    );
+
+                }
+            );
+
+
+            /* Pastikan provinsi terpilih
+               tetap terlihat */
+
+            if (
+                provinceLayers[
+                    selectedProvince
+                ]
+            ) {
+
+                provinceLayers[
+                    selectedProvince
+                ].setStyle(
+                    selectedProvinceStyle
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
+           POPULATE DROPDOWN
+        ========================================================= */
+
+        function populateProvinceSelect(
+            features
+        ) {
+
+            provinceSelect.innerHTML = `
+                <option value="">
+                    Pilih Provinsi
+                </option>
+            `;
+
+
+            const provinceNames =
+                features
+                    .map(
+                        feature =>
+                            getProvinceName(
+                                feature
+                            )
+                    )
+                    .filter(
+                        name =>
+                            name &&
+                            name !==
+                            "Provinsi"
+                    )
+                    .sort(
+                        (a, b) =>
+                            a.localeCompare(
+                                b,
+                                "id"
+                            )
+                    );
+
+
+            provinceNames.forEach(
+                function(name) {
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.value =
+                        name;
+
+                    option.textContent =
+                        name;
+
+                    provinceSelect.appendChild(
+                        option
+                    );
+
+                }
+            );
+
+
+            provinceSelect.value =
+                selectedProvince;
+
+        }
+
+
+        /* =========================================================
+           GEOJSON FEATURE
+        ========================================================= */
+
+        function onEachFeature(
+            feature,
+            layer
+        ) {
+
+            const provinceName =
+                getProvinceName(
+                    feature
+                );
+
+
+            /* Simpan layer */
+
+            provinceLayers[
+                provinceName
+            ] = layer;
+
+
+            /* Tooltip */
+
+            layer.bindTooltip(
+                provinceName,
+                {
+                    sticky: true,
+                    direction: "top",
+                    className:
+                        "province-tooltip"
+                }
+            );
+
+
+            /* Hover */
+
+            layer.on(
+                "mouseover",
+                function() {
+
+                    layer.setStyle(
+                        hoverProvinceStyle
+                    );
+
+
+                    if (
+                        layer.bringToFront
+                    ) {
+
+                        layer.bringToFront();
+
+                    }
+
+                }
+            );
+
+
+            layer.on(
+                "mouseout",
+                function() {
+
+                    layer.setStyle(
+                        getProvinceStyle(
+                            provinceName
+                        )
+                    );
+
+                }
+            );
+
+
+            /* CLICK PROVINSI */
+
+            layer.on(
+                "click",
+                function() {
+
+                    setActiveProvince(
+                        provinceName,
+                        false
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================================================
+           LOAD GEOJSON
+        ========================================================= */
+
+        async function loadIndonesiaMap() {
+
+            /*
+             * GeoJSON 38 provinsi.
+             *
+             * Sumber:
+             * denyherianto / indonesia-38-provinces.geojson
+             */
+
+            const geoJsonURL =
+                "https://gist.githubusercontent.com/denyherianto/aae0dd09837a4cfd7c834e28a5ed4b8c/raw/indonesia-38-provinces.geojson";
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        geoJsonURL
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "GeoJSON gagal dimuat."
+                    );
+
+                }
+
+
+                const geojson =
+                    await response.json();
+
+
+                /* Populate dropdown */
+
+                populateProvinceSelect(
+                    geojson.features
+                );
+
+
+                /* Buat layer */
+
+                geoJsonLayer =
+                    L.geoJSON(
+                        geojson,
+                        {
+                            style:
+                                function(
+                                    feature
+                                ) {
+
+                                    const name =
+                                        getProvinceName(
+                                            feature
+                                        );
+
+                                    return getProvinceStyle(
+                                        name
+                                    );
+
+                                },
+
+                            onEachFeature:
+                                onEachFeature
+                        }
+                    );
+
+
+                geoJsonLayer.addTo(
+                    map
+                );
+
+
+                /* Zoom Indonesia */
+
+                map.fitBounds(
+                    geoJsonLayer.getBounds(),
+                    {
+                        padding: [15, 15]
+                    }
+                );
+
+
+                /* Pilih Jawa Tengah */
+
+                setActiveProvince(
+                    "Jawa Tengah",
+                    false
+                );
+
+
+                /* Loading hilang */
+
+                mapLoading.style.display =
+                    "none";
+
+
+                console.log(
+                    "Peta Indonesia berhasil dimuat."
+                );
+
+                console.log(
+                    "Jumlah provinsi:",
+                    geojson.features.length
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Gagal memuat GeoJSON:",
+                    error
+                );
+
+
+                mapLoading.style.display =
+                    "none";
+
+
+                mapError.style.display =
+                    "block";
+
+            }
+
+        }
+
+
+        /* =========================================================
+           DROPDOWN PROVINCE
+        ========================================================= */
+
+        provinceSelect.addEventListener(
+            "change",
+            function() {
 
                 const provinceName =
-                    layer.feature
-                        .properties
-                        .PROVINSI;
+                    this.value;
 
 
-                layer.setStyle(
-                    getProvinceStyle(
-                        layer.feature
-                    )
+                if (!provinceName) {
+                    return;
+                }
+
+
+                setActiveProvince(
+                    provinceName,
+                    true
                 );
 
             }
         );
 
 
-        /*
-            Pertahankan provinsi yang sedang dipilih.
-        */
+        /* =========================================================
+           PROGRAM FILTER
+        ========================================================= */
 
-        if (
-            provSelect.value !==
-            'semua'
-        ) {
+        programFilterSelect.addEventListener(
+            "change",
+            function() {
 
-            highlightSelectedProvince(
-                provSelect.value
-            );
+                applyFilter();
 
-        }
+            }
+        );
 
-    }
-);
 
-</script>
+        /* =========================================================
+           LOAD MAP
+        ========================================================= */
+
+        loadIndonesiaMap();
+
+    </script>
 
 </body>
 </html>
