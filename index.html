@@ -2,96 +2,132 @@
 <html lang="id">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Beranda — Kemenbud Data Kebudayaan</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>
+        Beranda — Kemenbud Data Kebudayaan
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <!-- Leaflet CSS -->
+
+    <!-- =====================================================
+         LEAFLET
+    ====================================================== -->
+
     <link
         rel="stylesheet"
         href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     >
 
+
     <style>
 
         /* =====================================================
            ROOT
-        ===================================================== */
+        ====================================================== */
 
         :root {
+
             --cream: #F7F3EA;
+
             --paper: #FFFFFF;
 
             --gold: #C9A15A;
+
             --gold-dark: #A87F3C;
+
             --gold-pale: #E9D9B8;
+
             --gold-sand: #D8C59D;
 
-            --map-bg: #F7F2E8;
-
             --ink: #241F18;
+
             --ink-soft: #5B5346;
+
             --muted: #948B7A;
 
             --border: #E7DFCC;
 
             --green: #1FA971;
+
             --green-dark: #178257;
+
             --green-bg: #E3F5EC;
 
             --amber: #C1862B;
+
             --amber-bg: #FBEEDA;
 
             --red: #C0392B;
+
             --red-bg: #FBE4E0;
 
             --radius-lg: 18px;
+
             --radius-md: 12px;
+
             --radius-sm: 8px;
 
             --shadow:
-                0 10px 30px -12px rgba(60,45,20,.14);
+                0 10px 30px -12px
+                rgba(60,45,20,.18);
         }
 
 
         /* =====================================================
            GLOBAL
-        ===================================================== */
+        ====================================================== */
 
-        *,
-        *::before,
-        *::after {
+        * {
             box-sizing: border-box;
         }
 
-        html,
-        body {
-            margin: 0;
-            padding: 0;
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
+
+            margin: 0;
+
             font-family:
                 'Plus Jakarta Sans',
-                -apple-system,
-                BlinkMacSystemFont,
-                'Segoe UI',
                 sans-serif;
 
-            background: var(--cream);
-            color: var(--ink);
+            background:
+                var(--cream);
 
-            -webkit-font-smoothing: antialiased;
+            color:
+                var(--ink);
+
+            -webkit-font-smoothing:
+                antialiased;
         }
 
         a {
@@ -107,307 +143,400 @@
 
         /* =====================================================
            TOPBAR
-        ===================================================== */
+        ====================================================== */
 
         .topbar {
-            background: var(--paper);
+
+            background:
+                #fff;
 
             border-bottom:
-                1px solid var(--border);
+                1px solid
+                var(--border);
 
-            position: sticky;
+            position:
+                sticky;
+
             top: 0;
 
             z-index: 1000;
         }
 
         .topbar-inner {
-            max-width: 1180px;
 
-            margin: 0 auto;
+            max-width:
+                1180px;
 
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            margin:
+                0 auto;
 
-            padding: 16px 28px;
+            padding:
+                15px 28px;
 
-            gap: 24px;
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
         }
 
         .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                11px;
         }
 
         .brand-logo {
-            width: 38px;
-            height: 38px;
 
-            flex: 0 0 auto;
+            width:
+                38px;
+
+            height:
+                38px;
+
+            flex-shrink:
+                0;
         }
 
         .brand-text {
-            display: flex;
-            flex-direction: column;
 
-            line-height: 1.15;
+            font-size:
+                13px;
 
-            font-size: 13.5px;
-            font-weight: 700;
+            font-weight:
+                700;
 
-            color: var(--ink);
+            line-height:
+                1.2;
         }
 
         .brand-text small {
-            font-weight: 500;
-            color: var(--muted);
-            font-size: 11.5px;
+
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            font-weight:
+                500;
+
+            margin-top:
+                3px;
         }
 
         .nav {
-            display: flex;
-            align-items: center;
-            justify-content: center;
 
-            gap: 32px;
+            display:
+                flex;
 
-            font-weight: 600;
-            font-size: 14.5px;
+            align-items:
+                center;
 
-            color: var(--gold-dark);
+            justify-content:
+                center;
 
-            flex: 1;
+            gap:
+                30px;
+
+            flex:
+                1;
+
+            font-size:
+                13px;
+
+            font-weight:
+                600;
+
+            color:
+                var(--gold-dark);
         }
 
         .nav a {
-            color: var(--gold-dark);
 
-            opacity: .85;
+            position:
+                relative;
 
-            padding: 6px 2px;
+            padding:
+                7px 2px;
 
-            position: relative;
+            opacity:
+                .82;
 
-            transition: opacity .15s;
+            transition:
+                .15s;
         }
 
         .nav a:hover {
-            opacity: 1;
+
+            opacity:
+                1;
         }
 
         .nav a.active {
-            color: var(--ink);
-            opacity: 1;
+
+            color:
+                var(--ink);
+
+            opacity:
+                1;
         }
 
         .nav a.active::after {
-            content: "";
 
-            position: absolute;
+            content:
+                "";
 
-            left: 0;
-            right: 0;
-            bottom: -19px;
+            position:
+                absolute;
 
-            height: 3px;
+            left:
+                0;
 
-            background: var(--gold);
+            right:
+                0;
 
-            border-radius: 2px;
+            bottom:
+                -17px;
+
+            height:
+                3px;
+
+            border-radius:
+                3px;
+
+            background:
+                var(--gold);
         }
 
         .btn-outline-gold {
-            border: 1.5px solid var(--gold);
 
-            background: transparent;
+            border:
+                1.5px solid
+                var(--gold);
 
-            color: var(--gold-dark);
+            background:
+                transparent;
 
-            padding: 9px 24px;
+            color:
+                var(--gold-dark);
 
-            border-radius: 999px;
+            padding:
+                9px 23px;
 
-            font-weight: 700;
-            font-size: 13px;
+            border-radius:
+                999px;
 
-            letter-spacing: .04em;
+            font-size:
+                12px;
+
+            font-weight:
+                700;
 
             transition:
-                background .15s,
-                color .15s;
+                .15s;
         }
 
         .btn-outline-gold:hover {
-            background: var(--gold);
-            color: #fff;
+
+            background:
+                var(--gold);
+
+            color:
+                #fff;
         }
 
 
         /* =====================================================
            PAGE
-        ===================================================== */
+        ====================================================== */
 
         .page-shell {
-            max-width: 1180px;
 
-            margin: 0 auto;
+            max-width:
+                1180px;
+
+            margin:
+                0 auto;
 
             padding:
-                36px
-                28px
-                60px;
+                34px 28px 60px;
         }
 
 
         /* =====================================================
            HERO
-        ===================================================== */
+        ====================================================== */
 
         .hero {
-            padding:
-                48px
-                0
-                36px;
 
-            text-align: center;
+            text-align:
+                center;
+
+            padding:
+                45px 0 35px;
         }
 
         .hero h1 {
-            font-family: 'Poppins', sans-serif;
 
-            font-size: 38px;
+            font-family:
+                'Poppins',
+                sans-serif;
 
-            line-height: 1.25;
+            font-size:
+                38px;
+
+            line-height:
+                1.25;
 
             margin:
-                0
-                0
-                14px;
+                0 0 14px;
 
-            font-weight: 700;
+            font-weight:
+                700;
 
-            letter-spacing: -.02em;
+            letter-spacing:
+                -.025em;
+        }
+
+        .hero h1 span {
+
+            color:
+                var(--gold-dark);
         }
 
         .hero p {
-            max-width: 620px;
+
+            max-width:
+                650px;
 
             margin:
-                0
-                auto
-                28px;
+                0 auto 27px;
 
-            color: var(--ink-soft);
+            color:
+                var(--ink-soft);
 
-            font-size: 15px;
+            font-size:
+                14px;
 
-            line-height: 1.6;
+            line-height:
+                1.65;
         }
 
         .hero-actions {
-            display: flex;
 
-            gap: 14px;
+            display:
+                flex;
 
-            justify-content: center;
+            justify-content:
+                center;
 
-            flex-wrap: wrap;
+            gap:
+                12px;
+
+            flex-wrap:
+                wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+
+            padding:
+                12px 25px;
+
+            border-radius:
+                10px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
         }
 
         .btn-primary {
-            background: var(--ink);
 
-            color: #fff;
+            background:
+                var(--ink);
 
-            border: none;
-
-            padding:
-                13px
-                26px;
-
-            border-radius: 10px;
-
-            font-weight: 700;
-            font-size: 14.5px;
-
-            transition: opacity .15s;
-
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-primary:hover {
-            opacity: .9;
+            color:
+                #fff;
         }
 
         .btn-secondary {
-            background: #fff;
+
+            background:
+                #fff;
 
             border:
                 1px solid
                 var(--border);
 
-            padding:
-                13px
-                26px;
-
-            border-radius: 10px;
-
-            font-weight: 700;
-            font-size: 14.5px;
-
-            transition:
-                border-color .15s;
-
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-
-            color: var(--ink);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--gold);
+            color:
+                var(--ink);
         }
 
 
         /* =====================================================
-           STAT
-        ===================================================== */
+           STATISTIK
+        ====================================================== */
 
         .stat-strip {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(4, 1fr);
+                repeat(4,1fr);
 
-            gap: 16px;
+            gap:
+                15px;
 
             margin:
-                38px
-                0
-                46px;
+                35px 0 44px;
         }
 
         .mini-card {
-            background: #fff;
+
+            background:
+                #fff;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius: 14px;
+            border-radius:
+                14px;
 
             padding:
-                24px
-                20px;
+                21px;
 
-            text-align: center;
+            text-align:
+                center;
 
             box-shadow:
                 0 4px 16px -6px
@@ -415,60 +544,82 @@
         }
 
         .mini-card .value {
-            font-family: 'Poppins', sans-serif;
 
-            font-size: 28px;
+            font-family:
+                'Poppins',
+                sans-serif;
 
-            font-weight: 800;
+            font-size:
+                27px;
 
-            color: var(--gold-dark);
+            font-weight:
+                800;
 
-            line-height: 1.1;
+            color:
+                var(--gold-dark);
+
+            line-height:
+                1.1;
         }
 
         .mini-card .label {
-            color: var(--muted);
 
-            font-size: 13px;
+            margin-top:
+                6px;
 
-            font-weight: 600;
+            color:
+                var(--muted);
 
-            margin-top: 6px;
+            font-size:
+                11.5px;
+
+            font-weight:
+                600;
         }
 
 
         /* =====================================================
            MAP SECTION
-        ===================================================== */
+        ====================================================== */
 
         .map-section {
-            background: #fff;
+
+            background:
+                #fff;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius: 20px;
+            border-radius:
+                20px;
 
             padding:
-                34px
-                36px;
+                32px 34px;
 
-            box-shadow: var(--shadow);
+            box-shadow:
+                var(--shadow);
         }
 
         .map-header {
-            display: flex;
 
-            align-items: flex-start;
+            display:
+                flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
-            flex-wrap: wrap;
+            align-items:
+                flex-start;
 
-            gap: 20px;
+            gap:
+                20px;
 
-            padding-bottom: 24px;
+            flex-wrap:
+                wrap;
+
+            padding-bottom:
+                23px;
 
             border-bottom:
                 1px solid
@@ -476,389 +627,437 @@
         }
 
         .map-title-group h2 {
-            font-family: 'Poppins', sans-serif;
 
-            font-size: 24px;
+            font-family:
+                'Poppins',
+                sans-serif;
+
+            font-size:
+                23px;
 
             margin:
-                0
-                0
-                6px;
+                0 0 7px;
 
-            color: var(--ink);
+            display:
+                flex;
 
-            display: flex;
+            align-items:
+                center;
 
-            align-items: center;
-
-            gap: 10px;
-
-            letter-spacing: -.01em;
+            gap:
+                9px;
         }
 
         .badge-tag {
-            background: var(--amber-bg);
 
-            color: var(--gold-dark);
+            background:
+                var(--amber-bg);
 
-            font-size: 12px;
+            color:
+                var(--gold-dark);
 
-            font-weight: 700;
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
 
             padding:
-                4px
-                12px;
+                5px 10px;
 
-            border-radius: 999px;
-
-            letter-spacing: .02em;
+            border-radius:
+                999px;
         }
 
         .map-title-group p {
-            margin: 0;
 
-            color: var(--ink-soft);
+            margin:
+                0;
 
-            font-size: 14px;
+            color:
+                var(--ink-soft);
 
-            max-width: 650px;
+            font-size:
+                12.5px;
 
-            line-height: 1.55;
+            line-height:
+                1.6;
+
+            max-width:
+                650px;
         }
 
 
         /* =====================================================
            CONTROLS
-        ===================================================== */
+        ====================================================== */
 
         .map-controls {
-            display: flex;
 
-            gap: 12px;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            flex-wrap: wrap;
+            gap:
+                10px;
+
+            flex-wrap:
+                wrap;
         }
 
         .select-styled {
-            appearance: none;
-            -webkit-appearance: none;
+
+            appearance:
+                none;
 
             background:
-                #fff
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A87F3C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
-                no-repeat
-                right 14px
-                center;
+                #fff;
 
             border:
                 1.5px solid
                 var(--border);
 
+            border-radius:
+                9px;
+
             padding:
-                10px
-                38px
-                10px
-                16px;
+                9px 35px 9px 13px;
 
-            border-radius: 12px;
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
 
-            font-size: 13.5px;
+            font-size:
+                11.5px;
 
-            font-weight: 600;
+            font-weight:
+                600;
 
-            color: var(--ink);
+            color:
+                var(--ink);
 
-            outline: none;
+            cursor:
+                pointer;
 
-            cursor: pointer;
+            outline:
+                none;
 
-            transition:
-                border-color .15s,
-                box-shadow .15s;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23A87F3C' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+
+            background-repeat:
+                no-repeat;
+
+            background-position:
+                right 12px center;
         }
 
-        .select-styled:hover,
         .select-styled:focus {
-            border-color: var(--gold);
+
+            border-color:
+                var(--gold);
 
             box-shadow:
                 0 0 0 3px
-                rgba(201,161,90,.15);
+                rgba(201,161,90,.12);
         }
 
 
         /* =====================================================
            MAP BODY
-        ===================================================== */
+        ====================================================== */
 
         .map-body-grid {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                1.9fr
-                1.1fr;
+                1.9fr 1.1fr;
 
-            gap: 28px;
+            gap:
+                28px;
 
-            margin-top: 24px;
+            margin-top:
+                22px;
 
-            align-items: stretch;
+            align-items:
+                stretch;
         }
 
 
         /* =====================================================
            MAP CARD
-        ===================================================== */
+        ====================================================== */
 
         .map-canvas-card {
+
             background:
                 radial-gradient(
                     circle at center,
                     #FDFBF7 0%,
-                    var(--map-bg) 100%
+                    #F5EFE3 100%
                 );
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius: 16px;
-
-            padding:
-                18px
-                20px
+            border-radius:
                 16px;
 
-            position: relative;
+            padding:
+                16px 18px 14px;
 
-            display: flex;
+            min-height:
+                500px;
 
-            flex-direction: column;
+            display:
+                flex;
 
-            justify-content: space-between;
-
-            overflow: hidden;
-
-            min-height: 470px;
+            flex-direction:
+                column;
         }
 
         .map-canvas-toolbar {
-            display: flex;
 
-            justify-content: space-between;
+            display:
+                flex;
 
-            align-items: center;
+            justify-content:
+                space-between;
 
-            font-size: 12px;
+            align-items:
+                center;
 
-            color: var(--muted);
+            gap:
+                10px;
 
-            font-weight: 600;
+            margin-bottom:
+                7px;
 
-            z-index: 10;
+            color:
+                var(--muted);
 
-            margin-bottom: 8px;
+            font-size:
+                10.5px;
+
+            font-weight:
+                600;
         }
 
         .map-legend-items {
-            display: flex;
 
-            gap: 16px;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            flex-wrap: wrap;
+            gap:
+                14px;
+
+            flex-wrap:
+                wrap;
         }
 
         .map-legend-items span {
-            display: inline-flex;
 
-            align-items: center;
+            display:
+                inline-flex;
 
-            gap: 6px;
+            align-items:
+                center;
 
-            font-size: 12px;
+            gap:
+                5px;
         }
 
         .legend-dot {
-            width: 10px;
-            height: 10px;
 
-            border-radius: 50%;
+            width:
+                9px;
 
-            display: inline-block;
+            height:
+                9px;
+
+            border-radius:
+                50%;
         }
 
         .legend-selected {
-            background: var(--gold-dark);
+            background:
+                var(--gold-dark);
         }
 
         .legend-data {
-            background: var(--gold-sand);
+            background:
+                var(--gold-sand);
         }
 
         .legend-hover {
-            background: var(--gold);
+            background:
+                var(--gold);
         }
 
 
         /* =====================================================
            LEAFLET MAP
-        ===================================================== */
+        ====================================================== */
 
         .interactive-map-area {
-            position: relative;
 
-            width: 100%;
+            position:
+                relative;
 
-            height: 380px;
+            width:
+                100%;
 
-            border-radius: 12px;
+            height:
+                405px;
 
-            overflow: hidden;
+            border-radius:
+                12px;
+
+            overflow:
+                hidden;
         }
 
         #leafletMap {
-            width: 100%;
 
-            height: 100%;
+            width:
+                100%;
+
+            height:
+                100%;
 
             background:
-                var(--map-bg);
-
-            z-index: 1;
+                #F5EFE3;
         }
 
         .leaflet-container {
-            background:
-                var(--map-bg)
-                !important;
 
-            font-family: inherit;
+            background:
+                #F5EFE3 !important;
+
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
         }
 
 
-        /* ZOOM */
+        /* =====================================================
+           LEAFLET ZOOM
+        ====================================================== */
 
         .leaflet-control-zoom {
+
             border:
                 1px solid
-                var(--border)
-                !important;
+                var(--border) !important;
+
+            border-radius:
+                8px !important;
+
+            overflow:
+                hidden;
 
             box-shadow:
                 0 4px 12px
-                rgba(60,45,20,.08)
-                !important;
-
-            border-radius:
-                8px
-                !important;
-
-            overflow: hidden;
+                rgba(60,45,20,.08) !important;
         }
 
         .leaflet-control-zoom a {
+
             background:
-                #fff
-                !important;
+                #fff !important;
 
             color:
-                var(--ink)
-                !important;
+                var(--ink) !important;
 
             border-color:
-                var(--border)
-                !important;
+                var(--border) !important;
         }
 
         .leaflet-control-zoom a:hover {
+
             background:
-                var(--cream)
-                !important;
+                var(--cream) !important;
 
             color:
-                var(--gold-dark)
-                !important;
+                var(--gold-dark) !important;
         }
 
 
-        /* TOOLTIP */
+        /* =====================================================
+           LEAFLET TOOLTIP
+        ====================================================== */
 
         .kemenbud-tooltip {
-            background:
-                var(--ink)
-                !important;
 
-            color:
-                #fff
-                !important;
+            background:
+                var(--ink) !important;
 
             border:
-                none
-                !important;
+                none !important;
+
+            color:
+                #fff !important;
 
             border-radius:
-                7px
-                !important;
+                7px !important;
 
             padding:
-                7px
-                10px
-                !important;
+                6px 9px !important;
+
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif !important;
 
             font-size:
-                11px
-                !important;
+                10px !important;
 
             font-weight:
-                700
-                !important;
+                700 !important;
 
             box-shadow:
                 0 5px 15px
-                rgba(0,0,0,.15)
-                !important;
+                rgba(0,0,0,.15) !important;
         }
 
         .kemenbud-tooltip::before {
+
             border-top-color:
-                var(--ink)
-                !important;
+                var(--ink) !important;
         }
 
 
-        /* MAP ATTRIBUTION */
-
-        .leaflet-control-attribution {
-            background:
-                rgba(255,255,255,.75)
-                !important;
-
-            color:
-                var(--muted)
-                !important;
-
-            font-size:
-                9px
-                !important;
-        }
-
-
-        /* LOADING */
+        /* =====================================================
+           LOADING
+        ====================================================== */
 
         .map-loading {
-            position: absolute;
 
-            z-index: 100;
+            position:
+                absolute;
 
-            left: 50%;
-            top: 50%;
+            z-index:
+                100;
+
+            left:
+                50%;
+
+            top:
+                50%;
 
             transform:
-                translate(-50%, -50%);
+                translate(-50%,-50%);
 
             background:
                 rgba(255,255,255,.96);
@@ -867,42 +1066,53 @@
                 1px solid
                 var(--border);
 
-            border-radius: 10px;
+            border-radius:
+                10px;
 
             padding:
-                12px
-                18px;
+                12px 18px;
 
-            font-size: 12px;
+            font-size:
+                11px;
 
-            font-weight: 600;
+            font-weight:
+                600;
 
-            color: var(--ink);
+            color:
+                var(--ink);
 
-            box-shadow: var(--shadow);
+            box-shadow:
+                var(--shadow);
         }
 
-
-        /* ERROR */
-
         .map-error {
-            display: none;
 
-            position: absolute;
+            display:
+                none;
 
-            z-index: 200;
+            position:
+                absolute;
 
-            left: 20px;
-            right: 20px;
+            z-index:
+                200;
 
-            top: 50%;
+            left:
+                20px;
+
+            right:
+                20px;
+
+            top:
+                50%;
 
             transform:
                 translateY(-50%);
 
-            padding: 20px;
+            padding:
+                20px;
 
-            border-radius: 12px;
+            border-radius:
+                12px;
 
             background:
                 var(--red-bg);
@@ -914,44 +1124,58 @@
             color:
                 var(--red);
 
-            font-size: 12px;
+            font-size:
+                11px;
 
-            line-height: 1.6;
+            line-height:
+                1.6;
 
-            text-align: center;
+            text-align:
+                center;
         }
 
 
         /* =====================================================
            MAP FOOTER
-        ===================================================== */
+        ====================================================== */
 
         .map-canvas-footer {
-            display: flex;
 
-            justify-content: space-between;
+            display:
+                flex;
 
-            gap: 15px;
+            justify-content:
+                space-between;
 
-            padding-top: 12px;
+            gap:
+                15px;
 
-            margin-top: 10px;
+            padding-top:
+                11px;
+
+            margin-top:
+                9px;
 
             border-top:
                 1px dashed
                 var(--border);
 
-            color: var(--muted);
+            color:
+                var(--muted);
 
-            font-size: 10px;
+            font-size:
+                9.5px;
         }
 
 
         /* =====================================================
-           DETAIL PANEL
-        ===================================================== */
+           PANEL INFORMASI
+           
+           FONT DIKEMBALIKAN KE DESAIN ASLI
+        ====================================================== */
 
         .detail-panel {
+
             background:
                 #FBF8F1;
 
@@ -959,90 +1183,146 @@
                 1px solid
                 var(--border);
 
-            border-radius: 16px;
+            border-radius:
+                16px;
 
-            padding: 22px;
+            padding:
+                24px 22px;
 
-            display: flex;
+            display:
+                flex;
 
-            flex-direction: column;
+            flex-direction:
+                column;
+
+            justify-content:
+                space-between;
 
             box-shadow:
                 0 5px 20px
                 rgba(60,45,20,.05);
         }
 
+
+        /* =====================================================
+           PANEL HEADER
+        ====================================================== */
+
         .detail-header {
-            display: flex;
 
-            justify-content: space-between;
+            display:
+                flex;
 
-            align-items: flex-start;
+            justify-content:
+                space-between;
 
-            gap: 12px;
+            align-items:
+                flex-start;
 
-            margin-bottom: 6px;
+            margin-bottom:
+                16px;
+
+            gap:
+                10px;
         }
 
+
+        /* NAMA PROVINSI */
+
         .detail-header h3 {
+
             font-family:
                 'Poppins',
                 sans-serif;
 
-            font-size: 23px;
+            font-size:
+                22px;
 
-            line-height: 1.2;
+            color:
+                var(--ink);
 
-            margin: 0;
+            font-weight:
+                700;
+
+            margin:
+                0 0 5px;
+
+            line-height:
+                1.2;
         }
 
+
+        /* ZONA */
+
         .zone-badge {
-            background:
-                var(--amber-bg);
+
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
+
+            font-size:
+                11.5px;
+
+            font-weight:
+                700;
 
             color:
                 var(--gold-dark);
 
-            font-size: 10px;
-
-            font-weight: 700;
+            background:
+                var(--amber-bg);
 
             padding:
-                6px
-                10px;
+                4px 10px;
 
-            border-radius: 999px;
+            border-radius:
+                6px;
 
-            white-space: nowrap;
+            white-space:
+                nowrap;
         }
 
+
+        /* =====================================================
+           STATUS
+        ====================================================== */
+
         .verification-badge {
-            display: inline-flex;
 
-            align-items: center;
+            display:
+                inline-block;
 
-            align-self: flex-start;
+            align-self:
+                flex-start;
 
-            background:
-                var(--green-bg);
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
+
+            font-size:
+                11.5px;
+
+            font-weight:
+                600;
 
             color:
                 var(--green-dark);
 
+            background:
+                var(--green-bg);
+
             padding:
-                5px
-                9px;
+                3px 10px;
 
-            border-radius: 999px;
+            border-radius:
+                6px;
 
-            font-size: 10px;
-
-            font-weight: 600;
-
-            margin-bottom: 20px;
+            margin-bottom:
+                20px;
         }
 
         .verification-badge.pending {
+
             background:
                 var(--amber-bg);
 
@@ -1051,180 +1331,233 @@
         }
 
 
-        /* DETAIL STATS */
+        /* =====================================================
+           METRIK
+        ====================================================== */
 
         .detail-stats {
-            display: grid;
+
+            display:
+                grid;
 
             grid-template-columns:
-                repeat(2, 1fr);
+                repeat(2,1fr);
 
-            gap: 10px;
+            gap:
+                10px;
 
-            margin-bottom: 22px;
+            margin-bottom:
+                22px;
         }
 
         .detail-stat {
-            background: #fff;
+
+            background:
+                #fff;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius: 10px;
+            border-radius:
+                12px;
 
-            padding: 14px;
+            padding:
+                13px 14px;
         }
 
+
+        /* ANGKA */
+
         .detail-stat strong {
-            display: block;
+
+            display:
+                block;
 
             font-family:
                 'Poppins',
                 sans-serif;
 
-            font-size: 23px;
+            font-size:
+                22px;
 
-            line-height: 1;
+            font-weight:
+                800;
 
-            margin-bottom: 5px;
+            color:
+                var(--ink);
+
+            line-height:
+                1.15;
+
+            margin:
+                0;
         }
+
+
+        /* KETERANGAN */
 
         .detail-stat span {
-            display: block;
 
-            color: var(--ink-soft);
+            display:
+                block;
 
-            font-size: 10px;
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
 
-            line-height: 1.4;
+            font-size:
+                11.5px;
+
+            color:
+                var(--ink-soft);
+
+            margin-top:
+                4px;
+
+            font-weight:
+                500;
+
+            line-height:
+                1.35;
         }
 
 
-        /* PROGRAM */
+        /* =====================================================
+           PROGRAM PRIORITAS
+        ====================================================== */
 
         .detail-subtitle {
-            color: var(--muted);
 
-            font-size: 11px;
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
 
-            font-weight: 700;
+            font-size:
+                12px;
 
-            text-transform: uppercase;
+            text-transform:
+                uppercase;
 
-            letter-spacing: .3px;
+            letter-spacing:
+                .04em;
 
-            margin-bottom: 10px;
+            color:
+                var(--muted);
+
+            font-weight:
+                600;
+
+            margin:
+                14px 0 10px;
         }
 
         .program-tags {
-            display: flex;
 
-            flex-wrap: wrap;
+            display:
+                flex;
 
-            gap: 7px;
+            flex-wrap:
+                wrap;
 
-            margin-bottom: 22px;
+            gap:
+                6px;
+
+            margin-bottom:
+                20px;
         }
 
+
+        /* CHIP */
+
         .program-tag {
-            display: inline-flex;
 
-            align-items: center;
-
-            gap: 6px;
-
-            background: #fff;
+            background:
+                #fff;
 
             border:
                 1px solid
                 var(--border);
 
-            border-radius: 7px;
-
             padding:
-                6px
-                9px;
+                5px 11px;
 
-            color: var(--ink-soft);
+            border-radius:
+                6px;
 
-            font-size: 10px;
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
 
-            line-height: 1.3;
+            font-size:
+                11.5px;
+
+            color:
+                var(--ink-soft);
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                6px;
+
+            line-height:
+                1.3;
         }
 
-        .tag-dot {
-            width: 5px;
-            height: 5px;
 
-            border-radius: 50%;
+        /* TITIK CHIP */
+
+        .tag-dot {
+
+            width:
+                6px;
+
+            height:
+                6px;
+
+            min-width:
+                6px;
+
+            border-radius:
+                50%;
 
             background:
                 var(--gold);
         }
 
+
+        /* DATA KOSONG */
+
         .empty-data {
-            color: var(--muted);
-
-            font-size: 11px;
-
-            line-height: 1.6;
-
-            padding:
-                5px
-                0
-                15px;
-        }
-
-
-        /* BUTTON */
-
-        .detail-button {
-            width: 100%;
-
-            margin-top: auto;
-
-            padding:
-                13px;
-
-            background:
-                var(--ink);
-
-            color: #fff;
-
-            border-radius: 9px;
-
-            font-size: 11px;
-
-            font-weight: 700;
-
-            text-align: center;
-
-            transition:
-                background .2s;
-        }
-
-        .detail-button:hover {
-            background:
-                var(--gold-dark);
-        }
-
-        .detail-button.disabled {
-            background:
-                #D9D2C5;
 
             color:
-                #8B8172;
+                var(--muted);
 
-            pointer-events: none;
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
+
+            font-size:
+                11.5px;
+
+            line-height:
+                1.55;
+
+            padding:
+                5px 0 15px;
         }
 
 
         /* =====================================================
-           FOOTER
-        ===================================================== */
+           BUTTON PANEL
+        ====================================================== */
 
-        .site-footer {
+        .detail-button {
+
             background:
                 var(--ink);
 
@@ -1232,134 +1565,226 @@
                 #fff;
 
             padding:
-                45px
-                0
-                25px;
+                13px 18px;
+
+            border-radius:
+                10px;
+
+            font-family:
+                'Plus Jakarta Sans',
+                sans-serif;
+
+            font-size:
+                11.5px;
+
+            font-weight:
+                700;
+
+            text-align:
+                center;
+
+            width:
+                100%;
+
+            display:
+                block;
+
+            margin-top:
+                auto;
+
+            transition:
+                background .15s;
+        }
+
+        .detail-button:hover {
+
+            background:
+                var(--gold-dark);
+
+            color:
+                #fff;
+        }
+
+        .detail-button.disabled {
+
+            background:
+                #D9D2C5;
+
+            color:
+                #8B8172;
+
+            pointer-events:
+                none;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .site-footer {
+
+            background:
+                var(--ink);
+
+            color:
+                #fff;
+
+            padding:
+                45px 0 25px;
         }
 
         .footer-inner {
-            max-width: 1180px;
 
-            margin: 0 auto;
+            max-width:
+                1180px;
+
+            margin:
+                0 auto;
 
             padding:
-                0
-                28px;
+                0 28px;
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
-                2fr
-                1fr
-                1fr
-                1fr;
+                2fr 1fr 1fr 1fr;
 
-            gap: 35px;
+            gap:
+                35px;
         }
 
         .footer-brand {
-            display: flex;
 
-            align-items: flex-start;
+            display:
+                flex;
 
-            gap: 12px;
+            align-items:
+                flex-start;
+
+            gap:
+                12px;
         }
 
         .footer-brand .brand-logo {
-            width: 42px;
-            height: 42px;
+
+            width:
+                42px;
+
+            height:
+                42px;
         }
 
         .footer-brand h4 {
-            margin: 0 0 6px;
 
-            font-size: 13px;
+            margin:
+                0 0 6px;
 
-            line-height: 1.4;
+            font-size:
+                13px;
+
+            line-height:
+                1.4;
         }
 
         .footer-brand p {
-            margin: 0;
+
+            margin:
+                0;
 
             color:
                 #AAA298;
 
-            font-size: 10px;
+            font-size:
+                10px;
 
-            line-height: 1.5;
+            line-height:
+                1.5;
         }
 
         .footer-col h5 {
-            margin:
-                0
-                0
-                12px;
 
-            font-size: 12px;
+            margin:
+                0 0 12px;
+
+            font-size:
+                12px;
         }
 
         .footer-col a,
         .footer-contact-item {
-            display: block;
+
+            display:
+                block;
 
             color:
                 #AAA298;
 
-            font-size: 10px;
+            font-size:
+                10px;
 
-            margin-bottom: 8px;
+            margin-bottom:
+                8px;
         }
 
         .footer-col a:hover {
-            color: #fff;
+
+            color:
+                #fff;
         }
 
         .footer-bottom {
-            max-width: 1180px;
+
+            max-width:
+                1180px;
 
             margin:
-                30px
-                auto
-                0;
+                30px auto 0;
 
             padding:
-                18px
-                28px
-                0;
+                18px 28px 0;
 
             border-top:
                 1px solid
                 rgba(255,255,255,.1);
 
-            display: flex;
+            display:
+                flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
             color:
                 #AAA298;
 
-            font-size: 9px;
+            font-size:
+                9px;
         }
 
 
         /* =====================================================
            RESPONSIVE
-        ===================================================== */
+        ====================================================== */
 
         @media(max-width: 992px) {
 
             .map-body-grid {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
             }
 
             .detail-panel {
-                min-height: 450px;
+
+                min-height:
+                    450px;
             }
 
             .footer-inner {
+
                 grid-template-columns:
-                    1fr
-                    1fr;
+                    1fr 1fr;
             }
 
         }
@@ -1368,13 +1793,15 @@
         @media(max-width: 800px) {
 
             .nav {
-                display: none;
+
+                display:
+                    none;
             }
 
             .stat-strip {
+
                 grid-template-columns:
-                    1fr
-                    1fr;
+                    1fr 1fr;
             }
 
         }
@@ -1383,49 +1810,60 @@
         @media(max-width: 600px) {
 
             .page-shell {
+
                 padding:
-                    20px
-                    14px
-                    40px;
+                    20px 14px 40px;
             }
 
             .hero {
+
                 padding:
-                    35px
-                    0
-                    25px;
+                    35px 0 25px;
             }
 
             .hero h1 {
-                font-size: 29px;
+
+                font-size:
+                    29px;
             }
 
             .map-section {
+
                 padding:
-                    22px
-                    16px;
+                    22px 16px;
             }
 
             .map-canvas-card {
+
                 padding:
                     12px;
             }
 
             .interactive-map-area {
-                height: 340px;
+
+                height:
+                    340px;
             }
 
             .map-canvas-footer {
-                flex-direction: column;
+
+                flex-direction:
+                    column;
             }
 
             .footer-inner {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
             }
 
             .footer-bottom {
-                flex-direction: column;
-                gap: 10px;
+
+                flex-direction:
+                    column;
+
+                gap:
+                    10px;
             }
 
         }
@@ -1446,9 +1884,12 @@
 
     <div class="topbar-inner">
 
-        <a href="beranda.html" class="brand">
 
-            <!-- Logo sederhana -->
+        <a
+            href="beranda.html"
+            class="brand"
+        >
+
             <svg
                 class="brand-logo"
                 viewBox="0 0 48 48"
@@ -1471,6 +1912,7 @@
                 />
 
             </svg>
+
 
             <div class="brand-text">
 
@@ -1523,30 +1965,38 @@
 
 
 <!-- =========================================================
-     PAGE
+     MAIN
 ========================================================= -->
 
-<div class="page-shell">
+<main class="page-shell">
 
 
     <!-- =====================================================
          HERO
-    ===================================================== -->
+    ====================================================== -->
 
     <section class="hero">
 
         <h1>
+
             Data Kebudayaan Indonesia,
+
             <br>
-            <span style="color:#A87F3C;">
+
+            <span>
                 terkelola dan dapat diakses publik
             </span>
+
         </h1>
 
+
         <p>
-            Platform Pengelolaan dan Visualisasi Data Kebudayaan
-            Indonesia untuk mendukung pengelolaan,
-            pemantauan, dan pemajuan kebudayaan secara terpadu.
+
+            Platform Pengelolaan dan Visualisasi
+            Data Kebudayaan Indonesia untuk mendukung
+            pengelolaan, pemantauan, dan pemajuan
+            kebudayaan secara terpadu.
+
         </p>
 
 
@@ -1558,6 +2008,7 @@
             >
                 Jelajahi Peta
             </a>
+
 
             <a
                 href="data-program.html"
@@ -1574,9 +2025,10 @@
 
     <!-- =====================================================
          STATISTIK
-    ===================================================== -->
+    ====================================================== -->
 
     <section class="stat-strip">
+
 
         <div class="mini-card">
 
@@ -1634,8 +2086,8 @@
 
 
     <!-- =====================================================
-         MAP SECTION
-    ===================================================== -->
+         MAP
+    ====================================================== -->
 
     <section
         class="map-section"
@@ -1646,6 +2098,7 @@
         <!-- HEADER -->
 
         <div class="map-header">
+
 
             <div class="map-title-group">
 
@@ -1659,19 +2112,23 @@
 
                 </h2>
 
+
                 <p>
+
                     Klik salah satu provinsi pada peta
                     untuk melihat informasi kebudayaan,
                     program, SDM, cagar budaya,
                     dan komunitas yang terdata.
+
                 </p>
 
             </div>
 
 
+            <!-- CONTROLS -->
+
             <div class="map-controls">
 
-                <!-- PROVINSI -->
 
                 <select
                     id="provSelect"
@@ -1684,8 +2141,6 @@
 
                 </select>
 
-
-                <!-- FILTER -->
 
                 <select
                     id="programFilter"
@@ -1722,15 +2177,17 @@
 
 
             <!-- =================================================
-                 MAP
-            ================================================= -->
+                 MAP CARD
+            ================================================== -->
 
             <div class="map-canvas-card">
 
 
                 <div class="map-canvas-toolbar">
 
+
                     <div class="map-legend-items">
+
 
                         <span>
 
@@ -1764,6 +2221,7 @@
 
                         </span>
 
+
                     </div>
 
 
@@ -1771,15 +2229,19 @@
                         Peta 38 Provinsi Indonesia
                     </span>
 
+
                 </div>
 
 
 
-                <!-- MAP CONTAINER -->
+                <!-- MAP -->
 
                 <div class="interactive-map-area">
 
-                    <div id="leafletMap"></div>
+
+                    <div
+                        id="leafletMap"
+                    ></div>
 
 
                     <div
@@ -1799,17 +2261,14 @@
                             Peta tidak dapat dimuat
                         </strong>
 
-                        <br>
-
-                        Data batas provinsi gagal
-                        diambil dari sumber GeoJSON.
-
                         <br><br>
 
+                        Data GeoJSON gagal dimuat.
                         Pastikan koneksi internet aktif
-                        kemudian refresh halaman.
+                        lalu refresh halaman.
 
                     </div>
+
 
                 </div>
 
@@ -1817,25 +2276,29 @@
 
                 <div class="map-canvas-footer">
 
+
                     <span>
                         💡 Klik wilayah pada peta
                         untuk melihat detail
                     </span>
+
 
                     <span>
                         Batas wilayah:
                         GeoJSON 38 provinsi
                     </span>
 
+
                 </div>
+
 
             </div>
 
 
 
             <!-- =================================================
-                 DETAIL PANEL
-            ================================================= -->
+                 PANEL DETAIL
+            ================================================== -->
 
             <aside
                 class="detail-panel"
@@ -1843,110 +2306,134 @@
             >
 
 
-                <!-- HEADER -->
+                <div>
 
-                <div class="detail-header">
 
-                    <h3 id="detNamaProvinsi">
-                        Jawa Tengah
-                    </h3>
+                    <!-- PANEL HEADER -->
 
-                    <span
-                        class="zone-badge"
-                        id="detZona"
+                    <div class="detail-header">
+
+
+                        <div>
+
+                            <h3
+                                id="detNamaProvinsi"
+                            >
+                                Jawa Tengah
+                            </h3>
+
+
+                            <span
+                                class="verification-badge"
+                                id="detStatus"
+                            >
+                                ● Data Terverifikasi Aktif
+                            </span>
+
+                        </div>
+
+
+                        <span
+                            class="zone-badge"
+                            id="detZona"
+                        >
+                            Zona Jawa
+                        </span>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         4 METRIK
+                    ================================================== -->
+
+                    <div class="detail-stats">
+
+
+                        <div class="detail-stat">
+
+                            <strong
+                                id="detProgram"
+                            >
+                                18
+                            </strong>
+
+                            <span>
+                                Total Program
+                                Kebudayaan
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-stat">
+
+                            <strong
+                                id="detSdm"
+                            >
+                                642
+                            </strong>
+
+                            <span>
+                                SDM Kebudayaan
+                                Terdaftar
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-stat">
+
+                            <strong
+                                id="detCagar"
+                            >
+                                124
+                            </strong>
+
+                            <span>
+                                Cagar Budaya &amp; WBTb
+                            </span>
+
+                        </div>
+
+
+                        <div class="detail-stat">
+
+                            <strong
+                                id="detKomunitas"
+                            >
+                                48
+                            </strong>
+
+                            <span>
+                                Lembaga / Komunitas
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- PROGRAM -->
+
+                    <div class="detail-subtitle">
+
+                        Program Prioritas Berjalan
+
+                    </div>
+
+
+                    <div
+                        class="program-tags"
+                        id="detProgramTags"
                     >
-                        Zona Jawa
-                    </span>
-
-                </div>
-
-
-                <!-- STATUS -->
-
-                <div
-                    class="verification-badge"
-                    id="detStatus"
-                >
-                    ● Data Terverifikasi Aktif
-                </div>
-
-
-
-                <!-- STAT DETAIL -->
-
-                <div class="detail-stats">
-
-
-                    <div class="detail-stat">
-
-                        <strong id="detProgram">
-                            18
-                        </strong>
-
-                        <span>
-                            Total Program
-                            Kebudayaan
-                        </span>
 
                     </div>
 
-
-                    <div class="detail-stat">
-
-                        <strong id="detSdm">
-                            642
-                        </strong>
-
-                        <span>
-                            SDM Kebudayaan
-                            Terdaftar
-                        </span>
-
-                    </div>
-
-
-                    <div class="detail-stat">
-
-                        <strong id="detCagar">
-                            124
-                        </strong>
-
-                        <span>
-                            Cagar Budaya &amp; WBTb
-                        </span>
-
-                    </div>
-
-
-                    <div class="detail-stat">
-
-                        <strong id="detKomunitas">
-                            48
-                        </strong>
-
-                        <span>
-                            Lembaga / Komunitas
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- PROGRAM -->
-
-                <div class="detail-subtitle">
-                    Program Prioritas Berjalan
-                </div>
-
-
-                <div
-                    class="program-tags"
-                    id="detProgramTags"
-                >
-
-                    <!-- Akan diisi JavaScript -->
 
                 </div>
 
@@ -1955,7 +2442,7 @@
                 <!-- BUTTON -->
 
                 <a
-                    href="data-program.html?provinsi=Jawa%20Tengah"
+                    href="data-program.html"
                     class="detail-button"
                     id="detBtnLink"
                 >
@@ -1965,11 +2452,14 @@
 
             </aside>
 
+
         </div>
+
 
     </section>
 
-</div>
+
+</main>
 
 
 
@@ -1979,10 +2469,12 @@
 
 <footer class="site-footer">
 
+
     <div class="footer-inner">
 
 
         <div class="footer-brand">
+
 
             <svg
                 class="brand-logo"
@@ -2011,19 +2503,26 @@
             <div>
 
                 <h4>
+
                     Kementerian Kebudayaan
                     <br>
                     Republik Indonesia
+
                 </h4>
 
+
                 <p>
+
                     Platform Pengelolaan dan Visualisasi
                     Data Kebudayaan — Direktorat BSLPK
+
                 </p>
 
             </div>
 
+
         </div>
+
 
 
         <div class="footer-col">
@@ -2051,6 +2550,7 @@
         </div>
 
 
+
         <div class="footer-col">
 
             <h5>
@@ -2072,6 +2572,7 @@
         </div>
 
 
+
         <div class="footer-col">
 
             <h5>
@@ -2088,7 +2589,9 @@
 
         </div>
 
+
     </div>
+
 
 
     <div class="footer-bottom">
@@ -2104,6 +2607,7 @@
         </span>
 
     </div>
+
 
 </footer>
 
@@ -2121,776 +2625,730 @@
 
 <script>
 
-    /* =========================================================
-       DATA PROGRAM PROVINSI
-    ========================================================= */
+/* ============================================================
+   DATA PROVINSI
+============================================================ */
 
-    const dataProvinsi = {
+const dataProvinsi = {
 
-        "Jawa Tengah": {
-            zona: "Zona Jawa",
-            status: "● Data Terverifikasi Aktif",
-            program: 18,
-            sdm: 642,
-            cagar: 124,
-            komunitas: 48,
+    "Jawa Tengah": {
 
-            tags: [
-                "Bimtek & Sertifikasi SDM",
-                "Pemajuan Desa Budaya",
-                "MTN Kesenian Rakyat",
-                "Apresiasi Kebudayaan Indonesia",
-                "Konservasi Candi & Situs"
-            ]
-        },
+        zona: "Zona Jawa",
 
+        status: "● Data Terverifikasi Aktif",
 
-        "DKI Jakarta": {
-            zona: "Zona Jawa",
-            status: "● Data Terverifikasi Aktif",
-            program: 21,
-            sdm: 721,
-            cagar: 86,
-            komunitas: 63,
+        program: 18,
 
-            tags: [
-                "Pemajuan Kebudayaan",
-                "Bimtek & Sertifikasi SDM",
-                "Apresiasi Kebudayaan Indonesia",
-                "Penguatan Kelembagaan"
-            ]
-        },
+        sdm: 642,
 
+        cagar: 124,
 
-        "DI Yogyakarta": {
-            zona: "Zona Jawa",
-            status: "● Data Terverifikasi Aktif",
-            program: 24,
-            sdm: 584,
-            cagar: 157,
-            komunitas: 71,
+        komunitas: 48,
 
-            tags: [
-                "Pemajuan Kebudayaan",
-                "MTN Kesenian Rakyat",
-                "Konservasi Candi & Situs",
-                "Apresiasi Kebudayaan Indonesia"
-            ]
-        },
+        tags: [
 
+            "Bimtek & Sertifikasi SDM",
 
-        "Jawa Barat": {
-            zona: "Zona Jawa",
-            status: "● Data Terverifikasi Aktif",
-            program: 19,
-            sdm: 618,
-            cagar: 112,
-            komunitas: 55,
+            "Pemajuan Desa Budaya",
 
-            tags: [
-                "Pemajuan Desa Budaya",
-                "Bimtek & Sertifikasi SDM",
-                "Apresiasi Kebudayaan Indonesia"
-            ]
-        },
+            "MTN Kesenian Rakyat",
 
+            "Apresiasi Kebudayaan Indonesia",
 
-        "Jawa Timur": {
-            zona: "Zona Jawa",
-            status: "● Data Terverifikasi Aktif",
-            program: 22,
-            sdm: 697,
-            cagar: 138,
-            komunitas: 61,
+            "Konservasi Candi & Situs"
 
-            tags: [
-                "Pemajuan Kebudayaan",
-                "MTN Kesenian Rakyat",
-                "Bimtek & Sertifikasi SDM",
-                "Konservasi Candi & Situs"
-            ]
-        },
-
-
-        "Bali": {
-            zona: "Zona Bali & Nusa Tenggara",
-            status: "● Data Terverifikasi Aktif",
-            program: 17,
-            sdm: 491,
-            cagar: 103,
-            komunitas: 57,
-
-            tags: [
-                "Pemajuan Kebudayaan",
-                "Pemajuan Desa Budaya",
-                "Apresiasi Kebudayaan Indonesia",
-                "Penguatan Kelembagaan"
-            ]
-        },
-
-
-        "Sumatera Utara": {
-            zona: "Zona Sumatera",
-            status: "● Data Terverifikasi Aktif",
-            program: 15,
-            sdm: 438,
-            cagar: 94,
-            komunitas: 43,
-
-            tags: [
-                "Bimtek & Sertifikasi SDM",
-                "Pemajuan Kebudayaan",
-                "Apresiasi Kebudayaan Indonesia"
-            ]
-        },
-
-
-        "Sumatera Barat": {
-            zona: "Zona Sumatera",
-            status: "● Data Terverifikasi Aktif",
-            program: 16,
-            sdm: 452,
-            cagar: 87,
-            komunitas: 46,
-
-            tags: [
-                "Pemajuan Desa Budaya",
-                "Bimtek & Sertifikasi SDM",
-                "MTN Kesenian Rakyat"
-            ]
-        },
-
-
-        "Kalimantan Timur": {
-            zona: "Zona Kalimantan",
-            status: "● Data Terverifikasi Aktif",
-            program: 13,
-            sdm: 382,
-            cagar: 61,
-            komunitas: 39,
-
-            tags: [
-                "Pemajuan Kebudayaan",
-                "Penguatan Kelembagaan",
-                "Bimtek & Sertifikasi SDM"
-            ]
-        },
-
-
-        "Sulawesi Selatan": {
-            zona: "Zona Sulawesi",
-            status: "● Data Terverifikasi Aktif",
-            program: 16,
-            sdm: 417,
-            cagar: 78,
-            komunitas: 45,
-
-            tags: [
-                "Pemajuan Kebudayaan",
-                "MTN Kesenian Rakyat",
-                "Apresiasi Kebudayaan Indonesia"
-            ]
-        },
-
-
-        "Nusa Tenggara Timur": {
-            zona: "Zona Bali & Nusa Tenggara",
-            status: "● Data Terverifikasi Aktif",
-            program: 11,
-            sdm: 304,
-            cagar: 52,
-            komunitas: 31,
-
-            tags: [
-                "Pemajuan Desa Budaya",
-                "Bimtek & Sertifikasi SDM",
-                "Penguatan Kelembagaan"
-            ]
-        },
-
-
-        "Papua": {
-            zona: "Zona Papua",
-            status: "● Data Terverifikasi Aktif",
-            program: 10,
-            sdm: 287,
-            cagar: 41,
-            komunitas: 28,
-
-            tags: [
-                "Pemajuan Kebudayaan",
-                "Pemajuan Desa Budaya",
-                "Penguatan Kelembagaan"
-            ]
-        }
-
-    };
-
-
-
-    /* =========================================================
-       NAMA PROVINSI
-    ========================================================= */
-
-    const provinceNameMap = {
-
-        "Daerah Khusus Ibukota Jakarta":
-            "DKI Jakarta",
-
-        "Daerah Istimewa Yogyakarta":
-            "DI Yogyakarta"
-
-    };
-
-
-
-    /* =========================================================
-       ZONA
-    ========================================================= */
-
-    const zoneGroups = {
-
-        "Zona Sumatera": [
-            "Aceh",
-            "Sumatera Utara",
-            "Sumatera Barat",
-            "Riau",
-            "Jambi",
-            "Sumatera Selatan",
-            "Bengkulu",
-            "Lampung",
-            "Kepulauan Bangka Belitung",
-            "Kepulauan Riau"
-        ],
-
-        "Zona Jawa": [
-            "DKI Jakarta",
-            "Jawa Barat",
-            "Jawa Tengah",
-            "DI Yogyakarta",
-            "Jawa Timur",
-            "Banten"
-        ],
-
-        "Zona Bali & Nusa Tenggara": [
-            "Bali",
-            "Nusa Tenggara Barat",
-            "Nusa Tenggara Timur"
-        ],
-
-        "Zona Kalimantan": [
-            "Kalimantan Barat",
-            "Kalimantan Tengah",
-            "Kalimantan Selatan",
-            "Kalimantan Timur",
-            "Kalimantan Utara"
-        ],
-
-        "Zona Sulawesi": [
-            "Sulawesi Utara",
-            "Sulawesi Tengah",
-            "Sulawesi Selatan",
-            "Sulawesi Tenggara",
-            "Gorontalo",
-            "Sulawesi Barat"
-        ],
-
-        "Zona Maluku": [
-            "Maluku",
-            "Maluku Utara"
-        ],
-
-        "Zona Papua": [
-            "Papua",
-            "Papua Barat",
-            "Papua Selatan",
-            "Papua Tengah",
-            "Papua Pegunungan",
-            "Papua Barat Daya"
         ]
 
-    };
+    },
 
 
+    "DKI Jakarta": {
 
-    function getZone(provinceName) {
+        zona: "Zona Jawa",
 
-        for (
-            const zone in zoneGroups
-        ) {
+        status: "● Data Terverifikasi Aktif",
 
-            if (
-                zoneGroups[zone]
-                    .includes(provinceName)
-            ) {
+        program: 21,
 
-                return zone;
+        sdm: 721,
 
-            }
+        cagar: 86,
 
-        }
+        komunitas: 63,
 
-        return "Zona Indonesia";
+        tags: [
+
+            "Pemajuan Kebudayaan",
+
+            "Bimtek & Sertifikasi SDM",
+
+            "Apresiasi Kebudayaan Indonesia",
+
+            "Penguatan Kelembagaan"
+
+        ]
+
+    },
+
+
+    "DI Yogyakarta": {
+
+        zona: "Zona Jawa",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 24,
+
+        sdm: 584,
+
+        cagar: 157,
+
+        komunitas: 71,
+
+        tags: [
+
+            "Pemajuan Kebudayaan",
+
+            "MTN Kesenian Rakyat",
+
+            "Konservasi Candi & Situs",
+
+            "Apresiasi Kebudayaan Indonesia"
+
+        ]
+
+    },
+
+
+    "Jawa Barat": {
+
+        zona: "Zona Jawa",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 19,
+
+        sdm: 618,
+
+        cagar: 112,
+
+        komunitas: 55,
+
+        tags: [
+
+            "Pemajuan Desa Budaya",
+
+            "Bimtek & Sertifikasi SDM",
+
+            "Apresiasi Kebudayaan Indonesia"
+
+        ]
+
+    },
+
+
+    "Jawa Timur": {
+
+        zona: "Zona Jawa",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 22,
+
+        sdm: 697,
+
+        cagar: 138,
+
+        komunitas: 61,
+
+        tags: [
+
+            "Pemajuan Kebudayaan",
+
+            "MTN Kesenian Rakyat",
+
+            "Bimtek & Sertifikasi SDM",
+
+            "Konservasi Candi & Situs"
+
+        ]
+
+    },
+
+
+    "Bali": {
+
+        zona: "Zona Bali & Nusa Tenggara",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 17,
+
+        sdm: 491,
+
+        cagar: 103,
+
+        komunitas: 57,
+
+        tags: [
+
+            "Pemajuan Kebudayaan",
+
+            "Pemajuan Desa Budaya",
+
+            "Apresiasi Kebudayaan Indonesia",
+
+            "Penguatan Kelembagaan"
+
+        ]
+
+    },
+
+
+    "Sumatera Utara": {
+
+        zona: "Zona Sumatera",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 15,
+
+        sdm: 438,
+
+        cagar: 94,
+
+        komunitas: 43,
+
+        tags: [
+
+            "Bimtek & Sertifikasi SDM",
+
+            "Pemajuan Kebudayaan",
+
+            "Apresiasi Kebudayaan Indonesia"
+
+        ]
+
+    },
+
+
+    "Sumatera Barat": {
+
+        zona: "Zona Sumatera",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 16,
+
+        sdm: 452,
+
+        cagar: 87,
+
+        komunitas: 46,
+
+        tags: [
+
+            "Pemajuan Desa Budaya",
+
+            "Bimtek & Sertifikasi SDM",
+
+            "MTN Kesenian Rakyat"
+
+        ]
+
+    },
+
+
+    "Kalimantan Timur": {
+
+        zona: "Zona Kalimantan",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 13,
+
+        sdm: 382,
+
+        cagar: 61,
+
+        komunitas: 39,
+
+        tags: [
+
+            "Pemajuan Kebudayaan",
+
+            "Penguatan Kelembagaan",
+
+            "Bimtek & Sertifikasi SDM"
+
+        ]
+
+    },
+
+
+    "Sulawesi Selatan": {
+
+        zona: "Zona Sulawesi",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 16,
+
+        sdm: 417,
+
+        cagar: 78,
+
+        komunitas: 45,
+
+        tags: [
+
+            "Pemajuan Kebudayaan",
+
+            "MTN Kesenian Rakyat",
+
+            "Apresiasi Kebudayaan Indonesia"
+
+        ]
+
+    },
+
+
+    "Nusa Tenggara Timur": {
+
+        zona: "Zona Bali & Nusa Tenggara",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 11,
+
+        sdm: 304,
+
+        cagar: 52,
+
+        komunitas: 31,
+
+        tags: [
+
+            "Pemajuan Desa Budaya",
+
+            "Bimtek & Sertifikasi SDM",
+
+            "Penguatan Kelembagaan"
+
+        ]
+
+    },
+
+
+    "Papua": {
+
+        zona: "Zona Papua",
+
+        status: "● Data Terverifikasi Aktif",
+
+        program: 10,
+
+        sdm: 287,
+
+        cagar: 41,
+
+        komunitas: 28,
+
+        tags: [
+
+            "Pemajuan Kebudayaan",
+
+            "Pemajuan Desa Budaya",
+
+            "Penguatan Kelembagaan"
+
+        ]
 
     }
 
-
-
-    /* =========================================================
-       ELEMENT
-    ========================================================= */
-
-    const provSelect =
-        document.getElementById(
-            "provSelect"
-        );
-
-    const programFilter =
-        document.getElementById(
-            "programFilter"
-        );
-
-    const mapLoading =
-        document.getElementById(
-            "mapLoading"
-        );
-
-    const mapError =
-        document.getElementById(
-            "mapError"
-        );
+};
 
 
 
-    /* =========================================================
-       MAP
-       
-       PENTING:
-       TIDAK ADA L.tileLayer().
-       
-       Jadi:
-       - tidak memakai Carto
-       - tidak membutuhkan API key
-       - tidak muncul API KEY REQUIRED
-    ========================================================= */
+/* ============================================================
+   NAMA PROVINSI
+============================================================ */
 
-    let map = null;
+const provinceNameMap = {
 
-    let geojsonLayer = null;
+    "Daerah Khusus Ibukota Jakarta":
+        "DKI Jakarta",
 
-    let currentHighlightedLayer = null;
+    "Daerah Istimewa Yogyakarta":
+        "DI Yogyakarta"
 
-    const layerRegistry = {};
-
-    let selectedProvince =
-        "Jawa Tengah";
-
-    let currentFilter =
-        "semua";
+};
 
 
 
-    function initMap() {
+/* ============================================================
+   ZONA
+============================================================ */
 
-        try {
+const zoneGroups = {
 
-            map = L.map(
-                "leafletMap",
-                {
+    "Zona Sumatera": [
 
-                    center: [
-                        -2.5489,
-                        118.0149
-                    ],
+        "Aceh",
 
-                    zoom: 5,
+        "Sumatera Utara",
 
-                    minZoom: 4,
+        "Sumatera Barat",
 
-                    maxZoom: 9,
+        "Riau",
 
-                    zoomControl: true,
+        "Jambi",
 
-                    attributionControl: false,
+        "Sumatera Selatan",
 
-                    scrollWheelZoom: false
+        "Bengkulu",
 
-                }
-            );
+        "Lampung",
 
+        "Kepulauan Bangka Belitung",
 
-            /*
-             * TIDAK ADA TILE LAYER DI SINI.
-             *
-             * Jangan menambahkan:
-             *
-             * L.tileLayer(...)
-             *
-             * karena itu yang menyebabkan
-             * tulisan API KEY REQUIRED.
-             */
+        "Kepulauan Riau"
+
+    ],
 
 
-            loadGeoJSON();
+    "Zona Jawa": [
+
+        "DKI Jakarta",
+
+        "Jawa Barat",
+
+        "Jawa Tengah",
+
+        "DI Yogyakarta",
+
+        "Jawa Timur",
+
+        "Banten"
+
+    ],
+
+
+    "Zona Bali & Nusa Tenggara": [
+
+        "Bali",
+
+        "Nusa Tenggara Barat",
+
+        "Nusa Tenggara Timur"
+
+    ],
+
+
+    "Zona Kalimantan": [
+
+        "Kalimantan Barat",
+
+        "Kalimantan Tengah",
+
+        "Kalimantan Selatan",
+
+        "Kalimantan Timur",
+
+        "Kalimantan Utara"
+
+    ],
+
+
+    "Zona Sulawesi": [
+
+        "Sulawesi Utara",
+
+        "Sulawesi Tengah",
+
+        "Sulawesi Selatan",
+
+        "Sulawesi Tenggara",
+
+        "Gorontalo",
+
+        "Sulawesi Barat"
+
+    ],
+
+
+    "Zona Maluku": [
+
+        "Maluku",
+
+        "Maluku Utara"
+
+    ],
+
+
+    "Zona Papua": [
+
+        "Papua",
+
+        "Papua Barat",
+
+        "Papua Selatan",
+
+        "Papua Tengah",
+
+        "Papua Pegunungan",
+
+        "Papua Barat Daya"
+
+    ]
+
+};
+
+
+
+function getZone(
+    provinceName
+) {
+
+    for (
+        const zone in zoneGroups
+    ) {
+
+        if (
+            zoneGroups[zone]
+                .includes(provinceName)
+        ) {
+
+            return zone;
 
         }
 
-        catch (error) {
+    }
+
+    return "Zona Indonesia";
+
+}
+
+
+
+/* ============================================================
+   ELEMENT
+============================================================ */
+
+const provSelect =
+    document.getElementById(
+        "provSelect"
+    );
+
+
+const programFilter =
+    document.getElementById(
+        "programFilter"
+    );
+
+
+const mapLoading =
+    document.getElementById(
+        "mapLoading"
+    );
+
+
+const mapError =
+    document.getElementById(
+        "mapError"
+    );
+
+
+
+/* ============================================================
+   VARIABLE MAP
+============================================================ */
+
+let map = null;
+
+let geojsonLayer = null;
+
+let currentHighlightedLayer = null;
+
+let selectedProvince =
+    "Jawa Tengah";
+
+let currentFilter =
+    "semua";
+
+const layerRegistry = {};
+
+
+
+/* ============================================================
+   INIT MAP
+============================================================ */
+
+function initMap() {
+
+    map = L.map(
+        "leafletMap",
+        {
+
+            center: [
+                -2.5489,
+                118.0149
+            ],
+
+            zoom: 5,
+
+            minZoom: 4,
+
+            maxZoom: 9,
+
+            zoomControl: true,
+
+            attributionControl: false,
+
+            scrollWheelZoom: false
+
+        }
+    );
+
+
+    /*
+     * PENTING:
+     *
+     * Tidak ada:
+     *
+     * L.tileLayer(...)
+     *
+     * Jadi tidak ada API KEY REQUIRED.
+     */
+
+
+    loadGeoJSON();
+
+}
+
+
+
+/* ============================================================
+   LOAD GEOJSON 38 PROVINSI
+============================================================ */
+
+function loadGeoJSON() {
+
+    const geojsonURL =
+        "https://raw.githubusercontent.com/denyherianto/indonesia-geojson-topojson-maps-with-38-provinces/main/GeoJSON/indonesia-38-provinces.geojson";
+
+
+    fetch(
+        geojsonURL
+    )
+
+    .then(
+        response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "GeoJSON tidak dapat dimuat."
+                );
+
+            }
+
+            return response.json();
+
+        }
+    )
+
+    .then(
+        geoData => {
+
+            renderGeoJSON(
+                geoData
+            );
+
+        }
+    )
+
+    .catch(
+        error => {
 
             console.error(
-                "Leaflet error:",
                 error
             );
 
-            showMapError();
+            mapLoading.style.display =
+                "none";
+
+            mapError.style.display =
+                "block";
 
         }
+    );
 
-    }
+}
 
 
 
-    /* =========================================================
-       GEOJSON
-    ========================================================= */
+/* ============================================================
+   STYLE PROVINSI
+============================================================ */
 
-    function loadGeoJSON() {
+function provinceStyle() {
 
-        /*
-         * GeoJSON 38 Provinsi Indonesia
-         */
+    return {
 
-        const geojsonUrl =
-            "https://raw.githubusercontent.com/superpikar/indonesia-geojson/master/indonesia-province-simple.json";
+        fillColor:
+            "#D8C59D",
 
+        weight:
+            1.4,
 
-        fetch(
-            geojsonUrl
-        )
+        opacity:
+            1,
 
-        .then(
-            response => {
+        color:
+            "#FFFFFF",
 
-                if (!response.ok) {
+        fillOpacity:
+            .9
 
-                    throw new Error(
-                        "GeoJSON gagal dimuat"
-                    );
+    };
 
-                }
+}
 
-                return response.json();
 
-            }
-        )
 
-        .then(
-            data => {
+/* ============================================================
+   RENDER GEOJSON
+============================================================ */
 
-                renderGeoJSON(data);
+function renderGeoJSON(
+    geoData
+) {
 
-            }
-        )
-
-        .catch(
-            error => {
-
-                console.error(
-                    "GeoJSON error:",
-                    error
-                );
-
-                showMapError();
-
-            }
-        );
-
-    }
-
-
-
-    /* =========================================================
-       STYLE DEFAULT
-    ========================================================= */
-
-    function styleFeature(
-        feature
-    ) {
-
-        return {
-
-            fillColor:
-                "#D8C59D",
-
-            weight:
-                1.5,
-
-            opacity:
-                1,
-
-            color:
-                "#FFFFFF",
-
-            fillOpacity:
-                .88
-
-        };
-
-    }
-
-
-
-    /* =========================================================
-       RENDER GEOJSON
-    ========================================================= */
-
-    function renderGeoJSON(
-        geoData
-    ) {
-
-        geojsonLayer =
-            L.geoJSON(
-                geoData,
-                {
-
-                    style:
-                        styleFeature,
-
-
-                    onEachFeature:
-                        function (
-                            feature,
-                            layer
-                        ) {
-
-                            const props =
-                                feature.properties
-                                || {};
-
-
-                            const originalName =
-                                props.Propinsi
-                                ||
-                                props.PROVINSI
-                                ||
-                                props.provinsi
-                                ||
-                                props.name
-                                ||
-                                props.NAME_1
-                                ||
-                                props.state
-                                ||
-                                "";
-
-
-                            const provinceName =
-                                provinceNameMap[
-                                    originalName
-                                ]
-                                ||
-                                originalName;
-
-
-                            if (!provinceName) {
-                                return;
-                            }
-
-
-                            /*
-                             * Simpan layer
-                             */
-
-                            layerRegistry[
-                                provinceName
-                            ] = layer;
-
-
-
-                            /*
-                             * Tooltip
-                             */
-
-                            layer.bindTooltip(
-                                provinceName,
-                                {
-
-                                    sticky: true,
-
-                                    direction:
-                                        "auto",
-
-                                    className:
-                                        "kemenbud-tooltip"
-
-                                }
-                            );
-
-
-
-                            /*
-                             * Hover
-                             */
-
-                            layer.on(
-                                "mouseover",
-                                function () {
-
-                                    if (
-                                        layer !==
-                                        currentHighlightedLayer
-                                    ) {
-
-                                        layer.setStyle({
-
-                                            fillColor:
-                                                "#C9A15A",
-
-                                            fillOpacity:
-                                                .96,
-
-                                            weight:
-                                                2,
-
-                                            color:
-                                                "#A87F3C"
-
-                                        });
-
-                                    }
-
-
-                                    layer.bringToFront();
-
-                                }
-                            );
-
-
-
-                            /*
-                             * Mouse Out
-                             */
-
-                            layer.on(
-                                "mouseout",
-                                function () {
-
-                                    if (
-                                        layer !==
-                                        currentHighlightedLayer
-                                    ) {
-
-                                        geojsonLayer
-                                            .resetStyle(
-                                                layer
-                                            );
-
-                                    }
-
-                                }
-                            );
-
-
-
-                            /*
-                             * KLIK PROVINSI
-                             */
-
-                            layer.on(
-                                "click",
-                                function () {
-
-                                    selectProvinceFromMap(
-                                        provinceName,
-                                        layer
-                                    );
-
-                                }
-                            );
-
-                        }
-
-                }
-            )
-            .addTo(map);
-
-
-
-        /*
-         * Zoom agar seluruh Indonesia
-         * terlihat
-         */
-
-        map.fitBounds(
-            geojsonLayer.getBounds(),
+    geojsonLayer =
+        L.geoJSON(
+            geoData,
             {
-                padding: [
-                    10,
-                    10
-                ]
-            }
-        );
+
+                style:
+                    provinceStyle,
 
 
-
-        /*
-         * Isi dropdown
-         */
-
-        populateProvinceSelect(
-            geoData.features
-        );
-
-
-
-        /*
-         * Pilihan awal
-         */
-
-        selectProvinceByName(
-            "Jawa Tengah"
-        );
-
-
-
-        /*
-         * Hilangkan loading
-         */
-
-        mapLoading.style.display =
-            "none";
-
-    }
-
-
-
-    /* =========================================================
-       DROPDOWN
-    ========================================================= */
-
-    function populateProvinceSelect(
-        features
-    ) {
-
-        provSelect.innerHTML =
-            `<option value="">
-                Pilih Provinsi
-            </option>`;
-
-
-        const names =
-            features
-                .map(
-                    feature => {
+                onEachFeature:
+                    function (
+                        feature,
+                        layer
+                    ) {
 
                         const props =
                             feature.properties
                             || {};
 
-                        const original =
-                            props.Propinsi
-                            ||
+
+                        const originalName =
                             props.PROVINSI
+                            ||
+                            props.Propinsi
                             ||
                             props.provinsi
                             ||
@@ -2900,533 +3358,212 @@
                             ||
                             "";
 
-                        return (
+
+                        const provinceName =
                             provinceNameMap[
-                                original
+                                originalName
                             ]
                             ||
-                            original
+                            originalName;
+
+
+                        if (!provinceName) {
+
+                            return;
+
+                        }
+
+
+                        /*
+                         * Simpan layer
+                         */
+
+                        layerRegistry[
+                            provinceName
+                        ] = layer;
+
+
+                        /*
+                         * Tooltip
+                         */
+
+                        layer.bindTooltip(
+                            provinceName,
+                            {
+
+                                sticky:
+                                    true,
+
+                                direction:
+                                    "auto",
+
+                                className:
+                                    "kemenbud-tooltip"
+
+                            }
+                        );
+
+
+                        /*
+                         * HOVER
+                         */
+
+                        layer.on(
+                            "mouseover",
+                            function () {
+
+                                if (
+                                    layer !==
+                                    currentHighlightedLayer
+                                ) {
+
+                                    layer.setStyle({
+
+                                        fillColor:
+                                            "#C9A15A",
+
+                                        fillOpacity:
+                                            .96,
+
+                                        weight:
+                                            2,
+
+                                        color:
+                                            "#A87F3C"
+
+                                    });
+
+                                }
+
+
+                                layer.bringToFront();
+
+                            }
+                        );
+
+
+                        /*
+                         * MOUSE OUT
+                         */
+
+                        layer.on(
+                            "mouseout",
+                            function () {
+
+                                if (
+                                    layer !==
+                                    currentHighlightedLayer
+                                ) {
+
+                                    geojsonLayer
+                                        .resetStyle(
+                                            layer
+                                        );
+
+                                }
+
+                            }
+                        );
+
+
+                        /*
+                         * KLIK PROVINSI
+                         */
+
+                        layer.on(
+                            "click",
+                            function () {
+
+                                selectProvince(
+                                    provinceName,
+                                    layer
+                                );
+
+                            }
                         );
 
                     }
-                )
-                .filter(Boolean)
-                .sort(
-                    (a, b) =>
-                        a.localeCompare(
-                            b,
-                            "id"
-                        )
-                );
-
-
-        names.forEach(
-            function(name) {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-                option.value =
-                    name;
-
-                option.textContent =
-                    name;
-
-                provSelect.appendChild(
-                    option
-                );
 
             }
-        );
-
-
-        provSelect.value =
-            selectedProvince;
-
-    }
+        )
+        .addTo(map);
 
 
 
-    /* =========================================================
-       CLICK MAP
-    ========================================================= */
+    /*
+     * Tampilkan seluruh Indonesia
+     */
 
-    function selectProvinceFromMap(
-        provinceName,
-        layer
-    ) {
-
-        /*
-         * Reset provinsi sebelumnya
-         */
-
-        if (
-            currentHighlightedLayer &&
-            geojsonLayer
-        ) {
-
-            geojsonLayer.resetStyle(
-                currentHighlightedLayer
-            );
-
+    map.fitBounds(
+        geojsonLayer.getBounds(),
+        {
+            padding:
+                [10,10]
         }
+    );
 
 
-        /*
-         * Simpan provinsi aktif
-         */
+    /*
+     * Isi dropdown
+     */
 
-        currentHighlightedLayer =
-            layer;
+    populateProvinceSelect(
+        geoData.features
+    );
 
 
-        /*
-         * Highlight
-         */
+    /*
+     * Pilihan awal
+     */
 
-        if (
-            currentHighlightedLayer
-        ) {
+    selectProvinceByName(
+        "Jawa Tengah"
+    );
 
-            currentHighlightedLayer.setStyle({
 
-                fillColor:
-                    "#A87F3C",
+    /*
+     * Hilangkan loading
+     */
 
-                fillOpacity:
-                    1,
+    mapLoading.style.display =
+        "none";
 
-                color:
-                    "#241F18",
+}
 
-                weight:
-                    2.8
 
-            });
 
+/* ============================================================
+   DROPDOWN PROVINSI
+============================================================ */
 
-            currentHighlightedLayer.bringToFront();
+function populateProvinceSelect(
+    features
+) {
 
-        }
+    provSelect.innerHTML = `
 
+        <option value="">
+            Pilih Provinsi
+        </option>
 
-        /*
-         * Update panel kanan
-         */
+    `;
 
-        updateDetail(
-            provinceName
-        );
 
+    const provinceNames =
+        features
 
-        /*
-         * Sync dropdown
-         */
-
-        provSelect.value =
-            provinceName;
-
-    }
-
-
-
-    /* =========================================================
-       DROPDOWN → MAP
-    ========================================================= */
-
-    function selectProvinceByName(
-        provinceName
-    ) {
-
-        if (!provinceName) {
-            return;
-        }
-
-
-        selectedProvince =
-            provinceName;
-
-
-        const layer =
-            findProvinceLayer(
-                provinceName
-            );
-
-
-        if (layer) {
-
-            selectProvinceFromMap(
-                provinceName,
-                layer
-            );
-
-
-            /*
-             * Zoom sedikit
-             * ke provinsi yang dipilih
-             */
-
-            map.fitBounds(
-                layer.getBounds(),
-                {
-
-                    padding: [
-                        35,
-                        35
-                    ],
-
-                    maxZoom: 7,
-
-                    animate: true
-
-                }
-            );
-
-        }
-        else {
-
-            /*
-             * Tetap update panel walaupun
-             * layer belum ditemukan
-             */
-
-            updateDetail(
-                provinceName
-            );
-
-        }
-
-    }
-
-
-
-    /* =========================================================
-       FIND PROVINCE
-    ========================================================= */
-
-    function findProvinceLayer(
-        provinceName
-    ) {
-
-        /*
-         * Exact match
-         */
-
-        if (
-            layerRegistry[
-                provinceName
-            ]
-        ) {
-
-            return layerRegistry[
-                provinceName
-            ];
-
-        }
-
-
-        /*
-         * Fuzzy match
-         */
-
-        const target =
-            provinceName
-                .toLowerCase()
-                .trim();
-
-
-        for (
-            const name in layerRegistry
-        ) {
-
-            const current =
-                name
-                    .toLowerCase()
-                    .trim();
-
-
-            if (
-                current === target ||
-                current.includes(target) ||
-                target.includes(current)
-            ) {
-
-                return layerRegistry[
-                    name
-                ];
-
-            }
-
-        }
-
-
-        return null;
-
-    }
-
-
-
-    /* =========================================================
-       UPDATE DETAIL PANEL
-    ========================================================= */
-
-    function updateDetail(
-        provinceName
-    ) {
-
-        const data =
-            dataProvinsi[
-                provinceName
-            ];
-
-
-        /*
-         * Nama
-         */
-
-        document.getElementById(
-            "detNamaProvinsi"
-        ).textContent =
-            provinceName;
-
-
-        /*
-         * Zona
-         */
-
-        document.getElementById(
-            "detZona"
-        ).textContent =
-            data
-                ? data.zona
-                : getZone(
-                    provinceName
-                );
-
-
-        const status =
-            document.getElementById(
-                "detStatus"
-            );
-
-        const program =
-            document.getElementById(
-                "detProgram"
-            );
-
-        const sdm =
-            document.getElementById(
-                "detSdm"
-            );
-
-        const cagar =
-            document.getElementById(
-                "detCagar"
-            );
-
-        const komunitas =
-            document.getElementById(
-                "detKomunitas"
-            );
-
-        const tags =
-            document.getElementById(
-                "detProgramTags"
-            );
-
-        const button =
-            document.getElementById(
-                "detBtnLink"
-            );
-
-
-
-        /* =================================================
-           DATA TERSEDIA
-        ================================================= */
-
-        if (data) {
-
-            status.textContent =
-                data.status;
-
-            status.classList.remove(
-                "pending"
-            );
-
-
-            program.textContent =
-                data.program.toLocaleString(
-                    "id-ID"
-                );
-
-
-            sdm.textContent =
-                data.sdm.toLocaleString(
-                    "id-ID"
-                );
-
-
-            cagar.textContent =
-                data.cagar.toLocaleString(
-                    "id-ID"
-                );
-
-
-            komunitas.textContent =
-                data.komunitas.toLocaleString(
-                    "id-ID"
-                );
-
-
-            /*
-             * Program tags
-             */
-
-            tags.innerHTML =
-                "";
-
-
-            data.tags.forEach(
-                function(tag) {
-
-                    const element =
-                        document.createElement(
-                            "span"
-                        );
-
-                    element.className =
-                        "program-tag";
-
-
-                    element.innerHTML = `
-                        <span class="tag-dot"></span>
-                        ${tag}
-                    `;
-
-
-                    tags.appendChild(
-                        element
-                    );
-
-                }
-            );
-
-
-            /*
-             * Button aktif
-             */
-
-            button.classList.remove(
-                "disabled"
-            );
-
-
-            button.textContent =
-                "Eksplorasi Data Provinsi Ini →";
-
-
-            button.href =
-                "data-program.html?provinsi=" +
-                encodeURIComponent(
-                    provinceName
-                );
-
-        }
-
-
-
-        /* =================================================
-           DATA BELUM TERSEDIA
-        ================================================= */
-
-        else {
-
-            status.textContent =
-                "● Data Belum Tersedia";
-
-            status.classList.add(
-                "pending"
-            );
-
-
-            program.textContent =
-                "—";
-
-            sdm.textContent =
-                "—";
-
-            cagar.textContent =
-                "—";
-
-            komunitas.textContent =
-                "—";
-
-
-            tags.innerHTML = `
-
-                <div class="empty-data">
-
-                    Data kebudayaan untuk
-                    <strong>${provinceName}</strong>
-                    belum terhubung pada
-                    dataset saat ini.
-
-                </div>
-
-            `;
-
-
-            button.classList.add(
-                "disabled"
-            );
-
-
-            button.textContent =
-                "Data Belum Tersedia";
-
-
-            button.href =
-                "#";
-
-        }
-
-    }
-
-
-
-    /* =========================================================
-       FILTER PROGRAM
-    ========================================================= */
-
-    programFilter.addEventListener(
-        "change",
-        function () {
-
-            currentFilter =
-                this.value;
-
-
-            if (!geojsonLayer) {
-                return;
-            }
-
-
-            geojsonLayer.eachLayer(
-                function(layer) {
+            .map(
+                feature => {
 
                     const props =
-                        layer.feature
-                            .properties
-                            || {};
+                        feature.properties
+                        || {};
 
 
                     const original =
-                        props.Propinsi
-                        ||
                         props.PROVINSI
+                        ||
+                        props.Propinsi
                         ||
                         props.provinsi
                         ||
@@ -3437,190 +3574,672 @@
                         "";
 
 
-                    const provinceName =
+                    return (
                         provinceNameMap[
                             original
                         ]
                         ||
-                        original;
+                        original
+                    );
+
+                }
+            )
+
+            .filter(Boolean)
+
+            .sort(
+                (a,b) =>
+                    a.localeCompare(
+                        b,
+                        "id"
+                    )
+            );
 
 
-                    /*
-                     * Provinsi aktif
-                     */
+    provinceNames.forEach(
+        name => {
 
-                    if (
-                        provinceName ===
-                        selectedProvince
-                    ) {
-
-                        layer.setStyle({
-
-                            fillColor:
-                                "#A87F3C",
-
-                            fillOpacity:
-                                1,
-
-                            color:
-                                "#241F18",
-
-                            weight:
-                                2.8
-
-                        });
-
-                        return;
-
-                    }
+            const option =
+                document.createElement(
+                    "option"
+                );
 
 
-                    const data =
-                        dataProvinsi[
-                            provinceName
-                        ];
+            option.value =
+                name;
 
 
-                    /*
-                     * Semua
-                     */
-
-                    if (
-                        currentFilter ===
-                        "semua"
-                    ) {
-
-                        layer.setStyle(
-                            styleFeature(
-                                layer.feature
-                            )
-                        );
-
-                        return;
-
-                    }
+            option.textContent =
+                name;
 
 
-                    /*
-                     * Tidak memiliki data
-                     */
+            provSelect.appendChild(
+                option
+            );
 
-                    if (!data) {
-
-                        layer.setStyle({
-
-                            fillColor:
-                                "#E8E1D5",
-
-                            fillOpacity:
-                                .45,
-
-                            color:
-                                "#FFFFFF",
-
-                            weight:
-                                1
-
-                        });
-
-                        return;
-
-                    }
+        }
+    );
 
 
-                    /*
-                     * Memiliki data
-                     */
+    provSelect.value =
+        selectedProvince;
+
+}
+
+
+
+/* ============================================================
+   PILIH PROVINSI DARI MAP
+============================================================ */
+
+function selectProvince(
+    provinceName,
+    layer
+) {
+
+    /*
+     * Reset layer lama
+     */
+
+    if (
+        currentHighlightedLayer &&
+        geojsonLayer
+    ) {
+
+        geojsonLayer.resetStyle(
+            currentHighlightedLayer
+        );
+
+    }
+
+
+    /*
+     * Layer aktif
+     */
+
+    currentHighlightedLayer =
+        layer;
+
+
+    /*
+     * Warna aktif
+     */
+
+    layer.setStyle({
+
+        fillColor:
+            "#A87F3C",
+
+        fillOpacity:
+            1,
+
+        color:
+            "#241F18",
+
+        weight:
+            2.8
+
+    });
+
+
+    layer.bringToFront();
+
+
+    /*
+     * Simpan provinsi
+     */
+
+    selectedProvince =
+        provinceName;
+
+
+    /*
+     * Update dropdown
+     */
+
+    provSelect.value =
+        provinceName;
+
+
+    /*
+     * Update panel
+     */
+
+    updateDetail(
+        provinceName
+    );
+
+}
+
+
+
+/* ============================================================
+   PILIH PROVINSI DARI DROPDOWN
+============================================================ */
+
+function selectProvinceByName(
+    provinceName
+) {
+
+    selectedProvince =
+        provinceName;
+
+
+    const layer =
+        layerRegistry[
+            provinceName
+        ];
+
+
+    if (!layer) {
+
+        updateDetail(
+            provinceName
+        );
+
+        return;
+
+    }
+
+
+    selectProvince(
+        provinceName,
+        layer
+    );
+
+
+    /*
+     * Zoom ke provinsi
+     */
+
+    map.fitBounds(
+        layer.getBounds(),
+        {
+
+            padding:
+                [35,35],
+
+            maxZoom:
+                7,
+
+            animate:
+                true
+
+        }
+    );
+
+}
+
+
+
+/* ============================================================
+   UPDATE DETAIL PANEL
+============================================================ */
+
+function updateDetail(
+    provinceName
+) {
+
+    const data =
+        dataProvinsi[
+            provinceName
+        ];
+
+
+    const nama =
+        document.getElementById(
+            "detNamaProvinsi"
+        );
+
+
+    const zona =
+        document.getElementById(
+            "detZona"
+        );
+
+
+    const status =
+        document.getElementById(
+            "detStatus"
+        );
+
+
+    const program =
+        document.getElementById(
+            "detProgram"
+        );
+
+
+    const sdm =
+        document.getElementById(
+            "detSdm"
+        );
+
+
+    const cagar =
+        document.getElementById(
+            "detCagar"
+        );
+
+
+    const komunitas =
+        document.getElementById(
+            "detKomunitas"
+        );
+
+
+    const tags =
+        document.getElementById(
+            "detProgramTags"
+        );
+
+
+    const button =
+        document.getElementById(
+            "detBtnLink"
+        );
+
+
+    /*
+     * Nama
+     */
+
+    nama.textContent =
+        provinceName;
+
+
+    /*
+     * Zona
+     */
+
+    zona.textContent =
+        data
+            ? data.zona
+            : getZone(
+                provinceName
+            );
+
+
+    /*
+     * Jika ada data
+     */
+
+    if (data) {
+
+
+        status.textContent =
+            data.status;
+
+
+        status.classList.remove(
+            "pending"
+        );
+
+
+        program.textContent =
+            data.program.toLocaleString(
+                "id-ID"
+            );
+
+
+        sdm.textContent =
+            data.sdm.toLocaleString(
+                "id-ID"
+            );
+
+
+        cagar.textContent =
+            data.cagar.toLocaleString(
+                "id-ID"
+            );
+
+
+        komunitas.textContent =
+            data.komunitas.toLocaleString(
+                "id-ID"
+            );
+
+
+        /*
+         * Program
+         */
+
+        tags.innerHTML =
+            "";
+
+
+        data.tags.forEach(
+            tag => {
+
+                const chip =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                chip.className =
+                    "program-tag";
+
+
+                chip.innerHTML = `
+
+                    <span
+                        class="tag-dot"
+                    ></span>
+
+                    ${tag}
+
+                `;
+
+
+                tags.appendChild(
+                    chip
+                );
+
+            }
+        );
+
+
+        /*
+         * Tombol
+         */
+
+        button.classList.remove(
+            "disabled"
+        );
+
+
+        button.textContent =
+            "Eksplorasi Data Provinsi Ini →";
+
+
+        button.href =
+            "data-program.html?provinsi=" +
+            encodeURIComponent(
+                provinceName
+            );
+
+    }
+
+
+    /*
+     * Jika belum ada data
+     */
+
+    else {
+
+
+        status.textContent =
+            "● Data Belum Tersedia";
+
+
+        status.classList.add(
+            "pending"
+        );
+
+
+        program.textContent =
+            "—";
+
+
+        sdm.textContent =
+            "—";
+
+
+        cagar.textContent =
+            "—";
+
+
+        komunitas.textContent =
+            "—";
+
+
+        tags.innerHTML = `
+
+            <div class="empty-data">
+
+                Data kebudayaan untuk
+                <strong>
+                    ${provinceName}
+                </strong>
+                belum terhubung pada
+                dataset saat ini.
+
+            </div>
+
+        `;
+
+
+        button.classList.add(
+            "disabled"
+        );
+
+
+        button.textContent =
+            "Data Belum Tersedia";
+
+
+        button.href =
+            "#";
+
+    }
+
+}
+
+
+
+/* ============================================================
+   EVENT DROPDOWN
+============================================================ */
+
+provSelect.addEventListener(
+    "change",
+    function () {
+
+        if (!this.value) {
+
+            return;
+
+        }
+
+
+        selectProvinceByName(
+            this.value
+        );
+
+    }
+);
+
+
+
+/* ============================================================
+   FILTER PROGRAM
+============================================================ */
+
+programFilter.addEventListener(
+    "change",
+    function () {
+
+        currentFilter =
+            this.value;
+
+
+        if (!geojsonLayer) {
+
+            return;
+
+        }
+
+
+        geojsonLayer.eachLayer(
+            layer => {
+
+                const props =
+                    layer.feature
+                        .properties
+                        || {};
+
+
+                const originalName =
+                    props.PROVINSI
+                    ||
+                    props.Propinsi
+                    ||
+                    props.provinsi
+                    ||
+                    props.name
+                    ||
+                    props.NAME_1
+                    ||
+                    "";
+
+
+                const provinceName =
+                    provinceNameMap[
+                        originalName
+                    ]
+                    ||
+                    originalName;
+
+
+                /*
+                 * Provinsi terpilih
+                 */
+
+                if (
+                    provinceName ===
+                    selectedProvince
+                ) {
 
                     layer.setStyle({
 
                         fillColor:
-                            "#C9A15A",
+                            "#A87F3C",
 
                         fillOpacity:
-                            .95,
+                            1,
+
+                        color:
+                            "#241F18",
+
+                        weight:
+                            2.8
+
+                    });
+
+                    return;
+
+                }
+
+
+                /*
+                 * Semua
+                 */
+
+                if (
+                    currentFilter ===
+                    "semua"
+                ) {
+
+                    layer.setStyle(
+                        provinceStyle()
+                    );
+
+                    return;
+
+                }
+
+
+                const data =
+                    dataProvinsi[
+                        provinceName
+                    ];
+
+
+                /*
+                 * Belum ada data
+                 */
+
+                if (!data) {
+
+                    layer.setStyle({
+
+                        fillColor:
+                            "#E8E1D5",
+
+                        fillOpacity:
+                            .45,
 
                         color:
                             "#FFFFFF",
 
                         weight:
-                            1.5
+                            1
 
                     });
 
+                    return;
+
                 }
-            );
-
-        }
-    );
 
 
+                /*
+                 * Ada data
+                 */
 
-    /* =========================================================
-       DROPDOWN EVENT
-    ========================================================= */
+                layer.setStyle({
 
-    provSelect.addEventListener(
-        "change",
-        function () {
+                    fillColor:
+                        "#C9A15A",
 
-            if (!this.value) {
-                return;
+                    fillOpacity:
+                        .95,
+
+                    color:
+                        "#FFFFFF",
+
+                    weight:
+                        1.4
+
+                });
+
             }
-
-
-            selectProvinceByName(
-                this.value
-            );
-
-        }
-    );
-
-
-
-    /* =========================================================
-       ERROR
-    ========================================================= */
-
-    function showMapError() {
-
-        mapLoading.style.display =
-            "none";
-
-        mapError.style.display =
-            "block";
+        );
 
     }
+);
 
 
 
-    /* =========================================================
-       START
-    ========================================================= */
+/* ============================================================
+   START
+============================================================ */
 
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
-            /*
-             * Panel awal
-             */
+        /*
+         * Panel awal
+         */
 
-            updateDetail(
-                "Jawa Tengah"
-            );
+        updateDetail(
+            "Jawa Tengah"
+        );
 
 
-            /*
-             * Map
-             */
+        /*
+         * Jalankan map
+         */
 
-            initMap();
+        initMap();
 
-        }
-    );
+    }
+);
 
 </script>
 
+
 </body>
+
 </html>
