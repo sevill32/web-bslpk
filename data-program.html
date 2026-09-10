@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Data Program — Kemenbud Data Kebudayaan</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream: '#F7F3EA',
+          paper: '#FFFFFF',
+          gold: {
+            DEFAULT: '#C9A15A',
+            dark: '#A87F3C',
+            pale: '#F9F5EB',
+            light: '#F3E9D2'
+          },
+          ink: {
+            DEFAULT: '#241F18',
+            soft: '#5B5346'
+          },
+          muted: '#948B7A',
+          borderCustom: '#E7DFCC',
+          kemengreen: {
+            DEFAULT: '#1FA971',
+            dark: '#178257',
+            light: '#E8F7F0'
+          }
+        },
+        fontFamily: {
+          sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          display: ['Poppins', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+<style>
+:root{
+  --cream:#F7F3EA;
+  --paper:#FFFFFF;
+  --gold:#C9A15A;
+  --gold-dark:#A87F3C;
+  --gold-pale:#F9F5EB;
+  --ink:#241F18;
+  --ink-soft:#5B5346;
+  --muted:#948B7A;
+  --border:#E7DFCC;
+  --green:#1FA971;
+  --green-dark:#178257;
+  --shadow:0 12px 36px -12px rgba(60,45,20,0.12);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+img{max-width:100%;display:block;}
+
+/* ---------- Topbar ---------- */
+.topbar{background:var(--paper);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;}
+.topbar-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;gap:24px;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-logo{width:38px;height:38px;flex:0 0 auto;}
+.brand-text{display:flex;flex-direction:column;line-height:1.1;font-size:13px;font-weight:700;color:var(--ink);}
+.brand-text small{font-weight:500;color:var(--muted);font-size:11px;}
+.nav{display:flex;align-items:center;gap:30px;font-weight:600;font-size:14.5px;color:var(--gold-dark);flex:1;justify-content:center;}
+.nav a{color:var(--gold-dark);opacity:.85;padding:6px 2px;position:relative;transition:opacity .15s;}
+.nav a:hover{opacity:1;}
+.nav a.active{color:var(--ink);opacity:1;}
+.nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-19px;height:3px;background:var(--gold);border-radius:2px;}
+.btn-outline-gold{border:1.5px solid var(--gold);background:transparent;color:var(--gold-dark);padding:9px 22px;border-radius:999px;font-weight:700;font-size:13.5px;transition:all .2s;}
+.btn-outline-gold:hover{background:var(--gold);color:#fff;}
+
+/* ---------- Layout shell ---------- */
+.page-shell{max-width:1180px;margin:0 auto;padding:36px 28px 60px;}
+
+/* ---------- Custom Elements ---------- */
+.card{background:var(--paper);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);}
+.table-card{overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead th{text-align:left;font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding:16px 24px;border-bottom:1px solid var(--border);background:#FDFBF7;}
+tbody td{padding:16px 24px;font-size:14px;border-bottom:1px solid var(--border);color:var(--ink-soft);vertical-align:middle;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:#FAF7EE;}
+td.strong{color:var(--ink);font-weight:700;}
+
+.btn-detail{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 16px;
+  border-radius:10px;
+  border:1.5px solid var(--gold);
+  color:var(--gold-dark);
+  font-weight:700;
+  font-size:13px;
+  background:#fff;
+  transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-detail:hover{
+  background:var(--gold);
+  color:#fff;
+  box-shadow:0 4px 14px -3px rgba(201,161,90,0.4);
+  transform:translateY(-1px);
+}
+
+.badge-tag {
+  display:inline-flex;
+  align-items:center;
+  padding:4px 10px;
+  border-radius:6px;
+  font-size:12px;
+  font-weight:600;
+  background:#F4EFE6;
+  color:var(--ink-soft);
+  border:1px solid #E5DEC9;
+}
+
+/* Modal styling */
+.modal-overlay {
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.modal-overlay.hidden-modal {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal-container {
+  transition: transform .25s cubic-bezier(0.16, 1, 0.3, 1), opacity .25s ease;
+}
+.modal-overlay.hidden-modal .modal-container {
+  transform: scale(0.96) translateY(12px);
+  opacity: 0;
+}
+
+/* Rowspan cell border fix */
+.cell-province {
+  background-color: #FAF8F2;
+  border-right: 1px solid var(--border);
+  font-weight: 700;
+  color: var(--ink);
+  vertical-align: middle;
+  text-align: left;
+}
+
+/* Custom scrollbars */
+.custom-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: #F4EFE6;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #D4C5A9;
+  border-radius: 99px;
+}
+</style>
+</head>
+<body>
+<!-- TOPBAR -->
+<header class="topbar">
+<div class="topbar-inner">
+<div class="brand">
+<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g fill="#C9A15A">
+<path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
+<circle cx="24" cy="24" r="3.4"></circle>
+</g>
+</svg>
+<div class="brand-text">Kementerian Kebudayaan<small>Republik Indonesia</small></div>
+</div>
+<nav class="nav">
+<a href="index.html">Beranda</a>
+<a href="statistik-program.html">Statistik Program</a>
+<a class="active" href="data-program.html">Data Program</a>
+<a href="tentang.html">Tentang</a>
+</nav>
+<a class="btn-outline-gold" href="login.html">LOG IN</a>
+</div>
+</header>
+<main class="page-shell">
+<!-- HEADER RESMI & DESKRIPSI -->
+<div class="mb-8">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFE8D6] text-ink-soft text-xs font-bold uppercase tracking-wider mb-3 border border-[#DFD5BE]">
+<span class="w-2 h-2 rounded-full bg-gold"></span>
+      Katalog Terpadu · Direktorat BSLPK Kementerian Kebudayaan RI
+    </div>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+<div>
+<h1 class="font-display text-3xl font-extrabold text-ink tracking-tight">Data Program Kebudayaan</h1>
+<p class="text-ink-soft text-sm md:text-[15px] mt-2 max-w-3xl leading-relaxed">
+          Pusat integrasi repositori dan basis data pelaksanaan program prioritas pemajuan kebudayaan nasional. Menyajikan direktori penerima manfaat, asesi sertifikasi, talenta berprestasi, serta sebaran lembaga budaya di seluruh wilayah Republik Indonesia.
+        </p>
+</div>
+<div class="flex items-center gap-2 shrink-0">
+<button class="inline-flex items-center gap-2 bg-paper hover:bg-gold-pale text-gold-dark border border-borderCustom hover:border-gold px-4 py-2.5 rounded-xl font-bold text-xs shadow-sm transition" onclick="downloadCatalogSummary()">
+<span class="material-symbols-outlined text-base text-gold">download</span>
+          Unduh Ringkasan Katalog
+        </button>
+</div>
+</div>
+<!-- QUICK STAT METRICS MINI RIBBON -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-6">
+<div class="bg-paper p-4 rounded-xl border border-borderCustom shadow-sm flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-lg bg-gold-pale flex items-center justify-center text-gold-dark shrink-0">
+<span class="material-symbols-outlined text-[22px]">category</span>
+</div>
+<div>
+<div class="text-[11px] uppercase tracking-wider font-semibold text-muted">Total Program</div>
+<div class="text-base md:text-lg font-extrabold text-ink">7 Program Nasional</div>
+</div>
+</div>
+<div class="bg-paper p-4 rounded-xl border border-borderCustom shadow-sm flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-lg bg-[#E8F3EE] flex items-center justify-center text-kemengreen shrink-0">
+<span class="material-symbols-outlined text-[22px]">calendar_month</span>
+</div>
+<div>
+<div class="text-[11px] uppercase tracking-wider font-semibold text-muted">Tahun Anggaran</div>
+<div class="text-base md:text-lg font-extrabold text-ink">2024 — 2026</div>
+</div>
+</div>
+<div class="bg-paper p-4 rounded-xl border border-borderCustom shadow-sm flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-lg bg-[#F9EFE9] flex items-center justify-center text-[#B25E2C] shrink-0">
+<span class="material-symbols-outlined text-[22px]">public</span>
+</div>
+<div>
+<div class="text-[11px] uppercase tracking-wider font-semibold text-muted">Cakupan Wilayah</div>
+<div class="text-base md:text-lg font-extrabold text-ink">38 Provinsi RI</div>
+</div>
+</div>
+<div class="bg-paper p-4 rounded-xl border border-borderCustom shadow-sm flex items-center gap-3.5">
+<div class="w-10 h-10 rounded-lg bg-[#EBF2F7] flex items-center justify-center text-[#2A75A0] shrink-0">
+<span class="material-symbols-outlined text-[22px]">file_download_done</span>
+</div>
+<div>
+<div class="text-[11px] uppercase tracking-wider font-semibold text-muted">Akses Ekspor</div>
+<div class="text-base md:text-lg font-extrabold text-ink">CSV / Spreadsheet</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TOOLBAR & DROPDOWN FILTER (Search bar dihapus total) -->
+<div class="bg-paper p-4 rounded-2xl border border-borderCustom shadow-sm mb-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+<div class="flex flex-col sm:flex-row items-center gap-3 flex-1">
+<div class="w-full sm:w-72">
+<label class="block text-[11px] font-bold uppercase tracking-wider text-muted mb-1 ml-1">Pilih Program</label>
+<select class="w-full bg-[#FAF8F3] border border-borderCustom rounded-xl px-3.5 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-gold" id="filterProgram" onchange="applyTableFilter()">
+<option value="all">Semua Program</option>
+<option value="Gita Bahana Nusantara">Gita Bahana Nusantara (GBN)</option>
+<option value="Manajemen Talenta Nasional">Manajemen Talenta Nasional (MTN)</option>
+<option value="Anugerah Kebudayaan Indonesia">Anugerah Kebudayaan Indonesia (AKI)</option>
+<option value="Pemajuan Kebudayaan Desa">Pemajuan Kebudayaan Desa (PKD)</option>
+<option value="Sertifikasi Profesi Kebudayaan">Sertifikasi Profesi Kebudayaan</option>
+<option value="Bimbingan Teknis Kebudayaan">Bimbingan Teknis Kebudayaan (Bimtek)</option>
+<option value="Penguatan Kelembagaan Kebudayaan">Penguatan Kelembagaan Kebudayaan (PKK)</option>
+</select>
+</div>
+<div class="w-full sm:w-44">
+<label class="block text-[11px] font-bold uppercase tracking-wider text-muted mb-1 ml-1">Pilih Tahun</label>
+<select class="w-full bg-[#FAF8F3] border border-borderCustom rounded-xl px-3.5 py-2.5 text-sm font-semibold text-ink focus:outline-none focus:ring-2 focus:ring-gold" id="filterYear" onchange="applyTableFilter()">
+<option value="all">Semua Tahun</option>
+<option value="2026">2026</option>
+<option value="2025">2025</option>
+<option value="2024">2024</option>
+</select>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center pt-2 md:pt-0">
+<span class="text-xs text-muted">Menampilkan <span class="font-bold text-ink" id="visibleCount">8</span> data program</span>
+</div>
+</div>
+<!-- TABEL UTAMA PROGRAM -->
+<div class="card table-card">
+<div class="overflow-x-auto">
+<table id="mainProgramTable">
+<thead>
+<tr>
+<th style="width: 32%;">Program</th>
+<th style="width: 33%;">Kategori Bidang</th>
+<th style="width: 12%;">Tahun</th>
+<th style="width: 13%;">Entri Terdata</th>
+<th style="width: 10%; text-align: center;">Aksi</th>
+</tr>
+</thead>
+<tbody id="programTableBody">
+<!-- 1. GBN 2026 -->
+<tr data-program="Gita Bahana Nusantara" data-year="2026">
+<td>
+<div class="font-bold text-ink text-[15px]">Gita Bahana Nusantara (GBN)</div>
+<div class="text-xs text-muted mt-0.5">Paduan Suara &amp; Orkestra Nasional HUT RI ke-81</div>
+</td>
+<td>
+<span class="badge-tag">Paduan Suara (S, A, T, B)</span>
+<span class="badge-tag mt-1">Orkestra Simfoni</span>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2026</span>
+</td>
+<td>
+<span class="font-bold text-ink">26 Peserta</span>
+<div class="text-[11px] text-kemengreen font-semibold">● Terverifikasi</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('gbn2026')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+<!-- 2. MTN 2026 -->
+<tr data-program="Manajemen Talenta Nasional" data-year="2026">
+<td>
+<div class="font-bold text-ink text-[15px]">Manajemen Talenta Nasional (MTN)</div>
+<div class="text-xs text-muted mt-0.5">Pembinaan &amp; Akselerasi Ekosistem Talenta Seni Budaya</div>
+</td>
+<td>
+<div class="flex flex-wrap gap-1">
+<span class="badge-tag">Film</span>
+<span class="badge-tag">Musik</span>
+<span class="badge-tag">Seni Pertunjukan</span>
+<span class="badge-tag">Seni Rupa</span>
+<span class="badge-tag">Sastra</span>
+</div>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2026</span>
+</td>
+<td>
+<span class="font-bold text-ink">5 Kegiatan</span>
+<div class="text-[11px] text-kemengreen font-semibold">● Aktif Berjalan</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('mtn2026')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+<!-- 3. AKI 2026 -->
+<tr data-program="Anugerah Kebudayaan Indonesia" data-year="2026">
+<td>
+<div class="font-bold text-ink text-[15px]">Anugerah Kebudayaan Indonesia (AKI)</div>
+<div class="text-xs text-muted mt-0.5">Penghargaan Tertinggi Insan &amp; Penggerak Kebudayaan</div>
+</td>
+<td>
+<div class="flex flex-wrap gap-1">
+<span class="badge-tag">Pelestari</span>
+<span class="badge-tag">Pencipta / Pelopor</span>
+<span class="badge-tag">Maestro Seni Tradisi</span>
+</div>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2026</span>
+</td>
+<td>
+<span class="font-bold text-ink">10 Penerima</span>
+<div class="text-[11px] text-gold-dark font-semibold">● Tahap Kurasi Final</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('aki2026')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+<!-- 4. PKD 2026 -->
+<tr data-program="Pemajuan Kebudayaan Desa" data-year="2026">
+<td>
+<div class="font-bold text-ink text-[15px]">Pemajuan Kebudayaan Desa (PKD)</div>
+<div class="text-xs text-muted mt-0.5">Pemberdayaan Ekosistem Budaya Berbasis Desa &amp; Kelurahan</div>
+</td>
+<td>
+<div class="flex flex-wrap gap-1">
+<span class="badge-tag">Tradisi Lisan</span>
+<span class="badge-tag">Adat Istiadat</span>
+<span class="badge-tag">Ritus &amp; Seni</span>
+</div>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2026</span>
+</td>
+<td>
+<span class="font-bold text-ink">12 Desa Budaya</span>
+<div class="text-[11px] text-kemengreen font-semibold">● Terverifikasi</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('pkd2026')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+<!-- 5. Sertifikasi 2026 -->
+<tr data-program="Sertifikasi Profesi Kebudayaan" data-year="2026">
+<td>
+<div class="font-bold text-ink text-[15px]">Sertifikasi Profesi Kebudayaan</div>
+<div class="text-xs text-muted mt-0.5">Uji Kompetensi &amp; Standarisasi Tenaga Kebudayaan BNSP</div>
+</td>
+<td>
+<div class="flex flex-wrap gap-1">
+<span class="badge-tag">Cagar Budaya</span>
+<span class="badge-tag">Permuseuman</span>
+<span class="badge-tag">Kriya &amp; Kesenian</span>
+</div>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2026</span>
+</td>
+<td>
+<span class="font-bold text-ink">11 Asesi</span>
+<div class="text-[11px] text-kemengreen font-semibold">● Kompeten</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('sertifikasi2026')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+<!-- 6. Bimtek 2026 -->
+<tr data-program="Bimbingan Teknis Kebudayaan" data-year="2026">
+<td>
+<div class="font-bold text-ink text-[15px]">Bimbingan Teknis Kebudayaan (Bimtek)</div>
+<div class="text-xs text-muted mt-0.5">Peningkatan Kapasitas SDM dan Pengelola Lembaga Kebudayaan</div>
+</td>
+<td>
+<div class="flex flex-wrap gap-1">
+<span class="badge-tag">Pelestarian Objek</span>
+<span class="badge-tag">Tata Kelola Warisan</span>
+</div>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2026</span>
+</td>
+<td>
+<span class="font-bold text-ink">Terjadwal</span>
+<div class="text-[11px] text-amber-700 font-semibold">● Pelaksanaan TW 2</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('bimtek2026')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+<!-- 7. PKK 2026 -->
+<tr data-program="Penguatan Kelembagaan Kebudayaan" data-year="2026">
+<td>
+<div class="font-bold text-ink text-[15px]">Penguatan Kelembagaan Kebudayaan (PKK)</div>
+<div class="text-xs text-muted mt-0.5">Bantuan Sarana, Prasarana, dan Legalitas Organisasi Budaya</div>
+</td>
+<td>
+<div class="flex flex-wrap gap-1">
+<span class="badge-tag">10 Pokok Pikiran Budaya</span>
+<span class="badge-tag">Yayasan / Komunitas</span>
+</div>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2026</span>
+</td>
+<td>
+<span class="font-bold text-ink">12 Lembaga</span>
+<div class="text-[11px] text-kemengreen font-semibold">● Terverifikasi SK</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('pkk2026')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+<!-- 8. GBN 2025 -->
+<tr data-program="Gita Bahana Nusantara" data-year="2025">
+<td>
+<div class="font-bold text-ink text-[15px]">Gita Bahana Nusantara (GBN)</div>
+<div class="text-xs text-muted mt-0.5">Paduan Suara &amp; Orkestra Nasional HUT RI ke-80</div>
+</td>
+<td>
+<span class="badge-tag">Paduan Suara (S, A, T, B)</span>
+<span class="badge-tag mt-1">Orkestra Simfoni</span>
+</td>
+<td>
+<span class="inline-block px-2.5 py-1 bg-gold-pale border border-[#DFD5BE] text-gold-dark font-bold text-xs rounded-lg">2025</span>
+</td>
+<td>
+<span class="font-bold text-ink">20 Peserta</span>
+<div class="text-[11px] text-muted font-semibold">● Arsip Selesai</div>
+</td>
+<td style="text-align: center;">
+<button class="btn-detail" onclick="openModal('gbn2025')">
+<span class="material-symbols-outlined text-[17px]">visibility</span>
+<span>Lihat Detail</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- TABLE FOOTER / PAGER -->
+<div class="p-4 border-t border-borderCustom flex flex-wrap items-center justify-between gap-4 bg-[#FDFBF8]">
+<span class="text-xs text-muted">Menampilkan arsip terverifikasi Sistem Basis Data Kebudayaan (SBDK)</span>
+<div class="flex items-center gap-2">
+<button class="px-3.5 py-1.5 rounded-lg border border-borderCustom bg-white text-xs font-bold text-muted cursor-not-allowed">Sebelumnya</button>
+<button class="px-3 py-1.5 rounded-lg bg-gold text-white text-xs font-bold shadow-sm">1</button>
+<button class="px-3.5 py-1.5 rounded-lg border border-borderCustom bg-white text-xs font-bold text-ink hover:border-gold">Berikutnya</button>
+</div>
+</div>
+</div>
+</main>
+<!-- ==================== MODAL DETAIL PROGRAM ==================== -->
+<div class="modal-overlay hidden-modal fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#1A150D]/60 backdrop-blur-sm overflow-y-auto" id="detailModal">
+<div class="modal-container bg-paper w-full max-w-5xl rounded-2xl border border-borderCustom shadow-2xl flex flex-col max-h-[92vh] overflow-hidden my-auto"><!-- Modal Header -->
+<div class="px-6 py-5 border-b border-borderCustom flex items-start justify-between bg-[#FDFBF7]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-gold-pale border border-[#E2D5BC] flex items-center justify-center text-gold-dark shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-2xl" id="modalHeaderIcon">auto_stories</span>
+</div>
+<div>
+<div class="flex flex-wrap items-center gap-2 mb-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#E8F7F0] text-kemengreen border border-[#C6ECD8]" id="modalBadgeStatus">
+<span class="w-1.5 h-1.5 rounded-full bg-kemengreen"></span>
+<span>Terverifikasi Resmi</span>
+</span>
+<span class="px-2 py-0.5 rounded text-[11px] font-bold bg-gold-pale text-gold-dark border border-[#E2D5BC]" id="modalBadgeYear">Tahun 2026</span>
+<span class="text-[11px] font-semibold text-muted tracking-tight">Sistem Basis Data Pokok Kebudayaan (Dapobud RI)</span>
+</div>
+<h3 class="font-display text-xl font-bold text-ink" id="modalTitle">Gita Bahana Nusantara (GBN)</h3>
+<p class="text-xs text-muted mt-0.5 max-w-2xl leading-relaxed" id="modalSub">Daftar asesi dan peserta paduan suara &amp; orkestra nasional</p>
+</div>
+</div>
+<button class="w-9 h-9 rounded-full bg-cream hover:bg-[#EBE2D0] border border-borderCustom flex items-center justify-center text-ink text-base font-bold transition shadow-sm" onclick="closeModal()" title="Tutup Modal (Esc)">
+    ✕
+  </button>
+</div>
+<!-- Dapobud Integrated Filtering & Search Section -->
+<div class="px-6 py-4 bg-[#FAF7F0] border-b border-borderCustom flex flex-col gap-3.5">
+<!-- Category Tabs Ribbon -->
+<div class="flex items-center justify-between gap-2 border-b border-[#EAE3D2] pb-3">
+<div class="flex items-center gap-2 overflow-x-auto custom-scroll py-0.5" id="modalTabsContainer">
+<!-- Injected by JS -->
+</div>
+<div class="hidden sm:flex items-center gap-2 shrink-0">
+<span class="text-xs font-semibold text-ink-soft bg-paper px-3 py-1 rounded-lg border border-borderCustom shadow-sm" id="modalCounterDapobud">Memuat data...</span>
+</div>
+</div>
+<!-- Dapobud Quick Filter Bar (Search + Dropdowns + Action) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-2.5 items-center">
+<!-- Search Input -->
+<div class="lg:col-span-5 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted text-lg pointer-events-none">search</span>
+<input class="w-full pl-9 pr-3.5 py-2 bg-paper border border-borderCustom rounded-xl text-xs font-medium text-ink placeholder-muted focus:ring-2 focus:ring-gold focus:outline-none shadow-sm transition" id="modalSearchInput" oninput="filterModalTable()" placeholder="Cari nama peserta / penerima / entitas..." type="text"/>
+</div>
+<!-- Filter Wilayah / Provinsi -->
+<div class="lg:col-span-3">
+<select class="w-full bg-paper border border-borderCustom text-xs rounded-xl px-3 py-2 font-semibold text-ink focus:ring-2 focus:ring-gold focus:outline-none shadow-sm transition" id="modalProvinceFilter" onchange="filterModalTable()">
+<option value="all">Semua Wilayah / Provinsi</option>
+</select>
+</div>
+<!-- Filter Status -->
+<div class="lg:col-span-2">
+<select class="w-full bg-paper border border-borderCustom text-xs rounded-xl px-3 py-2 font-semibold text-ink focus:ring-2 focus:ring-gold focus:outline-none shadow-sm transition" id="modalStatusFilter" onchange="filterModalTable()">
+<option value="all">Semua Status</option>
+</select>
+</div>
+<!-- Buttons (Reset & Export) -->
+<div class="lg:col-span-2 flex items-center gap-1.5 justify-end">
+<button class="px-2.5 py-2 rounded-xl border border-borderCustom bg-paper hover:bg-[#F3ECE0] text-ink-soft text-xs font-semibold flex items-center justify-center gap-1 transition shadow-sm" onclick="resetModalFilters()" title="Reset Semua Filter" type="button">
+<span class="material-symbols-outlined text-[15px]">restart_alt</span>
+<span>Reset</span>
+</button>
+<button class="inline-flex items-center gap-1 px-3 py-2 rounded-xl bg-kemengreen hover:bg-kemengreen-dark text-white font-bold text-xs shadow-sm transition" onclick="exportModalToCSV()" title="Unduh Spreadsheet CSV Dapobud" type="button">
+<span class="material-symbols-outlined text-[16px]">file_download</span>
+<span>CSV</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Modal Table Content -->
+<div class="p-6 overflow-y-auto custom-scroll flex-1 bg-paper">
+<div class="border border-borderCustom rounded-xl overflow-hidden shadow-sm">
+<table class="w-full text-left" id="modalDataTable">
+<thead class="bg-[#F8F5EE] border-b border-borderCustom text-xs uppercase text-muted tracking-wider font-bold">
+<tr>
+<th class="py-3.5 px-4 w-12 text-center">No</th>
+<th class="py-3.5 px-4 w-44">Provinsi</th>
+<th class="py-3.5 px-4">Nama Lengkap / Asesi</th>
+<th class="py-3.5 px-4 w-52" id="thSpecialCol">Jenis Suara / Spesialisasi</th>
+<th class="py-3.5 px-4 w-36 text-center">Status Kurasi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-borderCustom text-sm" id="modalTableBody">
+<!-- Rendered by JavaScript -->
+</tbody>
+</table>
+</div>
+</div>
+<!-- Modal Footer Footnote -->
+<div class="px-6 py-3.5 bg-[#FAF7F0] border-t border-borderCustom flex flex-wrap items-center justify-between text-xs text-muted gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-gold">verified_user</span>
+<span>Data disahkan oleh Tim Kurasi Dapobud &amp; Direktorat Jenderal Kebudayaan</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-bold text-ink" id="modalRecordCount">Total 0 Entri</span>
+<button class="px-4 py-1.5 rounded-lg bg-paper border border-borderCustom text-ink font-bold hover:border-gold shadow-sm transition" onclick="closeModal()">Tutup</button>
+</div>
+</div></div>
+</div>
+<!-- ==================== FOOTER ==================== -->
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand">
+<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g fill="#C9A15A">
+<path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
+<circle cx="24" cy="24" r="3.4"></circle>
+</g>
+</svg>
+<div class="footer-brand-text">
+<h4>Kementerian Kebudayaan<br/>Republik Indonesia</h4>
+<p>Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat BSLPK</p>
+</div>
+</div>
+<div class="footer-col">
+<h5>Tautan</h5>
+<a href="beranda.html">Beranda</a>
+<a href="statistik-program.html">Statistik Program</a>
+<a href="data-program.html">Data Program</a>
+<a href="tentang.html">Tentang</a>
+</div>
+<div class="footer-col">
+<h5>Bantuan</h5>
+<a href="tentang.html">Panduan (Juknis)</a>
+<a href="tentang.html">FAQ</a>
+<a href="#">Dasar Hukum</a>
+</div>
+<div class="footer-col">
+<h5>Kontak</h5>
+<div class="footer-contact-item">✉️ kontak@kemenbud.go.id</div>
+<div class="footer-contact-item">☎️ Call center 178</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.</span>
+<div class="social-dots"><span></span><span></span><span></span><span></span></div>
+</div>
+</footer>
+<!-- ==================== JAVASCRIPT LOGIC ==================== -->
+<script>
+// Mock Dataset Lengkap untuk Detail Modal
+const PROGRAM_DATABASE = {
+  'gbn2026': {
+    title: 'Gita Bahana Nusantara (GBN)',
+    year: '2026',
+    status: 'Terverifikasi Resmi',
+    icon: 'music_note',
+    desc: 'Daftar audisi nasional paduan suara dan orkestra terpilih untuk HUT Kemerdekaan RI ke-81.',
+    categories: [
+      {
+        id: 'choir',
+        name: 'Paduan Suara (6)',
+        colHeader: 'Jenis Suara (Vokal)',
+        data: [
+          { prov: 'Aceh', name: 'Cut Meutia Zahra', detail: 'Sopran', status: 'Lolos Utama' },
+          { prov: 'Aceh', name: 'Teuku Rayhan Fadhil', detail: 'Tenor', status: 'Lolos Utama' },
+          { prov: 'Sumatera Utara', name: 'Jonathan Simanjuntak', detail: 'Bass', status: 'Lolos Utama' },
+          { prov: 'Sumatera Utara', name: 'Maria Ruth Siregar', detail: 'Alto', status: 'Lolos Utama' },
+          { prov: 'DKI Jakarta', name: 'Adinda Laksmi Wardani', detail: 'Sopran', status: 'Lolos Utama' },
+          { prov: 'DKI Jakarta', name: 'Bagas Wicaksono', detail: 'Tenor', status: 'Lolos Utama' }
+        ]
+      },
+      {
+        id: 'orchestra',
+        name: 'Orkestra (20)',
+        colHeader: 'Instrumen Musik',
+        data: [
+          { prov: 'DKI Jakarta', name: 'Rian Ardiansyah', detail: 'Biola 1 (Concertmaster)', status: 'Lolos Utama' },
+          { prov: 'DKI Jakarta', name: 'Clara Evelyn', detail: 'Biola 1', status: 'Lolos Utama' },
+          { prov: 'DKI Jakarta', name: 'Dimas Satria', detail: 'Cello', status: 'Lolos Utama' },
+          { prov: 'DKI Jakarta', name: 'Fiona Angelica', detail: 'Flute', status: 'Lolos Utama' },
+          { prov: 'Jawa Barat', name: 'Ahmad Fauzi', detail: 'Biola 2', status: 'Lolos Utama' },
+          { prov: 'Jawa Barat', name: 'Nabila Syahrani', detail: 'Biola 2', status: 'Lolos Utama' },
+          { prov: 'Jawa Barat', name: 'Rangga Daniswara', detail: 'Viola', status: 'Lolos Utama' },
+          { prov: 'Jawa Tengah', name: 'Wisnu Pratama', detail: 'French Horn', status: 'Lolos Utama' },
+          { prov: 'Jawa Tengah', name: 'Sri Lestari', detail: 'Oboe', status: 'Lolos Utama' },
+          { prov: 'Jawa Tengah', name: 'Galih Tri Atmojo', detail: 'Trombone', status: 'Lolos Utama' },
+          { prov: 'DI Yogyakarta', name: 'Dyah Sekar Ayu', detail: 'Harp (Harpa)', status: 'Lolos Utama' },
+          { prov: 'DI Yogyakarta', name: 'Bayu Senoaji', detail: 'Double Bass', status: 'Lolos Utama' },
+          { prov: 'DI Yogyakarta', name: 'Kalingga Mahardika', detail: 'Timpani & Perkusi', status: 'Lolos Utama' },
+          { prov: 'Jawa Timur', name: 'Kevin Prasetya', detail: 'Klarinet', status: 'Lolos Utama' },
+          { prov: 'Jawa Timur', name: 'Maya Anggraini', detail: 'Biola 1', status: 'Lolos Utama' },
+          { prov: 'Bali', name: 'I Putu Arya Wiguna', detail: 'Terompet', status: 'Lolos Utama' },
+          { prov: 'Bali', name: 'Ni Kadek Sintya Dewi', detail: 'Cello', status: 'Lolos Utama' },
+          { prov: 'Sulawesi Selatan', name: 'Andi Faisal Bahar', detail: 'Trombone', status: 'Lolos Utama' },
+          { prov: 'Sulawesi Utara', name: 'Christian Rantung', detail: 'Bassoon', status: 'Lolos Utama' },
+          { prov: 'Papua', name: 'Yulius Wenda', detail: 'Perkusi Etnik / Timpani', status: 'Lolos Utama' }
+        ]
+      }
+    ]
+  },
+  'mtn2026': {
+    title: 'Manajemen Talenta Nasional (MTN)',
+    year: '2026',
+    status: 'Aktif Berjalan',
+    icon: 'workspace_premium',
+    desc: 'Daftar penerima fasilitas pembinaan, residensi internasional, dan produksi karya seni unggulan.',
+    categories: [
+      {
+        id: 'mtn_all',
+        name: 'Semua Bidang Talenta (5)',
+        colHeader: 'Cabang Seni / Inisiasi Karya',
+        data: [
+          { prov: 'DKI Jakarta', name: 'Indra Gunawan', detail: 'Seni Film — Sutradara Dokumenter Budaya', status: 'Penerima Fasilitasi' },
+          { prov: 'Jawa Barat', name: 'Sarah Amanda', detail: 'Sastra — Novel Sejarah Kebangsaan', status: 'Penerima Fasilitasi' },
+          { prov: 'DI Yogyakarta', name: 'Tegar Wicaksono', detail: 'Seni Pertunjukan — Teater Kontemporer', status: 'Penerima Fasilitasi' },
+          { prov: 'Bali', name: 'I Made Sudiana', detail: 'Seni Rupa — Instalasi Material Bambu Tradisional', status: 'Penerima Fasilitasi' },
+          { prov: 'Sumatera Barat', name: 'Rizki Ilham Syahputra', detail: 'Musik — Komposisi Musik Akustik Tradisi Minang', status: 'Penerima Fasilitasi' }
+        ]
+      }
+    ]
+  },
+  'aki2026': {
+    title: 'Anugerah Kebudayaan Indonesia (AKI)',
+    year: '2026',
+    status: 'Tahap Kurasi Final',
+    icon: 'military_tech',
+    desc: 'Para nominasi dan maestro pelestari warisan budaya Indonesia tahun 2026.',
+    categories: [
+      {
+        id: 'aki_all',
+        name: 'Daftar Nominasi Maestro (10)',
+        colHeader: 'Kategori Penghargaan',
+        data: [
+          { prov: 'Aceh', name: 'Banta Cut Nyak', detail: 'Pelestari Tari Saman Otentik', status: 'Nominasi' },
+          { prov: 'Sumatera Utara', name: 'Guru Marsius Situmorang', detail: 'Maestro Musik Gondang Sabangunan', status: 'Nominasi' },
+          { prov: 'Jawa Barat', name: 'Abah Encep Suherman', detail: 'Pelopor Pelestarian Wayang Golek Cepot', status: 'Nominasi' },
+          { prov: 'Jawa Tengah', name: 'Ki Anom Darsono', detail: 'Maestro Pedalangan Gagrak Surakarta', status: 'Nominasi' },
+          { prov: 'DI Yogyakarta', name: 'KRT Condronegoro', detail: 'Kategori Pelestari Busana Keraton', status: 'Nominasi' },
+          { prov: 'Jawa Timur', name: 'Suwarni (Mbah War)', detail: 'Maestro Tari Gandrung Banyuwangi', status: 'Nominasi' },
+          { prov: 'Bali', name: 'I Gusti Kompiang', detail: 'Kategori Pelestari Arsitektur Bali Kuno', status: 'Nominasi' },
+          { prov: 'Nusa Tenggara Timur', name: 'Mama Maria Kelen', detail: 'Pelestari Tenun Ikat Pewarna Alami', status: 'Nominasi' },
+          { prov: 'Kalimantan Barat', name: 'Paulus Taniung', detail: 'Pencipta Kriya Anyam Dayak Kanayatn', status: 'Nominasi' },
+          { prov: 'Sulawesi Selatan', name: 'Puang Daeng Matutu', detail: 'Pelestari Ritual Adat Karampuang', status: 'Nominasi' }
+        ]
+      }
+    ]
+  },
+  'pkd2026': {
+    title: 'Pemajuan Kebudayaan Desa (PKD)',
+    year: '2026',
+    status: 'Terverifikasi',
+    icon: 'holiday_village',
+    desc: 'Daftar desa percontohan pemajuan kebudayaan nasional berbasis kearifan lokal.',
+    categories: [
+      {
+        id: 'pkd_all',
+        name: 'Desa Budaya Terdaftar (12)',
+        colHeader: 'Fokus Objek Kebudayaan',
+        data: [
+          { prov: 'Sumatera Barat', name: 'Desa Pariangan (Tanah Datar)', detail: 'Arsitektur Rumah Gadang & Pasumayan Koto', status: 'Mandiri Budaya' },
+          { prov: 'Jawa Barat', name: 'Desa Ciptagelar (Sukabumi)', detail: 'Adat Kasepuhan & Sistem Ketahanan Pangan', status: 'Mandiri Budaya' },
+          { prov: 'Jawa Tengah', name: 'Desa Karanganyar (Borobudur)', detail: 'Kriya Gerabah & Tradisi Kenduri Borobudur', status: 'Pendampingan' },
+          { prov: 'DI Yogyakarta', name: 'Desa Panggungharjo (Bantul)', detail: 'Tata Kelola BUMDes Kebudayaan & Sanggar', status: 'Mandiri Budaya' },
+          { prov: 'Jawa Timur', name: 'Desa Kemiren (Banyuwangi)', detail: 'Adat Using & Festival Tumpeng Sewu', status: 'Mandiri Budaya' },
+          { prov: 'Bali', name: 'Desa Penglipuran (Bangli)', detail: 'Arsitektur Bambu & Tata Ruang Tri Hita Karana', status: 'Mandiri Budaya' },
+          { prov: 'Nusa Tenggara Barat', name: 'Desa Sade (Lombok Tengah)', detail: 'Tradisi Tenun Sasak & Ritus Perkawinan', status: 'Pendampingan' },
+          { prov: 'Kalimantan Selatan', name: 'Desa Loksado (Hulu Sungai Selatan)', detail: 'Ritus Aruh Baharin & Balai Adat Dayak Meratus', status: 'Pendampingan' },
+          { prov: 'Sulawesi Utara', name: 'Desa Pulisan (Minahasa Utara)', detail: 'Seni Musik Kolintang & Tarian Kabasaran', status: 'Pendampingan' },
+          { prov: 'Maluku', name: 'Negeri Hila (Leihitu)', detail: 'Benteng Amsterdam & Bahasa Tanah Hila', status: 'Pendampingan' },
+          { prov: 'Papua Barat', name: 'Kampung Arborek (Raja Ampat)', detail: 'Anyaman Tikar Pandan Laut & Tari Mansorandak', status: 'Pendampingan' },
+          { prov: 'Papua', name: 'Desa Abar (Danau Sentani)', detail: 'Gerabah Tanah Liat Tradisional Abar', status: 'Pendampingan' }
+        ]
+      }
+    ]
+  },
+  'sertifikasi2026': {
+    title: 'Sertifikasi Profesi Kebudayaan',
+    year: '2026',
+    status: 'Kompeten BNSP',
+    icon: 'verified',
+    desc: 'Daftar asesi bidang kebudayaan yang telah lulus sertifikasi kompetensi kerja standar nasional.',
+    categories: [
+      {
+        id: 'sertifikasi_all',
+        name: 'Asesi Tersertifikasi (11)',
+        colHeader: 'Skema Kompetensi',
+        data: [
+          { prov: 'DKI Jakarta', name: 'Drs. Bambang Sudiro, M.Hum.', detail: 'Ahli Konservasi Benda Cagar Budaya', status: 'Kompeten' },
+          { prov: 'DKI Jakarta', name: 'Anita Rahmawati, S.Sn.', detail: 'Kurator Pameran Museum Madya', status: 'Kompeten' },
+          { prov: 'Jawa Barat', name: 'Heri Susanto, S.Pd.', detail: 'Registrar Koleksi Museum', status: 'Kompeten' },
+          { prov: 'Jawa Tengah', name: 'Pramudya Wardhana', detail: 'Teknisi Preparator Koleksi Fosil', status: 'Kompeten' },
+          { prov: 'DI Yogyakarta', name: 'Kurnia Dewi Setyorini', detail: 'Konservator Kertas & Manuskrip Kuno', status: 'Kompeten' },
+          { prov: 'Jawa Timur', name: 'Taufiqurrahman', detail: 'Pemandu Cagar Budaya Peringkat Utama', status: 'Kompeten' },
+          { prov: 'Bali', name: 'Ida Bagus Made Anom', detail: 'Ahli Arkeologi Kolonial & Klasik', status: 'Kompeten' },
+          { prov: 'Sumatera Utara', name: 'Tigor Marbun', detail: 'Penilai Kondisi Bangunan Cagar Budaya', status: 'Kompeten' },
+          { prov: 'Sumatera Selatan', name: 'Rizki Pratama Putra', detail: 'Kurator Seni Grafis & Lukis', status: 'Kompeten' },
+          { prov: 'Sulawesi Selatan', name: 'Nurul Fadhilah', detail: 'Edukator Museum Madya', status: 'Kompeten' },
+          { prov: 'Kalimantan Timur', name: 'Suhartono', detail: 'Konservator Kayu Tradisional Ulin', status: 'Kompeten' }
+        ]
+      }
+    ]
+  },
+  'bimtek2026': {
+    title: 'Bimbingan Teknis Kebudayaan (Bimtek)',
+    year: '2026',
+    status: 'Jadwal Terbuka',
+    icon: 'school',
+    desc: 'Modul dan alokasi peserta bimbingan teknis tata kelola objek pemajuan kebudayaan tahun 2026.',
+    categories: [
+      {
+        id: 'bimtek_all',
+        name: 'Peserta Bimbingan Terjadwal (6)',
+        colHeader: 'Materi Pelatihan Bimbingan',
+        data: [
+          { prov: 'Aceh', name: 'Dinas Kebudayaan Aceh Barat', detail: 'Digitalisasi Naskah Kuno dan Manuskrip', status: 'Terdaftar' },
+          { prov: 'Riau', name: 'Lembaga Adat Melayu Riau', detail: 'Tata Kelola Warisan Takbenda (WBTb)', status: 'Terdaftar' },
+          { prov: 'Jawa Barat', name: 'Balai Adat Sunda Wiwitan', detail: 'Dokumentasi Audiovisual Tradisi Lisan', status: 'Terdaftar' },
+          { prov: 'Kalimantan Tengah', name: 'Dinas Pariwisata & Kebudayaan Palangka Raya', detail: 'Manajemen Festival Seni Dayak', status: 'Terdaftar' },
+          { prov: 'Sulawesi Utara', name: 'Komunitas Musik Kolintang Minahasa', detail: 'Standarisasi Notasi Balok & Instrumen', status: 'Terdaftar' },
+          { prov: 'Maluku Utara', name: 'Kesultanan Ternate Cultural Board', detail: 'Konservasi Tekstil Keraton & Baju Adat', status: 'Terdaftar' }
+        ]
+      }
+    ]
+  },
+  'pkk2026': {
+    title: 'Penguatan Kelembagaan Kebudayaan (PKK)',
+    year: '2026',
+    status: 'Terverifikasi SK',
+    icon: 'account_balance',
+    desc: 'Lembaga, yayasan, dan sanggar seni adat penerima penetapan dukungan kelembagaan.',
+    categories: [
+      {
+        id: 'pkk_all',
+        name: 'Lembaga Terverifikasi (12)',
+        colHeader: 'Fokus Lembaga / Organisasi',
+        data: [
+          { prov: 'Sumatera Barat', name: 'Yayasan Seni Warisan Minangkabau', detail: 'Pelestarian Seni Tari Piring & Randai', status: 'SK Terbit' },
+          { prov: 'Jambi', name: 'Sanggar Teater Batanghari', detail: 'Pemberdayaan Teater Sastra Daerah', status: 'SK Terbit' },
+          { prov: 'Lampung', name: 'Komunitas Tapis Indah Sekala Brak', detail: 'Pemberdayaan Perajin Kain Tapis Tradisi', status: 'SK Terbit' },
+          { prov: 'DKI Jakarta', name: 'Lembaga Kebudayaan Betawi (LKB)', detail: 'Pengembangan Seni Ondel-Ondel & Gambang Kromong', status: 'SK Terbit' },
+          { prov: 'Jawa Barat', name: 'Yayasan Padepokan Seni Bagong Kussudiardja', detail: 'Pusat Pelatihan Tari Tradisional Anak', status: 'SK Terbit' },
+          { prov: 'Jawa Tengah', name: 'Paguyuban Dalang Karanganyar', detail: 'Revitalisasi Wayang Kulit Gagrak Purwa', status: 'SK Terbit' },
+          { prov: 'DI Yogyakarta', name: 'Keluarga Pelestari Macapat Mataraman', detail: 'Sekolah Nembang & Aksara Jawa Kuno', status: 'SK Terbit' },
+          { prov: 'Jawa Timur', name: 'Aliansi Masyarakat Adat Tengger Bromo', detail: 'Pelestarian Ritus Kasada & Adat Tengger', status: 'SK Terbit' },
+          { prov: 'Bali', name: 'Sekaa Gong Gita Asri Ubud', detail: 'Regenerasi Penabuh Gamelan Gong Kebyar', status: 'SK Terbit' },
+          { prov: 'Kalimantan Selatan', name: 'Lembaga Adat Paser Dayak Deah', detail: 'Konservasi Hutan Adat & Ritus Upacara', status: 'SK Terbit' },
+          { prov: 'Sulawesi Selatan', name: 'Komunitas Bissu Segeri Pangkep', detail: 'Dokumentasi Ritus Kuno Arajang', status: 'SK Terbit' },
+          { prov: 'Papua', name: 'Sanggar Seni Asmat Berdaya', detail: 'Koperasi Pemasaran Seni Ukir Kayu Asmat', status: 'SK Terbit' }
+        ]
+      }
+    ]
+  },
+  'gbn2025': {
+    title: 'Gita Bahana Nusantara (GBN)',
+    year: '2025',
+    status: 'Arsip Selesai',
+    icon: 'history_edu',
+    desc: 'Arsip resmi peserta paduan suara Gita Bahana Nusantara HUT RI ke-80.',
+    categories: [
+      {
+        id: 'gbn2025_choir',
+        name: 'Paduan Suara 2025 (20)',
+        colHeader: 'Jenis Suara (Vokal)',
+        data: [
+          { prov: 'Aceh', name: 'Syahrul Ramadhan', detail: 'Bass', status: 'Alumni 2025' },
+          { prov: 'Sumatera Utara', name: 'Tiara Nababan', detail: 'Sopran', status: 'Alumni 2025' },
+          { prov: 'Sumatera Barat', name: 'Fikri Haikal', detail: 'Tenor', status: 'Alumni 2025' },
+          { prov: 'Riau', name: 'Dian Permata', detail: 'Alto', status: 'Alumni 2025' },
+          { prov: 'Jambi', name: 'Arief Budiman', detail: 'Bass', status: 'Alumni 2025' },
+          { prov: 'Sumatera Selatan', name: 'Nadia Safira', detail: 'Sopran', status: 'Alumni 2025' },
+          { prov: 'Bengkulu', name: 'Bayu Nugroho', detail: 'Tenor', status: 'Alumni 2025' },
+          { prov: 'Lampung', name: 'Chintya Maharani', detail: 'Alto', status: 'Alumni 2025' },
+          { prov: 'DKI Jakarta', name: 'Farhan Maulana', detail: 'Tenor', status: 'Alumni 2025' },
+          { prov: 'Jawa Barat', name: 'Alina Nurulita', detail: 'Sopran', status: 'Alumni 2025' },
+          { prov: 'Jawa Tengah', name: 'Radityo Danu', detail: 'Bass', status: 'Alumni 2025' },
+          { prov: 'DI Yogyakarta', name: 'Sekar Kinanti', detail: 'Alto', status: 'Alumni 2025' },
+          { prov: 'Jawa Timur', name: 'Bima Satrio', detail: 'Tenor', status: 'Alumni 2025' },
+          { prov: 'Banten', name: 'Rina Febriana', detail: 'Sopran', status: 'Alumni 2025' },
+          { prov: 'Bali', name: 'I Gede Yuda', detail: 'Bass', status: 'Alumni 2025' },
+          { prov: 'Nusa Tenggara Barat', name: 'Nurul Hidayah', detail: 'Alto', status: 'Alumni 2025' },
+          { prov: 'Kalimantan Barat', name: 'Yosep Pratama', detail: 'Tenor', status: 'Alumni 2025' },
+          { prov: 'Sulawesi Selatan', name: 'Muh. Irfan', detail: 'Bass', status: 'Alumni 2025' },
+          { prov: 'Maluku', name: 'Grace Pattinama', detail: 'Sopran', status: 'Alumni 2025' },
+          { prov: 'Papua', name: 'Markus Tabuni', detail: 'Tenor', status: 'Alumni 2025' }
+        ]
+      }
+    ]
+  }
+};
+
+let currentModalProgKey = null;
+let currentModalCategoryId = null;
+
+// Filter Tabel Utama
+function applyTableFilter() {
+  const progVal = document.getElementById('filterProgram').value;
+  const yearVal = document.getElementById('filterYear').value;
+  const rows = document.querySelectorAll('#programTableBody tr');
+
+  let count = 0;
+  rows.forEach(row => {
+    const rProg = row.getAttribute('data-program');
+    const rYear = row.getAttribute('data-year');
+
+    const matchProg = (progVal === 'all' || rProg === progVal);
+    const matchYear = (yearVal === 'all' || rYear === yearVal);
+
+    if (matchProg && matchYear) {
+      row.style.display = '';
+      count++;
+    } else {
+      row.style.display = 'none';
+    }
+  });
+
+  document.getElementById('visibleCount').textContent = count;
+}
+
+// Buka Modal
+function openModal(programKey) {
+  currentModalProgKey = programKey;
+  const prog = PROGRAM_DATABASE[programKey];
+  if (!prog) return;
+
+  document.getElementById('modalTitle').textContent = prog.title;
+  document.getElementById('modalSub').textContent = prog.desc;
+  document.getElementById('modalBadgeYear').textContent = `Tahun ${prog.year}`;
+  document.getElementById('modalBadgeStatus').textContent = prog.status;
+  document.getElementById('modalHeaderIcon').textContent = prog.icon;
+
+  // Render Tabs
+  const tabsContainer = document.getElementById('modalTabsContainer');
+  tabsContainer.innerHTML = '';
+  
+  prog.categories.forEach((cat, idx) => {
+    const btn = document.createElement('button');
+    btn.className = `px-3.5 py-1.5 rounded-lg text-xs font-bold transition whitespace-nowrap ${idx === 0 ? 'bg-gold text-white shadow-sm' : 'bg-paper text-ink-soft hover:bg-gold-pale border border-borderCustom'}`;
+    btn.textContent = cat.name;
+    btn.onclick = () => switchModalTab(cat.id);
+    btn.setAttribute('data-tab-id', cat.id);
+    tabsContainer.appendChild(btn);
+  });
+
+  // Default ke tab pertama
+  switchModalTab(prog.categories[0].id);
+
+  // Show modal
+  const modal = document.getElementById('detailModal');
+  modal.classList.remove('hidden-modal');
+  document.body.style.overflow = 'hidden';
+}
+
+function switchModalTab(catId) {
+  currentModalCategoryId = catId;
+  const prog = PROGRAM_DATABASE[currentModalProgKey];
+  const cat = prog.categories.find(c => c.id === catId);
+  if (!cat) return;
+
+  // Update tab visual
+  const tabs = document.querySelectorAll('#modalTabsContainer button');
+  tabs.forEach(btn => {
+    if (btn.getAttribute('data-tab-id') === catId) {
+      btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-gold text-white shadow-sm whitespace-nowrap';
+    } else {
+      btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-paper text-ink-soft hover:bg-gold-pale border border-borderCustom whitespace-nowrap';
+    }
+  });
+
+  // Update column title
+  document.getElementById('thSpecialCol').textContent = cat.colHeader;
+
+  // Populate province dropdown
+  const provSelect = document.getElementById('modalProvinceFilter');
+  provSelect.innerHTML = '<option value="all">Semua Wilayah / Provinsi</option>';
+  const distinctProvinces = [...new Set(cat.data.map(d => d.prov))].sort();
+  distinctProvinces.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = p;
+    provSelect.appendChild(opt);
+  });
+
+  // Render Table dengan ROWSPAN vertikal rapi
+  renderModalTableRows(cat.data);
+}
+
+function renderModalTableRows(dataList) {
+  const tbody = document.getElementById('modalTableBody');
+  tbody.innerHTML = '';
+
+  if (dataList.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-muted text-xs">Tidak ada data ditemukan untuk kriteria ini.</td></tr>`;
+    document.getElementById('modalRecordCount').textContent = 'Total 0 Entri';
+    return;
+  }
+
+  // Kelompokkan data per provinsi untuk menghitung rowspan
+  const groupedByProvince = {};
+  dataList.forEach(item => {
+    if (!groupedByProvince[item.prov]) {
+      groupedByProvince[item.prov] = [];
+    }
+    groupedByProvince[item.prov].push(item);
+  });
+
+  let globalIndex = 1;
+  const provinces = Object.keys(groupedByProvince);
+
+  provinces.forEach(provName => {
+    const items = groupedByProvince[provName];
+    const rowspanCount = items.length;
+
+    items.forEach((item, idx) => {
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-[#FAF8F3] transition';
+
+      // No
+      const tdNo = document.createElement('td');
+      tdNo.className = 'py-3 px-4 text-center font-bold text-ink-soft text-xs';
+      tdNo.textContent = globalIndex++;
+      tr.appendChild(tdNo);
+
+      // Kolom Provinsi hanya dirender sekali dengan atribut ROWSPAN jika index 0
+      if (idx === 0) {
+        const tdProv = document.createElement('td');
+        tdProv.className = 'py-3 px-4 cell-province text-xs';
+        tdProv.rowSpan = rowspanCount;
+        tdProv.innerHTML = `
+          <div class="flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px] text-gold">location_on</span>
+            <span class="font-extrabold text-ink">${item.prov}</span>
+          </div>
+          <div class="text-[11px] text-muted font-medium mt-0.5">${rowspanCount} Entri Terdaftar</div>
+        `;
+        tr.appendChild(tdProv);
+      }
+
+      // Nama Lengkap
+      const tdName = document.createElement('td');
+      tdName.className = 'py-3 px-4 font-bold text-ink text-sm';
+      tdName.textContent = item.name;
+      tr.appendChild(tdName);
+
+      // Detail / Spesialisasi
+      const tdDetail = document.createElement('td');
+      tdDetail.className = 'py-3 px-4 text-xs font-semibold text-ink-soft';
+      tdDetail.innerHTML = `<span class="inline-block px-2.5 py-1 rounded bg-[#F4EFE6] border border-[#E5DEC9] text-ink-soft">${item.detail}</span>`;
+      tr.appendChild(tdDetail);
+
+      // Status Badge
+      const tdStatus = document.createElement('td');
+      tdStatus.className = 'py-3 px-4 text-center';
+      tdStatus.innerHTML = `<span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#E8F7F0] text-kemengreen border border-[#BDE7D3]">${item.status}</span>`;
+      tr.appendChild(tdStatus);
+
+      tbody.appendChild(tr);
+    });
+  });
+
+  document.getElementById('modalRecordCount').textContent = `Total ${dataList.length} Entri`;
+}
+
+function filterModalTable() {
+  const selectedProv = document.getElementById('modalProvinceFilter').value;
+  const prog = PROGRAM_DATABASE[currentModalProgKey];
+  const cat = prog.categories.find(c => c.id === currentModalCategoryId);
+  if (!cat) return;
+
+  if (selectedProv === 'all') {
+    renderModalTableRows(cat.data);
+  } else {
+    const filtered = cat.data.filter(d => d.prov === selectedProv);
+    renderModalTableRows(filtered);
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById('detailModal');
+  modal.classList.add('hidden-modal');
+  document.body.style.overflow = '';
+}
+
+// Tutup modal jika klik luar kontainer
+document.getElementById('detailModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeModal();
+  }
+});
+
+// ESC key listener untuk tutup modal
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+
+// FITUR EKSPOR NYATA KE CSV DENGAN UTF-8 BOM
+function exportModalToCSV() {
+  const prog = PROGRAM_DATABASE[currentModalProgKey];
+  const cat = prog.categories.find(c => c.id === currentModalCategoryId);
+  if (!prog || !cat) return;
+
+  const selectedProv = document.getElementById('modalProvinceFilter').value;
+  const exportData = (selectedProv === 'all') ? cat.data : cat.data.filter(d => d.prov === selectedProv);
+
+  // Format CSV
+  let csvContent = `\uFEFF`; // UTF-8 BOM for Microsoft Excel
+  csvContent += `Program: ${prog.title}\n`;
+  csvContent += `Tahun Anggaran: ${prog.year}\n`;
+  csvContent += `Kategori: ${cat.name}\n`;
+  csvContent += `Tanggal Unduh: ${new Date().toLocaleDateString('id-ID')}\n\n`;
+  csvContent += `No,Provinsi,Nama Peserta/Asesi,${cat.colHeader},Status\n`;
+
+  exportData.forEach((item, index) => {
+    const cleanName = `"${item.name.replace(/"/g, '""')}"`;
+    const cleanDetail = `"${item.detail.replace(/"/g, '""')}"`;
+    csvContent += `${index + 1},"${item.prov}",${cleanName},${cleanDetail},"${item.status}"\n`;
+  });
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  const sanitizedName = prog.title.toLowerCase().replace(/[^a-z0-9]/g, '_');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `Kemenbud_${sanitizedName}_${cat.id}_${prog.year}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// Unduh ringkasan katalog utama
+function downloadCatalogSummary() {
+  let csvContent = `\uFEFF`;
+  csvContent += `KEMENTERIAN KEBUDAYAAN REPUBLIK INDONESIA\n`;
+  csvContent += `KATALOG TERPADU PROGRAM KEBUDAYAAN\n\n`;
+  csvContent += `No,Program,Kategori Bidang,Tahun,Entri Terdata,Status\n`;
+  csvContent += `1,"Gita Bahana Nusantara (GBN)","Paduan Suara & Orkestra Simfoni",2026,"26 Peserta","Terverifikasi"\n`;
+  csvContent += `2,"Manajemen Talenta Nasional (MTN)","Film, Musik, Seni Pertunjukan, Seni Rupa, Sastra",2026,"5 Kegiatan","Aktif Berjalan"\n`;
+  csvContent += `3,"Anugerah Kebudayaan Indonesia (AKI)","Pelestari, Pencipta / Pelopor, Maestro",2026,"10 Penerima","Tahap Kurasi Final"\n`;
+  csvContent += `4,"Pemajuan Kebudayaan Desa (PKD)","Tradisi Lisan, Adat Istiadat, Ritus & Seni",2026,"12 Desa Budaya","Terverifikasi"\n`;
+  csvContent += `5,"Sertifikasi Profesi Kebudayaan","Cagar Budaya, Permuseuman, Kriya",2026,"11 Asesi","Kompeten BNSP"\n`;
+  csvContent += `6,"Bimbingan Teknis Kebudayaan (Bimtek)","Pelestarian Objek, Tata Kelola Warisan",2026,"Terjadwal","Pelaksanaan TW 2"\n`;
+  csvContent += `7,"Penguatan Kelembagaan Kebudayaan (PKK)","10 Pokok Pikiran Budaya, Yayasan/Komunitas",2026,"12 Lembaga","Terverifikasi SK"\n`;
+  csvContent += `8,"Gita Bahana Nusantara (GBN)","Paduan Suara & Orkestra Simfoni",2025,"20 Peserta","Arsip Selesai"\n`;
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', `Ringkasan_Katalog_Program_Kemenbud_2026.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+</script>
+</body></html>
