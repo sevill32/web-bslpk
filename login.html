@@ -6,7 +6,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Login — Kemenbud Data Kebudayaan</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
 <style>
 :root{
   --cream:#F7F3EA;
@@ -140,7 +142,6 @@ button{font-family:inherit;cursor:pointer;}
 .login-card{
   width:100%;
   max-width:430px;
-  background:transparent;
 }
 
 .login-card h1{
@@ -273,9 +274,13 @@ button{font-family:inherit;cursor:pointer;}
 }
 </style>
 </head>
+
 <body>
+
 <div class="login-wrap">
+
 <div class="login-photo">
+
 <div class="brand-badge">
 <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g fill="#C9A15A">
@@ -283,25 +288,135 @@ button{font-family:inherit;cursor:pointer;}
 <circle cx="24" cy="24" r="3.4"></circle>
 </g>
 </svg>
+
 <div class="brand-badge-text">
         Kementerian Kebudayaan
         <small>Republik Indonesia</small>
 </div>
 </div>
+
 <div class="login-photo-caption">
 <h2>Merawat &amp; mendokumentasikan<br/>warisan budaya Indonesia</h2>
 <p>Portal internal bagi admin dan validator untuk mengelola, memverifikasi, serta mempublikasikan Data Program Kebudayaan.</p>
 </div>
+
 </div>
+
 <div class="login-panel">
-<form class="login-card" id="auth-form" onsubmit="event.preventDefault(); window.location.href='beranda-admin.html';"><div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;"><div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#7d6537; background:rgba(201,161,90,0.22); padding:4px 10px; border-radius:999px; display:inline-flex; align-items:center; gap:5px; border:1px solid rgba(201,161,90,0.35);"><span class="material-symbols-outlined" style="font-size:14px; color:#9c7023;">verified_user</span> Portal Internal Resmi</div><span id="active-role-badge" style="font-size:11.5px; font-weight:700; color:#178257; background:#E8F8F0; border:1px solid rgba(31,169,113,0.3); padding:4px 10px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;"><span style="width:6px; height:6px; border-radius:50%; background:#1FA971; display:inline-block;"></span> Mode Admin</span></div><h1 id="login-title" style="font-family:'Poppins',sans-serif; font-size:24px; letter-spacing:0.01em; margin:0 0 6px; color:var(--ink); font-weight:800;">MASUK PORTAL DATA</h1><p class="login-subtitle" id="login-desc" style="margin-bottom:20px;">Pilih peran akun resmi Anda untuk mengelola atau memvalidasi program kebudayaan.</p><div style="background:rgba(255,255,255,0.65); border:1.5px solid rgba(201,161,90,0.4); border-radius:14px; padding:5px; display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:20px; box-shadow:0 4px 14px -6px rgba(60,45,20,0.12);"><button id="tab-btn-admin" onclick="switchRole('admin')" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 12px; border:none; border-radius:10px; font-size:13.5px; font-weight:700; cursor:pointer; transition:all 0.2s ease; background:#fff; color:var(--ink); box-shadow:0 4px 12px rgba(60,45,20,0.12); border:1px solid rgba(201,161,90,0.3);" type="button"><span class="material-symbols-outlined" style="font-size:18px; color:#1FA971;">shield_person</span><span>Admin Data</span></button><button id="tab-btn-validator" onclick="switchRole('validator')" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 12px; border:none; border-radius:10px; font-size:13.5px; font-weight:600; cursor:pointer; transition:all 0.2s ease; background:transparent; color:#6b5e4c;" type="button"><span class="material-symbols-outlined" style="font-size:18px;">fact_check</span><span>Tim Validator</span></button></div><div id="role-info-box" style="background:rgba(255,255,255,0.7); border-left:4px solid #1FA971; border-radius:0 10px 10px 0; padding:11px 14px; margin-bottom:18px; font-size:12.5px; color:#493e2f; line-height:1.45; box-shadow:0 3px 10px rgba(60,45,20,0.06);"><div style="font-weight:700; color:#178257; margin-bottom:3px; display:flex; align-items:center; gap:5px;"><span class="material-symbols-outlined" style="font-size:15px;">admin_panel_settings</span> Hak Akses: Admin Pengelola Data</div><div id="role-info-desc">Menginput program baru, mengedit master data kebudayaan, merevisi draft pengajuan, dan mengelola direktori program.</div></div><div class="field-group"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:7px;"><label class="field-label" for="email" style="margin-bottom:0;">Email Resmi</label><button onclick="quickDemoFill()" style="background:none; border:none; color:#178257; font-size:12px; font-weight:700; padding:0; cursor:pointer; display:inline-flex; align-items:center; gap:3px;" type="button"><span class="material-symbols-outlined" style="font-size:14px;">magic_button</span> Isi Akun Contoh</button></div><input autocomplete="email" class="field" id="email" placeholder="admin@kemenbud.go.id" required="" type="email" value="admin@kemenbud.go.id"/></div><div class="field-group"><label class="field-label" for="password">Password</label><input autocomplete="current-password" class="field" id="password" placeholder="••••••••" required="" type="password" value="••••••••"/></div><div class="login-meta"><label><input checked="" type="checkbox"/> Ingat saya di perangkat ini</label><a href="#" onclick="alert('Silakan hubungi Administrator Pusdatin Kebudayaan untuk reset kredensial akun SSO resmi Anda.'); return false;">Lupa password?</a></div><button class="btn-login" id="submit-btn" style="display:flex; align-items:center; justify-content:center; gap:8px;" type="submit"><span>MASUK SEBAGAI ADMIN</span><span class="material-symbols-outlined" style="font-size:19px;">arrow_forward</span></button><div class="back-home"><a href="beranda-admin.html">← Kembali ke Beranda Publik</a></div></form>
+
+<form class="login-card" id="auth-form">
+
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+
+<div style="font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#7d6537; background:rgba(201,161,90,0.22); padding:4px 10px; border-radius:999px; display:inline-flex; align-items:center; gap:5px; border:1px solid rgba(201,161,90,0.35);">
+<span class="material-symbols-outlined" style="font-size:14px; color:#9c7023;">verified_user</span> Portal Internal Resmi
+</div>
+
+<span id="active-role-badge" style="font-size:11.5px; font-weight:700; color:#178257; background:#E8F8F0; border:1px solid rgba(31,169,113,0.3); padding:4px 10px; border-radius:999px; display:inline-flex; align-items:center; gap:4px;">
+<span style="width:6px; height:6px; border-radius:50%; background:#1FA971; display:inline-block;"></span> Mode Admin
+</span>
+
+</div>
+
+<h1 id="login-title" style="font-family:'Poppins',sans-serif; font-size:24px; letter-spacing:0.01em; margin:0 0 6px; color:var(--ink); font-weight:800;">
+MASUK PORTAL DATA
+</h1>
+
+<p class="login-subtitle" id="login-desc" style="margin-bottom:20px;">
+Pilih peran akun resmi Anda untuk mengelola atau memvalidasi program kebudayaan.
+</p>
+
+<div style="background:rgba(255,255,255,0.65); border:1.5px solid rgba(201,161,90,0.4); border-radius:14px; padding:5px; display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:20px; box-shadow:0 4px 14px -6px rgba(60,45,20,0.12);">
+
+<button id="tab-btn-admin" onclick="switchRole('admin')" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 12px; border:none; border-radius:10px; font-size:13.5px; font-weight:700; cursor:pointer; transition:all 0.2s ease; background:#fff; color:var(--ink); box-shadow:0 4px 12px rgba(60,45,20,0.12); border:1px solid rgba(201,161,90,0.3);" type="button">
+<span class="material-symbols-outlined" style="font-size:18px; color:#1FA971;">shield_person</span>
+<span>Admin Data</span>
+</button>
+
+<button id="tab-btn-validator" onclick="switchRole('validator')" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:10px 12px; border:none; border-radius:10px; font-size:13.5px; font-weight:600; cursor:pointer; transition:all 0.2s ease; background:transparent; color:#6b5e4c;" type="button">
+<span class="material-symbols-outlined" style="font-size:18px;">fact_check</span>
+<span>Tim Validator</span>
+</button>
+
+</div>
+
+<div id="role-info-box" style="background:rgba(255,255,255,0.7); border-left:4px solid #1FA971; border-radius:0 10px 10px 0; padding:11px 14px; margin-bottom:18px; font-size:12.5px; color:#493e2f; line-height:1.45; box-shadow:0 3px 10px rgba(60,45,20,0.06);">
+
+<div style="font-weight:700; color:#178257; margin-bottom:3px; display:flex; align-items:center; gap:5px;">
+<span class="material-symbols-outlined" style="font-size:15px;">admin_panel_settings</span>
+Hak Akses: Admin Pengelola Data
+</div>
+
+<div id="role-info-desc">
+Menginput program baru, mengedit master data kebudayaan, merevisi draft pengajuan, dan mengelola direktori program.
+</div>
+
+</div>
+
+<div class="field-group">
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:7px;">
+
+<label class="field-label" for="email" style="margin-bottom:0;">
+Email Resmi
+</label>
+
+<button onclick="quickDemoFill()" style="background:none; border:none; color:#178257; font-size:12px; font-weight:700; padding:0; cursor:pointer; display:inline-flex; align-items:center; gap:3px;" type="button">
+<span class="material-symbols-outlined" style="font-size:14px;">magic_button</span>
+Isi Akun Contoh
+</button>
+
+</div>
+
+<input autocomplete="email" class="field" id="email" placeholder="admin@kemenbud.go.id" required="" type="email" value="admin@kemenbud.go.id"/>
+
+</div>
+
+<div class="field-group">
+
+<label class="field-label" for="password">
+Password
+</label>
+
+<input autocomplete="current-password" class="field" id="password" placeholder="••••••••" required="" type="password" value="••••••••"/>
+
+</div>
+
+<div class="login-meta">
+
+<label>
+<input checked="" type="checkbox"/>
+Ingat saya di perangkat ini
+</label>
+
+<a href="#" onclick="alert('Silakan hubungi Administrator Pusdatin Kebudayaan untuk reset kredensial akun SSO resmi Anda.'); return false;">
+Lupa password?
+</a>
+
+</div>
+
+<button class="btn-login" id="submit-btn" style="display:flex; align-items:center; justify-content:center; gap:8px;" type="submit">
+<span>MASUK SEBAGAI ADMIN</span>
+<span class="material-symbols-outlined" style="font-size:19px;">arrow_forward</span>
+</button>
+
+<div class="back-home">
+<a href="index.html">← Kembali ke Beranda Publik</a>
+</div>
+
+</form>
+
 </div>
 </div>
+
 <script>
+
 let currentRole = 'admin';
 
 function switchRole(role) {
+
   currentRole = role;
+
   const tabAdmin = document.getElementById('tab-btn-admin');
   const tabValidator = document.getElementById('tab-btn-validator');
   const badge = document.getElementById('active-role-badge');
@@ -309,9 +424,9 @@ function switchRole(role) {
   const roleInfoDesc = document.getElementById('role-info-desc');
   const emailInput = document.getElementById('email');
   const submitBtn = document.getElementById('submit-btn');
-  const form = document.getElementById('auth-form');
 
   if (role === 'admin') {
+
     tabAdmin.style.background = '#fff';
     tabAdmin.style.color = 'var(--ink)';
     tabAdmin.style.fontWeight = '700';
@@ -332,15 +447,25 @@ function switchRole(role) {
     badge.style.borderColor = 'rgba(31,169,113,0.3)';
 
     roleInfoBox.style.borderLeftColor = '#1FA971';
-    roleInfoBox.children[0].innerHTML = '<span class="material-symbols-outlined" style="font-size:15px;">admin_panel_settings</span> Hak Akses: Admin Pengelola Data';
+
+    roleInfoBox.children[0].innerHTML =
+      '<span class="material-symbols-outlined" style="font-size:15px;">admin_panel_settings</span> Hak Akses: Admin Pengelola Data';
+
     roleInfoBox.children[0].style.color = '#178257';
-    roleInfoDesc.textContent = 'Menginput data program, merevisi usulan pengajuan, dan mengelola direktori entri kebudayaan se-Indonesia.';
+
+    roleInfoDesc.textContent =
+      'Menginput data program, merevisi usulan pengajuan, dan mengelola direktori entri kebudayaan se-Indonesia.';
 
     emailInput.placeholder = 'admin@kemenbud.go.id';
     emailInput.value = 'admin@kemenbud.go.id';
-    submitBtn.innerHTML = '<span>MASUK SEBAGAI ADMIN</span><span class="material-symbols-outlined" style="font-size:19px;">arrow_forward</span>';
+
+    submitBtn.innerHTML =
+      '<span>MASUK SEBAGAI ADMIN</span><span class="material-symbols-outlined" style="font-size:19px;">arrow_forward</span>';
+
     submitBtn.style.background = 'var(--green)';
+
   } else {
+
     tabValidator.style.background = '#fff';
     tabValidator.style.color = 'var(--ink)';
     tabValidator.style.fontWeight = '700';
@@ -355,41 +480,71 @@ function switchRole(role) {
     tabAdmin.style.border = 'none';
     tabAdmin.querySelector('.material-symbols-outlined').style.color = '#7d6f5c';
 
-    badge.innerHTML = '<span style="width:6px; height:6px; border-radius:50%; background:#C1862B; display:inline-block;"></span> Tim Validator BSLPK';
+    badge.innerHTML =
+      '<span style="width:6px; height:6px; border-radius:50%; background:#C1862B; display:inline-block;"></span> Tim Validator BSLPK';
+
     badge.style.color = '#966316';
     badge.style.background = '#FDF4E6';
     badge.style.borderColor = 'rgba(193,134,43,0.3)';
 
     roleInfoBox.style.borderLeftColor = '#C1862B';
-    roleInfoBox.children[0].innerHTML = '<span class="material-symbols-outlined" style="font-size:15px;">fact_check</span> Hak Akses: Tim Validator BSLPK';
+
+    roleInfoBox.children[0].innerHTML =
+      '<span class="material-symbols-outlined" style="font-size:15px;">fact_check</span> Hak Akses: Tim Validator BSLPK';
+
     roleInfoBox.children[0].style.color = '#966316';
-    roleInfoDesc.textContent = 'Meninjau kelengkapan berkas program, memvalidasi parameter kelayakan, serta menyetujui/menolak pengajuan publikasi.';
+
+    roleInfoDesc.textContent =
+      'Meninjau kelengkapan berkas program, memvalidasi parameter kelayakan, serta menyetujui/menolak pengajuan publikasi.';
 
     emailInput.placeholder = 'validator@kemenbud.go.id';
     emailInput.value = 'validator@kemenbud.go.id';
-    submitBtn.innerHTML = '<span>MASUK SEBAGAI VALIDATOR</span><span class="material-symbols-outlined" style="font-size:19px;">verified</span>';
+
+    submitBtn.innerHTML =
+      '<span>MASUK SEBAGAI VALIDATOR</span><span class="material-symbols-outlined" style="font-size:19px;">verified</span>';
+
     submitBtn.style.background = '#1b9b65';
   }
 }
 
 function quickDemoFill() {
+
   const emailInput = document.getElementById('email');
   const passInput = document.getElementById('password');
+
   if (currentRole === 'admin') {
     emailInput.value = 'admin@kemenbud.go.id';
   } else {
     emailInput.value = 'validator.bslpk@kemenbud.go.id';
   }
+
   passInput.value = 'Kemenbud2025!';
 }
 
+
+/* =========================================================
+   LOGIN REDIRECT
+   Admin     -> beranda-admin.html
+   Validator -> beranda-validator.html
+   ========================================================= */
+
 document.getElementById('auth-form').addEventListener('submit', function(e) {
+
   e.preventDefault();
+
   if (currentRole === 'admin') {
+
     window.location.href = 'beranda-admin.html';
+
   } else {
-    window.location.href = 'beranda-admin.html?role=validator';
+
+    window.location.href = 'beranda-validator.html';
+
   }
+
 });
-</script></body>
+
+</script>
+
+</body>
 </html>
