@@ -1,927 +1,567 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 
-<html lang="id">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Beranda Admin — Kemenbud Data Kebudayaan</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<style>
-:root{
-  --cream:#F7F3EA;
-  --paper:#FFFFFF;
-  --gold:#C9A15A;
-  --gold-dark:#A87F3C;
-  --gold-pale:#E9D9B8;
-  --ink:#241F18;
-  --ink-soft:#5B5346;
-  --muted:#948B7A;
-  --border:#E7DFCC;
-  --green:#1FA971;
-  --green-dark:#178257;
-  --amber:#C1862B;
-  --amber-bg:#FBEEDA;
-  --red:#C0392B;
-  --red-bg:#FBE4E0;
-  --radius-lg:18px;
-  --radius-md:12px;
-  --radius-sm:8px;
-  --shadow:0 10px 30px -12px rgba(60,45,20,0.18);
+\<html lang="id">
+\<head>
+\<meta charset="utf-8"/>
+\<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+\<title>Beranda Admin — Kemenbud Data Kebudayaan\</title>
+\<link href="[https://fonts.googleapis.com](https://fonts.googleapis.com)" rel="preconnect"/>
+\<link href="[https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans\:wght@400;500;600;700;800&amp;family=Poppins\:wght@600;700;800&amp;display=swap](https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans\:wght@400;500;600;700;800\&amp;family=Poppins\:wght@600;700;800\&amp;display=swap)" rel="stylesheet"/>\<link href="[https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined\:wght,FILL@100..700,0..1&amp;display=swap](https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined\:wght,FILL@100..700,0..1\&amp;display=swap)" rel="stylesheet"/>
+\<style>
+\:root{
+  \--cream:#F7F3EA;
+  \--paper:#FFFFFF;
+  \--gold:#C9A15A;
+  \--gold-dark:#A87F3C;
+  \--gold-pale:#E9D9B8;
+  \--ink:#241F18;
+  \--ink-soft:#5B5346;
+  \--muted:#948B7A;
+  \--border:#E7DFCC;
+  \--green:#1FA971;
+  \--green-dark:#178257;
+  \--amber:#C1862B;
+  \--amber-bg:#FBEEDA;
+  \--red:#C0392B;
+  \--red-bg:#FBE4E0;
+  \--radius-lg:18px;
+  \--radius-md:12px;
+  \--radius-sm:8px;
+  \--shadow:0 10px 30px -12px rgba(60,45,20,0.18);
 }
 
-*,*::before,*::after{box-sizing:border-box;}
+\*,\*::before,\*::after{box-sizing\:border-box;}
 html,body{margin:0;padding:0;}
 body{
   font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:var(--cream);
-  color:var(--ink);
-  -webkit-font-smoothing:antialiased;
+  background\:var(--cream);
+  color\:var(--ink);
+  -webkit-font-smoothing\:antialiased;
 }
-a{text-decoration:none;color:inherit;}
-button{font-family:inherit;cursor:pointer;}
-img{max-width:100%;display:block;}
+a{text-decoration\:none;color\:inherit;}
+button{font-family\:inherit;cursor\:pointer;}
+img{max-width:100%;display\:block;}
 
-/* ---------- Topbar ---------- */
+/\* ---------- Topbar ---------- \*/
 .topbar{
-  background:var(--paper);
+  background\:var(--paper);
   border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:50;
+  position\:sticky;top:0;z-index:50;
 }
 .topbar-inner{
   max-width:1180px;margin:0 auto;
-  display:flex;align-items:center;justify-content:space-between;
+  display\:flex;align-items\:center;justify-content\:space-between;
   padding:16px 28px;gap:24px;
 }
-.brand{display:flex;align-items:center;gap:12px;}
+.brand{display\:flex;align-items\:center;gap:12px;}
 .brand-logo{width:38px;height:38px;flex:0 0 auto;}
-.brand-text{display:flex;flex-direction:column;line-height:1.1;font-size:13px;font-weight:700;color:var(--ink);}
-.brand-text small{font-weight:500;color:var(--muted);font-size:11px;}
-.nav{display:flex;align-items:center;gap:30px;font-weight:600;font-size:14.5px;color:var(--gold-dark);flex:1;justify-content:center;}
-.nav a{color:var(--gold-dark);opacity:.85;padding:6px 2px;position:relative;transition:opacity .15s;}
-.nav a:hover{opacity:1;}
-.nav a.active{color:var(--ink);opacity:1;}
-.nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-19px;height:3px;background:var(--gold);border-radius:2px;}
+.brand-text{display\:flex;flex-direction\:column;line-height:1.1;font-size:13px;font-weight:700;color\:var(--ink);}
+.brand-text small{font-weight:500;color\:var(--muted);font-size:11px;}
+.nav{display\:flex;align-items\:center;gap:30px;font-weight:600;font-size:14.5px;color\:var(--gold-dark);flex:1;justify-content\:center;}
+.nav a{color\:var(--gold-dark);opacity:.85;padding:6px 2px;position\:relative;transition\:opacity .15s;}
+.nav a\:hover{opacity:1;}
+.nav a.active{color\:var(--ink);opacity:1;}
+.nav a.active::after{content:"";position\:absolute;left:0;right:0;bottom:-19px;height:3px;background\:var(--gold);border-radius:2px;}
 .btn-outline-gold{
   border:1.5px solid var(--gold);
-  background:transparent;color:var(--gold-dark);
+  background\:transparent;color\:var(--gold-dark);
   padding:9px 22px;border-radius:999px;font-weight:700;font-size:13.5px;
-  transition:background .15s,color .15s;
+  transition\:background .15s,color .15s;
 }
-.btn-outline-gold:hover{background:var(--gold);color:#fff;}
+.btn-outline-gold\:hover{background\:var(--gold);color:#fff;}
 
-/* ---------- Layout shell ---------- */
+/\* ---------- Layout shell ---------- \*/
 .page-shell{max-width:1180px;margin:0 auto;padding:36px 28px 60px;}
 
-.page-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:24px;}
+.page-head{display\:flex;align-items\:center;justify-content\:space-between;flex-wrap\:wrap;gap:16px;margin-bottom:24px;}
 .page-head h1{font-family:'Poppins',sans-serif;font-size:24px;margin:0;}
 
-.card{background:var(--paper);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow);}
-.table-card{overflow:hidden;}
-table{width:100%;border-collapse:collapse;}
+.card{background\:var(--paper);border:1px solid var(--border);border-radius\:var(--radius-lg);box-shadow\:var(--shadow);}
+.table-card{overflow\:hidden;}
+table{width:100%;border-collapse\:collapse;}
 thead th{
-  text-align:left;font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;
-  color:var(--muted);padding:16px 22px;border-bottom:1px solid var(--border);
+  text-align\:left;font-size:12.5px;text-transform\:uppercase;letter-spacing:.04em;
+  color\:var(--muted);padding:16px 22px;border-bottom:1px solid var(--border);
 }
-tbody td{padding:16px 22px;font-size:14.5px;border-bottom:1px solid var(--border);color:var(--ink-soft);}
-tbody tr:last-child td{border-bottom:none;}
-tbody tr:hover{background:#FCFAF4;}
-td.strong{color:var(--ink);font-weight:700;}
-.eye{display:inline-flex;width:30px;height:30px;border-radius:8px;align-items:center;justify-content:center;border:1px solid var(--border);color:var(--gold-dark);background:#fff;padding:0;font-size:14px;cursor:pointer;}
-.eye:hover{background:var(--gold-pale);}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:700;}
-.badge.pending{background:var(--amber-bg);color:var(--amber);}
-.badge.rejected{background:var(--red-bg);color:var(--red);}
-.badge.approved{background:#E1F6EC;color:var(--green-dark);}
+tbody td{padding:16px 22px;font-size:14.5px;border-bottom:1px solid var(--border);color\:var(--ink-soft);}
+tbody tr\:last-child td{border-bottom\:none;}
+tbody tr\:hover{background:#FCFAF4;}
+td.strong{color\:var(--ink);font-weight:700;}
+.eye{display\:inline-flex;width:30px;height:30px;border-radius:8px;align-items\:center;justify-content\:center;border:1px solid var(--border);color\:var(--gold-dark);background:#fff;padding:0;font-size:14px;cursor\:pointer;}
+.eye\:hover{background\:var(--gold-pale);}
+.badge{display\:inline-flex;align-items\:center;gap:6px;padding:5px 12px;border-radius:999px;font-size:12.5px;font-weight:700;}
+.badge.pending{background\:var(--amber-bg);color\:var(--amber);}
+.badge.rejected{background\:var(--red-bg);color\:var(--red);}
+.badge.approved{background:#E1F6EC;color\:var(--green-dark);}
 
-.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:30px;}
+.summary-grid{display\:grid;grid-template-columns\:repeat(4,1fr);gap:16px;margin-bottom:30px;}
 @media(max-width:800px){.summary-grid{grid-template-columns:1fr 1fr;}}
 .summary-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px 22px;}
-.summary-card .label{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:10px;}
+.summary-card .label{font-size:13px;color\:var(--muted);font-weight:600;margin-bottom:10px;}
 .summary-card .value{font-family:'Poppins',sans-serif;font-size:26px;font-weight:800;}
-.summary-card.warn .value{color:var(--amber);}
-.summary-card.bad .value{color:var(--red);}
-.summary-card.good .value{color:var(--green-dark);}
-.btn-dark{background:var(--ink);color:#fff;border:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:13.5px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
+.summary-card.warn .value{color\:var(--amber);}
+.summary-card.bad .value{color\:var(--red);}
+.summary-card.good .value{color\:var(--green-dark);}
+.btn-dark{background\:var(--ink);color:#fff;border\:none;border-radius:10px;padding:11px 20px;font-weight:700;font-size:13.5px;display\:inline-flex;align-items\:center;gap:8px;cursor\:pointer;}
 
-/* ---------- Footer ---------- */
-.site-footer{background:var(--paper);border-top:1px solid var(--border);margin-top:56px;}
-.footer-inner{max-width:1180px;margin:0 auto;padding:44px 28px 24px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;}
-.footer-brand{display:flex;gap:14px;}
+/\* ---------- Footer ---------- \*/
+.site-footer{background\:var(--paper);border-top:1px solid var(--border);margin-top:56px;}
+.footer-inner{max-width:1180px;margin:0 auto;padding:44px 28px 24px;display\:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:32px;}
+.footer-brand{display\:flex;gap:14px;}
 .footer-brand-text h4{margin:0;font-size:15px;}
-.footer-brand-text p{margin:6px 0 0;color:var(--muted);font-size:13px;line-height:1.6;}
-.footer-col h5{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:0 0 14px;}
-.footer-col a{display:block;color:var(--ink-soft);font-size:14px;margin-bottom:10px;}
-.footer-col a:hover{color:var(--gold-dark);}
-.footer-contact-item{display:flex;align-items:center;gap:8px;color:var(--ink-soft);font-size:14px;margin-bottom:10px;}
-.footer-bottom{border-top:1px solid var(--border);padding:16px 28px;max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12.5px;}
-.social-dots{display:flex;gap:10px;}
-.social-dots span{width:28px;height:28px;border:1px solid var(--border);border-radius:8px;display:inline-block;}
+.footer-brand-text p{margin:6px 0 0;color\:var(--muted);font-size:13px;line-height:1.6;}
+.footer-col h5{font-size:13px;text-transform\:uppercase;letter-spacing:.04em;color\:var(--muted);margin:0 0 14px;}
+.footer-col a{display\:block;color\:var(--ink-soft);font-size:14px;margin-bottom:10px;}
+.footer-col a\:hover{color\:var(--gold-dark);}
+.footer-contact-item{display\:flex;align-items\:center;gap:8px;color\:var(--ink-soft);font-size:14px;margin-bottom:10px;}
+.footer-bottom{border-top:1px solid var(--border);padding:16px 28px;max-width:1180px;margin:0 auto;display\:flex;justify-content\:space-between;align-items\:center;color\:var(--muted);font-size:12.5px;}
+.social-dots{display\:flex;gap:10px;}
+.social-dots span{width:28px;height:28px;border:1px solid var(--border);border-radius:8px;display\:inline-block;}
 
 @media (max-width:900px){
-  .nav{display:none;}
+  .nav{display\:none;}
   .footer-inner{grid-template-columns:1fr 1fr;}
 }
-</style>
-</head>
-<body>
-<header class="topbar">
-<div class="topbar-inner">
-<div class="brand">
-<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g fill="#C9A15A">
-<path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
-<circle cx="24" cy="24" r="3.4"></circle>
-</g>
-</svg>
-<div class="brand-text">Kementerian Kebudayaan<small>Republik Indonesia</small></div>
-</div>
-<nav class="nav"><a class="active" href="beranda-admin.html">Beranda</a>
-<a href="data-program-admin.html">Data Program</a></nav>
-<div style="display:flex;align-items:center;gap:12px;">
-<div style="display:flex;align-items:center;gap:8px;padding:5px 12px;background:#F7F3EA;border:1px solid #E7DFCC;border-radius:999px;">
-<span style="width:24px;height:24px;border-radius:50%;background:#C9A15A;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">A</span>
-<span style="font-size:13px;font-weight:700;color:var(--ink);">Admin BSLPK</span>
-</div>
-<a href="index.html" onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?');" onmouseout="this.style.background='#FFF5F5';this.style.color='#C0392B';" onmouseover="this.style.background='#C0392B';this.style.color='#fff';" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #F5C6CB;background:#FFF5F5;color:#C0392B;padding:7px 15px;border-radius:999px;font-weight:700;font-size:13px;transition:all 0.15s;">
-<span class="material-symbols-outlined" style="font-size:17px;">logout</span>
-<span>Logout</span>
-</a>
-</div>
-</div>
-</header>
-<main class="page-shell">
-<div class="page-head">
-<h1>Ringkasan</h1>
-</div>
-<div class="summary-grid"><div class="summary-card" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(36,31,24,0.12)';" style="transition:transform 0.18s, box-shadow 0.18s;">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-<div class="label" style="margin-bottom:0;">Total data</div>
-<span class="material-symbols-outlined" style="color:var(--muted);font-size:20px;">database</span>
-</div>
-<div class="value" id="stat-total">1.240</div>
-</div>
-<div class="summary-card warn" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(193,134,43,0.18)';" style="transition:transform 0.18s, box-shadow 0.18s;">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-<div class="label" style="margin-bottom:0;">Menunggu validasi</div>
-<span class="material-symbols-outlined" style="color:var(--amber);font-size:20px;">hourglass_top</span>
-</div>
-<div class="value" id="stat-pending">12</div>
-</div>
-<div class="summary-card bad" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(192,57,43,0.18)';" style="transition:transform 0.18s, box-shadow 0.18s;">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-<div class="label" style="margin-bottom:0;">Ditolak, perlu revisi</div>
-<span class="material-symbols-outlined" style="color:var(--red);font-size:20px;">error</span>
-</div>
-<div class="value" id="stat-rejected">3</div>
-</div>
-<div class="summary-card good" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(31,169,113,0.18)';" style="transition:transform 0.18s, box-shadow 0.18s;">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-<div class="label" style="margin-bottom:0;">Disetujui bulan ini</div>
-<span class="material-symbols-outlined" style="color:var(--green);font-size:20px;">task_alt</span>
-</div>
-<div class="value" id="stat-approved">45</div>
-</div></div>
-<div class="page-head">
-<h1 style="font-size:18px;">Data terbaru diinput</h1>
-<button class="btn-dark" onclick="openInputModal()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(36,31,24,0.15);transition:transform 0.15s, background 0.15s;" type="button">
-<span class="material-symbols-outlined" style="font-size:18px;">add</span>
-<span>Input data baru</span>
-</button>
-</div>
-<div class="card table-card">
-<table>
-<thead>
-<tr>
-<th>Program</th>
-<th>Wilayah</th>
-<th>Diinput</th>
-<th>Status</th>
-<th>Detail</th>
-</tr>
-</thead>
-<tbody><tr id="row-1">
-<td class="strong">Bimbingan Teknis (Bimtek)</td>
-<td>Jawa Tengah</td>
-<td>21 Agu 2026</td>
-<td id="status-cell-1"><span class="badge pending">Menunggu validasi</span></td>
-<td><button class="eye" onclick="showItemDetail(1)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
-</tr>
-<tr id="row-2">
-<td class="strong">Gita Bahana Nusantara (GBN)</td>
-<td>Bali</td>
-<td>18 Agu 2026</td>
-<td id="status-cell-2"><span class="badge approved">Disetujui</span></td>
-<td><button class="eye" onclick="showItemDetail(2)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
-</tr>
-<tr id="row-3">
-<td class="strong">Pemajuan Kebudayaan Desa</td>
-<td>NTT</td>
-<td>20 Agu 2026</td>
-<td id="status-cell-3"><span class="badge rejected">Ditolak</span></td>
-<td><button class="eye" onclick="showItemDetail(3)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
-</tr>
-<tr id="row-4">
-<td class="strong">Manajemen Talenta Nasional (MTN)</td>
-<td>Jawa Barat</td>
-<td>16 Agu 2026</td>
-<td id="status-cell-4"><span class="badge approved">Disetujui</span></td>
-<td><button class="eye" onclick="showItemDetail(4)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
-</tr>
-<tr id="row-5">
-<td class="strong">Sertifikasi Profesi Kebudayaan</td>
-<td>Jawa Timur</td>
-<td>12 Agu 2026</td>
-<td id="status-cell-5"><span class="badge pending">Menunggu validasi</span></td>
-<td><button class="eye" onclick="showItemDetail(5)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
-</tr></tbody>
-</table>
-</div>
-</main>
-<!-- Toast Notification -->
-<div id="app-toast" style="display:none;position:fixed;top:24px;right:24px;z-index:9999;padding:14px 20px;border-radius:12px;background:#1FA971;color:#fff;font-weight:600;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,0.2);display:none;align-items:center;gap:10px;animation:fadeIn 0.25s ease;">
-<span class="material-symbols-outlined" style="font-size:20px;">check_circle</span>
-<span id="toast-msg">Data berhasil diperbarui!</span>
-</div>
-<!-- MODAL DETAIL DATA -->
-<div id="modal-detail" style="display:none;position:fixed;inset:0;background:rgba(36,31,24,0.65);backdrop-filter:blur(4px);z-index:999;align-items:center;justify-content:center;padding:20px;">
-<div style="background:#fff;border-radius:18px;max-width:860px;width:95%;box-shadow:0 24px 50px -10px rgba(0,0,0,0.3);overflow:hidden;border:1px solid #E7DFCC;animation:modalIn 0.2s ease;max-height:92vh;display:flex;flex-direction:column;">
-<!-- Modal Header -->
-<div style="padding:20px 24px;border-bottom:1px solid #E7DFCC;display:flex;align-items:center;justify-content:space-between;background:#FAF8F3;">
-<div style="display:flex;align-items:center;gap:10px;">
-<span class="material-symbols-outlined" style="color:#C9A15A;">description</span>
-<h3 id="modal-title" style="margin:0;font-size:17px;font-weight:700;color:var(--ink);">Detail Pengajuan &amp; Histori Input Data Admin</h3>
-</div>
-<button onclick="closeDetailModal()" onmouseout="this.style.background='none';" onmouseover="this.style.background='#eee';" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;" type="button">
-<span class="material-symbols-outlined" style="font-size:20px;">close</span>
-</button>
-</div>
-<!-- Modal Body -->
-<div id="modal-body" style="padding:24px;overflow-y:auto;flex:1;background:#FCFAF7;">
-<!-- Dynamically filled -->
-</div>
-<!-- Modal Footer -->
-<div id="modal-actions" style="padding:16px 24px;border-top:1px solid #E7DFCC;background:#FAF8F3;display:flex;align-items:center;justify-content:flex-end;gap:12px;">
-<!-- Dynamically populated buttons -->
-</div>
-</div>
-</div>
-<!-- MODAL INPUT DATA BARU -->
-<div id="modal-input" style="display:none;position:fixed;inset:0;background:rgba(36,31,24,0.65);backdrop-filter:blur(4px);z-index:999;align-items:center;justify-content:center;padding:20px;">
-<div style="background:#fff;border-radius:18px;max-width:620px;width:100%;box-shadow:0 24px 50px -10px rgba(0,0,0,0.3);overflow:hidden;border:1px solid #E7DFCC;">
-<div style="padding:20px 24px;border-bottom:1px solid #E7DFCC;display:flex;align-items:center;justify-content:space-between;background:#FAF8F3;">
-<div style="display:flex;align-items:center;gap:10px;">
-<span class="material-symbols-outlined" style="color:#C9A15A;">add_circle</span>
-<h3 style="margin:0;font-size:17px;font-weight:700;color:var(--ink);">Input Data Program Baru</h3>
-</div>
-<button onclick="closeInputModal()" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;" type="button">
-<span class="material-symbols-outlined" style="font-size:20px;">close</span>
-</button>
-</div>
-<form id="new-data-form" onsubmit="handleCreateData(event)" style="padding:24px;margin:0;">
-<div style="margin-bottom:16px;">
-<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Nama Program Kebudayaan</label>
-<select id="inp-program" required="" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;">
-<option value="Bimbingan Teknis (Bimtek)">Bimbingan Teknis (Bimtek)</option>
-<option value="Gita Bahana Nusantara (GBN)">Gita Bahana Nusantara (GBN)</option>
-<option value="Pemajuan Kebudayaan Desa">Pemajuan Kebudayaan Desa</option>
-<option value="Manajemen Talenta Nasional (MTN)">Manajemen Talenta Nasional (MTN)</option>
-<option value="Sertifikasi Profesi Kebudayaan">Sertifikasi Profesi Kebudayaan</option>
-<option value="Fasilitasi Bidang Kebudayaan (FBK)">Fasilitasi Bidang Kebudayaan (FBK)</option>
-</select>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-<div>
-<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Wilayah / Provinsi</label>
-<select id="inp-wilayah" required="" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;">
-<option value="DI Yogyakarta">DI Yogyakarta</option>
-<option value="Jawa Barat">Jawa Barat</option>
-<option value="Jawa Tengah">Jawa Tengah</option>
-<option value="Jawa Timur">Jawa Timur</option>
-<option value="Bali">Bali</option>
-<option value="NTT">NTT</option>
-<option value="Sumatera Barat">Sumatera Barat</option>
-</select>
-</div>
-<div>
-<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Target Peserta / Penerima</label>
-<input id="inp-target" placeholder="cth: 60 Peserta Sanggar" required="" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;" type="text"/>
-</div>
-</div>
-<div style="margin-bottom:20px;">
-<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Deskripsi Ringkas Kegiatan</label>
-<textarea id="inp-desc" placeholder="Tuliskan rincian penyelenggaraan kegiatan..." required="" rows="3" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;"></textarea>
-</div>
-<div style="display:flex;justify-content:flex-end;gap:12px;">
-<button onclick="closeInputModal()" style="padding:10px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;" type="button">Batal</button>
-<button style="padding:10px 20px;border:none;background:var(--ink);color:#fff;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;" type="submit">Simpan &amp; Kirim Validasi</button>
-</div>
-</form>
-</div>
-</div><script>
-const historyDataRegistry = {
-  1: [
-    {
-      tgl: '21 Agu 2026, 09:15 WIB',
-      tahap: 'Entri Baru',
-      admin: 'Admin Wilayah X (Rina S.)',
-      status: 'pending',
-      statusLabel: 'Menunggu Validasi',
-      fields: [
-        { field: 'Nama Program', val: 'Bimbingan Teknis (Bimtek) Pelestarian Cagar Budaya' },
-        { field: 'Kategori', val: 'Peningkatan Kapasitas SDM Kebudayaan' },
-        { field: 'Wilayah / Kota', val: 'Jawa Tengah (Semarang & Surakarta)' },
-        { field: 'Nama PIC Admin', val: 'Rina Sulistyaningsih, S.Sn' },
-        { field: 'Jumlah Peserta', val: '75 Pegiat Cagar Budaya & Guru Seni Budaya' },
-        { field: 'Instansi / Sanggar', val: 'Balai Pelestarian Kebudayaan Wilayah X & MGMP Seni Jawa Tengah' },
-        { field: 'Dokumen Terlampir', val: 'SK-Kadis-Budpar-2026.pdf (1.8 MB), Daftar-Hadir-Semarang.xlsx (420 KB)' },
-        { field: 'Catatan Admin', val: 'Berkas registrasi lengkap, modul teknis telah diselaraskan dengan standar BSLPK.' }
-      ]
-    }
-  ],
-  2: [
-    {
-      tgl: '18 Agu 2026, 14:20 WIB',
-      tahap: 'Entri Baru',
-      admin: 'Tim Seleksi Bali (I Made D.)',
-      status: 'approved',
-      statusLabel: 'Disetujui',
-      fields: [
-        { field: 'Nama Program', val: 'Gita Bahana Nusantara (GBN) 2026' },
-        { field: 'Kategori', val: 'Paduan Suara & Orkestra Nasional' },
-        { field: 'Wilayah / Kota', val: 'Bali (Denpasar & Gianyar)' },
-        { field: 'Nama PIC Admin', val: 'I Made Dharmawan, M.Pd' },
-        { field: 'Jumlah Peserta', val: '4 Vokalis Terpilih (Sopran, Alto, Tenor, Bass)' },
-        { field: 'Instansi / Sanggar', val: 'Dinas Kebudayaan Prov. Bali & Komunitas Paduan Suara Bali' },
-        { field: 'Dokumen Terlampir', val: 'Berita_Acara_Audisi_Bali.pdf (3.1 MB), Surat_Izin_Sekolah.pdf (1.2 MB)' },
-        { field: 'Catatan Admin', val: 'Hasil penilaian 3 dewan juri independen mutlak, seluruh komitmen kehadiran telah ditandatangani bermaterai.' }
-      ]
-    }
-  ],
-  3: [
-    {
-      tgl: '22 Agu 2026, 11:05 WIB',
-      tahap: 'Koreksi / Revisi #1',
-      admin: 'Admin Kab. Manggarai Barat (Yulius K.)',
-      status: 'pending',
-      statusLabel: 'Menunggu Validasi',
-      fields: [
-        { field: 'Nama Program', val: 'Pemajuan Kebudayaan Desa' },
-        { field: 'Kategori', val: 'Pemberdayaan Desa Adat & Komunitas' },
-        { field: 'Wilayah / Kota', val: 'NTT (Kab. Manggarai Barat)' },
-        { field: 'Nama PIC Admin', val: 'Yulius Kristanto' },
-        { field: 'Jumlah Peserta', val: '3 Desa Budaya (Melo, Compang Kulan, Warloka)' },
-        { field: 'Instansi / Sanggar', val: 'Sanggar Riang Tana & Sanggar Wae Rebo Bersatu' },
-        { field: 'Dokumen Terlampir', val: 'SK_Kepala_Dinas_Stempel_Basah_Signed.pdf (2.4 MB), Profil_3_Desa_Final.pdf (5.2 MB)' },
-        { field: 'Catatan Admin', val: 'Dokumen SK telah diperbarui dengan scan beresolusi tinggi beserta data 3 pengelola sanggar desa.' }
-      ]
-    },
-    {
-      tgl: '20 Agu 2026, 10:30 WIB',
-      tahap: 'Entri Awal',
-      admin: 'Admin Kab. Manggarai Barat (Yulius K.)',
-      status: 'rejected',
-      statusLabel: 'Ditolak (Perlu Revisi)',
-      fields: [
-        { field: 'Nama Program', val: 'Pemajuan Kebudayaan Desa' },
-        { field: 'Kategori', val: 'Pemberdayaan Desa Adat & Komunitas' },
-        { field: 'Wilayah / Kota', val: 'NTT (Manggarai Barat)' },
-        { field: 'Nama PIC Admin', val: 'Yulius Kristanto' },
-        { field: 'Jumlah Peserta', val: '3 Desa Budaya' },
-        { field: 'Instansi / Sanggar', val: 'Belum terdata detail' },
-        { field: 'Dokumen Terlampir', val: 'Draft_SK_Scan_Blurry.pdf (780 KB)' },
-        { field: 'Catatan Admin', val: 'Entri data usulan awal pemetaan OPK desa wisata penyangga Labuan Bajo.' }
-      ]
-    }
-  ],
-  4: [
-    {
-      tgl: '16 Agu 2026, 16:45 WIB',
-      tahap: 'Entri Baru',
-      admin: 'Koordinator Riset (dr. Hendra M.)',
-      status: 'approved',
-      statusLabel: 'Disetujui',
-      fields: [
-        { field: 'Nama Program', val: 'Manajemen Talenta Nasional (MTN) Seni Rupa & Musik Etnik' },
-        { field: 'Kategori', val: 'Akselerasi Seniman Berbakat' },
-        { field: 'Wilayah / Kota', val: 'Jawa Barat (Bandung & Cirebon)' },
-        { field: 'Nama PIC Admin', val: 'Hendra Mulyana, S.Sn' },
-        { field: 'Jumlah Peserta', val: '32 Penerima Fasilitasi Inkubasi Karya' },
-        { field: 'Instansi / Sanggar', val: 'Pusat Kreasi Seni Budaya Sunda Parahyangan' },
-        { field: 'Dokumen Terlampir', val: 'Portfolio_Karya_32_Peserta.pdf (14.2 MB), Kurasi_Dewan_Pakar.pdf (2.0 MB)' },
-        { field: 'Catatan Admin', val: 'Telah lolos verifikasi administrasi dan kelayakan estetika kurator independen.' }
-      ]
-    }
-  ],
-  5: [
-    {
-      tgl: '12 Agu 2026, 13:10 WIB',
-      tahap: 'Entri Baru',
-      admin: 'Admin LSP Kebudayaan (Siti A.)',
-      status: 'pending',
-      statusLabel: 'Menunggu Validasi',
-      fields: [
-        { field: 'Nama Program', val: 'Sertifikasi Profesi Kebudayaan Angkatan III' },
-        { field: 'Kategori', val: 'Standarisasi Kompetensi Tenaga Kebudayaan' },
-        { field: 'Wilayah / Kota', val: 'Jawa Timur (Surabaya & Malang)' },
-        { field: 'Nama PIC Admin', val: 'Siti Aminah, M.Hum' },
-        { field: 'Jumlah Peserta', val: '120 Asesor & Kurator Pameran' },
-        { field: 'Instansi / Sanggar', val: 'LSP Kebudayaan Nasional & Asosiasi Museum Jawa Timur (AMIDA)' },
-        { field: 'Dokumen Terlampir', val: 'Daftar_Peserta_BNSP.xlsx (540 KB), Jadwal_Uji_Kompetensi.pdf (1.1 MB)' },
-        { field: 'Catatan Admin', val: 'Jadwal asesmen kompetensi siap, menunggu nomor validasi penerbitan blanko sertifikat resmi.' }
-      ]
-    }
-  ]
-};
+\</style>
+\</head>
+\<body>
+\<header class="topbar">
+\<div class="topbar-inner">
+\<div class="brand">
+\<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+\<g fill="#C9A15A">
+\<path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z">\</path>
+\<circle cx="24" cy="24" r="3.4">\</circle>
+\</g>
+\</svg>
+\<div class="brand-text">Kementerian Kebudayaan\<small>Republik Indonesia\</small>\</div>
+\</div>
+\<nav class="nav">\<a class="active" href="beranda-admin.html">Beranda\</a>
+\<a href="data-program-admin" onclick="window\.location.href='#'">Data Program\</a>
+\</nav>
+\<div style="display\:flex;align-items\:center;gap:12px;">
+\<div style="display\:flex;align-items\:center;gap:8px;padding:5px 12px;background:#F7F3EA;border:1px solid #E7DFCC;border-radius:999px;">
+\<span style="width:24px;height:24px;border-radius:50%;background:#C9A15A;color:#fff;display\:inline-flex;align-items\:center;justify-content\:center;font-size:12px;font-weight:700;">A\</span>
+\<span style="font-size:13px;font-weight:700;color\:var(--ink);">Admin BSLPK\</span>
+\</div>
+\<a href="index.html"
+   onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?');"
+   onmouseout="this.style.background='#FFF5F5';this.style.color='#C0392B';"
+   onmouseover="this.style.background='#C0392B';this.style.color='#fff';"
+   style="display:inline-flex;align-items:center;gap:6px;
+          border:1.5px solid #F5C6CB;
+          background:#FFF5F5;
+          color:#C0392B;
+          padding:7px 15px;
+          border-radius:999px;
+          font-weight:700;
+          font-size:13px;
+          transition:all 0.15s;">
+  <span class="material-symbols-outlined" style="font-size:17px;">logout</span>
+  <span>Logout</span>
+\</a>
+\</div>
+\</div>
+\</header>
+\<main class="page-shell">
+\<div class="page-head">
+\<h1>Ringkasan\</h1>
+\</div>
+\<div class="summary-grid">\<div class="summary-card" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(36,31,24,0.12)';" style="transition\:transform 0.18s, box-shadow 0.18s;">
+\<div style="display\:flex;justify-content\:space-between;align-items\:center;margin-bottom:8px;">
+\<div class="label" style="margin-bottom:0;">Total data\</div>
+\<span class="material-symbols-outlined" style="color\:var(--muted);font-size:20px;">database\</span>
+\</div>
+\<div class="value" id="stat-total">1.240\</div>
+\</div>
+\<div class="summary-card warn" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(193,134,43,0.18)';" style="transition\:transform 0.18s, box-shadow 0.18s;">
+\<div style="display\:flex;justify-content\:space-between;align-items\:center;margin-bottom:8px;">
+\<div class="label" style="margin-bottom:0;">Menunggu validasi\</div>
+\<span class="material-symbols-outlined" style="color\:var(--amber);font-size:20px;">hourglass\_top\</span>
+\</div>
+\<div class="value" id="stat-pending">12\</div>
+\</div>
+\<div class="summary-card bad" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(192,57,43,0.18)';" style="transition\:transform 0.18s, box-shadow 0.18s;">
+\<div style="display\:flex;justify-content\:space-between;align-items\:center;margin-bottom:8px;">
+\<div class="label" style="margin-bottom:0;">Ditolak, perlu revisi\</div>
+\<span class="material-symbols-outlined" style="color\:var(--red);font-size:20px;">error\</span>
+\</div>
+\<div class="value" id="stat-rejected">3\</div>
+\</div>
+\<div class="summary-card good" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(31,169,113,0.18)';" style="transition\:transform 0.18s, box-shadow 0.18s;">
+\<div style="display\:flex;justify-content\:space-between;align-items\:center;margin-bottom:8px;">
+\<div class="label" style="margin-bottom:0;">Disetujui bulan ini\</div>
+\<span class="material-symbols-outlined" style="color\:var(--green);font-size:20px;">task\_alt\</span>
+\</div>
+\<div class="value" id="stat-approved">45\</div>
+\</div>\</div>
+\<div class="page-head">
+\<h1 style="font-size:18px;">Data terbaru diinput\</h1>
+\<button class="btn-dark" onclick="openInputModal()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display\:inline-flex;align-items\:center;gap:8px;box-shadow:0 4px 12px rgba(36,31,24,0.15);transition\:transform 0.15s, background 0.15s;" type="button">
+\<span class="material-symbols-outlined" style="font-size:18px;">add\</span>
+\<span>Input data baru\</span>
+\</button>
+\</div>
+\<div class="card table-card">
+\<table>
+\<thead>
+\<tr>
+\<th>Program\</th>
+\<th>Wilayah\</th>
+\<th>Diinput\</th>
+\<th>Status\</th>
+\<th>Detail\</th>
+\</tr>
+\</thead>
+\<tbody>\<tr id="row-1">
+\<td class="strong">Bimbingan Teknis (Bimtek)\</td>
+\<td>Jawa Tengah\</td>
+\<td>21 Agu 2026\</td>
+\<td id="status-cell-1">\<span class="badge pending">Menunggu validasi\</span>\</td>
+\<td>\<button class="eye" onclick="showItemDetail(1)" title="Lihat detail" type="button">\<span class="material-symbols-outlined" style="font-size:18px;">visibility\</span>\</button>\</td>
+\</tr>
+\<tr id="row-2">
+\<td class="strong">Gita Bahana Nusantara (GBN)\</td>
+\<td>Bali\</td>
+\<td>18 Agu 2026\</td>
+\<td id="status-cell-2">\<span class="badge approved">Disetujui\</span>\</td>
+\<td>\<button class="eye" onclick="showItemDetail(2)" title="Lihat detail" type="button">\<span class="material-symbols-outlined" style="font-size:18px;">visibility\</span>\</button>\</td>
+\</tr>
+\<tr id="row-3">
+\<td class="strong">Pemajuan Kebudayaan Desa\</td>
+\<td>NTT\</td>
+\<td>20 Agu 2026\</td>
+\<td id="status-cell-3">\<span class="badge rejected">Ditolak\</span>\</td>
+\<td>\<button class="eye" onclick="showItemDetail(3)" title="Lihat detail" type="button">\<span class="material-symbols-outlined" style="font-size:18px;">visibility\</span>\</button>\</td>
+\</tr>
+\<tr id="row-4">
+\<td class="strong">Manajemen Talenta Nasional (MTN)\</td>
+\<td>Jawa Barat\</td>
+\<td>16 Agu 2026\</td>
+\<td id="status-cell-4">\<span class="badge approved">Disetujui\</span>\</td>
+\<td>\<button class="eye" onclick="showItemDetail(4)" title="Lihat detail" type="button">\<span class="material-symbols-outlined" style="font-size:18px;">visibility\</span>\</button>\</td>
+\</tr>
+\<tr id="row-5">
+\<td class="strong">Sertifikasi Profesi Kebudayaan\</td>
+\<td>Jawa Timur\</td>
+\<td>12 Agu 2026\</td>
+\<td id="status-cell-5">\<span class="badge pending">Menunggu validasi\</span>\</td>
+\<td>\<button class="eye" onclick="showItemDetail(5)" title="Lihat detail" type="button">\<span class="material-symbols-outlined" style="font-size:18px;">visibility\</span>\</button>\</td>
+\</tr>\</tbody>
+\</table>
+\</div>
+\</main>
+\<!-- Toast Notification -->
+\<div id="app-toast" style="display\:none;position\:fixed;top:24px;right:24px;z-index:9999;padding:14px 20px;border-radius:12px;background:#1FA971;color:#fff;font-weight:600;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,0.2);display\:none;align-items\:center;gap:10px;animation\:fadeIn 0.25s ease;">
+\<span class="material-symbols-outlined" style="font-size:20px;">check\_circle\</span>
+\<span id="toast-msg">Data berhasil diperbarui!\</span>
+\</div>
+\<!-- MODAL DETAIL DATA -->
+\<div id="modal-detail" style="display\:none;position\:fixed;inset:0;background\:rgba(36,31,24,0.65);backdrop-filter\:blur(4px);z-index:999;align-items\:center;justify-content\:center;padding:20px;">
+\<div style="background:#fff;border-radius:18px;max-width:860px;width:95%;box-shadow:0 24px 50px -10px rgba(0,0,0,0.3);overflow\:hidden;border:1px solid #E7DFCC;animation\:modalIn 0.2s ease;max-height:92vh;display\:flex;flex-direction\:column;">
+\<!-- Modal Header -->
+\<div style="padding:20px 24px;border-bottom:1px solid #E7DFCC;display\:flex;align-items\:center;justify-content\:space-between;background:#FAF8F3;">
+\<div style="display\:flex;align-items\:center;gap:10px;">
+\<span class="material-symbols-outlined" style="color:#C9A15A;">description\</span>
+\<h3 id="modal-title" style="margin:0;font-size:17px;font-weight:700;color\:var(--ink);">Detail Pengajuan &amp; Histori Input Data Admin\</h3>
+\</div>
+\<button onclick="closeDetailModal()" onmouseout="this.style.background='none';" onmouseover="this.style.background='#eee';" style="background\:none;border\:none;color\:var(--muted);cursor\:pointer;padding:4px;border-radius:6px;display\:flex;align-items\:center;justify-content\:center;" type="button">
+\<span class="material-symbols-outlined" style="font-size:20px;">close\</span>
+\</button>
+\</div>
+\<!-- Modal Body -->
+\<div id="modal-body" style="padding:24px;overflow-y\:auto;flex:1;background:#FCFAF7;">
+\<!-- Dynamically filled -->
+\</div>
+\<!-- Modal Footer -->
+\<div id="modal-actions" style="padding:16px 24px;border-top:1px solid #E7DFCC;background:#FAF8F3;display\:flex;align-items\:center;justify-content\:flex-end;gap:12px;">
+\<!-- Dynamically populated buttons -->
+\</div>
+\</div>
+\</div>
+\<!-- MODAL INPUT DATA BARU -->
+\<div id="modal-input" class="input-modal" aria-hidden="true">
+  \<div class="input-modal-card">
+    \<div class="input-modal-header">
+      \<div class="input-modal-title-wrap">
+        \<span class="material-symbols-outlined">add\_circle\</span>
+        \<div>
+          \<h3>Input Data Program\</h3>
+          \<p>Data yang diinput akan dikirim ke validator untuk diverifikasi sebelum tampil ke publik.\</p>
+        \</div>
+      \</div>
+      \<button class="input-close" onclick="closeInputModal()" type="button" aria-label="Tutup">
+        \<span class="material-symbols-outlined">close\</span>
+      \</button>
+    \</div>
 
-function bukaDetail(id) {
-  showItemDetail(id);
+    \<form id="new-data-form" onsubmit="handleCreateData(event)">
+      \<div class="form-section">
+        \<div class="form-section-title">
+          \<span class="material-symbols-outlined">description\</span>
+          \<h4>Informasi Program\</h4>
+        \</div>
+        \<div class="form-grid">
+          \<div class="form-field full">
+            \<label for="inp-program">Program \<span>\*\</span>\</label>
+            \<select id="inp-program" required>
+              \<option value="">Pilih program\</option>
+              \<option value="Bimbingan Teknis (Bimtek)">Bimbingan Teknis (Bimtek)\</option>
+              \<option value="Gita Bahana Nusantara (GBN)">Gita Bahana Nusantara (GBN)\</option>
+              \<option value="Pemajuan Kebudayaan Desa">Pemajuan Kebudayaan Desa\</option>
+              \<option value="Manajemen Talenta Nasional (MTN)">Manajemen Talenta Nasional (MTN)\</option>
+              \<option value="Sertifikasi Profesi Kebudayaan">Sertifikasi Profesi Kebudayaan\</option>
+              \<option value="Fasilitasi Bidang Kebudayaan (FBK)">Fasilitasi Bidang Kebudayaan (FBK)\</option>
+            \</select>
+          \</div>
+          \<div class="form-field">
+            \<label for="inp-kategori">Kategori Kegiatan \<span>\*\</span>\</label>
+            \<select id="inp-kategori" required>
+              \<option value="">Pilih kategori\</option>
+              \<option value="Peningkatan Kapasitas SDM">Peningkatan Kapasitas SDM\</option>
+              \<option value="Pemberdayaan Desa Adat & Komunitas">Pemberdayaan Desa Adat & Komunitas\</option>
+              \<option value="Paduan Suara & Orkestra Nasional">Paduan Suara & Orkestra Nasional\</option>
+              \<option value="Akselerasi Seniman Berbakat">Akselerasi Seniman Berbakat\</option>
+              \<option value="Standarisasi Kompetensi Tenaga Kebudayaan">Standarisasi Kompetensi Tenaga Kebudayaan\</option>
+              \<option value="Program Prioritas Kebudayaan">Program Prioritas Kebudayaan\</option>
+            \</select>
+          \</div>
+          \<div class="form-field">
+            \<label for="inp-tanggal">Tanggal Pelaksanaan \<span>\*\</span>\</label>
+            \<input id="inp-tanggal" type="date" required>
+          \</div>
+        \</div>
+      \</div>
+
+      \<div class="form-section">
+        \<div class="form-section-title">
+          \<span class="material-symbols-outlined">location\_on\</span>
+          \<h4>Lokasi &amp; Periode\</h4>
+        \</div>
+        \<div class="form-grid">
+          \<div class="form-field">
+            \<label for="inp-provinsi">Provinsi \<span>\*\</span>\</label>
+            \<select id="inp-provinsi" required>
+              \<option value="">Pilih provinsi\</option>
+              \<option>DI Yogyakarta\</option>\<option>Jawa Barat\</option>\<option>Jawa Tengah\</option>\<option>Jawa Timur\</option>
+              \<option>Bali\</option>\<option>NTT\</option>\<option>Sumatera Barat\</option>\<option>DKI Jakarta\</option>
+              \<option>Banten\</option>\<option>Sumatera Utara\</option>\<option>Sumatera Selatan\</option>\<option>Sulawesi Selatan\</option>
+              \<option>Kalimantan Timur\</option>\<option>Papua\</option>
+            \</select>
+          \</div>
+          \<div class="form-field">
+            \<label for="inp-kabupaten">Kabupaten / Kota \<span>\*\</span>\</label>
+            \<input id="inp-kabupaten" type="text" placeholder="Contoh: Kota Semarang" required>
+          \</div>
+          \<div class="form-field">
+            \<label for="inp-tahun">Tahun \<span>\*\</span>\</label>
+            \<input id="inp-tahun" type="number" min="2000" max="2100" placeholder="2026" required>
+          \</div>
+        \</div>
+      \</div>
+
+      \<div class="form-section">
+        \<div class="form-section-title">
+          \<span class="material-symbols-outlined">groups\</span>
+          \<h4>Data SDM / Penerima\</h4>
+        \</div>
+        \<div class="form-grid">
+          \<div class="form-field full">
+            \<label for="inp-nama">Nama Lengkap SDM \<span>\*\</span>\</label>
+            \<input id="inp-nama" type="text" placeholder="Masukkan nama lengkap SDM / penerima" required>
+          \</div>
+          \<div class="form-field">
+            \<label for="inp-peserta">Jumlah Peserta \<span>\*\</span>\</label>
+            \<input id="inp-peserta" type="number" min="0" placeholder="Contoh: 75" required>
+          \</div>
+          \<div class="form-field">
+            \<label for="inp-instansi">Instansi / Kelembagaan Terkait \<span>\*\</span>\</label>
+            \<input id="inp-instansi" type="text" placeholder="Nama instansi / lembaga" required>
+          \</div>
+        \</div>
+      \</div>
+
+      \<div class="form-section">
+        \<div class="form-section-title">
+          \<span class="material-symbols-outlined">attach\_file\</span>
+          \<h4>Dokumen Pendukung\</h4>
+        \</div>
+        \<label class="upload-box" for="inp-dokumen">
+          \<span class="material-symbols-outlined">cloud\_upload\</span>
+          \<strong>Klik untuk mengunggah dokumen\</strong>
+          \<small>PDF, DOC, DOCX, XLS, XLSX (maks. 10 MB)\</small>
+          \<span id="file-name" class="file-name">Belum ada file dipilih\</span>
+        \</label>
+        \<input id="inp-dokumen" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" hidden>
+      \</div>
+
+      \<div class="form-section">
+        \<div class="form-section-title">
+          \<span class="material-symbols-outlined">notes\</span>
+          \<h4>Keterangan &amp; Catatan\</h4>
+        \</div>
+        \<div class="form-field full">
+          \<label for="inp-desc">Keterangan / Catatan\</label>
+          \<textarea id="inp-desc" rows="4" placeholder="Tuliskan keterangan tambahan terkait data atau kegiatan...">\</textarea>
+        \</div>
+      \</div>
+
+      \<div class="form-actions">
+        \<button class="btn-form-secondary" onclick="closeInputModal()" type="button">Simpan Draf\</button>
+        \<button class="btn-form-primary" type="submit">
+          \<span class="material-symbols-outlined">send\</span>
+          Kirim untuk Validasi
+        \</button>
+      \</div>
+    \</form>
+  \</div>
+\</div>
+
+\<style>
+.input-modal{
+  display\:none;position\:fixed;inset:0;background\:rgba(36,31,24,.65);backdrop-filter\:blur(4px);
+  z-index:999;align-items\:center;justify-content\:center;padding:20px;overflow-y\:auto;
 }
+.input-modal-card{
+  background:#fff;border:1px solid var(--border);border-radius:18px;width:100%;max-width:760px;
+  max-height:94vh;overflow-y\:auto;box-shadow:0 24px 50px -10px rgba(0,0,0,.3);animation\:modalIn .2s ease;
+}
+.input-modal-header{
+  position\:sticky;top:0;z-index:2;padding:20px 24px;border-bottom:1px solid var(--border);
+  background:#FAF8F3;display\:flex;align-items\:flex-start;justify-content\:space-between;gap:16px;
+}
+.input-modal-title-wrap{display\:flex;align-items\:flex-start;gap:10px}.input-modal-title-wrap>.material-symbols-outlined{color\:var(--gold);font-size:24px;margin-top:1px}
+.input-modal-header h3{margin:0;font-family:'Poppins',sans-serif;font-size:18px;color\:var(--ink)}
+.input-modal-header p{margin:5px 0 0;color\:var(--muted);font-size:12.5px;line-height:1.5}
+.input-close{border:0;background\:none;color\:var(--muted);padding:4px;border-radius:7px;display\:flex;cursor\:pointer}.input-close\:hover{background:#eee}
+\#new-data-form{padding:24px;margin:0}.form-section{padding-bottom:22px;margin-bottom:22px;border-bottom:1px solid #EEE7D8}.form-section\:last-of-type{margin-bottom:0}
+.form-section-title{display\:flex;align-items\:center;gap:8px;margin-bottom:15px}.form-section-title .material-symbols-outlined{font-size:20px;color\:var(--gold-dark)}.form-section-title h4{margin:0;font-size:14px;font-weight:800;color\:var(--ink)}
+.form-grid{display\:grid;grid-template-columns:1fr 1fr;gap:16px}.form-field{min-width:0}.form-field.full{grid-column:1/-1}
+.form-field label{display\:block;font-size:12.5px;font-weight:700;color\:var(--ink);margin-bottom:6px}.form-field label span{color\:var(--red)}
+.form-field input,.form-field select,.form-field textarea{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:8px;font-family\:inherit;font-size:13.5px;color\:var(--ink);background:#FAF8F3;outline\:none;transition\:border-color .15s,box-shadow .15s}
+.form-field input\:focus,.form-field select\:focus,.form-field textarea\:focus{border-color\:var(--gold);box-shadow:0 0 0 3px rgba(201,161,90,.12)}.form-field textarea{resize\:vertical;min-height:100px}
+.upload-box{min-height:130px;border:1.5px dashed #D6C8AA;border-radius:12px;background:#FCFAF5;display\:flex;flex-direction\:column;align-items\:center;justify-content\:center;text-align\:center;padding:20px;cursor\:pointer;transition:.15s}.upload-box\:hover{background:#F8F2E7;border-color\:var(--gold)}
+.upload-box>.material-symbols-outlined{font-size:30px;color\:var(--gold-dark);margin-bottom:7px}.upload-box strong{font-size:13px;color\:var(--ink)}.upload-box small{font-size:11.5px;color\:var(--muted);margin-top:4px}.file-name{font-size:12px;color\:var(--green-dark);font-weight:700;margin-top:8px;max-width:100%;overflow\:hidden;text-overflow\:ellipsis;white-space\:nowrap}
+.form-actions{display\:flex;justify-content\:flex-end;gap:10px;padding-top:4px}.btn-form-secondary,.btn-form-primary{border-radius:8px;padding:10px 17px;font-family\:inherit;font-size:13px;font-weight:700;cursor\:pointer;display\:inline-flex;align-items\:center;justify-content\:center;gap:7px}.btn-form-secondary{border:1px solid var(--border);background:#fff;color\:var(--ink-soft)}.btn-form-secondary\:hover{background:#FAF8F3}.btn-form-primary{border:0;background\:var(--ink);color:#fff}.btn-form-primary\:hover{background:#3A3228}.btn-form-primary .material-symbols-outlined{font-size:17px}
+@keyframes modalIn{from{opacity:0;transform\:translateY(8px) scale(.99)}to{opacity:1;transform\:none}}
+@media(max-width:650px){.input-modal{padding:10px}.input-modal-card{max-height:96vh;border-radius:14px}.input-modal-header{padding:17px}.input-modal-header p{font-size:11.5px}.input-modal-title-wrap{gap:8px}#new-data-form{padding:17px}.form-grid{grid-template-columns:1fr}.form-field.full{grid-column\:auto}.form-actions{flex-direction\:column-reverse}.btn-form-secondary,.btn-form-primary{width:100%}}
+\</style>
 
-const originalShowItemDetail = window.showItemDetail;
-window.showItemDetail = function(id) {
-  const item = appData[id];
-  if(!item) return;
-  const modal = document.getElementById('modal-detail');
-  const body = document.getElementById('modal-body');
-  const actions = document.getElementById('modal-actions');
-
-  let statusBadgeHtml = '';
-  let bannerHtml = '';
-  let actionButtonsHtml = '';
-
-  if(item.status === 'approved') {
-    statusBadgeHtml = '<span class="badge approved" style="font-size:13px;padding:6px 14px;">✓ Disetujui (Terpublikasi Publik)</span>';
-    bannerHtml = `
-      <div style="background:#E1F6EC;border:1px solid #A3E0C4;border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;">
-        <span class="material-symbols-outlined" style="color:var(--green-dark);font-size:22px;">verified</span>
-        <div style="font-size:13.5px;color:#135C3E;line-height:1.5;">
-          <strong>Terverifikasi & Tayang:</strong> Seluruh data input admin di bawah ini telah disetujui validator dan tersinkronisasi otomatis dengan portal publik Data Kebudayaan.
-        </div>
-      </div>
-    `;
-    actionButtonsHtml = `
-      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
-      <button type="button" onclick="window.open('data-program.html', '_blank')" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--gold-dark);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
-        <span>Lihat di Portal Publik</span>
-        <span class="material-symbols-outlined" style="font-size:17px;">arrow_forward</span>
-      </button>
-    `;
-  } else if(item.status === 'rejected') {
-    statusBadgeHtml = '<span class="badge rejected" style="font-size:13px;padding:6px 14px;">✕ Ditolak (Perlu Revisi)</span>';
-    bannerHtml = `
-      <div style="background:#FBE4E0;border:1px solid #F5B9B0;border-radius:12px;padding:16px 18px;margin-bottom:20px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span class="material-symbols-outlined" style="color:var(--red);font-size:20px;">report_problem</span>
-          <strong style="color:var(--red);font-size:14px;">Catatan Alasan Penolakan dari Validator:</strong>
-        </div>
-        <p style="margin:0;font-size:13.5px;color:#7A1F16;line-height:1.5;">${item.catatan}</p>
-      </div>
-    `;
-    actionButtonsHtml = `
-      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
-      <button type="button" onclick="openEditForm(${item.id})" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
-        <span class="material-symbols-outlined" style="font-size:17px;">edit</span>
-        <span>✎ Edit &amp; Ajukan Kembali</span>
-      </button>
-    `;
-  } else {
-    statusBadgeHtml = '<span class="badge pending" style="font-size:13px;padding:6px 14px;">⏳ Menunggu validasi</span>';
-    bannerHtml = `
-      <div style="background:#FBEEDA;border:1px solid #F3D3A0;border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;">
-        <span class="material-symbols-outlined" style="color:var(--amber);font-size:22px;">pending_actions</span>
-        <div style="font-size:13.5px;color:#85550F;line-height:1.5;">
-          <strong>Dalam Proses Kurasi:</strong> Sedang dalam antrean verifikasi Direktorat BSLPK. Periksa detail isian data admin di bawah ini.
-        </div>
-      </div>
-    `;
-    actionButtonsHtml = `
-      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
-    `;
-  }
-
-  const histList = historyDataRegistry[id] || [{
-    tgl: item.diinput || 'Hari ini',
-    tahap: 'Entri Baru',
-    admin: item.diinputOleh || 'Admin BSLPK',
-    status: item.status || 'pending',
-    statusLabel: item.status === 'approved' ? 'Disetujui' : (item.status === 'rejected' ? 'Perlu Revisi' : 'Menunggu Validasi'),
-    fields: [
-      { field: 'Nama Program', val: item.program },
-      { field: 'Kategori', val: item.kategori || 'Program Prioritas' },
-      { field: 'Wilayah / Kota', val: item.wilayah },
-      { field: 'Nama SDM / PIC', val: 'Admin Penginput BSLPK' },
-      { field: 'Target / Peserta', val: item.penerima },
-      { field: 'Instansi / Sanggar', val: 'Dinas Kebudayaan Daerah Setempat' },
-      { field: 'Dokumen Terlampir', val: 'Berkas-Pengajuan-Program.pdf' },
-      { field: 'Catatan Admin', val: item.deskripsi }
-    ]
-  }];
-
-  let historyCardsHtml = '';
-  histList.forEach((log, index) => {
-    let statusBadgeClass = log.status === 'approved' ? 'approved' : (log.status === 'rejected' ? 'rejected' : 'pending');
-    let stageBadgeBg = index === 0 ? '#EBE3D0' : '#F0ECE1';
-    let rowsHtml = log.fields.map(f => `
-      <tr style="border-bottom:1px solid #EFE9DB;">
-        <td style="padding:10px 14px;font-weight:700;color:var(--ink-soft);width:210px;font-size:13px;background:#FDFBF7;">${f.field}</td>
-        <td style="padding:10px 14px;color:var(--ink);font-size:13.5px;line-height:1.5;">${f.val}</td>
-      </tr>
-    `).join('');
-
-    historyCardsHtml += `
-      <div style="background:#FFFFFF;border:1px solid #E7DFCC;border-radius:12px;margin-bottom:18px;overflow:hidden;box-shadow:0 2px 8px rgba(36,31,24,0.04);">
-        <div style="background:#F7F3EA;padding:12px 18px;border-bottom:1px solid #E7DFCC;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="display:inline-block;padding:3px 9px;background:${stageBadgeBg};border:1px solid #DDD3BF;border-radius:6px;font-size:11.5px;font-weight:800;color:var(--ink);text-transform:uppercase;">${log.tahap}</span>
-            <span style="font-size:13px;font-weight:700;color:var(--ink);display:inline-flex;align-items:center;gap:4px;">
-              <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold-dark);">calendar_today</span>
-              ${log.tgl}
-            </span>
-            <span style="color:var(--muted);font-size:12px;">| Oleh: <strong>${log.admin}</strong></span>
-          </div>
-          <span class="badge ${statusBadgeClass}" style="font-size:12px;padding:4px 10px;">${log.statusLabel}</span>
-        </div>
-        <div style="overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:13px;">
-            <thead>
-              <tr style="background:#FAF7F0;border-bottom:1px solid #E7DFCC;">
-                <th style="text-align:left;padding:8px 14px;font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.03em;">Kolom Data (Field)</th>
-                <th style="text-align:left;padding:8px 14px;font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.03em;">Nilai Data yang Diinputkan Admin</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${rowsHtml}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    `;
-  });
-
-  body.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
-      <div>
-        <h2 style="margin:0 0 6px;font-size:21px;font-family:'Poppins',sans-serif;color:var(--ink);">${item.program}</h2>
-        <div style="font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-          <span class="material-symbols-outlined" style="font-size:16px;color:var(--gold-dark);">location_on</span>
-          <span style="font-weight:600;color:var(--ink-soft);">${item.wilayah}</span>
-          <span>•</span>
-          <span>Diinput: ${item.diinput}</span>
-          <span>•</span>
-          <span style="color:var(--ink-soft);">Penginput: <strong>${item.diinputOleh}</strong></span>
-        </div>
-      </div>
-      <div>${statusBadgeHtml}</div>
-    </div>
-    ${bannerHtml}
-    <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 0 12px;">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <span class="material-symbols-outlined" style="color:var(--gold-dark);font-size:22px;">history_edu</span>
-        <h3 style="margin:0;font-size:15.5px;font-weight:800;color:var(--ink);">Histori Data yang Telah Diinput Admin</h3>
-      </div>
-      <span style="font-size:12px;color:var(--muted);background:#F3EEDF;padding:4px 10px;border-radius:20px;font-weight:600;">Total Riwayat: ${histList.length} Entri</span>
-    </div>
-    <div>
-      ${historyCardsHtml}
-    </div>
-  `;
-
-  actions.innerHTML = actionButtonsHtml;
-  modal.style.display = 'flex';
-};
-</script>
-<script>
-const appData = {
-  1: {
-    id: 1,
-    program: 'Bimbingan Teknis (Bimtek)',
-    wilayah: 'Jawa Tengah',
-    diinput: '21 Agu 2026',
-    diinputOleh: 'Admin Balai Pelestarian Kebudayaan Wilayah X',
-    kategori: 'Peningkatan Kapasitas SDM',
-    penerima: '75 Pegiat Cagar Budaya & Guru Seni Budaya',
-    status: 'pending',
-    catatan: 'Sedang dalam antrean kurasi tim validator Direktorat BSLPK.',
-    deskripsi: 'Pelatihan inventarisasi dan pendokumentasian warisan budaya takbenda berbasis digital.'
-  },
-  2: {
-    id: 2,
-    program: 'Gita Bahana Nusantara (GBN)',
-    wilayah: 'Bali',
-    diinput: '18 Agu 2026',
-    diinputOleh: 'Tim Seleksi GBN Provinsi Bali',
-    kategori: 'Paduan Suara & Orkestra Nasional',
-    penerima: '4 Vokalis Terbaik (Sopran, Alto, Tenor, Bass)',
-    status: 'approved',
-    catatan: 'Telah lolos verifikasi komprehensif tanpa catatan revisi.',
-    deskripsi: 'Hasil seleksi audisi provinsi untuk tim paduan suara peringatan HUT Kemerdekaan RI di Istana Merdeka.'
-  },
-  3: {
-    id: 3,
-    program: 'Pemajuan Kebudayaan Desa',
-    wilayah: 'NTT',
-    diinput: '20 Agu 2026',
-    diinputOleh: 'Dinas Kebudayaan Kab. Manggarai Barat',
-    kategori: 'Pemberdayaan Desa Adat & Komunitas',
-    penerima: '3 Desa Budaya',
-    status: 'rejected',
-    catatan: 'Dokumen SK verifikasi tidak terbaca dan rincian instansi sanggar belum lengkap.',
-    deskripsi: 'Program pemetaan potensi objek pemajuan kebudayaan (OPK) di 3 desa penyangga destinasi prioritas.'
-  },
-  4: {
-    id: 4,
-    program: 'Manajemen Talenta Nasional (MTN)',
-    wilayah: 'Jawa Barat',
-    diinput: '16 Agu 2026',
-    diinputOleh: 'Koordinator Riset Kebudayaan',
-    kategori: 'Akselerasi Seniman Berbakat',
-    penerima: '32 Penerima Fasilitasi Inkubasi Karya',
-    status: 'approved',
-    catatan: 'Lolos uji administrasi dan kelayakan teknis kurator independen.',
-    deskripsi: 'Program mentoring dan inkubasi perupa muda dan musisi etnik kontemporer nusantara.'
-  },
-  5: {
-    id: 5,
-    program: 'Sertifikasi Profesi Kebudayaan',
-    wilayah: 'Jawa Timur',
-    diinput: '12 Agu 2026',
-    diinputOleh: 'LSP Kebudayaan Kemendikbudristek/Kemenbud',
-    kategori: 'Standarisasi Kompetensi',
-    penerima: '120 Asesor & Kurator Pameran',
-    status: 'pending',
-    catatan: 'Sedang dalam antrean kurasi tim validator.',
-    deskripsi: 'Uji kompetensi skema kurator museum dan registrator cagar budaya tingkat madya.'
-  }
-};
-
+\<script>
+function bukaDetail(id) { showItemDetail(id); }
 function showToast(msg) {
   const toast = document.getElementById('app-toast');
   document.getElementById('toast-msg').innerText = msg;
   toast.style.display = 'flex';
   setTimeout(() => { toast.style.display = 'none'; }, 3800);
 }
-
-function showItemDetail(id) {
-  const item = appData[id];
-  if(!item) return;
-  const modal = document.getElementById('modal-detail');
-  const body = document.getElementById('modal-body');
-  const actions = document.getElementById('modal-actions');
-
-  let statusBadgeHtml = '';
-  let bannerHtml = '';
-  let actionButtonsHtml = '';
-
-  if(item.status === 'approved') {
-    statusBadgeHtml = '<span class="badge approved" style="font-size:13px;padding:6px 14px;">✓ Disetujui (Terpublikasi Publik)</span>';
-    bannerHtml = `
-      <div style="background:#E1F6EC;border:1px solid #A3E0C4;border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;">
-        <span class="material-symbols-outlined" style="color:var(--green-dark);font-size:22px;">verified</span>
-        <div style="font-size:13.5px;color:#135C3E;line-height:1.5;">
-          <strong>Terverifikasi & Tayang:</strong> Data ini telah diverifikasi dan tayang secara otomatis pada portal publik Data Program &amp; Statistik Kebudayaan.
-        </div>
-      </div>
-    `;
-    actionButtonsHtml = `
-      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
-      <button type="button" onclick="window.open('data-program.html', '_blank')" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--gold-dark);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
-        <span>Lihat di Portal Publik</span>
-        <span class="material-symbols-outlined" style="font-size:17px;">arrow_forward</span>
-      </button>
-    `;
-  } else if(item.status === 'rejected') {
-    statusBadgeHtml = '<span class="badge rejected" style="font-size:13px;padding:6px 14px;">✕ Ditolak (Perlu Revisi)</span>';
-    bannerHtml = `
-      <div style="background:#FBE4E0;border:1px solid #F5B9B0;border-radius:12px;padding:16px 18px;margin-bottom:20px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span class="material-symbols-outlined" style="color:var(--red);font-size:20px;">report_problem</span>
-          <strong style="color:var(--red);font-size:14px;">Catatan Alasan Penolakan dari Validator:</strong>
-        </div>
-        <p style="margin:0;font-size:13.5px;color:#7A1F16;line-height:1.5;">${item.catatan}</p>
-      </div>
-    `;
-    actionButtonsHtml = `
-      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
-      <button type="button" onclick="openEditForm(${item.id})" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
-        <span class="material-symbols-outlined" style="font-size:17px;">edit</span>
-        <span>✎ Edit &amp; Ajukan Kembali</span>
-      </button>
-    `;
-  } else {
-    statusBadgeHtml = '<span class="badge pending" style="font-size:13px;padding:6px 14px;">⏳ Menunggu validasi</span>';
-    bannerHtml = `
-      <div style="background:#FBEEDA;border:1px solid #F3D3A0;border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;">
-        <span class="material-symbols-outlined" style="color:var(--amber);font-size:22px;">pending_actions</span>
-        <div style="font-size:13.5px;color:#85550F;line-height:1.5;">
-          <strong>Dalam Proses Kurasi:</strong> Sedang dalam antrean kurasi tim validator. Pemeriksaan dokumen berlangsung maksimal 3 hari kerja.
-        </div>
-      </div>
-    `;
-    actionButtonsHtml = `
-      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
-    `;
-  }
-
-  body.innerHTML = `
-    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
-      <div>
-        <h2 style="margin:0 0 6px;font-size:20px;font-family:'Poppins',sans-serif;color:var(--ink);">${item.program}</h2>
-        <div style="font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:8px;">
-          <span class="material-symbols-outlined" style="font-size:16px;">location_on</span>
-          <span>${item.wilayah}</span>
-          <span>•</span>
-          <span>Diinput: ${item.diinput}</span>
-        </div>
-      </div>
-      <div>${statusBadgeHtml}</div>
-    </div>
-    ${bannerHtml}
-    <div style="background:#FAF8F3;border:1px solid #E7DFCC;border-radius:12px;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
-      <div>
-        <small style="color:var(--muted);display:block;font-size:11.5px;font-weight:600;">DIINPUT OLEH</small>
-        <span style="font-size:13.5px;font-weight:600;color:var(--ink);">${item.diinputOleh}</span>
-      </div>
-      <div>
-        <small style="color:var(--muted);display:block;font-size:11.5px;font-weight:600;">KATEGORI PROGRAM</small>
-        <span style="font-size:13.5px;font-weight:600;color:var(--ink);">${item.kategori}</span>
-      </div>
-      <div style="grid-column:1 / -1;">
-        <small style="color:var(--muted);display:block;font-size:11.5px;font-weight:600;">TARGET PENERIMA / SDM TERLIBAT</small>
-        <span style="font-size:13.5px;font-weight:600;color:var(--ink);">${item.penerima}</span>
-      </div>
-    </div>
-    <div>
-      <h4 style="margin:0 0 6px;font-size:13.5px;font-weight:700;color:var(--ink);">Rincian Ringkasan Kegiatan</h4>
-      <p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-soft);">${item.deskripsi}</p>
-    </div>
-  `;
-
-  actions.innerHTML = actionButtonsHtml;
-  modal.style.display = 'flex';
-}
-
-function closeDetailModal() {
-  document.getElementById('modal-detail').style.display = 'none';
-}
-
-function openEditForm(id) {
-  const item = appData[id];
-  if(!item) return;
-  const body = document.getElementById('modal-body');
-  const actions = document.getElementById('modal-actions');
-
-  body.innerHTML = `
-    <div style="background:#FBE4E0;border:1px solid #F5B9B0;border-radius:10px;padding:12px 16px;margin-bottom:16px;">
-      <strong style="color:var(--red);font-size:13px;">Catatan Validator:</strong>
-      <p style="margin:4px 0 0;font-size:13px;color:#7A1F16;">${item.catatan}</p>
-    </div>
-    <form id="edit-item-form" onsubmit="handleSubmitRevision(event, ${item.id})">
-      <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Program</label>
-        <input type="text" value="${item.program}" disabled style="width:100%;padding:9px 12px;background:#F0EDE4;border:1px solid #DDD;border-radius:8px;font-size:13.5px;color:#666;">
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
-        <div>
-          <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Wilayah</label>
-          <input type="text" id="edit-wilayah" value="${item.wilayah}" required style="width:100%;padding:9px 12px;border:1px solid #E7DFCC;border-radius:8px;font-size:13.5px;background:#FAF8F3;">
-        </div>
-        <div>
-          <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Target / Sasaran</label>
-          <input type="text" id="edit-penerima" value="${item.penerima}" required style="width:100%;padding:9px 12px;border:1px solid #E7DFCC;border-radius:8px;font-size:13.5px;background:#FAF8F3;">
-        </div>
-      </div>
-      <div style="margin-bottom:14px;">
-        <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Kelengkapan Dokumen / Keterangan Perbaikan</label>
-        <textarea id="edit-desc" rows="3" required style="width:100%;padding:9px 12px;border:1px solid #E7DFCC;border-radius:8px;font-size:13.5px;background:#FAF8F3;">${item.deskripsi} [Revisi: Dokumen SK telah diperbarui dan terlampir resmi stempel dinas].</textarea>
-      </div>
-    </form>
-  `;
-
-  actions.innerHTML = `
-    <button type="button" onclick="showItemDetail(${item.id})" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Batal</button>
-    <button type="button" onclick="document.getElementById('edit-item-form').requestSubmit()" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
-      <span class="material-symbols-outlined" style="font-size:17px;">send</span>
-      <span>Kirim Ulang untuk Validasi</span>
-    </button>
-  `;
-}
-
-function handleSubmitRevision(e, id) {
-  e.preventDefault();
-  const item = appData[id];
-  if(!item) return;
-  item.status = 'pending';
-  item.wilayah = document.getElementById('edit-wilayah').value;
-  item.penerima = document.getElementById('edit-penerima').value;
-  item.deskripsi = document.getElementById('edit-desc').value;
-  item.catatan = 'Sedang dalam antrean kurasi tim validator setelah pengajuan ulang revisi.';
-
-  // update UI table row
-  const cell = document.getElementById('status-cell-' + id);
-  if(cell) {
-    cell.innerHTML = '<span class="badge pending">Menunggu validasi</span>';
-  }
-
-  // update metric badges count
-  const elBad = document.getElementById('stat-rejected');
-  const elPending = document.getElementById('stat-pending');
-  if(elBad && elPending) {
-    elBad.innerText = Math.max(0, parseInt(elBad.innerText) - 1);
-    elPending.innerText = parseInt(elPending.innerText) + 1;
-  }
-
-  closeDetailModal();
-  showToast('✓ Berhasil diajukan kembali! Status data diubah menjadi Menunggu Validasi.');
-}
-
 function openInputModal() {
-  document.getElementById('modal-input').style.display = 'flex';
+  const modal = document.getElementById('modal-input');
+  modal.style.display = 'flex';
+  modal.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeInputModal() {
+  const modal = document.getElementById('modal-input');
+  modal.style.display = 'none';
+  modal.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
 }
 
-function closeInputModal() {
-  document.getElementById('modal-input').style.display = 'none';
-}
+document.getElementById('inp-dokumen').addEventListener('change', function(){
+  document.getElementById('file-name').textContent = this.files.length ? this.files[0].name : 'Belum ada file dipilih';
+});
+
+document.getElementById('modal-input').addEventListener('click', function(e){
+  if(e.target === this) closeInputModal();
+});
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape' && document.getElementById('modal-input').style.display === 'flex') closeInputModal();
+});
 
 function handleCreateData(e) {
   e.preventDefault();
   const prog = document.getElementById('inp-program').value;
-  const reg = document.getElementById('inp-wilayah').value;
-  const target = document.getElementById('inp-target').value;
-  const desc = document.getElementById('inp-desc').value;
+  const kategori = document.getElementById('inp-kategori').value;
+  const provinsi = document.getElementById('inp-provinsi').value;
+  const kabupaten = document.getElementById('inp-kabupaten').value;
+  const tanggal = document.getElementById('inp-tanggal').value;
+  const tahun = document.getElementById('inp-tahun').value;
+  const nama = document.getElementById('inp-nama').value;
+  const peserta = document.getElementById('inp-peserta').value;
+  const instansi = document.getElementById('inp-instansi').value;
+  const desc = document.getElementById('inp-desc').value || 'Data program baru diajukan oleh Admin BSLPK.';
+  const fileInput = document.getElementById('inp-dokumen');
+  const fileName = fileInput.files.length ? fileInput.files[0].name : 'Tidak ada dokumen';
   const newId = Object.keys(appData).length + 1;
 
   appData[newId] = {
-    id: newId,
-    program: prog,
-    wilayah: reg,
-    diinput: 'Hari ini',
-    diinputOleh: 'Admin BSLPK (Anda)',
-    kategori: 'Program Prioritas Kebudayaan',
-    penerima: target,
-    status: 'pending',
-    catatan: 'Sedang dalam antrean kurasi tim validator.',
-    deskripsi: desc
+    id\:newId, program\:prog, wilayah\:provinsi + (kabupaten ? ' (' + kabupaten + ')' : ''), diinput:'Hari ini',
+    diinputOleh:'Admin BSLPK (Anda)', kategori\:kategori, penerima\:peserta + ' Peserta', status:'pending',
+    catatan:'Sedang dalam antrean kurasi tim validator.', deskripsi\:desc,
+    tanggalPelaksanaan\:tanggal, tahun\:tahun, namaSDM\:nama, instansi\:instansi, dokumen\:fileName
   };
 
   const tbody = document.querySelector('.table-card tbody');
   const tr = document.createElement('tr');
   tr.id = 'row-' + newId;
-  tr.innerHTML = `
-    <td class="strong">${prog}</td>
-    <td>${reg}</td>
-    <td>Hari ini</td>
-    <td id="status-cell-${newId}"><span class="badge pending">Menunggu validasi</span></td>
-    <td><button type="button" class="eye" title="Lihat detail" onclick="showItemDetail(${newId})"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
-  `;
+  tr.innerHTML = \`
+    \<td class="strong">${prog}\</td>
+    \<td>${provinsi}\</td>
+    \<td>Hari ini\</td>
+    \<td id="status-cell-${newId}">\<span class="badge pending">Menunggu validasi\</span>\</td>
+    \<td>\<button type="button" class="eye" title="Lihat detail" onclick="showItemDetail(${newId})">\<span class="material-symbols-outlined" style="font-size:18px;">visibility\</span>\</button>\</td>
+  \`;
   tbody.insertBefore(tr, tbody.firstChild);
 
   const elTotal = document.getElementById('stat-total');
   const elPending = document.getElementById('stat-pending');
-  if(elTotal) elTotal.innerText = '1.241';
+  if(elTotal) elTotal.innerText = (parseInt(elTotal.innerText.replace(/\\./g,'')) + 1).toLocaleString('id-ID');
   if(elPending) elPending.innerText = parseInt(elPending.innerText) + 1;
 
   document.getElementById('new-data-form').reset();
+  document.getElementById('file-name').textContent = 'Belum ada file dipilih';
   closeInputModal();
   showToast('✓ Data program baru berhasil ditambahkan dan dikirim ke tim validasi!');
 }
-</script><footer class="site-footer">
-<div class="footer-inner">
-<div class="footer-brand">
-<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g fill="#C9A15A">
-<path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
-<circle cx="24" cy="24" r="3.4"></circle>
-</g>
-</svg>
-<div class="footer-brand-text">
-<h4>Kementerian Kebudayaan<br/>Republik Indonesia</h4>
-<p>Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat BSLPK</p>
-</div>
-</div>
-<div class="footer-col">
-<h5>Tautan</h5>
-<a href="#">Beranda</a>
-<a href="#">Statistik Program</a>
-<a href="#">Data Program</a>
-<a href="#">Tentang</a>
-</div>
-<div class="footer-col">
-<h5>Bantuan</h5>
-<a href="#">Panduan (Juknis)</a>
-<a href="#">FAQ</a>
-<a href="#">Dasar Hukum</a>
-</div>
-<div class="footer-col">
-<h5>Kontak</h5>
-<div class="footer-contact-item">✉️ kontak@kemenbud.go.id</div>
-<div class="footer-contact-item">☎️ Call center 178</div>
-</div>
-</div>
-<div class="footer-bottom">
-<span>© 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.</span>
-<div class="social-dots"><span></span><span></span><span></span><span></span></div>
-</div>
-</footer>
-</body>
-</html>
+\</script>\<footer class="site-footer">
+\<div class="footer-inner">
+\<div class="footer-brand">
+\<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+\<g fill="#C9A15A">
+\<path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z">\</path>
+\<circle cx="24" cy="24" r="3.4">\</circle>
+\</g>
+\</svg>
+\<div class="footer-brand-text">
+\<h4>Kementerian Kebudayaan\<br/>Republik Indonesia\</h4>
+\<p>Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat BSLPK\</p>
+\</div>
+\</div>
+\<div class="footer-col">
+\<h5>Tautan\</h5>
+\<a href="#">Beranda\</a>
+\<a href="#">Statistik Program\</a>
+\<a href="#">Data Program\</a>
+\<a href="#">Tentang\</a>
+\</div>
+\<div class="footer-col">
+\<h5>Bantuan\</h5>
+\<a href="#">Panduan (Juknis)\</a>
+\<a href="#">FAQ\</a>
+\<a href="#">Dasar Hukum\</a>
+\</div>
+\<div class="footer-col">
+\<h5>Kontak\</h5>
+\<div class="footer-contact-item">✉️ kontak\@kemenbud.go.id\</div>
+\<div class="footer-contact-item">☎️ Call center 178\</div>
+\</div>
+\</div>
+\<div class="footer-bottom">
+\<span>© 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.\</span>
+\<div class="social-dots">\<span>\</span>\<span>\</span>\<span>\</span>\<span>\</span>\</div>
+\</div>
+\</footer>
+\</body>
+\</html>
