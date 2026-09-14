@@ -136,15 +136,15 @@ td.strong{color:var(--ink);font-weight:700;}
 </svg>
 <div class="brand-text">Kementerian Kebudayaan<small>Republik Indonesia</small></div>
 </div>
-<nav class="nav"><a class="active" href="#">Beranda</a>
-<a href="#" onclick="window.location.href='#'">Data Program</a>
-</nav>
+<nav class="nav"><a class="active" href="beranda-admin.html">Beranda</a>
+<a href="data-program-admin" onclick="window.location.href='#'">Data Program</a>
+<a href="#" onclick="openInputModal(); return false;">Input Data</a></nav>
 <div style="display:flex;align-items:center;gap:12px;">
 <div style="display:flex;align-items:center;gap:8px;padding:5px 12px;background:#F7F3EA;border:1px solid #E7DFCC;border-radius:999px;">
 <span style="width:24px;height:24px;border-radius:50%;background:#C9A15A;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">A</span>
 <span style="font-size:13px;font-weight:700;color:var(--ink);">Admin BSLPK</span>
 </div>
-<a href="#" onclick="if(confirm('Apakah Anda yakin ingin keluar dari sistem?')){ alert('Anda telah keluar.'); } return false;" onmouseout="this.style.background='#FFF5F5';this.style.color='#C0392B';" onmouseover="this.style.background='#C0392B';this.style.color='#fff';" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #F5C6CB;background:#FFF5F5;color:#C0392B;padding:7px 15px;border-radius:999px;font-weight:700;font-size:13px;transition:all 0.15s;">
+<a href="index.html" onclick="if(confirm('Apakah Anda yakin ingin keluar dari sistem?')){ alert('Anda telah keluar.'); } return false;" onmouseout="this.style.background='#FFF5F5';this.style.color='#C0392B';" onmouseover="this.style.background='#C0392B';this.style.color='#fff';" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #F5C6CB;background:#FFF5F5;color:#C0392B;padding:7px 15px;border-radius:999px;font-weight:700;font-size:13px;transition:all 0.15s;">
 <span class="material-symbols-outlined" style="font-size:17px;">logout</span>
 <span>Logout</span>
 </a>
@@ -185,6 +185,10 @@ td.strong{color:var(--ink);font-weight:700;}
 </div></div>
 <div class="page-head">
 <h1 style="font-size:18px;">Data terbaru diinput</h1>
+<button class="btn-dark" onclick="openInputModal()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(36,31,24,0.15);transition:transform 0.15s, background 0.15s;" type="button">
+<span class="material-symbols-outlined" style="font-size:18px;">add</span>
+<span>Input data baru</span>
+</button>
 </div>
 <div class="card table-card">
 <table>
@@ -264,7 +268,58 @@ td.strong{color:var(--ink);font-weight:700;}
 </div>
 </div>
 <!-- MODAL INPUT DATA BARU -->
-<script>
+<div id="modal-input" style="display:none;position:fixed;inset:0;background:rgba(36,31,24,0.65);backdrop-filter:blur(4px);z-index:999;align-items:center;justify-content:center;padding:20px;">
+<div style="background:#fff;border-radius:18px;max-width:620px;width:100%;box-shadow:0 24px 50px -10px rgba(0,0,0,0.3);overflow:hidden;border:1px solid #E7DFCC;">
+<div style="padding:20px 24px;border-bottom:1px solid #E7DFCC;display:flex;align-items:center;justify-content:space-between;background:#FAF8F3;">
+<div style="display:flex;align-items:center;gap:10px;">
+<span class="material-symbols-outlined" style="color:#C9A15A;">add_circle</span>
+<h3 style="margin:0;font-size:17px;font-weight:700;color:var(--ink);">Input Data Program Baru</h3>
+</div>
+<button onclick="closeInputModal()" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;" type="button">
+<span class="material-symbols-outlined" style="font-size:20px;">close</span>
+</button>
+</div>
+<form id="new-data-form" onsubmit="handleCreateData(event)" style="padding:24px;margin:0;">
+<div style="margin-bottom:16px;">
+<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Nama Program Kebudayaan</label>
+<select id="inp-program" required="" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;">
+<option value="Bimbingan Teknis (Bimtek)">Bimbingan Teknis (Bimtek)</option>
+<option value="Gita Bahana Nusantara (GBN)">Gita Bahana Nusantara (GBN)</option>
+<option value="Pemajuan Kebudayaan Desa">Pemajuan Kebudayaan Desa</option>
+<option value="Manajemen Talenta Nasional (MTN)">Manajemen Talenta Nasional (MTN)</option>
+<option value="Sertifikasi Profesi Kebudayaan">Sertifikasi Profesi Kebudayaan</option>
+<option value="Fasilitasi Bidang Kebudayaan (FBK)">Fasilitasi Bidang Kebudayaan (FBK)</option>
+</select>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+<div>
+<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Wilayah / Provinsi</label>
+<select id="inp-wilayah" required="" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;">
+<option value="DI Yogyakarta">DI Yogyakarta</option>
+<option value="Jawa Barat">Jawa Barat</option>
+<option value="Jawa Tengah">Jawa Tengah</option>
+<option value="Jawa Timur">Jawa Timur</option>
+<option value="Bali">Bali</option>
+<option value="NTT">NTT</option>
+<option value="Sumatera Barat">Sumatera Barat</option>
+</select>
+</div>
+<div>
+<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Target Peserta / Penerima</label>
+<input id="inp-target" placeholder="cth: 60 Peserta Sanggar" required="" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;" type="text"/>
+</div>
+</div>
+<div style="margin-bottom:20px;">
+<label style="display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink);">Deskripsi Ringkas Kegiatan</label>
+<textarea id="inp-desc" placeholder="Tuliskan rincian penyelenggaraan kegiatan..." required="" rows="3" style="width:100%;padding:10px 14px;border:1px solid #E7DFCC;border-radius:8px;font-family:inherit;font-size:14px;background:#FAF8F3;"></textarea>
+</div>
+<div style="display:flex;justify-content:flex-end;gap:12px;">
+<button onclick="closeInputModal()" style="padding:10px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;" type="button">Batal</button>
+<button style="padding:10px 20px;border:none;background:var(--ink);color:#fff;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;" type="submit">Simpan &amp; Kirim Validasi</button>
+</div>
+</form>
+</div>
+</div><script>
 const historyDataRegistry = {
   1: [
     {
