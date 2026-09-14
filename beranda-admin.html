@@ -137,7 +137,7 @@ td.strong{color:var(--ink);font-weight:700;}
 <div class="brand-text">Kementerian Kebudayaan<small>Republik Indonesia</small></div>
 </div>
 <nav class="nav"><a class="active" href="beranda-admin.html">Beranda</a>
-<a href="data-program-admin" onclick="window.location.href='#'">Data Program</a>
+<a href="data-program-admin.html">Data Program</a>
 </nav>
 <div style="display:flex;align-items:center;gap:12px;">
 <div style="display:flex;align-items:center;gap:8px;padding:5px 12px;background:#F7F3EA;border:1px solid #E7DFCC;border-radius:999px;">
@@ -449,6 +449,250 @@ td.strong{color:var(--ink);font-weight:700;}
 
 <script>
 function bukaDetail(id) { showItemDetail(id); }
+const appData = {
+  1: {
+    id: 1,
+    program: 'Bimbingan Teknis (Bimtek)',
+    wilayah: 'Jawa Tengah',
+    diinput: '21 Agu 2026',
+    diinputOleh: 'Admin Balai Pelestarian Kebudayaan Wilayah X',
+    kategori: 'Peningkatan Kapasitas SDM',
+    penerima: '75 Pegiat Cagar Budaya & Guru Seni Budaya',
+    status: 'pending',
+    catatan: 'Sedang dalam antrean kurasi tim validator Direktorat BSLPK.',
+    deskripsi: 'Pelatihan inventarisasi dan pendokumentasian warisan budaya takbenda berbasis digital.'
+  },
+  2: {
+    id: 2,
+    program: 'Gita Bahana Nusantara (GBN)',
+    wilayah: 'Bali',
+    diinput: '18 Agu 2026',
+    diinputOleh: 'Tim Seleksi GBN Provinsi Bali',
+    kategori: 'Paduan Suara & Orkestra Nasional',
+    penerima: '4 Vokalis Terbaik (Sopran, Alto, Tenor, Bass)',
+    status: 'approved',
+    catatan: 'Telah lolos verifikasi komprehensif tanpa catatan revisi.',
+    deskripsi: 'Hasil seleksi audisi provinsi untuk tim paduan suara peringatan HUT Kemerdekaan RI di Istana Merdeka.'
+  },
+  3: {
+    id: 3,
+    program: 'Pemajuan Kebudayaan Desa',
+    wilayah: 'NTT',
+    diinput: '20 Agu 2026',
+    diinputOleh: 'Dinas Kebudayaan Kab. Manggarai Barat',
+    kategori: 'Pemberdayaan Desa Adat & Komunitas',
+    penerima: '3 Desa Budaya',
+    status: 'rejected',
+    catatan: 'Dokumen SK verifikasi tidak terbaca dan rincian instansi sanggar belum lengkap.',
+    deskripsi: 'Program pemetaan potensi objek pemajuan kebudayaan (OPK) di 3 desa penyangga destinasi prioritas.'
+  },
+  4: {
+    id: 4,
+    program: 'Manajemen Talenta Nasional (MTN)',
+    wilayah: 'Jawa Barat',
+    diinput: '16 Agu 2026',
+    diinputOleh: 'Koordinator Riset Kebudayaan',
+    kategori: 'Akselerasi Seniman Berbakat',
+    penerima: '32 Penerima Fasilitasi Inkubasi Karya',
+    status: 'approved',
+    catatan: 'Lolos uji administrasi dan kelayakan teknis kurator independen.',
+    deskripsi: 'Program mentoring dan inkubasi perupa muda dan musisi etnik kontemporer nusantara.'
+  },
+  5: {
+    id: 5,
+    program: 'Sertifikasi Profesi Kebudayaan',
+    wilayah: 'Jawa Timur',
+    diinput: '12 Agu 2026',
+    diinputOleh: 'LSP Kebudayaan Kemendikbudristek/Kemenbud',
+    kategori: 'Standarisasi Kompetensi',
+    penerima: '120 Asesor & Kurator Pameran',
+    status: 'pending',
+    catatan: 'Sedang dalam antrean kurasi tim validator.',
+    deskripsi: 'Uji kompetensi skema kurator museum dan registrator cagar budaya tingkat madya.'
+  }
+};
+
+function showToast(msg) {
+  const toast = document.getElementById('app-toast');
+  document.getElementById('toast-msg').innerText = msg;
+  toast.style.display = 'flex';
+  setTimeout(() => { toast.style.display = 'none'; }, 3800);
+}
+
+function showItemDetail(id) {
+  const item = appData[id];
+  if(!item) return;
+  const modal = document.getElementById('modal-detail');
+  const body = document.getElementById('modal-body');
+  const actions = document.getElementById('modal-actions');
+
+  let statusBadgeHtml = '';
+  let bannerHtml = '';
+  let actionButtonsHtml = '';
+
+  if(item.status === 'approved') {
+    statusBadgeHtml = '<span class="badge approved" style="font-size:13px;padding:6px 14px;">✓ Disetujui (Terpublikasi Publik)</span>';
+    bannerHtml = `
+      <div style="background:#E1F6EC;border:1px solid #A3E0C4;border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;">
+        <span class="material-symbols-outlined" style="color:var(--green-dark);font-size:22px;">verified</span>
+        <div style="font-size:13.5px;color:#135C3E;line-height:1.5;">
+          <strong>Terverifikasi & Tayang:</strong> Data ini telah diverifikasi dan tayang secara otomatis pada portal publik Data Program &amp; Statistik Kebudayaan.
+        </div>
+      </div>
+    `;
+    actionButtonsHtml = `
+      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
+      <button type="button" onclick="window.open('data-program.html', '_blank')" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--gold-dark);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
+        <span>Lihat di Portal Publik</span>
+        <span class="material-symbols-outlined" style="font-size:17px;">arrow_forward</span>
+      </button>
+    `;
+  } else if(item.status === 'rejected') {
+    statusBadgeHtml = '<span class="badge rejected" style="font-size:13px;padding:6px 14px;">✕ Ditolak (Perlu Revisi)</span>';
+    bannerHtml = `
+      <div style="background:#FBE4E0;border:1px solid #F5B9B0;border-radius:12px;padding:16px 18px;margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+          <span class="material-symbols-outlined" style="color:var(--red);font-size:20px;">report_problem</span>
+          <strong style="color:var(--red);font-size:14px;">Catatan Alasan Penolakan dari Validator:</strong>
+        </div>
+        <p style="margin:0;font-size:13.5px;color:#7A1F16;line-height:1.5;">${item.catatan}</p>
+      </div>
+    `;
+    actionButtonsHtml = `
+      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
+      <button type="button" onclick="openEditForm(${item.id})" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
+        <span class="material-symbols-outlined" style="font-size:17px;">edit</span>
+        <span>✎ Edit &amp; Ajukan Kembali</span>
+      </button>
+    `;
+  } else {
+    statusBadgeHtml = '<span class="badge pending" style="font-size:13px;padding:6px 14px;">⏳ Menunggu validasi</span>';
+    bannerHtml = `
+      <div style="background:#FBEEDA;border:1px solid #F3D3A0;border-radius:12px;padding:14px 18px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;">
+        <span class="material-symbols-outlined" style="color:var(--amber);font-size:22px;">pending_actions</span>
+        <div style="font-size:13.5px;color:#85550F;line-height:1.5;">
+          <strong>Dalam Proses Kurasi:</strong> Sedang dalam antrean kurasi tim validator. Pemeriksaan dokumen berlangsung maksimal 3 hari kerja.
+        </div>
+      </div>
+    `;
+    actionButtonsHtml = `
+      <button type="button" onclick="closeDetailModal()" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Tutup</button>
+    `;
+  }
+
+  body.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;">
+      <div>
+        <h2 style="margin:0 0 6px;font-size:20px;font-family:'Poppins',sans-serif;color:var(--ink);">${item.program}</h2>
+        <div style="font-size:13.5px;color:var(--muted);display:flex;align-items:center;gap:8px;">
+          <span class="material-symbols-outlined" style="font-size:16px;">location_on</span>
+          <span>${item.wilayah}</span>
+          <span>•</span>
+          <span>Diinput: ${item.diinput}</span>
+        </div>
+      </div>
+      <div>${statusBadgeHtml}</div>
+    </div>
+    ${bannerHtml}
+    <div style="background:#FAF8F3;border:1px solid #E7DFCC;border-radius:12px;padding:16px;display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px;">
+      <div>
+        <small style="color:var(--muted);display:block;font-size:11.5px;font-weight:600;">DIINPUT OLEH</small>
+        <span style="font-size:13.5px;font-weight:600;color:var(--ink);">${item.diinputOleh}</span>
+      </div>
+      <div>
+        <small style="color:var(--muted);display:block;font-size:11.5px;font-weight:600;">KATEGORI PROGRAM</small>
+        <span style="font-size:13.5px;font-weight:600;color:var(--ink);">${item.kategori}</span>
+      </div>
+      <div style="grid-column:1 / -1;">
+        <small style="color:var(--muted);display:block;font-size:11.5px;font-weight:600;">TARGET PENERIMA / SDM TERLIBAT</small>
+        <span style="font-size:13.5px;font-weight:600;color:var(--ink);">${item.penerima}</span>
+      </div>
+    </div>
+    <div>
+      <h4 style="margin:0 0 6px;font-size:13.5px;font-weight:700;color:var(--ink);">Rincian Ringkasan Kegiatan</h4>
+      <p style="margin:0;font-size:13.5px;line-height:1.6;color:var(--ink-soft);">${item.deskripsi}</p>
+    </div>
+  `;
+
+  actions.innerHTML = actionButtonsHtml;
+  modal.style.display = 'flex';
+}
+
+function closeDetailModal() {
+  document.getElementById('modal-detail').style.display = 'none';
+}
+
+function openEditForm(id) {
+  const item = appData[id];
+  if(!item) return;
+  const body = document.getElementById('modal-body');
+  const actions = document.getElementById('modal-actions');
+
+  body.innerHTML = `
+    <div style="background:#FBE4E0;border:1px solid #F5B9B0;border-radius:10px;padding:12px 16px;margin-bottom:16px;">
+      <strong style="color:var(--red);font-size:13px;">Catatan Validator:</strong>
+      <p style="margin:4px 0 0;font-size:13px;color:#7A1F16;">${item.catatan}</p>
+    </div>
+    <form id="edit-item-form" onsubmit="handleSubmitRevision(event, ${item.id})">
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Program</label>
+        <input type="text" value="${item.program}" disabled style="width:100%;padding:9px 12px;background:#F0EDE4;border:1px solid #DDD;border-radius:8px;font-size:13.5px;color:#666;">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+        <div>
+          <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Wilayah</label>
+          <input type="text" id="edit-wilayah" value="${item.wilayah}" required style="width:100%;padding:9px 12px;border:1px solid #E7DFCC;border-radius:8px;font-size:13.5px;background:#FAF8F3;">
+        </div>
+        <div>
+          <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Target / Sasaran</label>
+          <input type="text" id="edit-penerima" value="${item.penerima}" required style="width:100%;padding:9px 12px;border:1px solid #E7DFCC;border-radius:8px;font-size:13.5px;background:#FAF8F3;">
+        </div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="display:block;font-size:12.5px;font-weight:700;margin-bottom:5px;color:var(--ink);">Kelengkapan Dokumen / Keterangan Perbaikan</label>
+        <textarea id="edit-desc" rows="3" required style="width:100%;padding:9px 12px;border:1px solid #E7DFCC;border-radius:8px;font-size:13.5px;background:#FAF8F3;">${item.deskripsi} [Revisi: Dokumen SK telah diperbarui dan terlampir resmi stempel dinas].</textarea>
+      </div>
+    </form>
+  `;
+
+  actions.innerHTML = `
+    <button type="button" onclick="showItemDetail(${item.id})" style="padding:9px 18px;border:1px solid #E7DFCC;background:#fff;border-radius:8px;font-weight:600;font-size:13.5px;cursor:pointer;">Batal</button>
+    <button type="button" onclick="document.getElementById('edit-item-form').requestSubmit()" style="display:inline-flex;align-items:center;gap:6px;padding:9px 18px;background:var(--ink);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:13.5px;cursor:pointer;">
+      <span class="material-symbols-outlined" style="font-size:17px;">send</span>
+      <span>Kirim Ulang untuk Validasi</span>
+    </button>
+  `;
+}
+
+function handleSubmitRevision(e, id) {
+  e.preventDefault();
+  const item = appData[id];
+  if(!item) return;
+  item.status = 'pending';
+  item.wilayah = document.getElementById('edit-wilayah').value;
+  item.penerima = document.getElementById('edit-penerima').value;
+  item.deskripsi = document.getElementById('edit-desc').value;
+  item.catatan = 'Sedang dalam antrean kurasi tim validator setelah pengajuan ulang revisi.';
+
+  // update UI table row
+  const cell = document.getElementById('status-cell-' + id);
+  if(cell) {
+    cell.innerHTML = '<span class="badge pending">Menunggu validasi</span>';
+  }
+
+  // update metric badges count
+  const elBad = document.getElementById('stat-rejected');
+  const elPending = document.getElementById('stat-pending');
+  if(elBad && elPending) {
+    elBad.innerText = Math.max(0, parseInt(elBad.innerText) - 1);
+    elPending.innerText = parseInt(elPending.innerText) + 1;
+  }
+
+  closeDetailModal();
+  showToast('✓ Berhasil diajukan kembali! Status data diubah menjadi Menunggu Validasi.');
+}
+
+
 function showToast(msg) {
   const toast = document.getElementById('app-toast');
   document.getElementById('toast-msg').innerText = msg;
