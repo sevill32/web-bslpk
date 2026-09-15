@@ -2417,37 +2417,7 @@
                     </div>
 
 
-
-                    <!-- PROGRAM -->
-
-                    <div class="detail-subtitle">
-
-                        Program Prioritas Berjalan
-
-                    </div>
-
-
-                    <div
-                        class="program-tags"
-                        id="detProgramTags"
-                    >
-
-                    </div>
-
-
                 </div>
-
-
-
-                <!-- BUTTON -->
-
-                <a
-                    href="data-program.html"
-                    class="detail-button"
-                    id="detBtnLink"
-                >
-                    Eksplorasi Data Provinsi Ini →
-                </a>
 
 
             </aside>
@@ -3828,18 +3798,6 @@ function updateDetail(
         );
 
 
-    const tags =
-        document.getElementById(
-            "detProgramTags"
-        );
-
-
-    const button =
-        document.getElementById(
-            "detBtnLink"
-        );
-
-
     /*
      * Nama
      */
@@ -3899,66 +3857,6 @@ function updateDetail(
                 "id-ID"
             );
 
-
-        /*
-         * Program
-         */
-
-        tags.innerHTML =
-            "";
-
-
-        data.tags.forEach(
-            tag => {
-
-                const chip =
-                    document.createElement(
-                        "span"
-                    );
-
-
-                chip.className =
-                    "program-tag";
-
-
-                chip.innerHTML = `
-
-                    <span
-                        class="tag-dot"
-                    ></span>
-
-                    ${tag}
-
-                `;
-
-
-                tags.appendChild(
-                    chip
-                );
-
-            }
-        );
-
-
-        /*
-         * Tombol
-         */
-
-        button.classList.remove(
-            "disabled"
-        );
-
-
-        button.textContent =
-            "Eksplorasi Data Provinsi Ini →";
-
-
-        button.href =
-            "data-program.html?provinsi=" +
-            encodeURIComponent(
-                provinceName
-            );
-
     }
 
 
@@ -3992,35 +3890,6 @@ function updateDetail(
 
         komunitas.textContent =
             "—";
-
-
-        tags.innerHTML = `
-
-            <div class="empty-data">
-
-                Data kebudayaan untuk
-                <strong>
-                    ${provinceName}
-                </strong>
-                belum terhubung pada
-                dataset saat ini.
-
-            </div>
-
-        `;
-
-
-        button.classList.add(
-            "disabled"
-        );
-
-
-        button.textContent =
-            "Data Belum Tersedia";
-
-
-        button.href =
-            "#";
 
     }
 
