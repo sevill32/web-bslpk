@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-
-<html lang="id"><head>
+<html lang="id">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Beranda Admin &amp; Validator — Kemenbud Data Kebudayaan</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
 <style>
 :root{
   --cream:#F7F3EA;
@@ -317,10 +318,13 @@ tbody tr:hover{background:#FDFBF7;}
 }
 </style>
 </head>
+
 <body>
+
 <!-- TOPBAR NAVIGATION -->
 <header class="topbar">
 <div class="topbar-inner">
+
 <div class="brand">
 <svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g fill="#C9A15A">
@@ -328,17 +332,19 @@ tbody tr:hover{background:#FDFBF7;}
 <circle cx="24" cy="24" r="3.4"></circle>
 </g>
 </svg>
+
 <div class="brand-text">
         Kementerian Kebudayaan
         <small>Republik Indonesia</small>
 </div>
 </div>
+
 <!-- Center Navigation -->
 <nav class="nav">
-<a class="active" href="beranda-admin.html">Beranda</a>
-<a href="data-program.html">Data Program</a>
-<a href="kelola-data.html">Kelola Data</a>
+<a class="active" href="beranda-validator.html">Beranda</a>
+<a href="data-program-validator.html">Data Program</a>
 </nav>
+
 <!-- Right User Meta & Logout -->
 <div class="user-nav-actions">
 <div class="user-profile">
@@ -348,21 +354,29 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="role">Validator BSLPK</div>
 </div>
 </div>
-<a class="btn-logout" href="login.html" title="Keluar dari akun">
+
+<a class="btn-logout"
+   href="index.html"
+   onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?')"
+   title="Keluar dari akun">
 <span class="material-symbols-outlined" style="font-size:16px;">logout</span>
 <span>Logout</span>
 </a>
+
 </div>
 </div>
 </header>
+
 <!-- MAIN CONTENT SHELL -->
 <main class="page-shell">
+
 <!-- DASHBOARD TITLE & ACTIONS -->
 <div class="dashboard-header">
 <div class="dashboard-title">
 <h1>Portal Kurasi &amp; Validasi Data</h1>
 <p>Verifikasi kelayakan usulan kegiatan, portofolio SDM kebudayaan, dan pengajuan program nasional.</p>
 </div>
+
 <div class="header-actions">
 <a class="btn-primary" href="kelola-data.html">
 <span class="material-symbols-outlined" style="font-size:18px;">tune</span>
@@ -370,8 +384,10 @@ tbody tr:hover{background:#FDFBF7;}
 </a>
 </div>
 </div>
+
 <!-- 4 SUMMARY STATISTIC CARDS -->
 <div class="stats-grid">
+
 <div class="stat-card total">
 <div class="stat-top">
 <span class="stat-label">Total Data Pengajuan</span>
@@ -385,6 +401,7 @@ tbody tr:hover{background:#FDFBF7;}
 <span>Seluruh data terhimpun</span>
 </div>
 </div>
+
 <div class="stat-card pending">
 <div class="stat-top">
 <span class="stat-label">Menunggu Validasi</span>
@@ -398,6 +415,7 @@ tbody tr:hover{background:#FDFBF7;}
 <span>Butuh tindakan validator</span>
 </div>
 </div>
+
 <div class="stat-card rejected">
 <div class="stat-top">
 <span class="stat-label">Ditolak / Perlu Revisi</span>
@@ -411,6 +429,7 @@ tbody tr:hover{background:#FDFBF7;}
 <span>Menunggu kelengkapan admin</span>
 </div>
 </div>
+
 <div class="stat-card approved">
 <div class="stat-top">
 <span class="stat-label">Disetujui Bulan Ini</span>
@@ -424,35 +443,47 @@ tbody tr:hover{background:#FDFBF7;}
 <span>Telah terbit ke portal publik</span>
 </div>
 </div>
+
 </div>
+
 <!-- TABLE SECTION WITH CONTROLS -->
 <div class="section-panel">
+
 <!-- Top Filter Head & Status Chips -->
 <div class="panel-head">
 <div class="panel-head-text">
 <h2>Pengajuan Data Masuk</h2>
 <p>Daftar data terbaru yang diajukan oleh admin daerah &amp; pengelola program untuk dikurasi.</p>
 </div>
+
 <div class="status-chips-wrap">
+
 <button class="status-chip active" id="chip-semua" onclick="filterQuickStatus('all')" type="button">
 <span>Semua</span> <strong style="font-size:11.5px; opacity:0.8;">(15)</strong>
 </button>
+
 <button class="status-chip pending" id="chip-pending" onclick="filterQuickStatus('pending')" type="button">
 <span>⏳ Menunggu Validasi</span> <strong style="font-size:11.5px;">(12)</strong>
 </button>
+
 <button class="status-chip approved" id="chip-approved" onclick="filterQuickStatus('approved')" type="button">
 <span>✓ Disetujui</span> <strong style="font-size:11.5px;">(45)</strong>
 </button>
+
 <button class="status-chip rejected" id="chip-rejected" onclick="filterQuickStatus('rejected')" type="button">
 <span>✕ Ditolak / Revisi</span> <strong style="font-size:11.5px;">(3)</strong>
 </button>
+
 </div>
 </div>
+
 <!-- Search & Select Filter Toolbar -->
 <div class="filter-toolbar">
+
 <div>
 <input class="input" id="searchInput" onkeyup="jalankanFilter()" placeholder="Cari program / wilayah / nama admin / SDM..." type="text"/>
 </div>
+
 <div>
 <select class="input" id="filterProgram" onchange="jalankanFilter()" style="cursor:pointer;">
 <option value="">Semua Program</option>
@@ -465,6 +496,7 @@ tbody tr:hover{background:#FDFBF7;}
 <option value="Sertifikasi Profesi Cagar Budaya">Sertifikasi Profesi Cagar Budaya</option>
 </select>
 </div>
+
 <div>
 <select class="input" id="filterWilayah" onchange="jalankanFilter()" style="cursor:pointer;">
 <option value="">Semua Wilayah</option>
@@ -477,6 +509,7 @@ tbody tr:hover{background:#FDFBF7;}
 <option value="Jawa Timur">Jawa Timur</option>
 </select>
 </div>
+
 <div>
 <select class="input" id="sortOrder" onchange="jalankanSorting()" style="cursor:pointer;">
 <option value="terbaru">Terbaru Diinput</option>
@@ -484,10 +517,13 @@ tbody tr:hover{background:#FDFBF7;}
 <option value="status">Urut Status</option>
 </select>
 </div>
+
 </div>
+
 <!-- DATA TABLE -->
 <div class="table-responsive">
 <table id="pengajuanTable">
+
 <thead>
 <tr>
 <th style="width:26%;">Program &amp; Kode Pengajuan</th>
@@ -497,7 +533,9 @@ tbody tr:hover{background:#FDFBF7;}
 <th style="width:18%; text-align:right;">Aksi Validasi</th>
 </tr>
 </thead>
+
 <tbody id="tableBodyData">
+
 <!-- ROW 1 -->
 <tr data-date="2026-08-21" data-id="BST-2026-00214" data-prog="Bimtek &amp; Sertifikasi" data-status="pending" data-wilayah="Jawa Tengah">
 <td>
@@ -506,35 +544,42 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="prog-code">#BST-2026-00214</div>
 </div>
 </td>
+
 <td>
 <div class="loc-cell">
 <div class="loc-prov">Jawa Tengah</div>
 <div class="loc-kab">Kota Surakarta</div>
 </div>
 </td>
+
 <td>
 <div class="inputted-cell">
 <div class="user-name">Ahmad Farhan, S.Sn</div>
 <div class="user-date">21 Agu 2026 • Disbud Surakarta</div>
 </div>
 </td>
+
 <td>
 <span class="badge pending"><span class="badge-dot"></span>Menunggu validasi</span>
 </td>
+
 <td>
 <div class="validation-actions" style="justify-content:flex-end;">
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'BST-2026-00214')" title="Setujui Data" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui
-                </button>
+</button>
+
 <button class="btn-action-reject" onclick="bukaModalTolak('BST-2026-00214', 'Bimtek &amp; Sertifikasi', this)" title="Tolak &amp; Minta Revisi" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak
-                </button>
+</button>
+
 <button class="btn-action-detail" onclick="bukaDetailModal('BST-2026-00214', 'Bimtek &amp; Sertifikasi', 'Kompetensi Tenaga Kebudayaan', 'Jawa Tengah', 'Kota Surakarta', '2026', '21 Agu 2026', 'Ahmad Farhan, S.Sn', 'Dinas Kebudayaan Kota Surakarta', 'pending', 'Dokumen usulan dan portofolio 45 peserta pelatihan bimtek cagar budaya telah lengkap terverifikasi dinas tingkat kota.')" title="Lihat Detail Lengkap" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
 </button>
 </div>
 </td>
 </tr>
+
 <!-- ROW 2 -->
 <tr data-date="2026-08-20" data-id="PKD-2026-00109" data-prog="Pemajuan Kebudayaan Desa" data-status="rejected" data-wilayah="Nusa Tenggara Timur">
 <td>
@@ -543,35 +588,42 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="prog-code">#PKD-2026-00109</div>
 </div>
 </td>
+
 <td>
 <div class="loc-cell">
 <div class="loc-prov">Nusa Tenggara Timur (NTT)</div>
 <div class="loc-kab">Manggarai Barat</div>
 </div>
 </td>
+
 <td>
 <div class="inputted-cell">
 <div class="user-name">Kornelis Mbete</div>
 <div class="user-date">20 Agu 2026 • Komunitas Adat Manggarai</div>
 </div>
 </td>
+
 <td>
 <span class="badge rejected"><span class="badge-dot"></span>Ditolak, perlu revisi</span>
 </td>
+
 <td>
 <div class="validation-actions" style="justify-content:flex-end;">
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'PKD-2026-00109')" title="Setujui Data" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui
-                </button>
+</button>
+
 <button class="btn-action-reject" onclick="bukaModalTolak('PKD-2026-00109', 'Pemajuan Kebudayaan Desa', this)" title="Tolak &amp; Minta Revisi" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak
-                </button>
+</button>
+
 <button class="btn-action-detail" onclick="bukaDetailModal('PKD-2026-00109', 'Pemajuan Kebudayaan Desa', 'Revitalisasi Tradisi Lokal', 'Nusa Tenggara Timur (NTT)', 'Manggarai Barat', '2026', '20 Agu 2026', 'Kornelis Mbete', 'Komunitas Adat Manggarai Barat', 'rejected', 'Rincian RAB kegiatan adat belum melampirkan surat penetapan tetua adat desa setempat. Mohon diperbarui.')" title="Lihat Detail Lengkap" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
 </button>
 </div>
 </td>
 </tr>
+
 <!-- ROW 3 -->
 <tr data-date="2026-08-18" data-id="GBN-2025-00438" data-prog="Gita Bahana Nusantara" data-status="approved" data-wilayah="Bali">
 <td>
@@ -580,35 +632,44 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="prog-code">#GBN-2025-00438</div>
 </div>
 </td>
+
 <td>
 <div class="loc-cell">
 <div class="loc-prov">Bali</div>
 <div class="loc-kab">Gianyar</div>
 </div>
 </td>
+
 <td>
 <div class="inputted-cell">
 <div class="user-name">Ni Putu Ayu Saraswati</div>
 <div class="user-date">18 Agu 2026 • Gita Suara Dewata</div>
 </div>
 </td>
+
 <td>
 <span class="badge approved"><span class="badge-dot"></span>Disetujui</span>
 </td>
+
 <td>
 <div class="validation-actions" style="justify-content:flex-end;">
+
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'GBN-2025-00438')" style="opacity:0.6; cursor:default;" title="Sudah Disetujui" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">done_all</span> Disetujui
-                </button>
+</button>
+
 <button class="btn-action-reject" onclick="bukaModalTolak('GBN-2025-00438', 'Gita Bahana Nusantara', this)" title="Tolak &amp; Minta Revisi" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak
-                </button>
+</button>
+
 <button class="btn-action-detail" onclick="bukaDetailModal('GBN-2025-00438', 'Gita Bahana Nusantara (GBN)', 'Paduan Suara &amp; Orkestra Nasional', 'Bali', 'Gianyar', '2025', '18 Agu 2026', 'Ni Putu Ayu Saraswati', 'Gita Suara Dewata Gianyar', 'approved', 'Semua syarat partitur musik, rekaman audisi, dan surat rekomendasi dinas resmi telah diverifikasi lulus seleksi nasional.')" title="Lihat Detail Lengkap" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
 </button>
+
 </div>
 </td>
 </tr>
+
 <!-- ROW 4 -->
 <tr data-date="2026-08-16" data-id="MTN-2026-00088" data-prog="Manajemen Talenta Nasional" data-status="approved" data-wilayah="Jawa Barat">
 <td>
@@ -617,35 +678,44 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="prog-code">#MTN-2026-00088</div>
 </div>
 </td>
+
 <td>
 <div class="loc-cell">
 <div class="loc-prov">Jawa Barat</div>
 <div class="loc-kab">Bandung</div>
 </div>
 </td>
+
 <td>
 <div class="inputted-cell">
 <div class="user-name">Rizal Firmansyah, M.Pd</div>
 <div class="user-date">16 Agu 2026 • Institut Seni Bandung</div>
 </div>
 </td>
+
 <td>
 <span class="badge approved"><span class="badge-dot"></span>Disetujui</span>
 </td>
+
 <td>
 <div class="validation-actions" style="justify-content:flex-end;">
+
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'MTN-2026-00088')" style="opacity:0.6; cursor:default;" title="Sudah Disetujui" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">done_all</span> Disetujui
-                </button>
+</button>
+
 <button class="btn-action-reject" onclick="bukaModalTolak('MTN-2026-00088', 'Manajemen Talenta Nasional', this)" title="Tolak &amp; Minta Revisi" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak
-                </button>
+</button>
+
 <button class="btn-action-detail" onclick="bukaDetailModal('MTN-2026-00088', 'Manajemen Talenta Nasional (MTN)', 'Kesenian &amp; Seni Pertunjukan', 'Jawa Barat', 'Bandung', '2026', '16 Agu 2026', 'Rizal Firmansyah, M.Pd', 'Institut Seni Bandung', 'approved', 'Dokumentasi portofolio talenta muda dan sertifikat kompetensi nasional telah memenuhi standar validasi BSLPK.')" title="Lihat Detail Lengkap" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
 </button>
+
 </div>
 </td>
 </tr>
+
 <!-- ROW 5 -->
 <tr data-date="2026-08-15" data-id="AKI-2026-00512" data-prog="Anugerah Kebudayaan Indonesia" data-status="pending" data-wilayah="Sumatera Barat">
 <td>
@@ -654,35 +724,44 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="prog-code">#AKI-2026-00512</div>
 </div>
 </td>
+
 <td>
 <div class="loc-cell">
 <div class="loc-prov">Sumatera Barat</div>
 <div class="loc-kab">Kota Padang</div>
 </div>
 </td>
+
 <td>
 <div class="inputted-cell">
 <div class="user-name">Datuak Maringgai Alam</div>
 <div class="user-date">15 Agu 2026 • LKAAM Sumbar</div>
 </div>
 </td>
+
 <td>
 <span class="badge pending"><span class="badge-dot"></span>Menunggu validasi</span>
 </td>
+
 <td>
 <div class="validation-actions" style="justify-content:flex-end;">
+
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'AKI-2026-00512')" title="Setujui Data" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui
-                </button>
+</button>
+
 <button class="btn-action-reject" onclick="bukaModalTolak('AKI-2026-00512', 'Anugerah Kebudayaan Indonesia', this)" title="Tolak &amp; Minta Revisi" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak
-                </button>
+</button>
+
 <button class="btn-action-detail" onclick="bukaDetailModal('AKI-2026-00512', 'Anugerah Kebudayaan Indonesia (AKI)', 'Kategori Pelestari Warisan', 'Sumatera Barat', 'Kota Padang', '2026', '15 Agu 2026', 'Datuak Maringgai Alam', 'Lembaga Kerapatan Adat Alam Minangkabau', 'pending', 'Berkas naskah biografi ketokohan dan rekam jejak pelestarian seni tradisi randai sedang diverifikasi oleh tim kurator.')" title="Lihat Detail Lengkap" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
 </button>
+
 </div>
 </td>
 </tr>
+
 <!-- ROW 6 -->
 <tr data-date="2026-08-14" data-id="PKK-2026-00331" data-prog="Penguatan Kelembagaan" data-status="approved" data-wilayah="DI Yogyakarta">
 <td>
@@ -691,35 +770,44 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="prog-code">#PKK-2026-00331</div>
 </div>
 </td>
+
 <td>
 <div class="loc-cell">
 <div class="loc-prov">DI Yogyakarta</div>
 <div class="loc-kab">Kab. Sleman</div>
 </div>
 </td>
+
 <td>
 <div class="inputted-cell">
 <div class="user-name">Sri Handayani Rahayu</div>
 <div class="user-date">14 Agu 2026 • Paguyuban Macapat Sleman</div>
 </div>
 </td>
+
 <td>
 <span class="badge approved"><span class="badge-dot"></span>Disetujui</span>
 </td>
+
 <td>
 <div class="validation-actions" style="justify-content:flex-end;">
+
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'PKK-2026-00331')" style="opacity:0.6; cursor:default;" title="Sudah Disetujui" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">done_all</span> Disetujui
-                </button>
+</button>
+
 <button class="btn-action-reject" onclick="bukaModalTolak('PKK-2026-00331', 'Penguatan Kelembagaan', this)" title="Tolak &amp; Minta Revisi" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak
-                </button>
+</button>
+
 <button class="btn-action-detail" onclick="bukaDetailModal('PKK-2026-00331', 'Penguatan Kelembagaan (PKK)', 'Fasilitasi Organisasi Kemasyarakatan', 'DI Yogyakarta', 'Kab. Sleman', '2026', '14 Agu 2026', 'Sri Handayani Rahayu', 'Paguyuban Macapat Sleman', 'approved', 'Akta pendirian Kemenkumham dan surat rekomendasi Dinas Kebudayaan DIY telah sah dan memenuhi kriteria fasilitasi.')" title="Lihat Detail Lengkap" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
 </button>
+
 </div>
 </td>
 </tr>
+
 <!-- ROW 7 -->
 <tr data-date="2026-08-12" data-id="PCB-2026-00742" data-prog="Sertifikasi Profesi Cagar Budaya" data-status="pending" data-wilayah="Jawa Timur">
 <td>
@@ -728,214 +816,362 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="prog-code">#PCB-2026-00742</div>
 </div>
 </td>
+
 <td>
 <div class="loc-cell">
 <div class="loc-prov">Jawa Timur</div>
 <div class="loc-kab">Kota Malang</div>
 </div>
 </td>
+
 <td>
 <div class="inputted-cell">
 <div class="user-name">Bambang Soedjatmiko, M.Hum</div>
 <div class="user-date">12 Agu 2026 • Tim Ahli Cagar Budaya Malang</div>
 </div>
 </td>
+
 <td>
 <span class="badge pending"><span class="badge-dot"></span>Menunggu validasi</span>
 </td>
+
 <td>
 <div class="validation-actions" style="justify-content:flex-end;">
+
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'PCB-2026-00742')" title="Setujui Data" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui
-                </button>
+</button>
+
 <button class="btn-action-reject" onclick="bukaModalTolak('PCB-2026-00742', 'Sertifikasi Profesi Cagar Budaya', this)" title="Tolak &amp; Minta Revisi" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak
-                </button>
+</button>
+
 <button class="btn-action-detail" onclick="bukaDetailModal('PCB-2026-00742', 'Sertifikasi Profesi Cagar Budaya', 'Uji Kompetensi Ahli Cagar Budaya', 'Jawa Timur', 'Kota Malang', '2026', '12 Agu 2026', 'Bambang Soedjatmiko, M.Hum', 'Tim Ahli Cagar Budaya Malang', 'pending', 'Portofolio pemugaran situs dan berkas asesmen mandiri telah diunggah lengkap. Menunggu pleno tim kurator.')" title="Lihat Detail Lengkap" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
 </button>
+
 </div>
 </td>
 </tr>
+
 </tbody>
 </table>
 </div>
+
 <!-- Table Pagination -->
 <div class="table-footer">
-<div>Menampilkan <strong id="currentShowingCount" style="color:var(--ink);">7</strong> dari <strong style="color:var(--ink);">1.240</strong> data pengajuan</div>
+<div>
+Menampilkan <strong id="currentShowingCount" style="color:var(--ink);">7</strong>
+dari <strong style="color:var(--ink);">1.240</strong> data pengajuan
+</div>
+
 <div class="pager">
+
 <button class="btn-ghost" disabled="" style="display:inline-flex; align-items:center; gap:4px;" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">chevron_left</span> Sebelumnya
-        </button>
+</button>
+
 <button class="btn-ghost active-page" type="button">1</button>
 <button class="btn-ghost" type="button">2</button>
 <button class="btn-ghost" type="button">3</button>
+
 <span style="color:var(--muted); padding:0 4px;">...</span>
+
 <button class="btn-ghost" type="button">178</button>
+
 <button class="btn-ghost" style="display:inline-flex; align-items:center; gap:4px;" type="button">
-          Berikutnya <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
+Berikutnya <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
 </button>
+
 </div>
 </div>
+
 </div>
 </main>
+
 <!-- MODAL LIHAT DETAIL -->
 <div class="modal-overlay" id="modalDetailOverlay" onclick="if(event.target===this) tutupDetailModal();">
+
 <div class="modal-card">
+
 <div class="modal-header">
+
 <div>
 <span class="badge pending" id="modalStatusBadge" style="margin-bottom:8px;">Menunggu validasi</span>
+
 <h3 id="modalProgramNama">Bimtek &amp; Sertifikasi</h3>
+
 <div style="font-size:13px; color:var(--muted); display:flex; align-items:center; gap:6px;">
+
 <span class="material-symbols-outlined" style="font-size:16px; color:var(--gold);">sell</span>
+
 <span id="modalIdText" style="font-family:monospace; font-weight:700; color:var(--ink);">#BST-2026-00214</span>
+
 <span>•</span>
+
 <span id="modalSubProgram">Kompetensi Tenaga Kebudayaan</span>
+
 </div>
 </div>
+
 <button class="modal-close" onclick="tutupDetailModal()" type="button">
 <span class="material-symbols-outlined" style="font-size:22px;">close</span>
 </button>
+
 </div>
+
 <!-- Metadata Grid -->
 <div class="detail-grid">
+
 <div class="detail-item">
 <div class="label">Wilayah Pelaksanaan</div>
 <div class="val" id="modalWilayah">Jawa Tengah</div>
 <div class="subval" id="modalKabKota">Kota Surakarta</div>
 </div>
+
 <div class="detail-item">
 <div class="label">Tahun Anggaran</div>
 <div class="val" id="modalTahun">2026</div>
 <div class="subval" id="modalDiinput">Diinput: 21 Agu 2026</div>
 </div>
+
 <div class="detail-item">
 <div class="label">Admin Pengusul / SDM</div>
 <div class="val" id="modalSdm">Ahmad Farhan, S.Sn</div>
 <div class="subval" id="modalInstansi">Dinas Kebudayaan</div>
 </div>
+
 </div>
+
 <!-- Berkas Dokumen -->
 <div style="margin-bottom:18px;">
+
 <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:8px;">
-        Dokumen Pendukung &amp; Berkas Usulan Admin
-      </div>
+Dokumen Pendukung &amp; Berkas Usulan Admin
+</div>
+
 <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+
 <div class="file-pill" onclick="tampilkanToast('Mengunduh Berkas SK Pengusulan Resmi...')">
 <span class="material-symbols-outlined" style="color:var(--gold-dark); font-size:20px;">description</span>
-<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">SK-Pengusulan-Dinas-Resmi.pdf</div>
+
+<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+SK-Pengusulan-Dinas-Resmi.pdf
 </div>
+
+</div>
+
 <div class="file-pill" onclick="tampilkanToast('Mengunduh Portofolio Peserta...')">
+
 <span class="material-symbols-outlined" style="color:var(--gold-dark); font-size:20px;">folder_zip</span>
-<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">Portofolio-Peserta-Sertifikasi.zip</div>
+
+<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+Portofolio-Peserta-Sertifikasi.zip
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 <!-- Catatan Kurator -->
 <div style="border-top:1px solid var(--border); padding-top:16px; margin-bottom:20px;">
+
 <div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:6px;">
-        Catatan &amp; Uraian Pengusulan
-      </div>
-<p id="modalCatatanText" style="background:#FAF8F3; border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:0; font-size:13.5px; line-height:1.6; color:var(--ink-soft);">
-        Dokumen usulan dan portofolio peserta telah lengkap terverifikasi dinas kota.
-      </p>
+Catatan &amp; Uraian Pengusulan
 </div>
+
+<p id="modalCatatanText" style="background:#FAF8F3; border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:0; font-size:13.5px; line-height:1.6; color:var(--ink-soft);">
+Dokumen usulan dan portofolio peserta telah lengkap terverifikasi dinas kota.
+</p>
+
+</div>
+
 <!-- Modal Actions -->
 <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border); padding-top:16px;">
-<button class="btn-ghost" onclick="tutupDetailModal()" type="button">Tutup Dialog</button>
+
+<button class="btn-ghost" onclick="tutupDetailModal()" type="button">
+Tutup Dialog
+</button>
+
 <div style="display:flex; gap:10px;">
+
 <button class="btn-action-reject" id="btnModalTolakAction" onclick="modalAksiTolakDariDetail()" style="padding:9px 16px; border-radius:10px;" type="button">
-<span class="material-symbols-outlined" style="font-size:16px;">close</span> Tolak / Revisi
-        </button>
+<span class="material-symbols-outlined" style="font-size:16px;">close</span>
+Tolak / Revisi
+</button>
+
 <button class="btn-action-approve" id="btnModalSetujuiAction" onclick="modalAksiSetujuiDariDetail()" style="padding:9px 18px; border-radius:10px;" type="button">
-<span class="material-symbols-outlined" style="font-size:16px;">check_circle</span> Setujui Pengajuan
-        </button>
+<span class="material-symbols-outlined" style="font-size:16px;">check_circle</span>
+Setujui Pengajuan
+</button>
+
 </div>
 </div>
+
 </div>
 </div>
+
 <!-- MODAL TOLAK / CATATAN REVISI -->
 <div class="modal-overlay" id="modalTolakOverlay" onclick="if(event.target===this) tutupModalTolak();">
+
 <div class="modal-card" style="max-width:520px;">
+
 <div class="modal-header">
+
 <div>
+
 <h3 style="color:var(--red); display:flex; align-items:center; gap:8px;">
+
 <span class="material-symbols-outlined" style="font-size:22px;">assignment_late</span>
-          Tolak &amp; Minta Revisi
-        </h3>
+Tolak &amp; Minta Revisi
+
+</h3>
+
 <div style="font-size:13px; color:var(--muted); margin-top:3px;">
-          Pengajuan: <span id="modalTolakTargetId" style="font-weight:700; color:var(--ink);">#ID</span> (<span id="modalTolakTargetProg">Prog</span>)
-        </div>
+Pengajuan:
+<span id="modalTolakTargetId" style="font-weight:700; color:var(--ink);">#ID</span>
+(<span id="modalTolakTargetProg">Prog</span>)
 </div>
+
+</div>
+
 <button class="modal-close" onclick="tutupModalTolak()" type="button">
 <span class="material-symbols-outlined" style="font-size:22px;">close</span>
 </button>
+
 </div>
+
 <div style="margin:16px 0;">
+
 <label style="display:block; font-size:13px; font-weight:700; margin-bottom:8px; color:var(--ink);">
-        Alasan Penolakan / Catatan Perbaikan untuk Admin:
-      </label>
+Alasan Penolakan / Catatan Perbaikan untuk Admin:
+</label>
+
 <textarea class="input" id="alasanTolakInput" placeholder="Sebutkan berkas yang kurang atau bagian RAB / portofolio yang perlu dilengkapi pengusul..." rows="4" style="resize:vertical; font-size:13.5px; line-height:1.5;"></textarea>
+
 <div style="font-size:12px; color:var(--muted); margin-top:6px;">
-        *Catatan ini akan langsung diterima admin pengusul untuk proses revisi data.
-      </div>
+*Catatan ini akan langsung diterima admin pengusul untuk proses revisi data.
 </div>
+
+</div>
+
 <div style="display:flex; justify-content:flex-end; gap:10px; border-top:1px solid var(--border); padding-top:16px;">
-<button class="btn-ghost" onclick="tutupModalTolak()" type="button">Batal</button>
+
+<button class="btn-ghost" onclick="tutupModalTolak()" type="button">
+Batal
+</button>
+
 <button onclick="konfirmasiTolak()" style="background:var(--red); color:#fff; border:none; border-radius:10px; padding:10px 18px; font-weight:700; font-size:13.5px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;" type="button">
+
 <span class="material-symbols-outlined" style="font-size:17px;">send</span>
-        Kirim Catatan Revisi
-      </button>
+Kirim Catatan Revisi
+
+</button>
+
+</div>
+
 </div>
 </div>
-</div>
+
 <!-- TOAST NOTIFIKASI -->
 <div class="toast-notice" id="toastNotice">
-<span class="material-symbols-outlined" id="toastIcon" style="color:var(--green); font-size:20px;">check_circle</span>
-<span id="toastMessage">Status pengajuan berhasil diperbarui!</span>
+
+<span class="material-symbols-outlined" id="toastIcon" style="color:var(--green); font-size:20px;">
+check_circle
+</span>
+
+<span id="toastMessage">
+Status pengajuan berhasil diperbarui!
+</span>
+
 </div>
+
 <!-- RESMI FOOTER -->
 <footer class="site-footer">
+
 <div class="footer-inner">
+
 <div class="footer-brand">
+
 <svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g fill="#C9A15A">
 <path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
 <circle cx="24" cy="24" r="3.4"></circle>
 </g>
 </svg>
+
 <div class="footer-brand-text">
-<h4>Kementerian Kebudayaan<br/>Republik Indonesia</h4>
-<p>Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat Pembinaan Tenaga dan Lembaga Kebudayaan (BSLPK)</p>
+
+<h4>
+Kementerian Kebudayaan<br/>
+Republik Indonesia
+</h4>
+
+<p>
+Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat Pembinaan Tenaga dan Lembaga Kebudayaan (BSLPK)
+</p>
+
 </div>
 </div>
+
 <div class="footer-col">
+
 <h5>Tautan</h5>
+
 <a href="beranda-admin.html">Beranda</a>
 <a href="data-program.html">Data Program</a>
 <a href="kelola-data.html">Kelola Data</a>
 <a href="tentang.html">Tentang</a>
+
 </div>
+
 <div class="footer-col">
+
 <h5>Bantuan</h5>
+
 <a href="#">Panduan Validator (Juknis)</a>
 <a href="#">FAQ Kurasi</a>
 <a href="#">Dasar Hukum Pemajuan</a>
+
 </div>
+
 <div class="footer-col">
+
 <h5>Kontak</h5>
-<div class="footer-contact-item">✉️ kontak@kemenbud.go.id</div>
-<div class="footer-contact-item">☎️ Call center 178</div>
-<div class="footer-contact-item" style="font-size:12.5px; color:var(--muted);">Gedung E Kemendikbudristek, Senayan, Jakarta</div>
+
+<div class="footer-contact-item">
+✉️ kontak@kemenbud.go.id
 </div>
+
+<div class="footer-contact-item">
+☎️ Call center 178
 </div>
+
+<div class="footer-contact-item" style="font-size:12.5px; color:var(--muted);">
+Gedung E Kemendikbudristek, Senayan, Jakarta
+</div>
+
+</div>
+
+</div>
+
 <div class="footer-bottom">
-<span>© 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.</span>
+
+<span>
+© 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.
+</span>
+
 <div class="social-dots">
-<span></span><span></span><span></span><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
 </div>
+
 </div>
 </footer>
+
 <script>
 let currentTargetId = '';
 let currentTargetRow = null;
@@ -948,6 +1184,7 @@ function tampilkanToast(pesan, tipe = 'success') {
   const toastIcon = document.getElementById('toastIcon');
   
   toastMsg.innerText = pesan;
+
   if (tipe === 'reject') {
     toast.style.borderLeftColor = 'var(--red)';
     toastIcon.style.color = 'var(--red)';
@@ -959,6 +1196,7 @@ function tampilkanToast(pesan, tipe = 'success') {
   }
 
   toast.classList.add('show');
+
   setTimeout(() => {
     toast.classList.remove('show');
   }, 3200);
@@ -976,6 +1214,7 @@ function prosesSetujui(btnElement, id) {
   // Update action buttons styling
   const actionsDiv = row.querySelector('.validation-actions');
   const approveBtn = actionsDiv.querySelector('.btn-action-approve');
+
   approveBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">done_all</span> Disetujui';
   approveBtn.style.opacity = '0.6';
   approveBtn.style.cursor = 'default';
@@ -987,7 +1226,11 @@ function prosesSetujui(btnElement, id) {
 // Modal Tolak / Revisi
 function bukaModalTolak(id, prog, btnElement) {
   currentTargetId = id;
-  currentTargetRow = btnElement ? btnElement.closest('tr') : document.querySelector(`tr[data-id="${id}"]`);
+
+  currentTargetRow = btnElement
+    ? btnElement.closest('tr')
+    : document.querySelector(`tr[data-id="${id}"]`);
+
   document.getElementById('modalTolakTargetId').innerText = '#' + id;
   document.getElementById('modalTolakTargetProg').innerText = prog;
   document.getElementById('alasanTolakInput').value = '';
@@ -1000,31 +1243,57 @@ function tutupModalTolak() {
 
 function konfirmasiTolak() {
   const alasan = document.getElementById('alasanTolakInput').value.trim();
+
   if (!alasan) {
     alert('Harap isi alasan penolakan atau catatan revisi agar admin dapat memperbaiki data.');
     return;
   }
 
   if (currentTargetRow) {
+
     currentTargetRow.setAttribute('data-status', 'rejected');
+
     const badgeTd = currentTargetRow.children[3];
-    badgeTd.innerHTML = '<span class="badge rejected"><span class="badge-dot"></span>Ditolak, perlu revisi</span>';
+
+    badgeTd.innerHTML =
+      '<span class="badge rejected"><span class="badge-dot"></span>Ditolak, perlu revisi</span>';
 
     const actionsDiv = currentTargetRow.querySelector('.validation-actions');
     const approveBtn = actionsDiv.querySelector('.btn-action-approve');
-    approveBtn.innerHTML = '<span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui';
+
+    approveBtn.innerHTML =
+      '<span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui';
+
     approveBtn.style.opacity = '1';
     approveBtn.style.cursor = 'pointer';
   }
 
   tutupModalTolak();
-  tampilkanToast(`Pengajuan ${currentTargetId} ditolak. Catatan perbaikan terkirim ke pengusul.`, 'reject');
+
+  tampilkanToast(
+    `Pengajuan ${currentTargetId} ditolak. Catatan perbaikan terkirim ke pengusul.`,
+    'reject'
+  );
+
   updateStatCards();
 }
 
 // Detail Modal
 let detailModalActiveId = '';
-function bukaDetailModal(id, prog, sub, prov, kab, tahun, tgl, sdm, inst, status, note) {
+
+function bukaDetailModal(
+  id,
+  prog,
+  sub,
+  prov,
+  kab,
+  tahun,
+  tgl,
+  sdm,
+  inst,
+  status,
+  note
+) {
   detailModalActiveId = id;
   currentTargetRow = document.querySelector(`tr[data-id="${id}"]`);
 
@@ -1040,10 +1309,15 @@ function bukaDetailModal(id, prog, sub, prov, kab, tahun, tgl, sdm, inst, status
   document.getElementById('modalCatatanText').innerText = note;
 
   const badge = document.getElementById('modalStatusBadge');
+
   badge.className = 'badge ' + status;
-  if (status === 'approved') badge.innerText = 'Disetujui';
-  else if (status === 'rejected') badge.innerText = 'Ditolak, perlu revisi';
-  else badge.innerText = 'Menunggu validasi';
+
+  if (status === 'approved')
+    badge.innerText = 'Disetujui';
+  else if (status === 'rejected')
+    badge.innerText = 'Ditolak, perlu revisi';
+  else
+    badge.innerText = 'Menunggu validasi';
 
   document.getElementById('modalDetailOverlay').classList.add('open');
 }
@@ -1057,13 +1331,22 @@ function modalAksiSetujuiDariDetail() {
     const btn = currentTargetRow.querySelector('.btn-action-approve');
     prosesSetujui(btn, detailModalActiveId);
   }
+
   tutupDetailModal();
 }
 
 function modalAksiTolakDariDetail() {
   const prog = document.getElementById('modalProgramNama').innerText;
+
   tutupDetailModal();
-  bukaModalTolak(detailModalActiveId, prog, currentTargetRow ? currentTargetRow.querySelector('.btn-action-reject') : null);
+
+  bukaModalTolak(
+    detailModalActiveId,
+    prog,
+    currentTargetRow
+      ? currentTargetRow.querySelector('.btn-action-reject')
+      : null
+  );
 }
 
 // Quick Status Filter
@@ -1071,33 +1354,66 @@ function filterQuickStatus(status) {
   activeFilterStatus = status;
   
   // Chip button toggles
-  document.querySelectorAll('.status-chip').forEach(c => c.classList.remove('active'));
-  if (status === 'all') document.getElementById('chip-semua').classList.add('active');
-  if (status === 'pending') document.getElementById('chip-pending').classList.add('active');
-  if (status === 'approved') document.getElementById('chip-approved').classList.add('active');
-  if (status === 'rejected') document.getElementById('chip-rejected').classList.add('active');
+  document.querySelectorAll('.status-chip').forEach(c =>
+    c.classList.remove('active')
+  );
+
+  if (status === 'all')
+    document.getElementById('chip-semua').classList.add('active');
+
+  if (status === 'pending')
+    document.getElementById('chip-pending').classList.add('active');
+
+  if (status === 'approved')
+    document.getElementById('chip-approved').classList.add('active');
+
+  if (status === 'rejected')
+    document.getElementById('chip-rejected').classList.add('active');
 
   jalankanFilter();
 }
 
 // General Filter Runner
 function jalankanFilter() {
-  const q = (document.getElementById('searchInput').value || '').toLowerCase();
-  const prog = (document.getElementById('filterProgram').value || '').toLowerCase();
-  const wilayah = (document.getElementById('filterWilayah').value || '').toLowerCase();
+
+  const q =
+    (document.getElementById('searchInput').value || '').toLowerCase();
+
+  const prog =
+    (document.getElementById('filterProgram').value || '').toLowerCase();
+
+  const wilayah =
+    (document.getElementById('filterWilayah').value || '').toLowerCase();
+
   const rows = document.querySelectorAll('#tableBodyData tr');
+
   let count = 0;
 
   rows.forEach(tr => {
-    const text = tr.innerText.toLowerCase();
-    const rowProg = (tr.getAttribute('data-prog') || '').toLowerCase();
-    const rowWilayah = (tr.getAttribute('data-wilayah') || '').toLowerCase();
-    const rowStatus = tr.getAttribute('data-status') || '';
 
-    const matchQ = !q || text.includes(q);
-    const matchProg = !prog || rowProg.includes(prog);
-    const matchWilayah = !wilayah || rowWilayah.includes(wilayah);
-    const matchStatus = (activeFilterStatus === 'all') || (rowStatus === activeFilterStatus);
+    const text = tr.innerText.toLowerCase();
+
+    const rowProg =
+      (tr.getAttribute('data-prog') || '').toLowerCase();
+
+    const rowWilayah =
+      (tr.getAttribute('data-wilayah') || '').toLowerCase();
+
+    const rowStatus =
+      tr.getAttribute('data-status') || '';
+
+    const matchQ =
+      !q || text.includes(q);
+
+    const matchProg =
+      !prog || rowProg.includes(prog);
+
+    const matchWilayah =
+      !wilayah || rowWilayah.includes(wilayah);
+
+    const matchStatus =
+      (activeFilterStatus === 'all') ||
+      (rowStatus === activeFilterStatus);
 
     if (matchQ && matchProg && matchWilayah && matchStatus) {
       tr.style.display = '';
@@ -1105,6 +1421,7 @@ function jalankanFilter() {
     } else {
       tr.style.display = 'none';
     }
+
   });
 
   document.getElementById('currentShowingCount').innerText = count;
@@ -1112,18 +1429,35 @@ function jalankanFilter() {
 
 // Sorting Function
 function jalankanSorting() {
-  const sort = document.getElementById('sortOrder').value;
-  const tbody = document.getElementById('tableBodyData');
-  const rows = Array.from(tbody.querySelectorAll('tr'));
+
+  const sort =
+    document.getElementById('sortOrder').value;
+
+  const tbody =
+    document.getElementById('tableBodyData');
+
+  const rows =
+    Array.from(tbody.querySelectorAll('tr'));
 
   rows.sort((a, b) => {
+
     if (sort === 'terbaru') {
-      return new Date(b.getAttribute('data-date')) - new Date(a.getAttribute('data-date'));
+
+      return new Date(b.getAttribute('data-date')) -
+             new Date(a.getAttribute('data-date'));
+
     } else if (sort === 'terlama') {
-      return new Date(a.getAttribute('data-date')) - new Date(b.getAttribute('data-date'));
+
+      return new Date(a.getAttribute('data-date')) -
+             new Date(b.getAttribute('data-date'));
+
     } else if (sort === 'status') {
-      return a.getAttribute('data-status').localeCompare(b.getAttribute('data-status'));
+
+      return a.getAttribute('data-status')
+        .localeCompare(b.getAttribute('data-status'));
+
     }
+
     return 0;
   });
 
@@ -1132,17 +1466,35 @@ function jalankanSorting() {
 
 // Dynamic Counter Sync
 function updateStatCards() {
-  const rows = document.querySelectorAll('#tableBodyData tr');
-  let pending = 0, approved = 43, rejected = 2; // base offset
+
+  const rows =
+    document.querySelectorAll('#tableBodyData tr');
+
+  let pending = 0,
+      approved = 43,
+      rejected = 2;
+
   rows.forEach(r => {
-    const s = r.getAttribute('data-status');
-    if (s === 'pending') pending++;
-    else if (s === 'approved') approved++;
-    else if (s === 'rejected') rejected++;
+
+    const s =
+      r.getAttribute('data-status');
+
+    if (s === 'pending')
+      pending++;
+
+    else if (s === 'approved')
+      approved++;
+
+    else if (s === 'rejected')
+      rejected++;
+
   });
+
   document.getElementById('cardPendingCount').innerText = pending;
   document.getElementById('cardApprovedCount').innerText = approved;
   document.getElementById('cardRejectedCount').innerText = rejected;
 }
 </script>
-</body></html>
+
+</body>
+</html>
