@@ -779,7 +779,7 @@
                 grid;
 
             grid-template-columns:
-                1.9fr 1.1fr;
+                1.8fr 1.2fr;
 
             gap:
                 28px;
@@ -1039,7 +1039,7 @@
 
 
         /* =====================================================
-           LOADING
+           LOADING & ERROR
         ====================================================== */
 
         .map-loading {
@@ -1169,9 +1169,7 @@
 
 
         /* =====================================================
-           PANEL INFORMASI
-           
-           FONT DIKEMBALIKAN KE DESAIN ASLI
+           PANEL INFORMASI — PROPORTIONAL FULL HEIGHT
         ====================================================== */
 
         .detail-panel {
@@ -1187,7 +1185,7 @@
                 16px;
 
             padding:
-                24px 22px;
+                26px 24px;
 
             display:
                 flex;
@@ -1201,12 +1199,16 @@
             box-shadow:
                 0 5px 20px
                 rgba(60,45,20,.05);
+
+            height:
+                100%;
         }
 
-
-        /* =====================================================
-           PANEL HEADER
-        ====================================================== */
+        .detail-header-block {
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 18px;
+        }
 
         .detail-header {
 
@@ -1219,15 +1221,12 @@
             align-items:
                 flex-start;
 
-            margin-bottom:
-                16px;
-
             gap:
+                12px;
+
+            margin-bottom:
                 10px;
         }
-
-
-        /* NAMA PROVINSI */
 
         .detail-header h3 {
 
@@ -1236,7 +1235,7 @@
                 sans-serif;
 
             font-size:
-                22px;
+                24px;
 
             color:
                 var(--ink);
@@ -1245,14 +1244,11 @@
                 700;
 
             margin:
-                0 0 5px;
+                0;
 
             line-height:
                 1.2;
         }
-
-
-        /* ZONA */
 
         .zone-badge {
 
@@ -1273,7 +1269,7 @@
                 var(--amber-bg);
 
             padding:
-                4px 10px;
+                5px 12px;
 
             border-radius:
                 6px;
@@ -1282,18 +1278,13 @@
                 nowrap;
         }
 
-
-        /* =====================================================
-           STATUS
-        ====================================================== */
-
         .verification-badge {
 
             display:
-                inline-block;
+                inline-flex;
 
-            align-self:
-                flex-start;
+            align-items:
+                center;
 
             font-family:
                 'Plus Jakarta Sans',
@@ -1312,13 +1303,10 @@
                 var(--green-bg);
 
             padding:
-                3px 10px;
+                4px 11px;
 
             border-radius:
                 6px;
-
-            margin-bottom:
-                20px;
         }
 
         .verification-badge.pending {
@@ -1332,8 +1320,15 @@
 
 
         /* =====================================================
-           METRIK
+           4 METRIK DIPERKAYA PROPORSINYA (FULL-FIT)
         ====================================================== */
+
+        .detail-stats-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
 
         .detail-stats {
 
@@ -1344,10 +1339,9 @@
                 repeat(2,1fr);
 
             gap:
-                10px;
+                14px;
 
-            margin-bottom:
-                22px;
+            flex: 1;
         }
 
         .detail-stat {
@@ -1360,14 +1354,33 @@
                 var(--border);
 
             border-radius:
-                12px;
+                14px;
 
             padding:
-                13px 14px;
+                22px 18px;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                center;
+
+            transition:
+                border-color .15s,
+                box-shadow .15s;
+
+            box-shadow:
+                0 3px 12px -4px
+                rgba(60,45,20,.04);
         }
 
-
-        /* ANGKA */
+        .detail-stat:hover {
+            border-color: var(--gold);
+            box-shadow: 0 6px 18px -4px rgba(60,45,20,.08);
+        }
 
         .detail-stat strong {
 
@@ -1379,23 +1392,20 @@
                 sans-serif;
 
             font-size:
-                22px;
+                32px;
 
             font-weight:
                 800;
 
             color:
-                var(--ink);
+                var(--gold-dark);
 
             line-height:
-                1.15;
+                1.05;
 
             margin:
-                0;
+                0 0 8px;
         }
-
-
-        /* KETERANGAN */
 
         .detail-stat span {
 
@@ -1407,214 +1417,16 @@
                 sans-serif;
 
             font-size:
-                11.5px;
+                12px;
 
             color:
                 var(--ink-soft);
-
-            margin-top:
-                4px;
-
-            font-weight:
-                500;
-
-            line-height:
-                1.35;
-        }
-
-
-        /* =====================================================
-           PROGRAM PRIORITAS
-        ====================================================== */
-
-        .detail-subtitle {
-
-            font-family:
-                'Plus Jakarta Sans',
-                sans-serif;
-
-            font-size:
-                12px;
-
-            text-transform:
-                uppercase;
-
-            letter-spacing:
-                .04em;
-
-            color:
-                var(--muted);
 
             font-weight:
                 600;
 
-            margin:
-                14px 0 10px;
-        }
-
-        .program-tags {
-
-            display:
-                flex;
-
-            flex-wrap:
-                wrap;
-
-            gap:
-                6px;
-
-            margin-bottom:
-                20px;
-        }
-
-
-        /* CHIP */
-
-        .program-tag {
-
-            background:
-                #fff;
-
-            border:
-                1px solid
-                var(--border);
-
-            padding:
-                5px 11px;
-
-            border-radius:
-                6px;
-
-            font-family:
-                'Plus Jakarta Sans',
-                sans-serif;
-
-            font-size:
-                11.5px;
-
-            color:
-                var(--ink-soft);
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                6px;
-
             line-height:
-                1.3;
-        }
-
-
-        /* TITIK CHIP */
-
-        .tag-dot {
-
-            width:
-                6px;
-
-            height:
-                6px;
-
-            min-width:
-                6px;
-
-            border-radius:
-                50%;
-
-            background:
-                var(--gold);
-        }
-
-
-        /* DATA KOSONG */
-
-        .empty-data {
-
-            color:
-                var(--muted);
-
-            font-family:
-                'Plus Jakarta Sans',
-                sans-serif;
-
-            font-size:
-                11.5px;
-
-            line-height:
-                1.55;
-
-            padding:
-                5px 0 15px;
-        }
-
-
-        /* =====================================================
-           BUTTON PANEL
-        ====================================================== */
-
-        .detail-button {
-
-            background:
-                var(--ink);
-
-            color:
-                #fff;
-
-            padding:
-                13px 18px;
-
-            border-radius:
-                10px;
-
-            font-family:
-                'Plus Jakarta Sans',
-                sans-serif;
-
-            font-size:
-                11.5px;
-
-            font-weight:
-                700;
-
-            text-align:
-                center;
-
-            width:
-                100%;
-
-            display:
-                block;
-
-            margin-top:
-                auto;
-
-            transition:
-                background .15s;
-        }
-
-        .detail-button:hover {
-
-            background:
-                var(--gold-dark);
-
-            color:
-                #fff;
-        }
-
-        .detail-button.disabled {
-
-            background:
-                #D9D2C5;
-
-            color:
-                #8B8172;
-
-            pointer-events:
-                none;
+                1.4;
         }
 
 
@@ -1778,7 +1590,7 @@
             .detail-panel {
 
                 min-height:
-                    450px;
+                    auto;
             }
 
             .footer-inner {
@@ -2297,7 +2109,7 @@
 
 
             <!-- =================================================
-                 PANEL DETAIL
+                 PANEL DETAIL — REFINED FULL LAYOUT (NO NEW ELEMENTS)
             ================================================== -->
 
             <aside
@@ -2306,32 +2118,17 @@
             >
 
 
-                <div>
+                <!-- HEADER PROVINSI & STATUS -->
 
-
-                    <!-- PANEL HEADER -->
+                <div class="detail-header-block">
 
                     <div class="detail-header">
 
-
-                        <div>
-
-                            <h3
-                                id="detNamaProvinsi"
-                            >
-                                Jawa Tengah
-                            </h3>
-
-
-                            <span
-                                class="verification-badge"
-                                id="detStatus"
-                            >
-                                ● Data Terverifikasi Aktif
-                            </span>
-
-                        </div>
-
+                        <h3
+                            id="detNamaProvinsi"
+                        >
+                            Jawa Tengah
+                        </h3>
 
                         <span
                             class="zone-badge"
@@ -2340,14 +2137,24 @@
                             Zona Jawa
                         </span>
 
-
                     </div>
 
+                    <span
+                        class="verification-badge"
+                        id="detStatus"
+                    >
+                        ● Data Terverifikasi Aktif
+                    </span>
+
+                </div>
 
 
-                    <!-- =================================================
-                         4 METRIK
-                    ================================================== -->
+
+                <!-- =================================================
+                     4 KARTU METRIK DISTRIBUSI SEIMBANG PENUH
+                ================================================== -->
+
+                <div class="detail-stats-container">
 
                     <div class="detail-stats">
 
@@ -2415,7 +2222,6 @@
 
 
                     </div>
-
 
                 </div>
 
@@ -2613,21 +2419,7 @@ const dataProvinsi = {
 
         cagar: 124,
 
-        komunitas: 48,
-
-        tags: [
-
-            "Bimtek & Sertifikasi SDM",
-
-            "Pemajuan Desa Budaya",
-
-            "MTN Kesenian Rakyat",
-
-            "Apresiasi Kebudayaan Indonesia",
-
-            "Konservasi Candi & Situs"
-
-        ]
+        komunitas: 48
 
     },
 
@@ -2644,19 +2436,7 @@ const dataProvinsi = {
 
         cagar: 86,
 
-        komunitas: 63,
-
-        tags: [
-
-            "Pemajuan Kebudayaan",
-
-            "Bimtek & Sertifikasi SDM",
-
-            "Apresiasi Kebudayaan Indonesia",
-
-            "Penguatan Kelembagaan"
-
-        ]
+        komunitas: 63
 
     },
 
@@ -2673,19 +2453,7 @@ const dataProvinsi = {
 
         cagar: 157,
 
-        komunitas: 71,
-
-        tags: [
-
-            "Pemajuan Kebudayaan",
-
-            "MTN Kesenian Rakyat",
-
-            "Konservasi Candi & Situs",
-
-            "Apresiasi Kebudayaan Indonesia"
-
-        ]
+        komunitas: 71
 
     },
 
@@ -2702,17 +2470,7 @@ const dataProvinsi = {
 
         cagar: 112,
 
-        komunitas: 55,
-
-        tags: [
-
-            "Pemajuan Desa Budaya",
-
-            "Bimtek & Sertifikasi SDM",
-
-            "Apresiasi Kebudayaan Indonesia"
-
-        ]
+        komunitas: 55
 
     },
 
@@ -2729,19 +2487,7 @@ const dataProvinsi = {
 
         cagar: 138,
 
-        komunitas: 61,
-
-        tags: [
-
-            "Pemajuan Kebudayaan",
-
-            "MTN Kesenian Rakyat",
-
-            "Bimtek & Sertifikasi SDM",
-
-            "Konservasi Candi & Situs"
-
-        ]
+        komunitas: 61
 
     },
 
@@ -2758,19 +2504,7 @@ const dataProvinsi = {
 
         cagar: 103,
 
-        komunitas: 57,
-
-        tags: [
-
-            "Pemajuan Kebudayaan",
-
-            "Pemajuan Desa Budaya",
-
-            "Apresiasi Kebudayaan Indonesia",
-
-            "Penguatan Kelembagaan"
-
-        ]
+        komunitas: 57
 
     },
 
@@ -2787,17 +2521,7 @@ const dataProvinsi = {
 
         cagar: 94,
 
-        komunitas: 43,
-
-        tags: [
-
-            "Bimtek & Sertifikasi SDM",
-
-            "Pemajuan Kebudayaan",
-
-            "Apresiasi Kebudayaan Indonesia"
-
-        ]
+        komunitas: 43
 
     },
 
@@ -2814,17 +2538,7 @@ const dataProvinsi = {
 
         cagar: 87,
 
-        komunitas: 46,
-
-        tags: [
-
-            "Pemajuan Desa Budaya",
-
-            "Bimtek & Sertifikasi SDM",
-
-            "MTN Kesenian Rakyat"
-
-        ]
+        komunitas: 46
 
     },
 
@@ -2841,17 +2555,7 @@ const dataProvinsi = {
 
         cagar: 61,
 
-        komunitas: 39,
-
-        tags: [
-
-            "Pemajuan Kebudayaan",
-
-            "Penguatan Kelembagaan",
-
-            "Bimtek & Sertifikasi SDM"
-
-        ]
+        komunitas: 39
 
     },
 
@@ -2868,17 +2572,7 @@ const dataProvinsi = {
 
         cagar: 78,
 
-        komunitas: 45,
-
-        tags: [
-
-            "Pemajuan Kebudayaan",
-
-            "MTN Kesenian Rakyat",
-
-            "Apresiasi Kebudayaan Indonesia"
-
-        ]
+        komunitas: 45
 
     },
 
@@ -2895,17 +2589,7 @@ const dataProvinsi = {
 
         cagar: 52,
 
-        komunitas: 31,
-
-        tags: [
-
-            "Pemajuan Desa Budaya",
-
-            "Bimtek & Sertifikasi SDM",
-
-            "Penguatan Kelembagaan"
-
-        ]
+        komunitas: 31
 
     },
 
@@ -2922,17 +2606,7 @@ const dataProvinsi = {
 
         cagar: 41,
 
-        komunitas: 28,
-
-        tags: [
-
-            "Pemajuan Kebudayaan",
-
-            "Pemajuan Desa Budaya",
-
-            "Penguatan Kelembagaan"
-
-        ]
+        komunitas: 28
 
     }
 
@@ -3181,17 +2855,6 @@ function initMap() {
     );
 
 
-    /*
-     * PENTING:
-     *
-     * Tidak ada:
-     *
-     * L.tileLayer(...)
-     *
-     * Jadi tidak ada API KEY REQUIRED.
-     */
-
-
     loadGeoJSON();
 
 }
@@ -3344,18 +3007,10 @@ function renderGeoJSON(
                         }
 
 
-                        /*
-                         * Simpan layer
-                         */
-
                         layerRegistry[
                             provinceName
                         ] = layer;
 
-
-                        /*
-                         * Tooltip
-                         */
 
                         layer.bindTooltip(
                             provinceName,
@@ -3373,10 +3028,6 @@ function renderGeoJSON(
                             }
                         );
 
-
-                        /*
-                         * HOVER
-                         */
 
                         layer.on(
                             "mouseover",
@@ -3412,10 +3063,6 @@ function renderGeoJSON(
                         );
 
 
-                        /*
-                         * MOUSE OUT
-                         */
-
                         layer.on(
                             "mouseout",
                             function () {
@@ -3435,10 +3082,6 @@ function renderGeoJSON(
                             }
                         );
 
-
-                        /*
-                         * KLIK PROVINSI
-                         */
 
                         layer.on(
                             "click",
@@ -3460,10 +3103,6 @@ function renderGeoJSON(
 
 
 
-    /*
-     * Tampilkan seluruh Indonesia
-     */
-
     map.fitBounds(
         geojsonLayer.getBounds(),
         {
@@ -3473,27 +3112,15 @@ function renderGeoJSON(
     );
 
 
-    /*
-     * Isi dropdown
-     */
-
     populateProvinceSelect(
         geoData.features
     );
 
 
-    /*
-     * Pilihan awal
-     */
-
     selectProvinceByName(
         "Jawa Tengah"
     );
 
-
-    /*
-     * Hilangkan loading
-     */
 
     mapLoading.style.display =
         "none";
@@ -3607,10 +3234,6 @@ function selectProvince(
     layer
 ) {
 
-    /*
-     * Reset layer lama
-     */
-
     if (
         currentHighlightedLayer &&
         geojsonLayer
@@ -3623,17 +3246,9 @@ function selectProvince(
     }
 
 
-    /*
-     * Layer aktif
-     */
-
     currentHighlightedLayer =
         layer;
 
-
-    /*
-     * Warna aktif
-     */
 
     layer.setStyle({
 
@@ -3655,25 +3270,13 @@ function selectProvince(
     layer.bringToFront();
 
 
-    /*
-     * Simpan provinsi
-     */
-
     selectedProvince =
         provinceName;
 
 
-    /*
-     * Update dropdown
-     */
-
     provSelect.value =
         provinceName;
 
-
-    /*
-     * Update panel
-     */
 
     updateDetail(
         provinceName
@@ -3717,10 +3320,6 @@ function selectProvinceByName(
         layer
     );
 
-
-    /*
-     * Zoom ke provinsi
-     */
 
     map.fitBounds(
         layer.getBounds(),
@@ -3798,17 +3397,9 @@ function updateDetail(
         );
 
 
-    /*
-     * Nama
-     */
-
     nama.textContent =
         provinceName;
 
-
-    /*
-     * Zona
-     */
 
     zona.textContent =
         data
@@ -3818,39 +3409,29 @@ function updateDetail(
             );
 
 
-    /*
-     * Jika ada data
-     */
-
     if (data) {
-
 
         status.textContent =
             data.status;
 
-
         status.classList.remove(
             "pending"
         );
-
 
         program.textContent =
             data.program.toLocaleString(
                 "id-ID"
             );
 
-
         sdm.textContent =
             data.sdm.toLocaleString(
                 "id-ID"
             );
 
-
         cagar.textContent =
             data.cagar.toLocaleString(
                 "id-ID"
             );
-
 
         komunitas.textContent =
             data.komunitas.toLocaleString(
@@ -3859,34 +3440,23 @@ function updateDetail(
 
     }
 
-
-    /*
-     * Jika belum ada data
-     */
-
     else {
-
 
         status.textContent =
             "● Data Belum Tersedia";
-
 
         status.classList.add(
             "pending"
         );
 
-
         program.textContent =
             "—";
-
 
         sdm.textContent =
             "—";
 
-
         cagar.textContent =
             "—";
-
 
         komunitas.textContent =
             "—";
@@ -3971,10 +3541,6 @@ programFilter.addEventListener(
                     originalName;
 
 
-                /*
-                 * Provinsi terpilih
-                 */
-
                 if (
                     provinceName ===
                     selectedProvince
@@ -4001,10 +3567,6 @@ programFilter.addEventListener(
                 }
 
 
-                /*
-                 * Semua
-                 */
-
                 if (
                     currentFilter ===
                     "semua"
@@ -4024,10 +3586,6 @@ programFilter.addEventListener(
                         provinceName
                     ];
 
-
-                /*
-                 * Belum ada data
-                 */
 
                 if (!data) {
 
@@ -4051,10 +3609,6 @@ programFilter.addEventListener(
 
                 }
 
-
-                /*
-                 * Ada data
-                 */
 
                 layer.setStyle({
 
@@ -4088,18 +3642,9 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
-        /*
-         * Panel awal
-         */
-
         updateDetail(
             "Jawa Tengah"
         );
-
-
-        /*
-         * Jalankan map
-         */
 
         initMap();
 
