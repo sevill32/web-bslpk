@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<title>Data Program Kebudayaan — Kementerian Kebudayaan RI</title>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        cream: '#F7F3EA',
+        paper: '#FFFFFF',
+
+        gold: {
+          DEFAULT: '#C9A15A',
+          dark: '#A87F3C',
+          pale: '#F9F5EB',
+          light: '#F3E9D2'
+        },
+
+        ink: {
+          DEFAULT: '#241F18',
+          soft: '#5B5346'
+        },
+
+        muted: '#948B7A',
+        borderCustom: '#E7DFCC',
+
+        kemengreen: {
+          DEFAULT: '#1FA971',
+          dark: '#178257',
+          light: '#E8F7F0'
+        }
+      },
+
+      fontFamily: {
+        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+        display: ['Poppins', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<style>
+
+:root{
+  --cream:#F7F3EA;
+  --paper:#FFFFFF;
+
+  --gold:#C9A15A;
+  --gold-dark:#A87F3C;
+  --gold-pale:#F9F5EB;
+
+  --ink:#241F18;
+  --ink-soft:#5B5346;
+  --muted:#948B7A;
+
+  --border:#E7DFCC;
+
+  --green:#1FA971;
+  --green-dark:#178257;
+
+  --red:#C0392B;
+  --red-bg:#FBE4E0;
+
+  --shadow:0 12px 36px -12px rgba(60,45,20,0.12);
+}
+
+*,*::before,*::after{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'Plus Jakarta Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:var(--cream);
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+
+/* =========================================================
+   TOPBAR / NAVBAR
+   ========================================================= */
+
+.topbar{
+  background:var(--paper);
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.topbar-inner{
+  max-width:1180px;
+  margin:0 auto;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:16px 28px;
+  gap:24px;
+}
+
+
+/* BRAND */
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-logo{
+  width:38px;
+  height:38px;
+  flex:0 0 auto;
+}
+
+.brand-text{
+  display:flex;
+  flex-direction:column;
+
+  line-height:1.1;
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink);
+}
+
+.brand-text small{
+  font-weight:500;
+  color:var(--muted);
+  font-size:11px;
+}
+
+
+/* NAVIGATION */
+
+.nav{
+  display:flex;
+  align-items:center;
+
+  gap:30px;
+
+  font-weight:600;
+  font-size:14.5px;
+
+  color:var(--gold-dark);
+
+  flex:1;
+  justify-content:center;
+}
+
+.nav a{
+  color:var(--gold-dark);
+  opacity:.85;
+
+  padding:6px 2px;
+
+  position:relative;
+
+  transition:opacity .15s;
+}
+
+.nav a:hover{
+  opacity:1;
+}
+
+.nav a.active{
+  color:var(--ink);
+  opacity:1;
+}
+
+.nav a.active::after{
+  content:"";
+
+  position:absolute;
+
+  left:0;
+  right:0;
+
+  bottom:-19px;
+
+  height:3px;
+
+  background:var(--gold);
+
+  border-radius:2px;
+}
+
+
+/* USER NAVIGATION */
+
+.user-nav-actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.user-profile{
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:5px 12px 5px 6px;
+
+  background:#FAF7F0;
+
+  border:1px solid var(--border);
+
+  border-radius:999px;
+}
+
+
+/* AVATAR */
+
+.avatar{
+  width:32px;
+  height:32px;
+
+  border-radius:50%;
+
+  background:linear-gradient(
+    135deg,
+    var(--gold),
+    var(--gold-dark)
+  );
+
+  color:#fff;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:800;
+  font-size:13px;
+}
+
+
+/* USER INFORMATION */
+
+.user-meta{
+  line-height:1.15;
+}
+
+.user-meta .name{
+  font-size:12.5px;
+  font-weight:700;
+  color:var(--ink);
+}
+
+.user-meta .role{
+  font-size:10.5px;
+  color:var(--gold-dark);
+  font-weight:600;
+}
+
+
+/* LOGOUT */
+
+.btn-logout{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+
+  padding:7px 14px;
+
+  border-radius:999px;
+
+  background:var(--red-bg);
+  color:var(--red);
+
+  border:1px solid #F5C5BE;
+
+  font-size:12.5px;
+  font-weight:700;
+
+  transition:all .15s;
+}
+
+.btn-logout:hover{
+  background:#F8D7D2;
+  color:#a92b1f;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.page-shell{
+  max-width:1200px;
+  margin:0 auto;
+  padding:32px 24px 60px;
+}
+
+
+/* =========================================================
+   CUSTOM ELEMENTS
+   ========================================================= */
+
+.card{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+}
+
+.table-card{
+  overflow:hidden;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+thead th{
+  text-align:left;
+  font-size:12px;
+  font-weight:700;
+  color:var(--ink);
+
+  padding:14px 14px;
+
+  border-bottom:1px solid var(--border);
+
+  background:#FAF8F3;
+
+  letter-spacing:0.02em;
+}
+
+tbody td{
+  padding:13px 14px;
+
+  font-size:13px;
+
+  border-bottom:1px solid var(--border);
+
+  color:var(--ink-soft);
+
+  vertical-align:middle;
+}
+
+tbody tr:last-child td{
+  border-bottom:none;
+}
+
+tbody tr:hover{
+  background:#FAF7EE;
+}
+
+td.strong{
+  color:var(--ink);
+  font-weight:700;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.page-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  min-width:32px;
+  height:32px;
+
+  padding:0 8px;
+
+  border-radius:6px;
+
+  font-size:13px;
+  font-weight:600;
+
+  border:1px solid var(--border);
+
+  background:#FFFFFF;
+
+  color:var(--ink-soft);
+
+  transition:all .15s ease;
+}
+
+.page-btn:hover:not(:disabled){
+  background:var(--gold-pale);
+  border-color:var(--gold);
+  color:var(--gold-dark);
+}
+
+.page-btn.active{
+  background:#FFFFFF;
+
+  border:1.5px solid var(--gold);
+
+  color:var(--gold-dark);
+
+  font-weight:700;
+
+  box-shadow:0 1px 3px rgba(201,161,90,0.2);
+}
+
+.page-btn:disabled{
+  opacity:0.5;
+  cursor:not-allowed;
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal-overlay{
+  transition:opacity .25s ease, visibility .25s ease;
+}
+
+.modal-overlay.hidden-modal{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.modal-container{
+  transition:
+    transform .25s cubic-bezier(0.16,1,0.3,1),
+    opacity .25s ease;
+}
+
+.modal-overlay.hidden-modal .modal-container{
+  transform:scale(0.96) translateY(12px);
+  opacity:0;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge-program{
+  display:inline-flex;
+  align-items:center;
+
+  padding:2px 8px;
+
+  border-radius:6px;
+
+  font-size:11.5px;
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+.badge-status{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+
+  padding:2px 8px;
+
+  border-radius:999px;
+
+  font-size:11.5px;
+  font-weight:600;
+
+  white-space:nowrap;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer{
+  background:var(--paper);
+
+  border-top:1px solid var(--border);
+
+  padding:48px 28px 24px;
+
+  margin-top:40px;
+}
+
+.footer-inner{
+  max-width:1180px;
+  margin:0 auto;
+
+  display:grid;
+
+  grid-template-columns:
+    2fr
+    1fr
+    1fr
+    1.2fr;
+
+  gap:36px;
+}
+
+.footer-brand-text h4{
+  font-size:14px;
+  font-weight:700;
+  color:var(--ink);
+
+  margin:10px 0 6px;
+
+  line-height:1.3;
+}
+
+.footer-brand-text p{
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.footer-col h5{
+  font-size:13px;
+  font-weight:700;
+
+  text-transform:uppercase;
+  letter-spacing:.05em;
+
+  color:var(--ink);
+
+  margin:0 0 14px;
+}
+
+.footer-col a{
+  display:block;
+
+  font-size:13px;
+
+  color:var(--ink-soft);
+
+  margin-bottom:8px;
+
+  transition:color .2s;
+}
+
+.footer-col a:hover{
+  color:var(--gold-dark);
+}
+
+.footer-contact-item{
+  font-size:13px;
+  color:var(--ink-soft);
+
+  margin-bottom:8px;
+}
+
+.footer-bottom{
+  max-width:1180px;
+  margin:36px auto 0;
+
+  padding-top:20px;
+
+  border-top:1px solid var(--border);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  font-size:12px;
+  color:var(--muted);
+}
+
+.social-dots{
+  display:flex;
+  gap:6px;
+}
+
+.social-dots span{
+  width:8px;
+  height:8px;
+
+  border-radius:50%;
+
+  background:var(--border);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width:900px){
+
+  .nav{
+    display:none;
+  }
+
+  .user-meta{
+    display:none;
+  }
+
+  .user-profile{
+    padding-right:6px;
+  }
+
+}
+
+@media (max-width:768px){
+
+  .footer-inner{
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:12px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     TOPBAR / NAVBAR
+     ========================================================= -->
+
+<header class="topbar">
+
+  <div class="topbar-inner">
+
+    <!-- BRAND -->
+    <div class="brand">
+
+      <svg
+        class="brand-logo"
+        fill="none"
+        viewbox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <g fill="#C9A15A">
+
+          <path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
+
+          <circle cx="24" cy="24" r="3.4"></circle>
+
+        </g>
+
+      </svg>
+
+      <div class="brand-text">
+
+        Kementerian Kebudayaan
+
+        <small>Republik Indonesia</small>
+
+      </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+    <nav class="nav">
+
+      <a href="beranda-admin.html">
+        Beranda
+      </a>
+
+      <a class="active" href="data-program-admin.html">
+        Data Program
+      </a>
+
+    </nav>
+
+
+    <!-- USER + LOGOUT -->
+    <div class="user-nav-actions">
+
+      <div class="user-profile">
+
+        <span class="avatar">
+          A
+        </span>
+
+        <div class="user-meta">
+
+          <div class="name">
+            Admin BSLPK
+          </div>
+
+          <div class="role">
+            Administrator BSLPK
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <a
+        class="btn-logout"
+        href="index.html"
+        onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?')"
+        title="Keluar dari akun">
+
+        <span
+          class="material-symbols-outlined"
+          style="font-size:16px;">
+          logout
+        </span>
+
+        <span>
+          Logout
+        </span>
+
+      </a>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
+<main class="page-shell">
+
+
+  <!-- HEADER RESMI -->
+  <div class="mb-6">
+
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFE8D6] text-ink-soft text-xs font-bold uppercase tracking-wider mb-3 border border-[#DFD5BE]">
+
+      <span class="w-2 h-2 rounded-full bg-gold"></span>
+
+      Katalog Terpadu · Direktorat BSLPK Kementerian Kebudayaan RI
+
+    </div>
+
+    <div>
+
+      <h1 class="font-display text-3xl font-extrabold text-ink tracking-tight">
+        Data Program Kebudayaan
+      </h1>
+
+      <p class="text-ink-soft text-sm md:text-[15px] mt-2 max-w-3xl leading-relaxed">
+
+        Pusat integrasi repositori dan basis data pelaksanaan 7 program prioritas pemajuan kebudayaan nasional. Menyajikan direktori penerima manfaat, asesi sertifikasi, talenta berprestasi, serta sebaran lembaga budaya di seluruh wilayah Republik Indonesia.
+
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       SEARCH & FILTER
+       ===================================================== -->
+
+  <div class="card p-5 sm:p-6 mb-6">
+
+    <!-- SEARCH -->
+    <div class="flex items-center gap-2 sm:gap-3 mb-5">
+
+      <div class="relative flex-1">
+
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-muted text-xl pointer-events-none">
+          search
+        </span>
+
+        <input
+          class="w-full pl-10 pr-4 py-2.5 bg-paper border border-borderCustom rounded-lg text-sm text-ink placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold transition"
+          id="searchInput"
+          placeholder="Cari nama penerima / asesi / kegiatan / lembaga..."
+          type="text"
+        />
+
+      </div>
+
+      <button
+        class="px-6 py-2.5 bg-[#C9A15A] hover:bg-[#A87F3C] text-white font-bold text-sm rounded-lg shadow-sm transition flex items-center gap-1.5 shrink-0"
+        onclick="handleSearch()">
+
+        <span>
+          Cari
+        </span>
+
+      </button>
+
+    </div>
+
+
+    <!-- FILTER -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+
+      <!-- PROGRAM -->
+      <div>
+
+        <label class="block text-xs font-bold text-ink mb-1.5">
+          Program
+        </label>
+
+        <select
+          class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+          id="filterProgram"
+          onchange="handleFilterChange()">
+
+          <option value="all">Semua Program</option>
+          <option value="AKI">Anugerah Kebudayaan Indonesia (AKI)</option>
+          <option value="Sertifikasi">Sertifikasi Profesi Kebudayaan</option>
+          <option value="Bimtek">Bimbingan Teknis (Bimtek)</option>
+          <option value="MTN">Manajemen Talenta Nasional (MTN)</option>
+          <option value="GBN">Gita Bahana Nusantara (GBN)</option>
+          <option value="PKD">Pemajuan Kebudayaan Desa (PKD)</option>
+          <option value="PKK">Penguatan Tata Kelola Lembaga (PKK)</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- KATEGORI -->
+      <div>
+
+        <label class="block text-xs font-bold text-ink mb-1.5">
+          Kategori Bidang
+        </label>
+
+        <select
+          class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+          id="filterKategori"
+          onchange="handleFilterChange()">
+
+          <option value="all">Semua Kategori</option>
+          <option value="Pelestari">Pelestari / Maestro Tradisi</option>
+          <option value="Seni Tradisi">Seni Pertunjukan / Tradisi</option>
+          <option value="Cagar Budaya">Cagar Budaya</option>
+          <option value="Permuseuman">Permuseuman</option>
+          <option value="Musik/Orkestra">Musik / Orkestra</option>
+          <option value="Paduan Suara">Paduan Suara</option>
+          <option value="Tata Kelola Warisan">Tata Kelola Warisan</option>
+          <option value="Tradisi Lisan">Tradisi Lisan &amp; Adat</option>
+          <option value="Yayasan/Komunitas">Yayasan / Komunitas</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- TAHUN -->
+      <div>
+
+        <label class="block text-xs font-bold text-ink mb-1.5">
+          Tahun Penetapan / Pelaksanaan
+        </label>
+
+        <select
+          class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+          id="filterTahun"
+          onchange="handleFilterChange()">
+
+          <option value="all">Semua Tahun</option>
+          <option value="2026">2026</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+          <option value="2023">2023</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- PROVINSI -->
+      <div>
+
+        <label class="block text-xs font-bold text-ink mb-1.5">
+          Provinsi
+        </label>
+
+        <select
+          class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+          id="filterProvinsi"
+          onchange="handleFilterChange()">
+
+          <option value="all">Semua Provinsi</option>
+          <option value="Jawa Tengah">Jawa Tengah</option>
+          <option value="DKI Jakarta">DKI Jakarta</option>
+          <option value="DI Yogyakarta">DI Yogyakarta</option>
+          <option value="Jawa Barat">Jawa Barat</option>
+          <option value="Jawa Timur">Jawa Timur</option>
+          <option value="Bali">Bali</option>
+          <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+          <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+          <option value="Sumatera Barat">Sumatera Barat</option>
+          <option value="Sumatera Utara">Sumatera Utara</option>
+          <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+          <option value="Kalimantan Timur">Kalimantan Timur</option>
+          <option value="Papua">Papua</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- KABUPATEN KOTA -->
+      <div>
+
+        <label class="block text-xs font-bold text-ink mb-1.5">
+          Kabupaten / Kota
+        </label>
+
+        <select
+          class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+          id="filterKabKota"
+          onchange="handleFilterChange()">
+
+          <option value="all">Semua Kabupaten/Kota</option>
+          <option value="Kota Padang">Kota Padang</option>
+          <option value="Kota Malang">Kota Malang</option>
+          <option value="Kota Surakarta">Kota Surakarta</option>
+          <option value="Kota Bandung">Kota Bandung</option>
+          <option value="Kab. Gianyar">Kab. Gianyar</option>
+          <option value="Kab. Manggarai Barat">Kab. Manggarai Barat</option>
+          <option value="Kab. Sleman">Kab. Sleman</option>
+          <option value="Kota Denpasar">Kota Denpasar</option>
+          <option value="Kab. Banyumas">Kab. Banyumas</option>
+          <option value="Jakarta Pusat">Jakarta Pusat</option>
+
+        </select>
+
+      </div>
+
+
+      <!-- STATUS -->
+      <div>
+
+        <label class="block text-xs font-bold text-ink mb-1.5">
+          Status Verifikasi
+        </label>
+
+        <select
+          class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold"
+          id="filterStatus"
+          onchange="handleFilterChange()">
+
+          <option value="all">Semua Status</option>
+          <option value="Terverifikasi SK">Terverifikasi SK</option>
+          <option value="Kompeten">Kompeten</option>
+          <option value="Lulus Seleksi">Lulus Seleksi</option>
+          <option value="Aktif Berjalan">Aktif Berjalan</option>
+          <option value="Tahap Kurasi">Tahap Kurasi</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       DATA TABLE
+       ===================================================== -->
+
+  <div class="card table-card">
+
+    <!-- TOP CONTROLS -->
+    <div class="p-4 border-b border-borderCustom flex flex-wrap items-center justify-between gap-3 bg-[#FAF8F3]">
+
+      <div class="flex items-center gap-2 text-xs font-medium text-ink-soft">
+
+        <span>
+          Show
+        </span>
+
+        <select
+          class="bg-paper border border-borderCustom rounded px-2.5 py-1 text-xs font-semibold text-ink focus:outline-none focus:ring-1 focus:ring-gold"
+          id="entriesSelect"
+          onchange="handleFilterChange()">
+
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+
+        </select>
+
+        <span>
+          entries
+        </span>
+
+      </div>
+
+
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-pale border border-[#E7DFCC] text-xs font-semibold text-ink">
+
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+
+        Menampilkan basis data 7 program prioritas kebudayaan nasional
+
+      </div>
+
+    </div>
+
+
+    <!-- TABLE -->
+    <div class="overflow-x-auto">
+
+      <table class="w-full" id="dapobudTable">
+
+        <thead>
+
+          <tr>
+
+            <th style="width:4%;text-align:center;">
+              #
+            </th>
+
+            <th style="width:14%;">
+              Kode Registrasi
+            </th>
+
+            <th style="width:23%;">
+              Nama Penerima / Kegiatan
+            </th>
+
+            <th style="width:12%;">
+              Program
+            </th>
+
+            <th style="width:15%;">
+              Kategori Bidang
+            </th>
+
+            <th style="width:15%;">
+              Wilayah (Provinsi &amp; Kab/Kota)
+            </th>
+
+            <th style="width:6%;text-align:center;">
+              Tahun
+            </th>
+
+            <th style="width:11%;">
+              Status
+            </th>
+
+            <th style="width:8%;text-align:center;">
+              Aksi
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="tableBody">
+          <!-- Rendered via JavaScript -->
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <!-- PAGINATION -->
+    <div class="p-4 border-t border-borderCustom flex flex-wrap items-center justify-between gap-4 bg-[#FDFBF8]">
+
+      <div
+        class="text-xs text-ink-soft"
+        id="paginationInfo">
+
+        Showing 1 to 10 of 1,240 entries
+
+      </div>
+
+
+      <div
+        class="flex items-center gap-1"
+        id="paginationButtons">
+
+        <button
+          class="page-btn text-xs"
+          disabled
+          id="btnPrev">
+          Previous
+        </button>
+
+        <button class="page-btn active">
+          1
+        </button>
+
+        <button class="page-btn">
+          2
+        </button>
+
+        <button class="page-btn">
+          3
+        </button>
+
+        <button class="page-btn">
+          4
+        </button>
+
+        <button class="page-btn">
+          5
+        </button>
+
+        <span class="px-1 text-muted text-xs">
+          ...
+        </span>
+
+        <button class="page-btn">
+          124
+        </button>
+
+        <button
+          class="page-btn text-xs"
+          id="btnNext">
+          Next
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<!-- =========================================================
+     MODAL DETAIL
+     ========================================================= -->
+
+<div
+  class="modal-overlay hidden-modal fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#1A150D]/60 backdrop-blur-sm overflow-y-auto"
+  id="objekDetailModal">
+
+  <div
+    class="modal-container bg-paper w-full max-w-xl rounded-2xl border border-borderCustom shadow-2xl flex flex-col overflow-hidden my-auto">
+
+
+    <!-- MODAL HEADER -->
+    <div class="px-6 py-4 border-b border-borderCustom flex items-start justify-between bg-[#FDFBF7]">
+
+      <div class="flex items-center gap-3">
+
+        <div
+          class="w-10 h-10 rounded-xl bg-gold-pale border border-[#E2D5BC] flex items-center justify-center text-gold-dark shrink-0"
+          id="modalIcon">
+
+          <span class="material-symbols-outlined text-xl">
+            workspace_premium
+          </span>
+
+        </div>
+
+        <div>
+
+          <span
+            class="text-[11px] font-bold uppercase tracking-wider text-muted"
+            id="modalProgramHeader">
+
+            Program Prioritas Kebudayaan
+
+          </span>
+
+          <h3
+            class="font-display text-lg font-bold text-ink"
+            id="modalObjekName">
+
+            Nama Penerima
+
+          </h3>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="w-8 h-8 rounded-full bg-cream hover:bg-[#EBE2D0] border border-borderCustom flex items-center justify-center text-ink text-sm font-bold transition"
+        onclick="closeDetailModal()">
+
+        ✕
+
+      </button>
+
+    </div>
+
+
+    <!-- MODAL CONTENT -->
+    <div class="p-6 space-y-3.5 text-sm">
+
+      <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
+
+        <span class="text-muted text-xs font-semibold">
+          Kode Registrasi:
+        </span>
+
+        <span
+          class="font-mono font-bold text-ink text-xs"
+          id="modalObjekNo">
+          -
+        </span>
+
+      </div>
+
+
+      <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
+
+        <span class="text-muted text-xs font-semibold">
+          Program Kebudayaan:
+        </span>
+
+        <span
+          class="font-bold text-ink text-xs"
+          id="modalProgramName">
+          -
+        </span>
+
+      </div>
+
+
+      <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
+
+        <span class="text-muted text-xs font-semibold">
+          Kategori Bidang:
+        </span>
+
+        <span
+          class="font-bold text-gold-dark text-xs"
+          id="modalObjekKategori">
+          -
+        </span>
+
+      </div>
+
+
+      <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
+
+        <span class="text-muted text-xs font-semibold">
+          Wilayah &amp; Domisili:
+        </span>
+
+        <span
+          class="font-semibold text-ink text-xs text-right"
+          id="modalObjekWilayah">
+          -
+        </span>
+
+      </div>
+
+
+      <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
+
+        <span class="text-muted text-xs font-semibold">
+          Tahun Pelaksanaan / Penetapan:
+        </span>
+
+        <span
+          class="font-bold text-ink text-xs"
+          id="modalObjekTahun">
+          -
+        </span>
+
+      </div>
+
+
+      <div class="flex justify-between py-1.5">
+
+        <span class="text-muted text-xs font-semibold">
+          Status Verifikasi:
+        </span>
+
+        <span
+          class="inline-flex items-center gap-1.5 text-xs font-bold"
+          id="modalStatusBadge">
+
+          <span class="w-2 h-2 rounded-full bg-kemengreen"></span>
+
+          <span id="modalStatusText">
+            Terverifikasi SK
+          </span>
+
+        </span>
+
+      </div>
+
+
+      <div
+        class="p-3 bg-[#FAF7F0] border border-borderCustom rounded-xl text-xs text-ink-soft leading-relaxed"
+        id="modalDescription">
+
+        Data tercatat resmi dalam Sistem Terpadu Pengelolaan Data Kebudayaan Nasional, Direktorat Jenderal Kebudayaan, Kementerian Kebudayaan Republik Indonesia.
+
+      </div>
+
+    </div>
+
+
+    <!-- MODAL FOOTER -->
+    <div class="px-6 py-3.5 bg-[#FAF7F0] border-t border-borderCustom flex items-center justify-between">
+
+      <span class="text-[11px] text-muted flex items-center gap-1">
+
+        <span class="material-symbols-outlined text-sm">
+          verified_user
+        </span>
+
+        Validasi Kementerian Kebudayaan RI
+
+      </span>
+
+
+      <button
+        class="px-4 py-1.5 rounded-lg bg-[#C9A15A] hover:bg-[#A87F3C] text-white font-bold text-xs shadow-sm transition"
+        onclick="closeDetailModal()">
+
+        Tutup
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+  <div class="footer-inner">
+
+
+    <!-- FOOTER BRAND -->
+    <div class="footer-brand">
+
+      <svg
+        class="brand-logo"
+        fill="none"
+        viewbox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <g fill="#C9A15A">
+
+          <path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
+
+          <circle cx="24" cy="24" r="3.4"></circle>
+
+        </g>
+
+      </svg>
+
+
+      <div class="footer-brand-text">
+
+        <h4>
+          Kementerian Kebudayaan<br/>
+          Republik Indonesia
+        </h4>
+
+        <p>
+          Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat BSLPK
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- TAUTAN -->
+    <div class="footer-col">
+
+      <h5>
+        Tautan
+      </h5>
+
+      <a href="beranda-admin.html">
+        Beranda
+      </a>
+
+      <a href="statistik-program.html">
+        Statistik Program
+      </a>
+
+      <a href="data-program-admin.html">
+        Data Program
+      </a>
+
+      <a href="tentang.html">
+        Tentang
+      </a>
+
+    </div>
+
+
+    <!-- BANTUAN -->
+    <div class="footer-col">
+
+      <h5>
+        Bantuan
+      </h5>
+
+      <a href="tentang.html">
+        Panduan (Juknis)
+      </a>
+
+      <a href="tentang.html">
+        FAQ
+      </a>
+
+      <a href="#">
+        Dasar Hukum
+      </a>
+
+    </div>
+
+
+    <!-- KONTAK -->
+    <div class="footer-col">
+
+      <h5>
+        Kontak
+      </h5>
+
+      <div class="footer-contact-item">
+        ✉️ kontak@kemenbud.go.id
+      </div>
+
+      <div class="footer-contact-item">
+        ☎️ Call center 178
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER BOTTOM -->
+  <div class="footer-bottom">
+
+    <span>
+      © 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.
+    </span>
+
+    <div class="social-dots">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+     ========================================================= -->
+
+<script>
+
+// ==========================================================
+// DATASET 7 PROGRAM KEBUDAYAAN
+// ==========================================================
+
+const RAW_DATA = [
+
+  {
+    id:"AKI-2026-00512",
+    nama:"Datuak Maringgai Alam",
+    programKey:"AKI",
+    programName:"Anugerah Kebudayaan Indonesia",
+    kategori:"Pelestari",
+    kategoriLabel:"Maestro Tradisi",
+    wilayah:"Kota Padang, Sumatera Barat",
+    prov:"Sumatera Barat",
+    kabkota:"Kota Padang",
+    tahun:"2026",
+    status:"Terverifikasi SK",
+    statusColor:"bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor:"bg-amber-100 text-amber-800 border-amber-300"
+  },
+
+  {
+    id:"SERT-2026-00742",
+    nama:"Bambang Soedjatmiko, M.Hum",
+    programKey:"Sertifikasi",
+    programName:"Sertifikasi Profesi Kebudayaan",
+    kategori:"Cagar Budaya",
+    kategoriLabel:"Ahli Cagar Budaya",
+    wilayah:"Kota Malang, Jawa Timur",
+    prov:"Jawa Timur",
+    kabkota:"Kota Malang",
+    tahun:"2026",
+    status:"Kompeten",
+    statusColor:"bg-blue-50 text-blue-700 border-blue-200",
+    badgeColor:"bg-blue-100 text-blue-800 border-blue-300"
+  },
+
+  {
+    id:"BIM-2026-00214",
+    nama:"Bimtek Konservasi Candi & Warisan",
+    programKey:"Bimtek",
+    programName:"Bimbingan Teknis Kebudayaan",
+    kategori:"Tata Kelola Warisan",
+    kategoriLabel:"Tata Kelola Warisan",
+    wilayah:"Kota Surakarta, Jawa Tengah",
+    prov:"Jawa Tengah",
+    kabkota:"Kota Surakarta",
+    tahun:"2026",
+    status:"Aktif Berjalan",
+    statusColor:"bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor:"bg-purple-100 text-purple-800 border-purple-300"
+  },
+
+  {
+    id:"MTN-2026-00088",
+    nama:"Festival Musik Tradisi Rakyat",
+    programKey:"MTN",
+    programName:"Manajemen Talenta Nasional",
+    kategori:"Seni Tradisi",
+    kategoriLabel:"Seni Pertunjukan",
+    wilayah:"Kota Bandung, Jawa Barat",
+    prov:"Jawa Barat",
+    kabkota:"Kota Bandung",
+    tahun:"2026",
+    status:"Tahap Kurasi",
+    statusColor:"bg-amber-50 text-amber-700 border-amber-200",
+    badgeColor:"bg-rose-100 text-rose-800 border-rose-300"
+  },
+
+  {
+    id:"GBN-2025-00438",
+    nama:"Ni Putu Ayu Saraswati",
+    programKey:"GBN",
+    programName:"Gita Bahana Nusantara",
+    kategori:"Paduan Suara",
+    kategoriLabel:"Paduan Suara (Sopran)",
+    wilayah:"Kab. Gianyar, Bali",
+    prov:"Bali",
+    kabkota:"Kab. Gianyar",
+    tahun:"2025",
+    status:"Lulus Seleksi",
+    statusColor:"bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor:"bg-teal-100 text-teal-800 border-teal-300"
+  },
+
+  {
+    id:"PKD-2026-00109",
+    nama:"Desa Wisata Budaya Wolomeze",
+    programKey:"PKD",
+    programName:"Pemajuan Kebudayaan Desa",
+    kategori:"Tradisi Lisan",
+    kategoriLabel:"Ritus & Adat Istiadat",
+    wilayah:"Kab. Manggarai Barat, NTT",
+    prov:"Nusa Tenggara Timur",
+    kabkota:"Kab. Manggarai Barat",
+    tahun:"2026",
+    status:"Aktif Berjalan",
+    statusColor:"bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor:"bg-emerald-100 text-emerald-800 border-emerald-300"
+  },
+
+  {
+    id:"PKK-2026-00331",
+    nama:"Paguyuban Macapat Sleman",
+    programKey:"PKK",
+    programName:"Penguatan Tata Kelola Lembaga",
+    kategori:"Yayasan/Komunitas",
+    kategoriLabel:"Yayasan / Komunitas",
+    wilayah:"Kab. Sleman, DI Yogyakarta",
+    prov:"DI Yogyakarta",
+    kabkota:"Kab. Sleman",
+    tahun:"2026",
+    status:"Terverifikasi SK",
+    statusColor:"bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor:"bg-indigo-100 text-indigo-800 border-indigo-300"
+  },
+
+  {
+    id:"MTN-2026-00142",
+    nama:"Farrel Putra Dewata",
+    programKey:"MTN",
+    programName:"Manajemen Talenta Nasional",
+    kategori:"Musik/Orkestra",
+    kategoriLabel:"Orkestra (Etnis)",
+    wilayah:"Kota Denpasar, Bali",
+    prov:"Bali",
+    kabkota:"Kota Denpasar",
+    tahun:"2026",
+    status:"Lulus Seleksi",
+    statusColor:"bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor:"bg-rose-100 text-rose-800 border-rose-300"
+  },
+
+  {
+    id:"PKK-2025-00194",
+    nama:"Sanggar Seni Langen Budaya",
+    programKey:"PKK",
+    programName:"Penguatan Tata Kelola Lembaga",
+    kategori:"Seni Tradisi",
+    kategoriLabel:"Komunitas Seni Tradisi",
+    wilayah:"Kab. Banyumas, Jawa Tengah",
+    prov:"Jawa Tengah",
+    kabkota:"Kab. Banyumas",
+    tahun:"2025",
+    status:"Terverifikasi SK",
+    statusColor:"bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor:"bg-indigo-100 text-indigo-800 border-indigo-300"
+  },
+
+  {
+    id:"SERT-2025-00411",
+    nama:"Dr. Siti Nurhaliza, M.Pd",
+    programKey:"Sertifikasi",
+    programName:"Sertifikasi Profesi Kebudayaan",
+    kategori:"Permuseuman",
+    kategoriLabel:"Kurator Museum",
+    wilayah:"Jakarta Pusat, DKI Jakarta",
+    prov:"DKI Jakarta",
+    kabkota:"Jakarta Pusat",
+    tahun:"2025",
+    status:"Kompeten",
+    statusColor:"bg-blue-50 text-blue-700 border-blue-200",
+    badgeColor:"bg-blue-100 text-blue-800 border-blue-300"
+  }
+
+];
+
+
+// ==========================================================
+// RENDER TABLE
+// ==========================================================
+
+function renderTable(data){
+
+  const tbody=document.getElementById('tableBody');
+
+  tbody.innerHTML='';
+
+  if(data.length===0){
+
+    tbody.innerHTML=`
+      <tr>
+        <td
+          colspan="9"
+          class="text-center py-10 text-muted text-xs">
+          Tidak ada data ditemukan untuk kriteria pencarian dan filter ini.
+        </td>
+      </tr>
+    `;
+
+    document.getElementById('paginationInfo').textContent=
+      'Showing 0 to 0 of 0 entries';
+
+    return;
+  }
+
+
+  data.forEach((item,index)=>{
+
+    const tr=document.createElement('tr');
+
+    tr.innerHTML=`
+
+      <td class="text-center font-semibold text-xs text-muted">
+        ${index+1}
+      </td>
+
+      <td class="font-mono text-xs font-bold text-ink">
+        ${item.id}
+      </td>
+
+      <td
+        class="font-bold text-ink hover:text-gold-dark cursor-pointer transition"
+        onclick="openDetailModalById('${item.id}')">
+
+        ${item.nama}
+
+      </td>
+
+      <td>
+
+        <span class="badge-program border ${item.badgeColor}">
+          ${item.programKey}
+        </span>
+
+      </td>
+
+      <td class="text-xs text-ink-soft font-medium">
+        ${item.kategoriLabel}
+      </td>
+
+      <td class="text-xs text-ink-soft">
+        ${item.wilayah}
+      </td>
+
+      <td class="text-center font-bold text-xs text-ink">
+        ${item.tahun}
+      </td>
+
+      <td>
+
+        <span class="badge-status border ${item.statusColor}">
+
+          <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+
+          ${item.status}
+
+        </span>
+
+      </td>
+
+      <td class="text-center">
+
+        <button
+          class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-gold-pale hover:bg-gold-light text-gold-dark hover:text-ink font-semibold text-xs border border-[#E0D5BE] transition"
+          onclick="openDetailModalById('${item.id}')"
+          title="Lihat Detail Data">
+
+          <span class="material-symbols-outlined text-[15px]">
+            visibility
+          </span>
+
+          <span>
+            Detail
+          </span>
+
+        </button>
+
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+
+  document.getElementById('paginationInfo').textContent=
+    `Showing 1 to ${data.length} of 1,240 entries`;
+
+}
+
+
+// ==========================================================
+// SEARCH
+// ==========================================================
+
+function handleSearch(){
+
+  const query=
+    document.getElementById('searchInput')
+      .value
+      .toLowerCase()
+      .trim();
+
+  const program=
+    document.getElementById('filterProgram').value;
+
+  const kat=
+    document.getElementById('filterKategori').value;
+
+  const tahun=
+    document.getElementById('filterTahun').value;
+
+  const prov=
+    document.getElementById('filterProvinsi').value;
+
+  const kabkota=
+    document.getElementById('filterKabKota').value;
+
+  const status=
+    document.getElementById('filterStatus').value;
+
+
+  const filtered=RAW_DATA.filter(item=>{
+
+    const matchQuery=
+      !query ||
+
+      item.nama.toLowerCase().includes(query) ||
+
+      item.id.toLowerCase().includes(query) ||
+
+      item.kategoriLabel.toLowerCase().includes(query) ||
+
+      item.wilayah.toLowerCase().includes(query);
+
+
+    const matchProgram=
+      program==='all' ||
+      item.programKey===program;
+
+
+    const matchCat=
+      kat==='all' ||
+      item.kategori===kat;
+
+
+    const matchTahun=
+      tahun==='all' ||
+      item.tahun===tahun;
+
+
+    const matchProv=
+      prov==='all' ||
+      item.prov===prov;
+
+
+    const matchKabKota=
+      kabkota==='all' ||
+      item.kabkota===kabkota;
+
+
+    const matchStatus=
+      status==='all' ||
+      item.status===status;
+
+
+    return(
+      matchQuery &&
+      matchProgram &&
+      matchCat &&
+      matchTahun &&
+      matchProv &&
+      matchKabKota &&
+      matchStatus
+    );
+
+  });
+
+
+  renderTable(filtered);
+
+}
+
+
+// ==========================================================
+// FILTER
+// ==========================================================
+
+function handleFilterChange(){
+
+  handleSearch();
+
+}
+
+
+// ==========================================================
+// ENTER SEARCH
+// ==========================================================
+
+document
+  .getElementById('searchInput')
+  .addEventListener('keyup',function(e){
+
+    if(e.key==='Enter'){
+      handleSearch();
+    }
+
+  });
+
+
+// ==========================================================
+// OPEN DETAIL MODAL
+// ==========================================================
+
+function openDetailModalById(id){
+
+  const item=
+    RAW_DATA.find(d=>d.id===id);
+
+  if(!item) return;
+
+
+  document.getElementById('modalObjekName').textContent=
+    item.nama;
+
+  document.getElementById('modalObjekNo').textContent=
+    item.id;
+
+  document.getElementById('modalProgramName').textContent=
+    item.programName + ` (${item.programKey})`;
+
+  document.getElementById('modalObjekKategori').textContent=
+    item.kategoriLabel;
+
+  document.getElementById('modalObjekWilayah').textContent=
+    item.wilayah;
+
+  document.getElementById('modalObjekTahun').textContent=
+    item.tahun;
+
+  document.getElementById('modalStatusText').textContent=
+    item.status;
+
+
+  const modal=
+    document.getElementById('objekDetailModal');
+
+  modal.classList.remove('hidden-modal');
+
+  document.body.style.overflow='hidden';
+
+}
+
+
+// ==========================================================
+// CLOSE MODAL
+// ==========================================================
+
+function closeDetailModal(){
+
+  const modal=
+    document.getElementById('objekDetailModal');
+
+  modal.classList.add('hidden-modal');
+
+  document.body.style.overflow='';
+
+}
+
+
+// ==========================================================
+// CLOSE MODAL WHEN CLICK OUTSIDE
+// ==========================================================
+
+document
+  .getElementById('objekDetailModal')
+  .addEventListener('click',function(e){
+
+    if(e.target===this){
+
+      closeDetailModal();
+
+    }
+
+  });
+
+
+// ==========================================================
+// ESCAPE KEY
+// ==========================================================
+
+document.addEventListener('keydown',function(e){
+
+  if(e.key==='Escape'){
+
+    closeDetailModal();
+
+  }
+
+});
+
+
+// ==========================================================
+// INITIAL RENDER
+// ==========================================================
+
+renderTable(RAW_DATA);
+
+</script>
+
+</body>
+</html>
