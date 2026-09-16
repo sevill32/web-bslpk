@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Beranda Admin &amp; Validator — Kemenbud Data Kebudayaan</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Portal Kurasi &amp; Validasi Data — Kemenbud Data Kebudayaan</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -326,7 +324,7 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="topbar-inner">
 
 <div class="brand">
-<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<svg class="brand-logo" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g fill="#C9A15A">
 <path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
 <circle cx="24" cy="24" r="3.4"></circle>
@@ -342,7 +340,7 @@ tbody tr:hover{background:#FDFBF7;}
 <!-- Center Navigation -->
 <nav class="nav">
 <a class="active" href="beranda-validator.html">Beranda</a>
-<a href="data-program-validator.html">Data Program</a>
+<a href="data-program-validator.html" class="">Data Program</a>
 </nav>
 
 <!-- Right User Meta & Logout -->
@@ -355,12 +353,9 @@ tbody tr:hover{background:#FDFBF7;}
 </div>
 </div>
 
-<a class="btn-logout"
-   href="index.html"
-   onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?')"
-   title="Keluar dari akun">
+<a class="btn-logout" href="index.html" onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?')" title="Keluar dari akun">
 <span class="material-symbols-outlined" style="font-size:16px;">logout</span>
-<span>Logout</span>
+<span class="">Logout</span>
 </a>
 
 </div>
@@ -371,77 +366,50 @@ tbody tr:hover{background:#FDFBF7;}
 <main class="page-shell">
 
 <!-- DASHBOARD TITLE & ACTIONS -->
-<div class="dashboard-header">
-<div class="dashboard-title">
-<h1>Portal Kurasi &amp; Validasi Data</h1>
-<p>Verifikasi kelayakan usulan kegiatan, portofolio SDM kebudayaan, dan pengajuan program nasional.</p>
+<div class="dashboard-header"><div class="dashboard-title">
+<h1 style="font-family:'Poppins',sans-serif; font-size:24px; font-weight:700; margin:0; color:var(--ink);" class="">Ringkasan</h1>
 </div>
 
 <div class="header-actions">
 <a class="btn-primary" href="kelola-data.html">
 <span class="material-symbols-outlined" style="font-size:18px;">tune</span>
-<span>Kelola Semua Entri</span>
+<span class="">Kelola Semua Entri</span>
 </a>
-</div>
-</div>
+</div></div>
 
 <!-- 4 SUMMARY STATISTIC CARDS -->
-<div class="stats-grid">
+<div class="stats-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px;">
 
-<div class="stat-card total">
-<div class="stat-top">
-<span class="stat-label">Total Data Pengajuan</span>
-<div class="stat-icon-wrap">
-<span class="material-symbols-outlined" style="font-size:22px;">inventory_2</span>
+<div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px 22px; box-shadow:var(--shadow);">
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+<span style="font-size:13px; font-weight:600; color:var(--muted);" class="">Total Data Pengajuan</span>
+<span class="material-symbols-outlined" style="font-size:20px; color:var(--muted);">database</span>
 </div>
-</div>
-<div class="stat-value" id="cardTotalCount">1.240</div>
-<div class="stat-desc">
-<span class="material-symbols-outlined" style="font-size:15px; color:var(--gold);">history</span>
-<span>Seluruh data terhimpun</span>
-</div>
+<div id="cardTotalCount" style="font-family:'Poppins',sans-serif; font-size:26px; font-weight:800; line-height:1.1; color:var(--ink);" class="">1.240</div>
 </div>
 
-<div class="stat-card pending">
-<div class="stat-top">
-<span class="stat-label">Menunggu Validasi</span>
-<div class="stat-icon-wrap">
-<span class="material-symbols-outlined" style="font-size:22px;">pending_actions</span>
+<div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px 22px; box-shadow:var(--shadow);">
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+<span style="font-size:13px; font-weight:600; color:var(--muted);" class="">Menunggu Validasi</span>
+<span class="material-symbols-outlined" style="font-size:20px; color:var(--amber);">hourglass_top</span>
 </div>
-</div>
-<div class="stat-value" id="cardPendingCount">12</div>
-<div class="stat-desc">
-<span class="material-symbols-outlined" style="font-size:15px; color:var(--amber);">schedule</span>
-<span>Butuh tindakan validator</span>
-</div>
+<div id="cardPendingCount" style="font-family:'Poppins',sans-serif; font-size:26px; font-weight:800; line-height:1.1; color:var(--amber);" class="">12</div>
 </div>
 
-<div class="stat-card rejected">
-<div class="stat-top">
-<span class="stat-label">Ditolak / Perlu Revisi</span>
-<div class="stat-icon-wrap">
-<span class="material-symbols-outlined" style="font-size:22px;">assignment_late</span>
+<div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px 22px; box-shadow:var(--shadow);">
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+<span style="font-size:13px; font-weight:600; color:var(--muted);" class="">Ditolak / Perlu Revisi</span>
+<span class="material-symbols-outlined" style="font-size:20px; color:var(--red);">error</span>
 </div>
-</div>
-<div class="stat-value" id="cardRejectedCount">3</div>
-<div class="stat-desc">
-<span class="material-symbols-outlined" style="font-size:15px; color:var(--red);">error_outline</span>
-<span>Menunggu kelengkapan admin</span>
-</div>
+<div id="cardRejectedCount" style="font-family:'Poppins',sans-serif; font-size:26px; font-weight:800; line-height:1.1; color:var(--red);" class="">3</div>
 </div>
 
-<div class="stat-card approved">
-<div class="stat-top">
-<span class="stat-label">Disetujui Bulan Ini</span>
-<div class="stat-icon-wrap">
-<span class="material-symbols-outlined" style="font-size:22px;">verified</span>
+<div style="background:#fff; border:1px solid var(--border); border-radius:14px; padding:20px 22px; box-shadow:var(--shadow);">
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+<span style="font-size:13px; font-weight:600; color:var(--muted);" class="">Disetujui Bulan Ini</span>
+<span class="material-symbols-outlined" style="font-size:20px; color:var(--green-dark);">task_alt</span>
 </div>
-</div>
-<div class="stat-value" id="cardApprovedCount">45</div>
-<div class="stat-desc">
-<span class="material-symbols-outlined" style="font-size:15px; color:var(--green-dark);">trending_up</span>
-<span>Telah terbit ke portal publik</span>
-</div>
+<div id="cardApprovedCount" style="font-family:'Poppins',sans-serif; font-size:26px; font-weight:800; line-height:1.1; color:var(--green-dark);" class="">45</div>
 </div>
 
 </div>
@@ -452,26 +420,26 @@ tbody tr:hover{background:#FDFBF7;}
 <!-- Top Filter Head & Status Chips -->
 <div class="panel-head">
 <div class="panel-head-text">
-<h2>Pengajuan Data Masuk</h2>
-<p>Daftar data terbaru yang diajukan oleh admin daerah &amp; pengelola program untuk dikurasi.</p>
+<h2 class="">Pengajuan Data Masuk</h2>
+<p class="">Daftar data terbaru yang diajukan oleh admin daerah &amp; pengelola program untuk dikurasi.</p>
 </div>
 
 <div class="status-chips-wrap">
 
 <button class="status-chip active" id="chip-semua" onclick="filterQuickStatus('all')" type="button">
-<span>Semua</span> <strong style="font-size:11.5px; opacity:0.8;">(15)</strong>
+<span class="">Semua</span> <strong style="font-size:11.5px; opacity:0.8;">(15)</strong>
 </button>
 
 <button class="status-chip pending" id="chip-pending" onclick="filterQuickStatus('pending')" type="button">
-<span>⏳ Menunggu Validasi</span> <strong style="font-size:11.5px;">(12)</strong>
+<span class="">⏳ Menunggu Validasi</span> <strong style="font-size:11.5px;">(12)</strong>
 </button>
 
 <button class="status-chip approved" id="chip-approved" onclick="filterQuickStatus('approved')" type="button">
-<span>✓ Disetujui</span> <strong style="font-size:11.5px;">(45)</strong>
+<span class="">✓ Disetujui</span> <strong style="font-size:11.5px;">(45)</strong>
 </button>
 
 <button class="status-chip rejected" id="chip-rejected" onclick="filterQuickStatus('rejected')" type="button">
-<span>✕ Ditolak / Revisi</span> <strong style="font-size:11.5px;">(3)</strong>
+<span class="">✕ Ditolak / Revisi</span> <strong style="font-size:11.5px;">(3)</strong>
 </button>
 
 </div>
@@ -481,7 +449,7 @@ tbody tr:hover{background:#FDFBF7;}
 <div class="filter-toolbar">
 
 <div>
-<input class="input" id="searchInput" onkeyup="jalankanFilter()" placeholder="Cari program / wilayah / nama admin / SDM..." type="text"/>
+<input class="input" id="searchInput" onkeyup="jalankanFilter()" placeholder="Cari program / wilayah / nama admin / SDM..." type="text">
 </div>
 
 <div>
@@ -526,11 +494,11 @@ tbody tr:hover{background:#FDFBF7;}
 
 <thead>
 <tr>
-<th style="width:26%;">Program &amp; Kode Pengajuan</th>
-<th style="width:20%;">Wilayah</th>
-<th style="width:22%;">Diinput Oleh &amp; Tanggal</th>
-<th style="width:14%;">Status</th>
-<th style="width:18%; text-align:right;">Aksi Validasi</th>
+<th style="width:26%;" class="">Program &amp; Kode Pengajuan</th>
+<th style="width:20%;" class="">Wilayah</th>
+<th style="width:22%;" class="">Diinput Oleh &amp; Tanggal</th>
+<th style="width:14%;" class="">Status</th>
+<th style="width:18%; text-align:right;" class="">Aksi Validasi</th>
 </tr>
 </thead>
 
@@ -538,32 +506,32 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- ROW 1 -->
 <tr data-date="2026-08-21" data-id="BST-2026-00214" data-prog="Bimtek &amp; Sertifikasi" data-status="pending" data-wilayah="Jawa Tengah">
-<td>
+<td class="">
 <div class="prog-cell">
 <div class="prog-name">Bimtek &amp; Sertifikasi</div>
 <div class="prog-code">#BST-2026-00214</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="loc-cell">
 <div class="loc-prov">Jawa Tengah</div>
 <div class="loc-kab">Kota Surakarta</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="inputted-cell">
 <div class="user-name">Ahmad Farhan, S.Sn</div>
 <div class="user-date">21 Agu 2026 • Disbud Surakarta</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <span class="badge pending"><span class="badge-dot"></span>Menunggu validasi</span>
 </td>
 
-<td>
+<td class="">
 <div class="validation-actions" style="justify-content:flex-end;">
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'BST-2026-00214')" title="Setujui Data" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui
@@ -582,32 +550,32 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- ROW 2 -->
 <tr data-date="2026-08-20" data-id="PKD-2026-00109" data-prog="Pemajuan Kebudayaan Desa" data-status="rejected" data-wilayah="Nusa Tenggara Timur">
-<td>
+<td class="">
 <div class="prog-cell">
 <div class="prog-name">Pemajuan Kebudayaan Desa</div>
 <div class="prog-code">#PKD-2026-00109</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="loc-cell">
 <div class="loc-prov">Nusa Tenggara Timur (NTT)</div>
 <div class="loc-kab">Manggarai Barat</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="inputted-cell">
 <div class="user-name">Kornelis Mbete</div>
 <div class="user-date">20 Agu 2026 • Komunitas Adat Manggarai</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <span class="badge rejected"><span class="badge-dot"></span>Ditolak, perlu revisi</span>
 </td>
 
-<td>
+<td class="">
 <div class="validation-actions" style="justify-content:flex-end;">
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'PKD-2026-00109')" title="Setujui Data" type="button">
 <span class="material-symbols-outlined" style="font-size:16px;">check</span> Setujui
@@ -626,32 +594,32 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- ROW 3 -->
 <tr data-date="2026-08-18" data-id="GBN-2025-00438" data-prog="Gita Bahana Nusantara" data-status="approved" data-wilayah="Bali">
-<td>
+<td class="">
 <div class="prog-cell">
 <div class="prog-name">Gita Bahana Nusantara (GBN)</div>
 <div class="prog-code">#GBN-2025-00438</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="loc-cell">
 <div class="loc-prov">Bali</div>
 <div class="loc-kab">Gianyar</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="inputted-cell">
 <div class="user-name">Ni Putu Ayu Saraswati</div>
 <div class="user-date">18 Agu 2026 • Gita Suara Dewata</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <span class="badge approved"><span class="badge-dot"></span>Disetujui</span>
 </td>
 
-<td>
+<td class="">
 <div class="validation-actions" style="justify-content:flex-end;">
 
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'GBN-2025-00438')" style="opacity:0.6; cursor:default;" title="Sudah Disetujui" type="button">
@@ -672,32 +640,32 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- ROW 4 -->
 <tr data-date="2026-08-16" data-id="MTN-2026-00088" data-prog="Manajemen Talenta Nasional" data-status="approved" data-wilayah="Jawa Barat">
-<td>
+<td class="">
 <div class="prog-cell">
 <div class="prog-name">Manajemen Talenta Nasional (MTN)</div>
 <div class="prog-code">#MTN-2026-00088</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="loc-cell">
 <div class="loc-prov">Jawa Barat</div>
 <div class="loc-kab">Bandung</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="inputted-cell">
 <div class="user-name">Rizal Firmansyah, M.Pd</div>
 <div class="user-date">16 Agu 2026 • Institut Seni Bandung</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <span class="badge approved"><span class="badge-dot"></span>Disetujui</span>
 </td>
 
-<td>
+<td class="">
 <div class="validation-actions" style="justify-content:flex-end;">
 
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'MTN-2026-00088')" style="opacity:0.6; cursor:default;" title="Sudah Disetujui" type="button">
@@ -718,32 +686,32 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- ROW 5 -->
 <tr data-date="2026-08-15" data-id="AKI-2026-00512" data-prog="Anugerah Kebudayaan Indonesia" data-status="pending" data-wilayah="Sumatera Barat">
-<td>
+<td class="">
 <div class="prog-cell">
 <div class="prog-name">Anugerah Kebudayaan Indonesia (AKI)</div>
 <div class="prog-code">#AKI-2026-00512</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="loc-cell">
 <div class="loc-prov">Sumatera Barat</div>
 <div class="loc-kab">Kota Padang</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="inputted-cell">
 <div class="user-name">Datuak Maringgai Alam</div>
 <div class="user-date">15 Agu 2026 • LKAAM Sumbar</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <span class="badge pending"><span class="badge-dot"></span>Menunggu validasi</span>
 </td>
 
-<td>
+<td class="">
 <div class="validation-actions" style="justify-content:flex-end;">
 
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'AKI-2026-00512')" title="Setujui Data" type="button">
@@ -764,32 +732,32 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- ROW 6 -->
 <tr data-date="2026-08-14" data-id="PKK-2026-00331" data-prog="Penguatan Kelembagaan" data-status="approved" data-wilayah="DI Yogyakarta">
-<td>
+<td class="">
 <div class="prog-cell">
 <div class="prog-name">Penguatan Kelembagaan (PKK)</div>
 <div class="prog-code">#PKK-2026-00331</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="loc-cell">
 <div class="loc-prov">DI Yogyakarta</div>
 <div class="loc-kab">Kab. Sleman</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="inputted-cell">
 <div class="user-name">Sri Handayani Rahayu</div>
 <div class="user-date">14 Agu 2026 • Paguyuban Macapat Sleman</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <span class="badge approved"><span class="badge-dot"></span>Disetujui</span>
 </td>
 
-<td>
+<td class="">
 <div class="validation-actions" style="justify-content:flex-end;">
 
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'PKK-2026-00331')" style="opacity:0.6; cursor:default;" title="Sudah Disetujui" type="button">
@@ -810,32 +778,32 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- ROW 7 -->
 <tr data-date="2026-08-12" data-id="PCB-2026-00742" data-prog="Sertifikasi Profesi Cagar Budaya" data-status="pending" data-wilayah="Jawa Timur">
-<td>
+<td class="">
 <div class="prog-cell">
 <div class="prog-name">Sertifikasi Profesi Cagar Budaya</div>
 <div class="prog-code">#PCB-2026-00742</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="loc-cell">
 <div class="loc-prov">Jawa Timur</div>
 <div class="loc-kab">Kota Malang</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <div class="inputted-cell">
 <div class="user-name">Bambang Soedjatmiko, M.Hum</div>
 <div class="user-date">12 Agu 2026 • Tim Ahli Cagar Budaya Malang</div>
 </div>
 </td>
 
-<td>
+<td class="">
 <span class="badge pending"><span class="badge-dot"></span>Menunggu validasi</span>
 </td>
 
-<td>
+<td class="">
 <div class="validation-actions" style="justify-content:flex-end;">
 
 <button class="btn-action-approve" onclick="prosesSetujui(this, 'PCB-2026-00742')" title="Setujui Data" type="button">
@@ -860,7 +828,7 @@ tbody tr:hover{background:#FDFBF7;}
 
 <!-- Table Pagination -->
 <div class="table-footer">
-<div>
+<div class="">
 Menampilkan <strong id="currentShowingCount" style="color:var(--ink);">7</strong>
 dari <strong style="color:var(--ink);">1.240</strong> data pengajuan
 </div>
@@ -875,7 +843,7 @@ dari <strong style="color:var(--ink);">1.240</strong> data pengajuan
 <button class="btn-ghost" type="button">2</button>
 <button class="btn-ghost" type="button">3</button>
 
-<span style="color:var(--muted); padding:0 4px;">...</span>
+<span style="color:var(--muted); padding:0 4px;" class="">...</span>
 
 <button class="btn-ghost" type="button">178</button>
 
@@ -899,17 +867,17 @@ Berikutnya <span class="material-symbols-outlined" style="font-size:16px;">chevr
 <div>
 <span class="badge pending" id="modalStatusBadge" style="margin-bottom:8px;">Menunggu validasi</span>
 
-<h3 id="modalProgramNama">Bimtek &amp; Sertifikasi</h3>
+<h3 id="modalProgramNama" class="">Bimtek &amp; Sertifikasi</h3>
 
 <div style="font-size:13px; color:var(--muted); display:flex; align-items:center; gap:6px;">
 
 <span class="material-symbols-outlined" style="font-size:16px; color:var(--gold);">sell</span>
 
-<span id="modalIdText" style="font-family:monospace; font-weight:700; color:var(--ink);">#BST-2026-00214</span>
+<span id="modalIdText" style="font-family:monospace; font-weight:700; color:var(--ink);" class="">#BST-2026-00214</span>
 
-<span>•</span>
+<span class="">•</span>
 
-<span id="modalSubProgram">Kompetensi Tenaga Kebudayaan</span>
+<span id="modalSubProgram" class="">Kompetensi Tenaga Kebudayaan</span>
 
 </div>
 </div>
@@ -946,7 +914,7 @@ Berikutnya <span class="material-symbols-outlined" style="font-size:16px;">chevr
 <!-- Berkas Dokumen -->
 <div style="margin-bottom:18px;">
 
-<div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:8px;">
+<div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:8px;" class="">
 Dokumen Pendukung &amp; Berkas Usulan Admin
 </div>
 
@@ -955,7 +923,7 @@ Dokumen Pendukung &amp; Berkas Usulan Admin
 <div class="file-pill" onclick="tampilkanToast('Mengunduh Berkas SK Pengusulan Resmi...')">
 <span class="material-symbols-outlined" style="color:var(--gold-dark); font-size:20px;">description</span>
 
-<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" class="">
 SK-Pengusulan-Dinas-Resmi.pdf
 </div>
 
@@ -965,7 +933,7 @@ SK-Pengusulan-Dinas-Resmi.pdf
 
 <span class="material-symbols-outlined" style="color:var(--gold-dark); font-size:20px;">folder_zip</span>
 
-<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
+<div style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" class="">
 Portofolio-Peserta-Sertifikasi.zip
 </div>
 
@@ -977,11 +945,11 @@ Portofolio-Peserta-Sertifikasi.zip
 <!-- Catatan Kurator -->
 <div style="border-top:1px solid var(--border); padding-top:16px; margin-bottom:20px;">
 
-<div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:6px;">
+<div style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); margin-bottom:6px;" class="">
 Catatan &amp; Uraian Pengusulan
 </div>
 
-<p id="modalCatatanText" style="background:#FAF8F3; border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:0; font-size:13.5px; line-height:1.6; color:var(--ink-soft);">
+<p id="modalCatatanText" style="background:#FAF8F3; border:1px solid var(--border); border-radius:10px; padding:12px 16px; margin:0; font-size:13.5px; line-height:1.6; color:var(--ink-soft);" class="">
 Dokumen usulan dan portofolio peserta telah lengkap terverifikasi dinas kota.
 </p>
 
@@ -1021,17 +989,17 @@ Setujui Pengajuan
 
 <div>
 
-<h3 style="color:var(--red); display:flex; align-items:center; gap:8px;">
+<h3 style="color:var(--red); display:flex; align-items:center; gap:8px;" class="">
 
 <span class="material-symbols-outlined" style="font-size:22px;">assignment_late</span>
 Tolak &amp; Minta Revisi
 
 </h3>
 
-<div style="font-size:13px; color:var(--muted); margin-top:3px;">
+<div style="font-size:13px; color:var(--muted); margin-top:3px;" class="">
 Pengajuan:
-<span id="modalTolakTargetId" style="font-weight:700; color:var(--ink);">#ID</span>
-(<span id="modalTolakTargetProg">Prog</span>)
+<span id="modalTolakTargetId" style="font-weight:700; color:var(--ink);" class="">#ID</span>
+(<span id="modalTolakTargetProg" class="">Prog</span>)
 </div>
 
 </div>
@@ -1044,13 +1012,13 @@ Pengajuan:
 
 <div style="margin:16px 0;">
 
-<label style="display:block; font-size:13px; font-weight:700; margin-bottom:8px; color:var(--ink);">
+<label style="display:block; font-size:13px; font-weight:700; margin-bottom:8px; color:var(--ink);" class="">
 Alasan Penolakan / Catatan Perbaikan untuk Admin:
 </label>
 
 <textarea class="input" id="alasanTolakInput" placeholder="Sebutkan berkas yang kurang atau bagian RAB / portofolio yang perlu dilengkapi pengusul..." rows="4" style="resize:vertical; font-size:13.5px; line-height:1.5;"></textarea>
 
-<div style="font-size:12px; color:var(--muted); margin-top:6px;">
+<div style="font-size:12px; color:var(--muted); margin-top:6px;" class="">
 *Catatan ini akan langsung diterima admin pengusul untuk proses revisi data.
 </div>
 
@@ -1062,7 +1030,7 @@ Alasan Penolakan / Catatan Perbaikan untuk Admin:
 Batal
 </button>
 
-<button onclick="konfirmasiTolak()" style="background:var(--red); color:#fff; border:none; border-radius:10px; padding:10px 18px; font-weight:700; font-size:13.5px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;" type="button">
+<button onclick="konfirmasiTolak()" style="background:var(--red); color:#fff; border:none; border-radius:10px; padding:10px 18px; font-weight:700; font-size:13.5px; display:inline-flex; align-items:center; gap:6px; cursor:pointer;" type="button" class="">
 
 <span class="material-symbols-outlined" style="font-size:17px;">send</span>
 Kirim Catatan Revisi
@@ -1081,7 +1049,7 @@ Kirim Catatan Revisi
 check_circle
 </span>
 
-<span id="toastMessage">
+<span id="toastMessage" class="">
 Status pengajuan berhasil diperbarui!
 </span>
 
@@ -1094,7 +1062,7 @@ Status pengajuan berhasil diperbarui!
 
 <div class="footer-brand">
 
-<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<svg class="brand-logo" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g fill="#C9A15A">
 <path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
 <circle cx="24" cy="24" r="3.4"></circle>
@@ -1103,12 +1071,12 @@ Status pengajuan berhasil diperbarui!
 
 <div class="footer-brand-text">
 
-<h4>
-Kementerian Kebudayaan<br/>
+<h4 class="">
+Kementerian Kebudayaan<br>
 Republik Indonesia
 </h4>
 
-<p>
+<p class="">
 Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat Pembinaan Tenaga dan Lembaga Kebudayaan (BSLPK)
 </p>
 
@@ -1117,28 +1085,28 @@ Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat Pembinaan Te
 
 <div class="footer-col">
 
-<h5>Tautan</h5>
+<h5 class="">Tautan</h5>
 
-<a href="beranda-admin.html">Beranda</a>
-<a href="data-program.html">Data Program</a>
-<a href="kelola-data.html">Kelola Data</a>
-<a href="tentang.html">Tentang</a>
-
-</div>
-
-<div class="footer-col">
-
-<h5>Bantuan</h5>
-
-<a href="#">Panduan Validator (Juknis)</a>
-<a href="#">FAQ Kurasi</a>
-<a href="#">Dasar Hukum Pemajuan</a>
+<a href="beranda-admin.html" class="">Beranda</a>
+<a href="data-program.html" class="">Data Program</a>
+<a href="kelola-data.html" class="">Kelola Data</a>
+<a href="tentang.html" class="">Tentang</a>
 
 </div>
 
 <div class="footer-col">
 
-<h5>Kontak</h5>
+<h5 class="">Bantuan</h5>
+
+<a href="#" class="">Panduan Validator (Juknis)</a>
+<a href="#" class="">FAQ Kurasi</a>
+<a href="#" class="">Dasar Hukum Pemajuan</a>
+
+</div>
+
+<div class="footer-col">
+
+<h5 class="">Kontak</h5>
 
 <div class="footer-contact-item">
 ✉️ kontak@kemenbud.go.id
@@ -1158,7 +1126,7 @@ Gedung E Kemendikbudristek, Senayan, Jakarta
 
 <div class="footer-bottom">
 
-<span>
+<span class="">
 © 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.
 </span>
 
@@ -1496,5 +1464,8 @@ function updateStatCards() {
 }
 </script>
 
-</body>
-</html>
+
+
+
+
+</body></html>
