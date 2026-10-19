@@ -1,10 +1,12 @@
-<!DOCTYPE html><html lang="id"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Beranda Admin — Kemenbud Data Kebudayaan</title>
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --cream:#F7F3EA;
@@ -185,7 +187,7 @@ td.strong{color:var(--ink);font-weight:700;}
 <header class="topbar">
 <div class="topbar-inner">
 <div class="brand">
-<svg class="brand-logo" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g fill="#C9A15A">
 <path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
 <circle cx="24" cy="24" r="3.4"></circle>
@@ -194,14 +196,18 @@ td.strong{color:var(--ink);font-weight:700;}
 <div class="brand-text">Kementerian Kebudayaan<small>Republik Indonesia</small></div>
 </div>
 <nav class="nav"><a class="active" href="beranda-admin.html">Beranda</a>
-<a href="data-program-admin.html" class="">Data Program</a>
+<a href="data-program-admin.html">Data Program</a>
 </nav>
 <div style="display:flex;align-items:center;gap:12px;">
 <div style="display:flex;align-items:center;gap:8px;padding:5px 12px;background:#F7F3EA;border:1px solid #E7DFCC;border-radius:999px;">
-<span style="width:24px;height:24px;border-radius:50%;background:#C9A15A;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;" class="">A</span>
-<span style="font-size:13px;font-weight:700;color:var(--ink);" class="">Admin BSLPK</span>
+<span style="width:24px;height:24px;border-radius:50%;background:#C9A15A;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;">A</span>
+<span style="font-size:13px;font-weight:700;color:var(--ink);">Admin BSLPK</span>
 </div>
-<a href="index.html" onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?');" onmouseout="this.style.background='#FFF5F5';this.style.color='#C0392B';" onmouseover="this.style.background='#C0392B';this.style.color='#fff';" style="display:inline-flex;align-items:center;gap:6px;
+<a href="index.html"
+   onclick="return confirm('Apakah Anda yakin ingin keluar dari sistem?');"
+   onmouseout="this.style.background='#FFF5F5';this.style.color='#C0392B';"
+   onmouseover="this.style.background='#C0392B';this.style.color='#fff';"
+   style="display:inline-flex;align-items:center;gap:6px;
           border:1.5px solid #F5C6CB;
           background:#FFF5F5;
           color:#C0392B;
@@ -211,14 +217,14 @@ td.strong{color:var(--ink);font-weight:700;}
           font-size:13px;
           transition:all 0.15s;">
   <span class="material-symbols-outlined" style="font-size:17px;">logout</span>
-  <span class="">Logout</span>
+  <span>Logout</span>
 </a>
 </div>
 </div>
 </header>
 <main class="page-shell">
 <div class="page-head">
-<h1 class="">Ringkasan</h1>
+<h1>Ringkasan</h1>
 </div>
 <div class="summary-grid"><div class="summary-card" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(36,31,24,0.12)';" style="transition:transform 0.18s, box-shadow 0.18s;">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
@@ -241,7 +247,7 @@ td.strong{color:var(--ink);font-weight:700;}
 </div>
 <div class="value" id="stat-rejected">3</div>
 </div>
-<div class="summary-card good" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(31,169,113,0.18)';" style="transition: transform 0.18s, box-shadow 0.18s; transform: none; box-shadow: none;">
+<div class="summary-card good" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(31,169,113,0.18)';" style="transition:transform 0.18s, box-shadow 0.18s;">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
 <div class="label" style="margin-bottom:0;">Disetujui bulan ini</div>
 <span class="material-symbols-outlined" style="color:var(--green);font-size:20px;">task_alt</span>
@@ -249,60 +255,56 @@ td.strong{color:var(--ink);font-weight:700;}
 <div class="value" id="stat-approved">45</div>
 </div></div>
 <div class="page-head">
-<h1 style="font-size:18px;" class="">Data terbaru diinput</h1>
-<input accept=".xlsx, .xls, .csv" id="import-file-input" onchange="if(this.files &amp;&amp; this.files[0]){ const toast = document.getElementById('app-toast'); const toastMsg = document.getElementById('toast-msg'); if(toast &amp;&amp; toastMsg){ toastMsg.textContent = 'Berhasil mengimpor berkas ' + this.files[0].name + ' ke antrean validasi!'; toast.style.display = 'inline-flex'; setTimeout(() =&gt; { toast.style.display = 'none'; }, 4000); } this.value = ''; }" style="display:none;" type="file">
-<button class="btn-dark" onclick="document.getElementById('import-file-input').click()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display: inline-flex; align-items: center; gap: 8px; box-shadow: rgba(36, 31, 24, 0.15) 0px 4px 12px; transition: transform 0.15s, background 0.15s; margin-right: 10px;" type="button">
-<span class="material-symbols-outlined" style="font-size:18px;">upload_file</span>
-<span class="">Impor Data</span>
-</button><button class="btn-dark" onclick="openInputModal()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display: inline-flex; align-items: center; gap: 8px; box-shadow: rgba(36, 31, 24, 0.15) 0px 4px 12px; transition: transform 0.15s, background 0.15s; transform: none; background: var(--ink);" type="button">
+<h1 style="font-size:18px;">Data terbaru diinput</h1>
+<button class="btn-dark" onclick="openInputModal()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(36,31,24,0.15);transition:transform 0.15s, background 0.15s;" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">add</span>
-<span class="">Input data baru</span>
+<span>Input data baru</span>
 </button>
 </div>
 <div class="card table-card">
 <table>
 <thead>
 <tr>
-<th class="">Program</th>
-<th class="">Wilayah</th>
-<th class="">Diinput</th>
-<th class="">Status</th>
-<th class="">Detail</th>
+<th>Program</th>
+<th>Wilayah</th>
+<th>Diinput</th>
+<th>Status</th>
+<th>Detail</th>
 </tr>
 </thead>
 <tbody><tr id="row-1">
 <td class="strong">Bimbingan Teknis (Bimtek)</td>
-<td class="">Jawa Tengah</td>
-<td class="">21 Agu 2026</td>
-<td id="status-cell-1" class=""><span class="badge pending">Menunggu validasi</span></td>
+<td>Jawa Tengah</td>
+<td>21 Agu 2026</td>
+<td id="status-cell-1"><span class="badge pending">Menunggu validasi</span></td>
 <td><button class="eye" onclick="showItemDetail(1)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
 </tr>
 <tr id="row-2">
 <td class="strong">Gita Bahana Nusantara (GBN)</td>
-<td class="">Bali</td>
-<td class="">18 Agu 2026</td>
-<td id="status-cell-2" class=""><span class="badge approved">Disetujui</span></td>
+<td>Bali</td>
+<td>18 Agu 2026</td>
+<td id="status-cell-2"><span class="badge approved">Disetujui</span></td>
 <td><button class="eye" onclick="showItemDetail(2)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
 </tr>
 <tr id="row-3">
 <td class="strong">Pemajuan Kebudayaan Desa</td>
-<td class="">NTT</td>
-<td class="">20 Agu 2026</td>
-<td id="status-cell-3" class=""><span class="badge rejected">Ditolak</span></td>
+<td>NTT</td>
+<td>20 Agu 2026</td>
+<td id="status-cell-3"><span class="badge rejected">Ditolak</span></td>
 <td><button class="eye" onclick="showItemDetail(3)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
 </tr>
 <tr id="row-4">
 <td class="strong">Manajemen Talenta Nasional (MTN)</td>
-<td class="">Jawa Barat</td>
-<td class="">16 Agu 2026</td>
-<td id="status-cell-4" class=""><span class="badge approved">Disetujui</span></td>
+<td>Jawa Barat</td>
+<td>16 Agu 2026</td>
+<td id="status-cell-4"><span class="badge approved">Disetujui</span></td>
 <td><button class="eye" onclick="showItemDetail(4)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
 </tr>
 <tr id="row-5">
 <td class="strong">Sertifikasi Profesi Kebudayaan</td>
-<td class="">Jawa Timur</td>
-<td class="">12 Agu 2026</td>
-<td id="status-cell-5" class=""><span class="badge pending">Menunggu validasi</span></td>
+<td>Jawa Timur</td>
+<td>12 Agu 2026</td>
+<td id="status-cell-5"><span class="badge pending">Menunggu validasi</span></td>
 <td><button class="eye" onclick="showItemDetail(5)" title="Lihat detail" type="button"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>
 </tr></tbody>
 </table>
@@ -311,7 +313,7 @@ td.strong{color:var(--ink);font-weight:700;}
 <!-- Toast Notification -->
 <div id="app-toast" style="display:none;position:fixed;top:24px;right:24px;z-index:9999;padding:14px 20px;border-radius:12px;background:#1FA971;color:#fff;font-weight:600;font-size:14px;box-shadow:0 12px 30px rgba(0,0,0,0.2);display:none;align-items:center;gap:10px;animation:fadeIn 0.25s ease;">
 <span class="material-symbols-outlined" style="font-size:20px;">check_circle</span>
-<span id="toast-msg" class="">Data berhasil diperbarui!</span>
+<span id="toast-msg">Data berhasil diperbarui!</span>
 </div>
 <!-- MODAL DETAIL DATA -->
 <div id="modal-detail" style="display:none;position:fixed;inset:0;background:rgba(36,31,24,0.65);backdrop-filter:blur(4px);z-index:999;align-items:center;justify-content:center;padding:20px;">
@@ -320,7 +322,7 @@ td.strong{color:var(--ink);font-weight:700;}
 <div style="padding:20px 24px;border-bottom:1px solid #E7DFCC;display:flex;align-items:center;justify-content:space-between;background:#FAF8F3;">
 <div style="display:flex;align-items:center;gap:10px;">
 <span class="material-symbols-outlined" style="color:#C9A15A;">description</span>
-<h3 id="modal-title" style="margin:0;font-size:17px;font-weight:700;color:var(--ink);" class="">Detail Pengajuan &amp; Histori Input Data Admin</h3>
+<h3 id="modal-title" style="margin:0;font-size:17px;font-weight:700;color:var(--ink);">Detail Pengajuan &amp; Histori Input Data Admin</h3>
 </div>
 <button onclick="closeDetailModal()" onmouseout="this.style.background='none';" onmouseover="this.style.background='#eee';" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:4px;border-radius:6px;display:flex;align-items:center;justify-content:center;" type="button">
 <span class="material-symbols-outlined" style="font-size:20px;">close</span>
@@ -343,8 +345,8 @@ td.strong{color:var(--ink);font-weight:700;}
       <div class="input-modal-title-wrap">
         <span class="material-symbols-outlined">add_circle</span>
         <div>
-          <h3 class="">Input Data Program</h3>
-          <p class="">Data yang diinput akan dikirim ke validator untuk diverifikasi sebelum tampil ke publik.</p>
+          <h3>Input Data Program</h3>
+          <p>Data yang diinput akan dikirim ke validator untuk diverifikasi sebelum tampil ke publik.</p>
         </div>
       </div>
       <button class="input-close" onclick="closeInputModal()" type="button" aria-label="Tutup">
@@ -356,12 +358,12 @@ td.strong{color:var(--ink);font-weight:700;}
       <div class="form-section">
         <div class="form-section-title">
           <span class="material-symbols-outlined">description</span>
-          <h4 class="">Informasi Program</h4>
+          <h4>Informasi Program</h4>
         </div>
         <div class="form-grid">
           <div class="form-field full">
-            <label for="inp-program" class="">Program <span class="">*</span></label>
-            <select id="inp-program" required="">
+            <label for="inp-program">Program <span>*</span></label>
+            <select id="inp-program" required>
               <option value="">Pilih program</option>
               <option value="Bimbingan Teknis (Bimtek)">Bimbingan Teknis (Bimtek)</option>
               <option value="Gita Bahana Nusantara (GBN)">Gita Bahana Nusantara (GBN)</option>
@@ -372,20 +374,20 @@ td.strong{color:var(--ink);font-weight:700;}
             </select>
           </div>
           <div class="form-field">
-            <label for="inp-kategori" class="">Kategori Kegiatan <span class="">*</span></label>
-            <select id="inp-kategori" required="">
+            <label for="inp-kategori">Kategori Kegiatan <span>*</span></label>
+            <select id="inp-kategori" required>
               <option value="">Pilih kategori</option>
               <option value="Peningkatan Kapasitas SDM">Peningkatan Kapasitas SDM</option>
-              <option value="Pemberdayaan Desa Adat &amp; Komunitas">Pemberdayaan Desa Adat &amp; Komunitas</option>
-              <option value="Paduan Suara &amp; Orkestra Nasional">Paduan Suara &amp; Orkestra Nasional</option>
+              <option value="Pemberdayaan Desa Adat & Komunitas">Pemberdayaan Desa Adat & Komunitas</option>
+              <option value="Paduan Suara & Orkestra Nasional">Paduan Suara & Orkestra Nasional</option>
               <option value="Akselerasi Seniman Berbakat">Akselerasi Seniman Berbakat</option>
               <option value="Standarisasi Kompetensi Tenaga Kebudayaan">Standarisasi Kompetensi Tenaga Kebudayaan</option>
               <option value="Program Prioritas Kebudayaan">Program Prioritas Kebudayaan</option>
             </select>
           </div>
           <div class="form-field">
-            <label for="inp-tanggal" class="">Tanggal Pelaksanaan <span class="">*</span></label>
-            <input id="inp-tanggal" type="date" required="">
+            <label for="inp-tanggal">Tanggal Pelaksanaan <span>*</span></label>
+            <input id="inp-tanggal" type="date" required>
           </div>
         </div>
       </div>
@@ -393,12 +395,12 @@ td.strong{color:var(--ink);font-weight:700;}
       <div class="form-section">
         <div class="form-section-title">
           <span class="material-symbols-outlined">location_on</span>
-          <h4 class="">Lokasi &amp; Periode</h4>
+          <h4>Lokasi &amp; Periode</h4>
         </div>
         <div class="form-grid">
           <div class="form-field">
-            <label for="inp-provinsi" class="">Provinsi <span class="">*</span></label>
-            <select id="inp-provinsi" required="">
+            <label for="inp-provinsi">Provinsi <span>*</span></label>
+            <select id="inp-provinsi" required>
               <option value="">Pilih provinsi</option>
               <option>DI Yogyakarta</option><option>Jawa Barat</option><option>Jawa Tengah</option><option>Jawa Timur</option>
               <option>Bali</option><option>NTT</option><option>Sumatera Barat</option><option>DKI Jakarta</option>
@@ -407,12 +409,12 @@ td.strong{color:var(--ink);font-weight:700;}
             </select>
           </div>
           <div class="form-field">
-            <label for="inp-kabupaten" class="">Kabupaten / Kota <span class="">*</span></label>
-            <input id="inp-kabupaten" type="text" placeholder="Contoh: Kota Semarang" required="">
+            <label for="inp-kabupaten">Kabupaten / Kota <span>*</span></label>
+            <input id="inp-kabupaten" type="text" placeholder="Contoh: Kota Semarang" required>
           </div>
           <div class="form-field">
-            <label for="inp-tahun" class="">Tahun <span class="">*</span></label>
-            <input id="inp-tahun" type="number" min="2000" max="2100" placeholder="2026" required="">
+            <label for="inp-tahun">Tahun <span>*</span></label>
+            <input id="inp-tahun" type="number" min="2000" max="2100" placeholder="2026" required>
           </div>
         </div>
       </div>
@@ -420,20 +422,20 @@ td.strong{color:var(--ink);font-weight:700;}
       <div class="form-section">
         <div class="form-section-title">
           <span class="material-symbols-outlined">groups</span>
-          <h4 class="">Data SDM / Penerima</h4>
+          <h4>Data SDM / Penerima</h4>
         </div>
         <div class="form-grid">
           <div class="form-field full">
-            <label for="inp-nama" class="">Nama Lengkap SDM <span class="">*</span></label>
-            <input id="inp-nama" type="text" placeholder="Masukkan nama lengkap SDM / penerima" required="">
+            <label for="inp-nama">Nama Lengkap SDM <span>*</span></label>
+            <input id="inp-nama" type="text" placeholder="Masukkan nama lengkap SDM / penerima" required>
           </div>
           <div class="form-field">
-            <label for="inp-peserta" class="">Jumlah Peserta <span class="">*</span></label>
-            <input id="inp-peserta" type="number" min="0" placeholder="Contoh: 75" required="">
+            <label for="inp-peserta">Jumlah Peserta <span>*</span></label>
+            <input id="inp-peserta" type="number" min="0" placeholder="Contoh: 75" required>
           </div>
           <div class="form-field">
-            <label for="inp-instansi" class="">Instansi / Kelembagaan Terkait <span class="">*</span></label>
-            <input id="inp-instansi" type="text" placeholder="Nama instansi / lembaga" required="">
+            <label for="inp-instansi">Instansi / Kelembagaan Terkait <span>*</span></label>
+            <input id="inp-instansi" type="text" placeholder="Nama instansi / lembaga" required>
           </div>
         </div>
       </div>
@@ -441,7 +443,7 @@ td.strong{color:var(--ink);font-weight:700;}
       <div class="form-section">
         <div class="form-section-title">
           <span class="material-symbols-outlined">attach_file</span>
-          <h4 class="">Dokumen Pendukung</h4>
+          <h4>Dokumen Pendukung</h4>
         </div>
         <label class="upload-box" for="inp-dokumen">
           <span class="material-symbols-outlined">cloud_upload</span>
@@ -449,16 +451,16 @@ td.strong{color:var(--ink);font-weight:700;}
           <small>PDF, DOC, DOCX, XLS, XLSX (maks. 10 MB)</small>
           <span id="file-name" class="file-name">Belum ada file dipilih</span>
         </label>
-        <input id="inp-dokumen" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" hidden="">
+        <input id="inp-dokumen" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx" hidden>
       </div>
 
       <div class="form-section">
         <div class="form-section-title">
           <span class="material-symbols-outlined">notes</span>
-          <h4 class="">Keterangan &amp; Catatan</h4>
+          <h4>Keterangan &amp; Catatan</h4>
         </div>
         <div class="form-field full">
-          <label for="inp-desc" class="">Keterangan / Catatan</label>
+          <label for="inp-desc">Keterangan / Catatan</label>
           <textarea id="inp-desc" rows="4" placeholder="Tuliskan keterangan tambahan terkait data atau kegiatan..."></textarea>
         </div>
       </div>
@@ -477,42 +479,40 @@ td.strong{color:var(--ink);font-weight:700;}
 <footer class="site-footer">
 <div class="footer-inner">
 <div class="footer-brand">
-<svg class="brand-logo" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<svg class="brand-logo" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <g fill="#C9A15A">
 <path d="M24 4c1.2 3 1.2 6-1 8.2 2.6-1 5.4-1 7.6 1.2-1 2.6-3.2 3.8-6.2 3.6 2.4 1.6 3.8 4 3.4 7.2-2.8.2-5-1-6.4-3.4-.2 3-1.6 5.2-4.2 6.4-1.4-2.6-1-5.4 1-7.6-2.8.8-5.6.2-7.4-2 1.4-2.4 3.8-3.4 6.6-2.8-2-1.8-3-4.4-2.2-7.4 2.8.2 4.8 1.8 5.8 4.4C21 8.6 22 6 24 4z"></path>
 <circle cx="24" cy="24" r="3.4"></circle>
 </g>
 </svg>
 <div class="footer-brand-text">
-<h4 class="">Kementerian Kebudayaan<br>Republik Indonesia</h4>
-<p class="">Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat BSLPK</p>
+<h4>Kementerian Kebudayaan<br/>Republik Indonesia</h4>
+<p>Platform Pengelolaan dan Visualisasi Data Kebudayaan — Direktorat BSLPK</p>
 </div>
 </div>
 <div class="footer-col">
-<h5 class="">Tautan</h5>
-<a href="#" class="">Beranda</a>
-<a href="#" class="">Statistik Program</a>
-<a href="#" class="">Data Program</a>
-<a href="#" class="">Tentang</a>
+<h5>Tautan</h5>
+<a href="#">Beranda</a>
+<a href="#">Statistik Program</a>
+<a href="#">Data Program</a>
+<a href="#">Tentang</a>
 </div>
 <div class="footer-col">
-<h5 class="">Bantuan</h5>
-<a href="#" class="">Panduan (Juknis)</a>
-<a href="#" class="">FAQ</a>
-<a href="#" class="">Dasar Hukum</a>
+<h5>Bantuan</h5>
+<a href="#">Panduan (Juknis)</a>
+<a href="#">FAQ</a>
+<a href="#">Dasar Hukum</a>
 </div>
 <div class="footer-col">
-<h5 class="">Kontak</h5>
+<h5>Kontak</h5>
 <div class="footer-contact-item">✉️ kontak@kemenbud.go.id</div>
 <div class="footer-contact-item">☎️ Call center 178</div>
 </div>
 </div>
 <div class="footer-bottom">
-<span class="">© 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.</span>
+<span>© 2026 Kementerian Kebudayaan Republik Indonesia. Hak cipta dilindungi.</span>
 <div class="social-dots"><span></span><span></span><span></span><span></span></div>
 </div>
 </footer>
-
-
-
-</body></html>
+</body>
+</html>
