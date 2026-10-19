@@ -780,6 +780,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 <option value="2024">Tahun 2024</option>
 <option value="all">Semua Tahun</option>
 </select>
+<select class="select-input" id="filterProvince">
+<option selected="" value="all">Semua Provinsi</option>
+<option value="jawa">Wilayah Jawa</option>
+<option value="sumatera">Wilayah Sumatera</option>
+<option value="bali-nusra">Bali &amp; Nusa Tenggara</option>
+<option value="kalimantan">Wilayah Kalimantan</option>
+<option value="sulawesi">Wilayah Sulawesi</option>
+<option value="maluku-papua">Maluku &amp; Papua</option>
+</select>
+<select class="select-input" id="filterCategory">
+<option value="all">Semua Kategori</option>
+</select>
 </div>
 </div>
 <!-- 4 Primary KPI Metrik -->
@@ -800,7 +812,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 <div class="kpi-sub" id="sub-metric-2">Wilayah pelaksanaan TUK</div>
 </div>
 <div class="kpi-card">
-<div class="kpi-label" id="lbl-metric-3">Total Kategori</div>
+<div class="kpi-label" id="lbl-metric-3">Total Skema</div>
 <div class="kpi-val" id="val-metric-3">3</div>
 <div class="kpi-sub" id="sub-metric-3">Standar SKKNI &amp; BNSP</div>
 </div>
@@ -857,8 +869,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
       </div>
       <p class="detail-intro" id="detailIntro">Pilih provinsi pada peta untuk melihat ringkasan data kebudayaan yang tersedia.</p>
       <div class="detail-stats">
-        <div class="detail-stat"><div class="detail-stat-label">Total Peserta</div><div class="detail-stat-value" id="detailProgram">18</div></div>
-        <div class="detail-stat"><div class="detail-stat-label">Total Sertifikasi</div><div class="detail-stat-value" id="detailSDM">642</div></div>
+        <div class="detail-stat"><div class="detail-stat-label">Total Program</div><div class="detail-stat-value" id="detailProgram">18</div></div>
+        <div class="detail-stat"><div class="detail-stat-label">SDM Kebudayaan</div><div class="detail-stat-value" id="detailSDM">642</div></div>
+        <div class="detail-stat"><div class="detail-stat-label">Cagar &amp; WBTb</div><div class="detail-stat-value" id="detailCagar">124</div></div>
+        <div class="detail-stat"><div class="detail-stat-label">Lembaga / Komunitas</div><div class="detail-stat-value" id="detailLembaga">48</div></div>
       </div>
       <div class="program-tag" id="detailProgramTag">Program aktif: Sertifikasi</div>
     </aside>
@@ -966,6 +980,16 @@ const PROGRAM_DATABASE = {
       { label: "Tingkat Kelulusan", val: "87%", sub: "Kompeten asesmen LSP" },
       { label: "Total Provinsi", val: "28", sub: "Wilayah pelaksanaan TUK" },
       { label: "Total Skema", val: "3", sub: "Standar SKKNI & BNSP" }
+    ],
+    categories: ["Cagar Budaya", "Permuseuman", "Kesenian Tradisi", "Kurator Seni", "Tenaga Konservasi", "Pamong Budaya", "Manajemen Sanggar"],
+    chartData: [
+      { label: "Cagar Budaya", val: 494 },
+      { label: "Permuseuman", val: 431 },
+      { label: "Kesenian Tradisi", val: 847 },
+      { label: "Kurator Seni", val: 229 },
+      { label: "Tenaga Konservasi", val: 124 },
+      { label: "Pamong Budaya", val: 992 },
+      { label: "Manajemen Sanggar", val: 478 }
     ],
     regionalData: [
       { name: "Jawa", val: 560, pct: 45 },
