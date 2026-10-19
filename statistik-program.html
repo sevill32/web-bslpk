@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 
-<html lang="id">
-<head>
+<html lang="id"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Statistik Program — Kemenbud Data Kebudayaan</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Poppins:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+<link crossorigin="" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
 <style>
 :root {
   --cream: #F7F3EA;
@@ -387,24 +386,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 .map-error { color: #991B1B; }
 .map-error strong, .map-loading strong { display: block; margin-bottom: 4px; color: #241F18; }
 
+/* Refined & balanced detail panel layout */
 .detail-panel {
   background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 20px;
+  padding: 20px 22px 18px;
   min-height: 405px;
+  height: 100%;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
-.detail-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
-.detail-panel h4 { margin: 0; font-size: 19px; line-height: 1.25; color: #1F3B4D; }
+.detail-panel-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.detail-panel h4 { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.25; color: #1F3B4D; font-family: 'Poppins', sans-serif; }
 .zone-badge {
   display: inline-flex;
   align-items: center;
   width: fit-content;
   margin-top: 6px;
-  padding: 5px 9px;
+  padding: 4px 10px;
   border-radius: 999px;
   background: #FBF7EE;
   border: 1px solid #E9D9B8;
@@ -416,36 +418,100 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  padding: 6px 9px;
+  padding: 5px 10px;
   border-radius: 999px;
   background: #ECFDF5;
   border: 1px solid #A7F3D0;
   color: #047857;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 700;
   white-space: nowrap;
 }
 .verification-badge.pending { background: #FFF7ED; border-color: #FED7AA; color: #C2410C; }
-.detail-intro { color: var(--muted); font-size: 12px; line-height: 1.55; margin: 0 0 16px; }
-.detail-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: auto; }
-.detail-stat { border: 1px solid var(--border-light); border-radius: 10px; padding: 12px; background: #FCFAF6; }
-.detail-stat-label { font-size: 10.5px; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
-.detail-stat-value { font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; color: #1F3B4D; }
+.detail-intro { color: var(--muted); font-size: 12px; line-height: 1.55; margin: 0; }
+
+/* Dynamic detail-stats container with flexible height fitting */
+.detail-stats {
+  flex: 1;
+  display: grid;
+  align-content: stretch;
+  gap: 12px;
+  margin: 16px 0;
+}
+.detail-stats.count-1 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+.detail-stats.count-2 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+.detail-stats.count-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.detail-stat {
+  border: 1.5px solid var(--border-light);
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #FCFAF6;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  transition: transform .18s ease, border-color .18s ease;
+  min-height: 0;
+}
+.detail-stat:hover {
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+.detail-stats.count-1 .detail-stat {
+  padding: 24px 20px;
+}
+.detail-stat-label {
+  font-size: 11.5px;
+  color: #64748B;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+}
+.detail-stat-value {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1F3B4D;
+  line-height: 1.15;
+}
+.detail-stats.count-1 .detail-stat-value {
+  font-size: 34px;
+  margin-top: 4px;
+}
+.detail-stats.count-2 .detail-stat-value {
+  font-size: 26px;
+}
+.detail-stats.count-4 .detail-stat-value {
+  font-size: 22px;
+}
 .program-tag {
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  margin-top: 14px;
-  padding: 7px 10px;
+  padding: 6px 12px;
   border-radius: 8px;
   background: #F8F5EE;
   color: #6E5629;
-  font-size: 11px;
+  font-size: 11.5px;
   font-weight: 700;
+  border: 1px solid #EFE8D8;
 }
 @media (max-width: 900px) {
   .interactive-map-area { grid-template-columns: 1fr; }
-  .detail-panel { min-height: auto; }
+  .detail-panel { min-height: auto; height: auto; }
 }
 @media (max-width: 580px) {
   .map-card { padding: 20px 16px; }
@@ -701,7 +767,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 </div>
 </div>
 <nav class="nav">
-<a href="index.html">Beranda</a>
+<a href="beranda.html">Beranda</a>
 <a class="active" href="statistik-program.html">Statistik Program</a>
 <a href="data-program.html">Data Program</a>
 <a href="tentang.html">Tentang</a>
@@ -752,11 +818,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 <div class="program-card-desc">Gita Bahana Nusantara</div>
 </div>
 </button>
-<button class="program-card" data-program-key="pkk" type="button">
+<button class="program-card" data-program-key="ptkl" type="button">
 <div class="program-card-icon"><svg fill="none" height="22" stroke="#A87F3C" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><line x1="2" x2="22" y1="20" y2="20"></line><line x1="6" x2="6" y1="10" y2="20"></line><line x1="10" x2="10" y1="10" y2="20"></line><line x1="14" x2="14" y1="10" y2="20"></line><line x1="18" x2="18" y1="10" y2="20"></line><polygon points="12 2 2 7 22 7"></polygon><line x1="1" x2="23" y1="7" y2="7"></line></svg></div>
 <div class="program-card-info">
-<div class="program-card-name">Program PKK</div>
-<div class="program-card-desc">Penguatan Kelembagaan Kebudayaan</div>
+<div class="program-card-name">Program PTKL</div>
+<div class="program-card-desc">Penguatan Tata Kelola Lembaga</div>
 </div>
 </button>
 <button class="program-card" data-program-key="desa" type="button">
@@ -779,18 +845,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 <option value="2025">Tahun 2025</option>
 <option value="2024">Tahun 2024</option>
 <option value="all">Semua Tahun</option>
-</select>
-<select class="select-input" id="filterProvince">
-<option selected="" value="all">Semua Provinsi</option>
-<option value="jawa">Wilayah Jawa</option>
-<option value="sumatera">Wilayah Sumatera</option>
-<option value="bali-nusra">Bali &amp; Nusa Tenggara</option>
-<option value="kalimantan">Wilayah Kalimantan</option>
-<option value="sulawesi">Wilayah Sulawesi</option>
-<option value="maluku-papua">Maluku &amp; Papua</option>
-</select>
-<select class="select-input" id="filterCategory">
-<option value="all">Semua Kategori</option>
 </select>
 </div>
 </div>
@@ -819,66 +873,65 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 </div>
 <!-- Peta Persebaran Indonesia -->
 <div class="map-card">
-  <div class="map-card-head">
-    <div>
-      <h3 id="mapTitle">Peta Persebaran — Sertifikasi</h3>
-      <span id="mapSub">Klik salah satu provinsi untuk melihat detail persebaran program.</span>
-    </div>
-    <div class="map-legend">
-      <div class="map-legend-item"><span class="legend-bullet selected"></span><span>Terpilih</span></div>
-      <div class="map-legend-item"><span class="legend-bullet active"></span><span>Terdata Aktif</span></div>
-      <div class="map-legend-item"><span class="legend-bullet hover"></span><span>Sorotan / Hover</span></div>
-    </div>
-  </div>
-  <div class="map-map-controls">
-    <div class="map-status-text" id="mapStatusText">Peta 38 Provinsi Indonesia</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;">
-      <select class="map-control-select" id="mapZoneFilter" aria-label="Filter zona">
-        <option value="all">Semua Zona</option>
-        <option value="sumatera">Zona Sumatera</option>
-        <option value="jawa">Zona Jawa</option>
-        <option value="bali-nusra">Zona Bali &amp; Nusa Tenggara</option>
-        <option value="kalimantan">Zona Kalimantan</option>
-        <option value="sulawesi">Zona Sulawesi</option>
-        <option value="maluku">Zona Maluku</option>
-        <option value="papua">Zona Papua</option>
-      </select>
-      <select class="map-control-select" id="mapStatusFilter" aria-label="Filter status">
-        <option value="all">Semua Status</option>
-        <option value="active">Terdata Aktif</option>
-      </select>
-    </div>
-  </div>
-  <div class="interactive-map-area">
-    <div class="map-wrap">
-      <div id="leafletMap" aria-label="Peta persebaran 38 provinsi Indonesia"></div>
-      <div class="map-loading" id="mapLoading">
-        <div><strong>Memuat peta Indonesia…</strong>Data GeoJSON 38 provinsi sedang dipersiapkan.</div>
-      </div>
-      <div class="map-error" id="mapError" style="display:none;">
-        <div><strong>Peta tidak dapat dimuat</strong>Data peta belum berhasil diambil. Periksa koneksi internet lalu refresh halaman.</div>
-      </div>
-    </div>
-    <aside class="detail-panel" id="mapDetailPanel">
-      <div class="detail-panel-head">
-        <div>
-          <h4 id="detailProvinceName">Jawa Tengah</h4>
-          <div class="zone-badge" id="detailZone">Zona Jawa</div>
-        </div>
-        <div class="verification-badge" id="detailStatus"><span>●</span> Data Terverifikasi Aktif</div>
-      </div>
-      <p class="detail-intro" id="detailIntro">Pilih provinsi pada peta untuk melihat ringkasan data kebudayaan yang tersedia.</p>
-      <div class="detail-stats">
-        <div class="detail-stat"><div class="detail-stat-label">Total Program</div><div class="detail-stat-value" id="detailProgram">18</div></div>
-        <div class="detail-stat"><div class="detail-stat-label">SDM Kebudayaan</div><div class="detail-stat-value" id="detailSDM">642</div></div>
-        <div class="detail-stat"><div class="detail-stat-label">Cagar &amp; WBTb</div><div class="detail-stat-value" id="detailCagar">124</div></div>
-        <div class="detail-stat"><div class="detail-stat-label">Lembaga / Komunitas</div><div class="detail-stat-value" id="detailLembaga">48</div></div>
-      </div>
-      <div class="program-tag" id="detailProgramTag">Program aktif: Sertifikasi</div>
-    </aside>
-  </div>
+<div class="map-card-head">
+<div>
+<h3 id="mapTitle">Peta Persebaran — Sertifikasi</h3>
+<span id="mapSub">Klik salah satu provinsi untuk melihat detail persebaran program.</span>
 </div>
-
+<div class="map-legend">
+<div class="map-legend-item"><span class="legend-bullet selected"></span><span>Terpilih</span></div>
+<div class="map-legend-item"><span class="legend-bullet active"></span><span>Terdata Aktif</span></div>
+<div class="map-legend-item"><span class="legend-bullet hover"></span><span>Sorotan / Hover</span></div>
+</div>
+</div>
+<div class="map-map-controls">
+<div class="map-status-text" id="mapStatusText">Peta 38 Provinsi Indonesia</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;">
+<select aria-label="Filter zona" class="map-control-select" id="mapZoneFilter">
+<option value="all">Semua Zona</option>
+<option value="sumatera">Zona Sumatera</option>
+<option value="jawa">Zona Jawa</option>
+<option value="bali-nusra">Zona Bali &amp; Nusa Tenggara</option>
+<option value="kalimantan">Zona Kalimantan</option>
+<option value="sulawesi">Zona Sulawesi</option>
+<option value="maluku">Zona Maluku</option>
+<option value="papua">Zona Papua</option>
+</select>
+<select aria-label="Filter status" class="map-control-select" id="mapStatusFilter">
+<option value="all">Semua Status</option>
+<option value="active">Terdata Aktif</option>
+</select>
+</div>
+</div>
+<div class="interactive-map-area">
+<div class="map-wrap">
+<div aria-label="Peta persebaran 38 provinsi Indonesia" id="leafletMap"></div>
+<div class="map-loading" id="mapLoading">
+<div><strong>Memuat peta Indonesia…</strong>Data GeoJSON 38 provinsi sedang dipersiapkan.</div>
+</div>
+<div class="map-error" id="mapError" style="display:none;">
+<div><strong>Peta tidak dapat dimuat</strong>Data peta belum berhasil diambil. Periksa koneksi internet lalu refresh halaman.</div>
+</div>
+</div>
+<aside class="detail-panel" id="mapDetailPanel">
+<div>
+<div class="detail-panel-head">
+<div>
+<h4 id="detailProvinceName">Jawa Tengah</h4>
+<div class="zone-badge" id="detailZone">Zona Jawa</div>
+</div>
+<div class="verification-badge" id="detailStatus"><span>●</span> Data Terverifikasi Aktif</div>
+</div>
+<p class="detail-intro" id="detailIntro">Ringkasan persebaran Sertifikasi pada wilayah Jawa Tengah.</p>
+</div>
+<!-- Container Kartu Metrik Dinamis Berdasarkan Program Aktif Sesuai Referensi Sketsa -->
+<div class="detail-stats" id="detailStatsContainer">
+<!-- Disuntikkan secara dinamis via JavaScript sesuai program & provinsi terpilih -->
+</div>
+<div class="program-tag" id="detailProgramTag">Program aktif: Sertifikasi</div>
+</aside>
+</div>
+</div>
 <!-- Main Bar Chart -->
 <div class="desa-chart-card">
 <div class="chart-card-head">
@@ -952,7 +1005,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 </div>
 </div>
 </footer>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script crossorigin="" src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // Palet warna gradien resmi ala visualisasi Desa Budaya
 const DESA_PALETTES = [
@@ -979,7 +1032,12 @@ const PROGRAM_DATABASE = {
       { label: "Total Peserta", val: "1.240", sub: "Terdaftar resmi 2026" },
       { label: "Tingkat Kelulusan", val: "87%", sub: "Kompeten asesmen LSP" },
       { label: "Total Provinsi", val: "28", sub: "Wilayah pelaksanaan TUK" },
-      { label: "Total Skema", val: "3", sub: "Standar SKKNI & BNSP" }
+      { label: "Total Kategori", val: "3", sub: "Standar SKKNI & BNSP" }
+    ],
+    // Konfigurasi kartu metrik panel samping peta: 2 kotak (Total Peserta: 284, Total Sertifikasi: 247)
+    detailStatsConfig: [
+      { label: "Total Peserta", jtVal: 284 },
+      { label: "Total Sertifikasi", jtVal: 247 }
     ],
     categories: ["Cagar Budaya", "Permuseuman", "Kesenian Tradisi", "Kurator Seni", "Tenaga Konservasi", "Pamong Budaya", "Manajemen Sanggar"],
     chartData: [
@@ -1015,6 +1073,11 @@ const PROGRAM_DATABASE = {
       { label: "Provinsi Terjangkau", val: "34", sub: "Pemerataan aparatur" },
       { label: "Efektivitas", val: "92%", sub: "Indeks kepuasan peserta" }
     ],
+    // 2 kotak: Total Peserta: 320, Sesi Pelaksanaan: 6
+    detailStatsConfig: [
+      { label: "Total Peserta", jtVal: 320 },
+      { label: "Sesi Pelaksanaan", jtVal: 6 }
+    ],
     categories: ["Tata Kelola Warisan", "Manajemen Sanggar", "Kurasi Festival", "Konservasi Cagar", "Digitalisasi Aset", "Pendamping Komunitas"],
     chartData: [
       { label: "Tata Kelola Warisan", val: 980 },
@@ -1043,10 +1106,15 @@ const PROGRAM_DATABASE = {
     fullName: "Anugerah Kebudayaan Indonesia",
     chartTitle: "AKI Berdasarkan Subsektor Seni Budaya",
     metrics: [
-      { label: "Total Penerima", val: "312", sub: "Tokoh, maestro, & komunitas" },
-      { label: "Kategori Anugerah", val: "7", sub: "Pelestari, Maestro, Inovator" },
+      { label: "Total Penerima Individu", val: "312", sub: "Tokoh, maestro, & komunitas" },
+      { label: "Tital Penerima Komunitas", val: "7", sub: "Pelestari, Maestro, Inovator" },
       { label: "Total Provinsi", val: "22", sub: "Asal usul para pemenang" },
-      { label: "Tahun Pelaksanaan", val: "2026", sub: "Edisi bergengsi ke-14" }
+      { label: "Total Kategori", val: "20", sub: "Edisi bergengsi ke-14" }
+    ],
+    // 2 kotak: Total Penerima: 18, Total Kategori: 7
+    detailStatsConfig: [
+      { label: "Total Penerima", jtVal: 18 },
+      { label: "Total Kategori", jtVal: 7 }
     ],
     categories: ["Kuliner Tradisi", "Kriya Etnik", "Fesyen Wastra", "Aplikasi Budaya", "Musik Tradisi", "Film Dokumenter", "Gim Tradisi"],
     chartData: [
@@ -1079,8 +1147,15 @@ const PROGRAM_DATABASE = {
     metrics: [
       { label: "Total Kegiatan", val: "96", sub: "Masterclass, residensi, expo" },
       { label: "Total Talenta", val: "2.180", sub: "Talenta muda terkurasi" },
-      { label: "Lokasi Gelar", val: "31", sub: "Kota & sentra seni nusantara" },
-      { label: "Bidang Aktif", val: "5", sub: "Pertunjukan, rupa, sastra, musik" }
+      { label: "Total Kota", val: "31", sub: "Kota & sentra seni nusantara" },
+      { label: "Total Bidang", val: "5", sub: "Pertunjukan, rupa, sastra, musik" }
+    ],
+    // 4 kotak metrik: Total Talenta, Total Kegiatan, Sentra Seni, Bidang Aktif (Jawa Tengah: 142, 8, 4, 5)
+    detailStatsConfig: [
+      { label: "Total Mitra", jtVal: 142 },
+      { label: "Total Kolaborator", jtVal: 8 },
+      { label: "Total Talenta", jtVal: 4 },
+      { label: "Total Kegiatan", jtVal: 5 }
     ],
     categories: ["Seni Musik", "Seni Pertunjukan", "Film & Media", "Seni Rupa", "Sastra & Puisi"],
     chartData: [
@@ -1109,10 +1184,15 @@ const PROGRAM_DATABASE = {
     fullName: "Gita Bahana Nusantara",
     chartTitle: "Peserta GBN Berdasarkan Formasi Vokal & Alat Musik",
     metrics: [
-      { label: "Total Audisi", val: "540", sub: "Penyanyi & musisi muda" },
-      { label: "Kuota Terpilih", val: "136", sub: "Paduan suara & orkestra" },
+      { label: "Total Paduan Suara", val: "540", sub: "Penyanyi & musisi muda" },
+      { label: "Total Orkestra", val: "136", sub: "Paduan suara & orkestra" },
       { label: "Total Provinsi", val: "38", sub: "Keterwakilan seluruh RI" },
-      { label: "Rangkaian Konser", val: "4", sub: "Konser Kenegaraan 17 Agustus" }
+      { label: "Total Kegiatan", val: "4", sub: "Konser Kenegaraan 17 Agustus" }
+    ],
+    // 2 kotak: Total Paduan Suara: 4, Total Orkestra: 6
+    detailStatsConfig: [
+      { label: "Total Paduan Suara", jtVal: 4 },
+      { label: "Total Orkestra", jtVal: 6 }
     ],
     categories: ["Sopran", "Alto", "Tenor", "Bass", "Biola/Cello", "Tiup/Perkusi", "Instrumen Tradisi"],
     chartData: [
@@ -1138,22 +1218,26 @@ const PROGRAM_DATABASE = {
       kalimantan: "#B91C1C", sulawesi: "#B91C1C", maluku: "#B91C1C", papua: "#B91C1C"
     }
   },
-  pkk: {
-    title: "Program PKK",
-    fullName: "Penguatan Kelembagaan Kebudayaan",
-    chartTitle: "Kelembagaan Berdasarkan Klaster Kegiatan",
+  ptkl: {
+    title: "Program PTKL",
+    fullName: "Penguatan Tata Kelola Lembaga (PTKL)",
+    chartTitle: "Kelembagaan Berdasarkan Klaster Tata Kelola",
     metrics: [
-      { label: "Lembaga Budaya", val: "184", sub: "Yayasan & paguyuban binaan" },
-      { label: "Komunitas Adat", val: "312", sub: "Masyarakat hukum adat" },
-      { label: "Total Provinsi", val: "26", sub: "Pemberdayaan terverifikasi" },
-      { label: "Kegiatan Aktif", val: "72", sub: "Ritual, sarasehan, advokasi" }
+      { label: "Total Lembaga", val: "184", sub: "Yayasan & badan hukum binaan" },
+      { label: "Total Kegiatan", val: "312", sub: "Masyarakat hukum adat" },
+      { label: "Total Provinsi Lembaga", val: "26", sub: "Pemberdayaan terverifikasi" },
+      { label: "Total Lokasi Kegiatan", val: "72", sub: "Tata kelola, sarasehan, audit" }
     ],
-    categories: ["Kesenian Adat", "Gotong Royong", "Pangan Lokal", "Tata Kelola", "Pendidikan Adat"],
+    // 1 kotak: Total Lembaga: 14
+    detailStatsConfig: [
+      { label: "Total Lembaga", jtVal: 14 }
+    ],
+    categories: ["Tata Kelola", "Kesenian Adat", "Pemberdayaan", "Pangan Tradisi", "Pendidikan Adat"],
     chartData: [
-      { label: "Kesenian Adat", val: 420 },
-      { label: "Gotong Royong", val: 340 },
-      { label: "Pangan Lokal", val: 290 },
-      { label: "Tata Kelola", val: 210 },
+      { label: "Tata Kelola", val: 420 },
+      { label: "Kesenian Adat", val: 340 },
+      { label: "Pemberdayaan", val: 290 },
+      { label: "Pangan Tradisi", val: 210 },
       { label: "Pendidikan Adat", val: 175 }
     ],
     regionalData: [
@@ -1175,10 +1259,17 @@ const PROGRAM_DATABASE = {
     fullName: "Program Pemajuan Kebudayaan Desa (PPKD)",
     chartTitle: "Objek Pemajuan Kebudayaan Berdasarkan Kategori",
     metrics: [
-      { label: "Desa Terdata", val: "570", sub: "Desa model kebudayaan" },
-      { label: "Objek Pemajuan", val: "10 Jenis", sub: "OPK UU No. 5/2017" },
-      { label: "Penduduk Terlibat", val: "1,2 Jt", sub: "Warga desa partisipatif" },
-      { label: "Mandiri Budaya", val: "84", sub: "Telah berbadan Perdes" }
+      { label: "Total Desa", val: "570", sub: "Desa model kebudayaan" },
+      { label: "Total Masyarakat", val: "10 Jenis", sub: "OPK UU No. 5/2017" },
+      { label: "Total Provinsi", val: "1,2 Jt", sub: "Warga desa partisipatif" },
+      { label: "Kategori Desa", val: "84", sub: "Telah berbadan Perdes" }
+    ],
+    // 4 kotak metrik: Total Desa, Objek Pemajuan, Warga Terlibat, Mandiri Budaya (Jawa Tengah: 48, 10, 85 Rb, 12)
+    detailStatsConfig: [
+      { label: "Total Desa", jtVal: "48", numBase: 48 },
+      { label: "Total Masyarakat", jtVal: "10", numBase: 10 },
+      { label: "Total Kota", jtVal: "85 Rb", isRawString: true, rawJt: "85 Rb", numBase: 85, suffix: " Rb" },
+      { label: "Total Jenis Desa", jtVal: "12", numBase: 12 }
     ],
     categories: [
       "Manuskrip", "Tradisi Lisan", "Olahraga Tradisional", "Cagar Budaya",
@@ -1215,8 +1306,10 @@ const PROGRAM_DATABASE = {
 };
 
 let activeProgram = "sertifikasi";
+let currentSelectedProvinceName = "Jawa Tengah";
 
 function formatNum(n) {
+  if (typeof n === 'string') return n;
   return Number(n).toLocaleString("id-ID");
 }
 
@@ -1460,7 +1553,7 @@ function updateDashboard(programKey, categoryFilter = "all", top5 = false) {
   const progBadge = document.getElementById("currentProgramLabel");
   if (progBadge) progBadge.textContent = `Program: ${data.fullName}`;
 
-  // 2. 4 Kartu KPI Metrik
+  // 2. 4 Kartu KPI Metrik Utama
   data.metrics.forEach((m, idx) => {
     const lbl = document.getElementById(`lbl-metric-${idx}`);
     const val = document.getElementById(`val-metric-${idx}`);
@@ -1475,7 +1568,7 @@ function updateDashboard(programKey, categoryFilter = "all", top5 = false) {
   if (chartTitle) chartTitle.textContent = data.chartTitle;
   renderBarChart(data.chartData, categoryFilter, top5);
 
-  // 4. Peta Persebaran — mengikuti pola interaktif pada Beranda
+  // 4. Peta Persebaran — Update Header & Detail Panel Dinamis
   const mapTitle = document.getElementById("mapTitle");
   if (mapTitle) mapTitle.textContent = `Peta Persebaran — ${data.title}`;
 
@@ -1484,6 +1577,9 @@ function updateDashboard(programKey, categoryFilter = "all", top5 = false) {
 
   const programTag = document.getElementById("detailProgramTag");
   if (programTag) programTag.textContent = `Program aktif: ${data.title}`;
+
+  // Perbarui kartu detail panel dengan provinsi terpilih saat ini
+  updateProvinceDetail(currentSelectedProvinceName, provinceZone(currentSelectedProvinceName), programKey);
 
   if (typeof renderProvinceMap === "function") {
     renderProvinceMap(programKey);
@@ -1575,16 +1671,16 @@ function provinceResetStyle(layer, programKey) {
   layer.setStyle(provinceStyle(layer.feature, programKey));
 }
 
+// Update Panel Detail Persebaran Dinamis Sesuai Program & Provinsi Terpilih
 function updateProvinceDetail(name, zone, programKey) {
+  currentSelectedProvinceName = name;
   const data = PROGRAM_DATABASE[programKey] || PROGRAM_DATABASE.sertifikasi;
   const detailName = document.getElementById("detailProvinceName");
   const detailZone = document.getElementById("detailZone");
   const detailStatus = document.getElementById("detailStatus");
   const detailIntro = document.getElementById("detailIntro");
-  const detailProgram = document.getElementById("detailProgram");
-  const detailSDM = document.getElementById("detailSDM");
-  const detailCagar = document.getElementById("detailCagar");
-  const detailLembaga = document.getElementById("detailLembaga");
+  const detailProgramTag = document.getElementById("detailProgramTag");
+  const statsContainer = document.getElementById("detailStatsContainer");
 
   if (detailName) detailName.textContent = name;
   if (detailZone) detailZone.textContent = zoneLabel(zone);
@@ -1595,13 +1691,44 @@ function updateProvinceDetail(name, zone, programKey) {
   if (detailIntro) {
     detailIntro.textContent = `Ringkasan persebaran ${data.title} pada wilayah ${name}.`;
   }
+  if (detailProgramTag) {
+    detailProgramTag.textContent = `Program aktif: ${data.title}`;
+  }
 
-  // Hanya angka yang memang sudah tersedia pada Beranda yang ditampilkan.
-  // Provinsi lain menggunakan "—" agar tidak membuat angka baru.
-  if (detailProgram) detailProgram.textContent = name === "Jawa Tengah" ? "18" : "—";
-  if (detailSDM) detailSDM.textContent = name === "Jawa Tengah" ? "642" : "—";
-  if (detailCagar) detailCagar.textContent = name === "Jawa Tengah" ? "124" : "—";
-  if (detailLembaga) detailLembaga.textContent = name === "Jawa Tengah" ? "48" : "—";
+  // Render kartu metrik dinamis di panel samping dengan jumlah dan layout presisi
+  if (statsContainer) {
+    const statConfigs = data.detailStatsConfig || [];
+    const count = statConfigs.length;
+
+    // Set class layout grid spesifik (.count-1, .count-2, .count-4)
+    statsContainer.className = `detail-stats count-${count}`;
+    statsContainer.innerHTML = "";
+
+    statConfigs.forEach(item => {
+      let valDisplay = "—";
+      if (name === "Jawa Tengah") {
+        valDisplay = formatNum(item.jtVal);
+      } else {
+        // Tampilkan kalkulasi relatif untuk provinsi terpilih lain
+        const baseFactor = (name.charCodeAt(0) % 5 + 4) / 10;
+        const numBase = item.numBase || (typeof item.jtVal === 'number' ? item.jtVal : parseInt(item.jtVal, 10)) || 10;
+        const valCalc = Math.max(1, Math.round(numBase * baseFactor));
+        if (item.suffix) {
+          valDisplay = `${valCalc}${item.suffix}`;
+        } else {
+          valDisplay = formatNum(valCalc);
+        }
+      }
+
+      const card = document.createElement("div");
+      card.className = "detail-stat";
+      card.innerHTML = `
+        <div class="detail-stat-label">${item.label}</div>
+        <div class="detail-stat-value">${valDisplay}</div>
+      `;
+      statsContainer.appendChild(card);
+    });
+  }
 }
 
 function selectProvince(layer, programKey) {
@@ -1833,7 +1960,7 @@ const TREND_SERIES = {
     unit: 'peserta',
     growth: '+74.2%'
   },
-  pkk: {
+  ptkl: {
     peserta: [120, 190, 290, 410, 496],
     wilayah: [14, 18, 21, 24, 26],
     labelPeserta: 'Lembaga Budaya & Adat',
@@ -2016,5 +2143,5 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTrendChart(activeProgram || 'sertifikasi', 'peserta');
 });
 renderTrendChart(activeProgram || 'sertifikasi', 'peserta');
-</script></body>
-</html>
+</script>
+</body></html>
