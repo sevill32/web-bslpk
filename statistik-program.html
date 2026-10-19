@@ -780,15 +780,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: transp
 <option value="2024">Tahun 2024</option>
 <option value="all">Semua Tahun</option>
 </select>
-<select class="select-input" id="filterProvince">
-<option selected="" value="all">Semua Provinsi</option>
-<option value="jawa">Wilayah Jawa</option>
-<option value="sumatera">Wilayah Sumatera</option>
-<option value="bali-nusra">Bali &amp; Nusa Tenggara</option>
-<option value="kalimantan">Wilayah Kalimantan</option>
-<option value="sulawesi">Wilayah Sulawesi</option>
-<option value="maluku-papua">Maluku &amp; Papua</option>
-</select>
 <select class="select-input" id="filterCategory">
 <option value="all">Semua Kategori</option>
 </select>
@@ -980,16 +971,6 @@ const PROGRAM_DATABASE = {
       { label: "Tingkat Kelulusan", val: "87%", sub: "Kompeten asesmen LSP" },
       { label: "Total Provinsi", val: "28", sub: "Wilayah pelaksanaan TUK" },
       { label: "Total Skema", val: "3", sub: "Standar SKKNI & BNSP" }
-    ],
-    categories: ["Cagar Budaya", "Permuseuman", "Kesenian Tradisi", "Kurator Seni", "Tenaga Konservasi", "Pamong Budaya", "Manajemen Sanggar"],
-    chartData: [
-      { label: "Cagar Budaya", val: 494 },
-      { label: "Permuseuman", val: 431 },
-      { label: "Kesenian Tradisi", val: 847 },
-      { label: "Kurator Seni", val: 229 },
-      { label: "Tenaga Konservasi", val: 124 },
-      { label: "Pamong Budaya", val: 992 },
-      { label: "Manajemen Sanggar", val: 478 }
     ],
     regionalData: [
       { name: "Jawa", val: 560, pct: 45 },
