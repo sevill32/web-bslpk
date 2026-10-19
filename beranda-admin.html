@@ -183,24 +183,31 @@ td.strong{color:var(--ink);font-weight:700;}
 </div>
 <div class="summary-card bad" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(192,57,43,0.18)';" style="transition:transform 0.18s, box-shadow 0.18s;">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-<div class="label" style="margin-bottom:0;">Ditolak, perlu revisi</div>
+<div class="label" style="margin-bottom:0;">Ditolak (Perlu Revisi)</div>
 <span class="material-symbols-outlined" style="color:var(--red);font-size:20px;">error</span>
 </div>
 <div class="value" id="stat-rejected">3</div>
 </div>
 <div class="summary-card good" onmouseout="this.style.transform='none';this.style.boxShadow='none';" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 24px -10px rgba(31,169,113,0.18)';" style="transition:transform 0.18s, box-shadow 0.18s;">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-<div class="label" style="margin-bottom:0;">Disetujui bulan ini</div>
+<div class="label" style="margin-bottom:0;">Disetujui</div>
 <span class="material-symbols-outlined" style="color:var(--green);font-size:20px;">task_alt</span>
 </div>
 <div class="value" id="stat-approved">45</div>
 </div></div>
 <div class="page-head">
 <h1 style="font-size:18px;">Data terbaru diinput</h1>
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
 <button class="btn-dark" onclick="openInputModal()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(36,31,24,0.15);transition:transform 0.15s, background 0.15s;" type="button">
 <span class="material-symbols-outlined" style="font-size:18px;">add</span>
 <span>Input data baru</span>
 </button>
+<button class="btn-dark" onclick="document.getElementById('excel-import-input').click()" onmouseout="this.style.transform='none';this.style.background='var(--ink)';" onmouseover="this.style.transform='translateY(-1px)';this.style.background='#3A3228';" style="display:inline-flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(36,31,24,0.15);transition:transform 0.15s, background 0.15s;" type="button">
+<span class="material-symbols-outlined" style="font-size:18px;">upload_file</span>
+<span>Impor data</span>
+</button>
+<input id="excel-import-input" type="file" accept=".xlsx,.xls,.csv" hidden onchange="importExcelData(event)">
+</div>
 </div>
 <div class="card table-card">
 <table>
@@ -447,6 +454,7 @@ td.strong{color:var(--ink);font-weight:700;}
 @media(max-width:650px){.input-modal{padding:10px}.input-modal-card{max-height:96vh;border-radius:14px}.input-modal-header{padding:17px}.input-modal-header p{font-size:11.5px}.input-modal-title-wrap{gap:8px}#new-data-form{padding:17px}.form-grid{grid-template-columns:1fr}.form-field.full{grid-column:auto}.form-actions{flex-direction:column-reverse}.btn-form-secondary,.btn-form-primary{width:100%}}
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script>
 function bukaDetail(id) { showItemDetail(id); }
 const appData = {
@@ -768,6 +776,69 @@ function handleCreateData(e) {
   document.getElementById('file-name').textContent = 'Belum ada file dipilih';
   closeInputModal();
   showToast('✓ Data program baru berhasil ditambahkan dan dikirim ke tim validasi!');
+}
+
+function importExcelData(event) {
+  const file = event.target.files && event.target.files[0];
+  if (!file) return;
+  const allowed = /\.(xlsx|xls|csv)$/i.test(file.name);
+  if (!allowed) { showToast('Pilih file Excel (.xlsx, .xls) atau CSV.'); event.target.value = ''; return; }
+  if (typeof XLSX === 'undefined') { showToast('Pustaka pembaca Excel gagal dimuat. Periksa koneksi internet lalu coba lagi.'); event.target.value = ''; return; }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const workbook = XLSX.read(e.target.result, {type:'array', cellDates:true});
+      const sheet = workbook.Sheets[workbook.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(sheet, {defval:'', raw:false});
+      if (!rows.length) { showToast('File Excel tidak berisi data.'); return; }
+
+      const normalize = value => String(value || '').toLowerCase().replace(/[\s_\-\/().]/g, '');
+      const pick = (row, aliases) => {
+        const keys = Object.keys(row);
+        const found = keys.find(key => aliases.includes(normalize(key)));
+        return found ? String(row[found] ?? '').trim() : '';
+      };
+      const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+      const tbody = document.querySelector('.table-card tbody');
+      let imported = 0;
+      let nextId = Math.max(0, ...Object.keys(appData).map(Number)) + 1;
+
+      rows.forEach(row => {
+        const program = pick(row, ['program','namaprogram','programkebudayaan','kegiatan']);
+        const wilayah = pick(row, ['wilayah','provinsi','daerah','lokasi']);
+        if (!program || !wilayah) return;
+        const tanggal = pick(row, ['diinput','tanggalinput','tanggal','tanggalpengajuan']) || 'Hari ini';
+        const kategori = pick(row, ['kategori','jeniskegiatan']) || 'Belum ditentukan';
+        const penerima = pick(row, ['penerima','sasaran','target','peserta']) || 'Belum ditentukan';
+        const deskripsi = pick(row, ['deskripsi','keterangan','uraian']) || 'Data diimpor dari file Excel.';
+        const id = nextId++;
+        appData[id] = {id, program, wilayah, diinput:tanggal, diinputOleh:'Impor Excel', kategori, penerima, status:'pending', catatan:'Data hasil impor menunggu validasi.', deskripsi};
+        const tr = document.createElement('tr');
+        tr.id = 'row-' + id;
+        tr.innerHTML = `<td class="strong">${esc(program)}</td><td>${esc(wilayah)}</td><td>${esc(tanggal)}</td><td id="status-cell-${id}"><span class="badge pending">Menunggu validasi</span></td><td><button type="button" class="eye" title="Lihat detail" onclick="showItemDetail(${id})"><span class="material-symbols-outlined" style="font-size:18px;">visibility</span></button></td>`;
+        tbody.insertBefore(tr, tbody.firstChild);
+        imported++;
+      });
+
+      if (!imported) {
+        showToast('Data tidak berhasil diimpor. Pastikan kolom Program dan Wilayah/Provinsi terisi.');
+        return;
+      }
+      const total = document.getElementById('stat-total');
+      const pending = document.getElementById('stat-pending');
+      if (total) total.innerText = (parseInt(total.innerText.replace(/\./g,''),10) + imported).toLocaleString('id-ID');
+      if (pending) pending.innerText = (parseInt(pending.innerText,10) + imported).toLocaleString('id-ID');
+      showToast('✓ Berhasil mengimpor ' + imported + ' baris data. Data menunggu validasi.');
+    } catch (error) {
+      console.error('Impor Excel gagal:', error);
+      showToast('File tidak dapat dibaca. Periksa format dan isi file Excel.');
+    } finally {
+      event.target.value = '';
+    }
+  };
+  reader.onerror = function() { showToast('File gagal dibaca. Silakan coba kembali.'); event.target.value = ''; };
+  reader.readAsArrayBuffer(file);
 }
 </script><footer class="site-footer">
 <div class="footer-inner">
