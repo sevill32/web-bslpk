@@ -26,7 +26,7 @@
             soft: '#5B5346'
           },
           muted: '#948B7A',
-          borderCustom: '#E7DFCC',
+          borderCustom: '#E8E2D2',
           kemengreen: {
             DEFAULT: '#1FA971',
             dark: '#178257',
@@ -51,7 +51,7 @@
   --ink:#241F18;
   --ink-soft:#5B5346;
   --muted:#948B7A;
-  --border:#E7DFCC;
+  --border:#E8E2D2;
   --green:#1FA971;
   --green-dark:#178257;
   --shadow:0 12px 36px -12px rgba(60,45,20,0.12);
@@ -76,11 +76,90 @@ img{max-width:100%;display:block;}
 .brand-logo{width:38px;height:38px;flex:0 0 auto;}
 .brand-text{display:flex;flex-direction:column;line-height:1.1;font-size:13px;font-weight:700;color:var(--ink);}
 .brand-text small{font-weight:500;color:var(--muted);font-size:11px;}
-.nav{display:flex;align-items:center;gap:30px;font-weight:600;font-size:14.5px;color:var(--gold-dark);flex:1;justify-content:center;}
+.nav{display:flex;align-items:center;gap:28px;font-weight:600;font-size:14.5px;color:var(--gold-dark);flex:1;justify-content:center;}
 .nav a{color:var(--gold-dark);opacity:.85;padding:6px 2px;position:relative;transition:opacity .15s;}
 .nav a:hover{opacity:1;}
 .nav a.active{color:var(--ink);opacity:1;}
 .nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-19px;height:3px;background:var(--gold);border-radius:2px;}
+
+/* Dropdown Menu Navbar */
+.nav-dropdown-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-dropdown-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--ink);
+  font-weight: 700;
+  padding: 6px 4px;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: 14.5px;
+}
+.nav-dropdown-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -19px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  min-width: 260px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 16px 36px -8px rgba(36,31,24,0.18);
+  padding: 6px;
+  z-index: 50;
+  animation: dropdownFade .18s ease-out forwards;
+}
+.nav-dropdown-wrapper:hover .nav-dropdown-menu,
+.nav-dropdown-wrapper.open .nav-dropdown-menu {
+  display: block;
+}
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translate(-50%, -6px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
+}
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border-radius: 8px;
+  transition: all .15s ease;
+  text-align: left;
+  border: none;
+  background: transparent;
+}
+.dropdown-item:hover, .dropdown-item.active {
+  background: var(--gold-pale);
+  color: var(--gold-dark);
+}
+.dropdown-item .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
 .btn-outline-gold{border:1.5px solid var(--gold);background:transparent;color:var(--gold-dark);padding:9px 22px;border-radius:999px;font-weight:700;font-size:13.5px;transition:all .2s;}
 .btn-outline-gold:hover{background:var(--gold);color:#fff;}
 
@@ -96,6 +175,33 @@ tbody td{padding:13px 14px;font-size:13px;border-bottom:1px solid var(--border);
 tbody tr:last-child td{border-bottom:none;}
 tbody tr:hover{background:#FAF7EE;}
 td.strong{color:var(--ink);font-weight:700;}
+
+/* Subcategory pill buttons */
+.subcat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  transition: all .18s ease;
+  border: 1px solid var(--border);
+  background: #FFFFFF;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.subcat-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold-dark);
+  background: var(--gold-pale);
+}
+.subcat-btn.active {
+  background: #C9A15A;
+  color: #FFFFFF;
+  border-color: #C9A15A;
+  box-shadow: 0 2px 6px rgba(201,161,90,0.35);
+}
 
 /* Pagination styling */
 .page-btn {
@@ -151,9 +257,9 @@ td.strong{color:var(--ink);font-weight:700;}
 .badge-program {
   display: inline-flex;
   align-items: center;
-  padding: 2px 8px;
+  padding: 2.5px 8px;
   border-radius: 6px;
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -242,6 +348,7 @@ td.strong{color:var(--ink);font-weight:700;}
   background: var(--border);
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
 <!-- TOPBAR -->
@@ -257,12 +364,52 @@ td.strong{color:var(--ink);font-weight:700;}
 <div class="brand-text">Kementerian Kebudayaan<small>Republik Indonesia</small></div>
 </div>
 <nav class="nav">
-<a href="index.html">Beranda</a>
+<a href="beranda.html">Beranda</a>
 <a href="statistik-program.html">Statistik Program</a>
-<a class="active" href="data-program.html">Data Program</a>
+<!-- Interactive Dropdown Menu for Data Program -->
+<div class="nav-dropdown-wrapper" id="navProgramDropdown">
+<button aria-expanded="false" class="nav-dropdown-btn" id="navDropdownToggle" onclick="toggleDropdown()">
+<span id="navDropdownLabel">Data Program</span>
+<span class="material-symbols-outlined text-[18px] transition-transform duration-200" id="dropdownArrow">expand_more</span>
+</button>
+<div class="nav-dropdown-menu" id="dropdownList">
+<button class="dropdown-item active" onclick="selectProgramFromNav('all', 'Semua Data Program')">
+<span class="badge-dot"></span>
+<span>Semua Data Program</span>
+</button>
+<button class="dropdown-item" onclick="selectProgramFromNav('Sertifikasi', 'Sertifikasi Profesi Kebudayaan')">
+<span class="badge-dot opacity-60"></span>
+<span>Sertifikasi</span>
+</button>
+<button class="dropdown-item" onclick="selectProgramFromNav('Bimtek', 'Bimbingan Teknis (Bimtek)')">
+<span class="badge-dot opacity-60"></span>
+<span>Bimbingan Teknis</span>
+</button>
+<button class="dropdown-item" onclick="selectProgramFromNav('AKI', 'Anugerah Kebudayaan Indonesia')">
+<span class="badge-dot opacity-60"></span>
+<span>Anugerah Kebudayaan Indonesia</span>
+</button>
+<button class="dropdown-item" onclick="selectProgramFromNav('MTN', 'Manajemen Talenta Nasional')">
+<span class="badge-dot opacity-60"></span>
+<span>Manajemen Talenta Nasional</span>
+</button>
+<button class="dropdown-item" onclick="selectProgramFromNav('GBN', 'Gita Bahana Nusantara')">
+<span class="badge-dot opacity-60"></span>
+<span>Gita Bahana Nusantara</span>
+</button>
+<button class="dropdown-item" onclick="selectProgramFromNav('PKK', 'Penguatan Tata Kelola Lembaga')">
+<span class="badge-dot opacity-60"></span>
+<span>Penguatan Tata Kelola Lembaga</span>
+</button>
+<button class="dropdown-item" onclick="selectProgramFromNav('PKD', 'Pemajuan Kebudayaan Desa')">
+<span class="badge-dot opacity-60"></span>
+<span>Pemajuan Kebudayaan Desa</span>
+</button>
+</div>
+</div>
 <a href="tentang.html">Tentang</a>
 </nav>
-<a class="btn-outline-gold" href="login.html">LOG IN</a>
+<a class="btn-outline-gold" href="login.html">Masuk</a>
 </div>
 </header>
 <main class="page-shell">
@@ -273,15 +420,26 @@ td.strong{color:var(--ink);font-weight:700;}
       Katalog Terpadu · Direktorat BSLPK Kementerian Kebudayaan RI
 </div>
 <div>
-<h1 class="font-display text-3xl font-extrabold text-ink tracking-tight">Data Program Kebudayaan</h1>
-<p class="text-ink-soft text-sm md:text-[15px] mt-2 max-w-3xl leading-relaxed">
+<h1 class="font-display text-3xl font-extrabold text-ink tracking-tight" id="pageTitleHeading">Data Program Kebudayaan</h1>
+<p class="text-ink-soft text-sm md:text-[15px] mt-2 max-w-3xl leading-relaxed" id="pageTitleDesc">
       Pusat integrasi repositori dan basis data pelaksanaan 7 program prioritas pemajuan kebudayaan nasional. Menyajikan direktori penerima manfaat, asesi sertifikasi, talenta berprestasi, serta sebaran lembaga budaya di seluruh wilayah Republik Indonesia.
-    </p>
+</p>
 </div>
 </div>
-<!-- SEARCH BAR & FILTER SECTION (7 Program Prioritas Kebudayaan) -->
+<!-- SEARCH BAR & FILTER SECTION -->
 <div class="card p-5 sm:p-6 mb-6">
-<!-- 1. Search Bar & Tombol Cari -->
+<!-- 1. SUB-KATEGORI BAR (Dinamis: Muncul saat AKI / GBN aktif) -->
+<div class="hidden mb-5 pb-4 border-b border-borderCustom" id="subcatContainer">
+<div class="flex items-center gap-2 mb-2.5">
+<span class="material-symbols-outlined text-gold-dark text-[18px]">tune</span>
+<span class="text-xs font-bold text-ink uppercase tracking-wider" id="subcatTitle">Sub-Kategori Program:</span>
+</div>
+<!-- Subcat Pill Buttons -->
+<div class="flex flex-wrap items-center gap-2" id="subcatPillGroup">
+<!-- Populated by JS -->
+</div>
+</div>
+<!-- 2. Search Bar & Tombol Cari -->
 <div class="flex items-center gap-2 sm:gap-3 mb-5">
 <div class="relative flex-1">
 <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-muted text-xl pointer-events-none">search</span>
@@ -291,20 +449,20 @@ td.strong{color:var(--ink);font-weight:700;}
 <span>Cari</span>
 </button>
 </div>
-<!-- 2. Grid Filter 2 Baris x 3 Kolom -->
+<!-- 3. Grid Filter 2 Baris x 3 Kolom -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
 <!-- Baris 1: Program -->
 <div>
 <label class="block text-xs font-bold text-ink mb-1.5">Program</label>
-<select class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold" id="filterProgram" onchange="handleFilterChange()">
-<option value="all">Semua Program</option>
-<option value="AKI">Anugerah Kebudayaan Indonesia (AKI)</option>
+<select class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold" id="filterProgram" onchange="onSelectProgramFilter(this.value)">
+<option value="all">Semua Data Program</option>
 <option value="Sertifikasi">Sertifikasi Profesi Kebudayaan</option>
 <option value="Bimtek">Bimbingan Teknis (Bimtek)</option>
+<option value="AKI">Anugerah Kebudayaan Indonesia (AKI)</option>
 <option value="MTN">Manajemen Talenta Nasional (MTN)</option>
 <option value="GBN">Gita Bahana Nusantara (GBN)</option>
+<option value="PKK">Penguatan Tata Kelola Lembaga (PKK)</option>
 <option value="PKD">Pemajuan Kebudayaan Desa (PKD)</option>
-<option value="PTKL">Penguatan Tata Kelola Lembaga (PTKL)</option>
 </select>
 </div>
 <!-- Baris 1: Kategori Bidang -->
@@ -312,13 +470,19 @@ td.strong{color:var(--ink);font-weight:700;}
 <label class="block text-xs font-bold text-ink mb-1.5">Kategori Bidang</label>
 <select class="w-full bg-paper border border-borderCustom rounded-lg px-3 py-2 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold" id="filterKategori" onchange="handleFilterChange()">
 <option value="all">Semua Kategori</option>
+<option value="Paduan Suara">Paduan Suara</option>
+<option value="Orkestra">Orkestra / Musik Simfoni</option>
+<option value="Lembaga">Lembaga Kebudayaan</option>
+<option value="Media">Media Berbudaya</option>
+<option value="Provinsi">Pemerintah Provinsi</option>
+<option value="Negara">Pelestari Luar Negeri</option>
+<option value="Tanda Kehormatan">Tanda Kehormatan Presiden</option>
+<option value="Tenaga">Tenaga Teknis / Pamong</option>
 <option value="Pelestari">Pelestari / Maestro Tradisi</option>
-<option value="Seni Tradisi">Seni Pertunjukan / Tradisi</option>
 <option value="Cagar Budaya">Cagar Budaya</option>
 <option value="Permuseuman">Permuseuman</option>
-<option value="Musik/Orkestra">Musik / Orkestra</option>
-<option value="Paduan Suara">Paduan Suara</option>
 <option value="Tata Kelola Warisan">Tata Kelola Warisan</option>
+<option value="Seni Tradisi">Seni Pertunjukan / Tradisi</option>
 <option value="Tradisi Lisan">Tradisi Lisan &amp; Adat</option>
 <option value="Yayasan/Komunitas">Yayasan / Komunitas</option>
 </select>
@@ -369,6 +533,11 @@ td.strong{color:var(--ink);font-weight:700;}
 <option value="Kota Denpasar">Kota Denpasar</option>
 <option value="Kab. Banyumas">Kab. Banyumas</option>
 <option value="Jakarta Pusat">Jakarta Pusat</option>
+<option value="Jakarta Selatan">Jakarta Selatan</option>
+<option value="Kota Surabaya">Kota Surabaya</option>
+<option value="Kota Medan">Kota Medan</option>
+<option value="Kota Makassar">Kota Makassar</option>
+<option value="Kota Yogyakarta">Kota Yogyakarta</option>
 </select>
 </div>
 <!-- Baris 2: Status Verifikasi -->
@@ -387,22 +556,25 @@ td.strong{color:var(--ink);font-weight:700;}
 </div>
 <!-- DATA TABLE SECTION -->
 <div class="card table-card">
-<!-- Top Controls: Show entries & info badge -->
+<!-- Top Controls: Show entries & EKSPOR DATA BUTTON -->
 <div class="p-4 border-b border-borderCustom flex flex-wrap items-center justify-between gap-3 bg-[#FAF8F3]">
 <div class="flex items-center gap-2 text-xs font-medium text-ink-soft">
 <span>Show</span>
-<select class="bg-paper border border-borderCustom rounded px-2.5 py-1 text-xs font-semibold text-ink focus:outline-none focus:ring-1 focus:ring-gold" id="entriesSelect" onchange="handleFilterChange()">
+<select class="bg-paper border border-borderCustom rounded px-2.5 py-1 text-xs font-semibold text-ink focus:outline-none focus:ring-1 focus:ring-gold" id="entriesSelect" onchange="handleEntriesChange()">
 <option value="10">10</option>
 <option value="25">25</option>
 <option value="50">50</option>
-<option value="100">100</option>
 </select>
 <span>entries</span>
 </div>
-<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-pale border border-[#E7DFCC] text-xs font-semibold text-ink">
-<span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-      Menampilkan basis data 7 program prioritas kebudayaan nasional
-    </div>
+<!-- REAL EXPORT BUTTON (Replaced badge as requested) -->
+<div class="flex items-center gap-2">
+<button class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-paper hover:bg-gold-pale border border-[#D5C7AB] text-ink font-bold text-xs shadow-sm hover:border-gold hover:text-gold-dark transition duration-150" onclick="exportCurrentTableToExcel()" title="Unduh data tabel dalam format Excel (.xlsx)">
+<span class="material-symbols-outlined text-[17px] text-[#1E7E34]">table_view</span>
+<span>Ekspor Data</span>
+<span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cream border border-borderCustom text-muted">.XLSX</span>
+</button>
+</div>
 </div>
 <!-- Table Container -->
 <div class="overflow-x-auto">
@@ -429,17 +601,12 @@ td.strong{color:var(--ink);font-weight:700;}
 <div class="p-4 border-t border-borderCustom flex flex-wrap items-center justify-between gap-4 bg-[#FDFBF8]">
 <div class="text-xs text-ink-soft" id="paginationInfo">
       Showing 1 to 10 of 1,240 entries
-    </div>
+</div>
 <div class="flex items-center gap-1" id="paginationButtons">
-<button class="page-btn text-xs" disabled="" id="btnPrev">Previous</button>
-<button class="page-btn active">1</button>
-<button class="page-btn">2</button>
-<button class="page-btn">3</button>
-<button class="page-btn">4</button>
-<button class="page-btn">5</button>
-<span class="px-1 text-muted text-xs">...</span>
-<button class="page-btn">124</button>
-<button class="page-btn text-xs" id="btnNext">Next</button>
+<button class="page-btn text-xs" disabled="" id="btnPrev" onclick="changePage(currentPage - 1)">Previous</button>
+<button class="page-btn active" id="btnPage1" onclick="changePage(1)">1</button>
+<button class="page-btn" id="btnPage2" onclick="changePage(2)">2</button>
+<button class="page-btn text-xs" id="btnNext" onclick="changePage(currentPage + 1)">Next</button>
 </div>
 </div>
 </div>
@@ -459,7 +626,7 @@ td.strong{color:var(--ink);font-weight:700;}
 </div>
 <button class="w-8 h-8 rounded-full bg-cream hover:bg-[#EBE2D0] border border-borderCustom flex items-center justify-center text-ink text-sm font-bold transition" onclick="closeDetailModal()">
         ✕
-      </button>
+</button>
 </div>
 <div class="p-6 space-y-3.5 text-sm">
 <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
@@ -471,7 +638,7 @@ td.strong{color:var(--ink);font-weight:700;}
 <span class="font-bold text-ink text-xs" id="modalProgramName">-</span>
 </div>
 <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
-<span class="text-muted text-xs font-semibold">Kategori Bidang:</span>
+<span class="text-muted text-xs font-semibold">Kategori Bidang / Instrumen:</span>
 <span class="font-bold text-gold-dark text-xs" id="modalObjekKategori">-</span>
 </div>
 <div class="flex justify-between py-1.5 border-b border-borderCustom/60">
@@ -490,16 +657,16 @@ td.strong{color:var(--ink);font-weight:700;}
 </span>
 </div>
 <div class="p-3 bg-[#FAF7F0] border border-borderCustom rounded-xl text-xs text-ink-soft leading-relaxed" id="modalDescription">
-        Data tercatat resmi dalam Sistem Terpadu Pengelolaan Data Kebudayaan Nasional, Direktorat Jenderal Kebudayaan, Kementerian Kebudayaan Republik Indonesia.
-      </div>
+        Data tercatat resmi dalam Sistem Terpadu Pengelolaan Data Kebudayaan Nasional, Direktorat BSLPK, Kementerian Kebudayaan Republik Indonesia.
+</div>
 </div>
 <div class="px-6 py-3.5 bg-[#FAF7F0] border-t border-borderCustom flex items-center justify-between">
 <span class="text-[11px] text-muted flex items-center gap-1">
 <span class="material-symbols-outlined text-sm">verified_user</span> Validasi Kementerian Kebudayaan RI
-      </span>
+</span>
 <button class="px-4 py-1.5 rounded-lg bg-[#C9A15A] hover:bg-[#A87F3C] text-white font-bold text-xs shadow-sm transition" onclick="closeDetailModal()">
         Tutup
-      </button>
+</button>
 </div>
 </div>
 </div>
@@ -542,17 +709,19 @@ td.strong{color:var(--ink);font-weight:700;}
 <div class="social-dots"><span></span><span></span><span></span><span></span></div>
 </div>
 </footer>
-<!-- SCRIPT LOGIC (7 Program Prioritas Kebudayaan) -->
+<!-- SCRIPT LOGIC -->
 <script>
-// Dataset 7 Program Kebudayaan
-const RAW_DATA = [
+// Master Data 7 Program Kebudayaan (Lengkap dengan data GBN spesifik & AKI berbagai kategori)
+const MASTER_DATA = [
+  // AKI Entries
   {
     id: "AKI-2026-00512",
     nama: "Datuak Maringgai Alam",
     programKey: "AKI",
     programName: "Anugerah Kebudayaan Indonesia",
     kategori: "Pelestari",
-    kategoriLabel: "Maestro Tradisi",
+    subcat: "Lembaga",
+    kategoriLabel: "Lembaga Adat Minangkabau",
     wilayah: "Kota Padang, Sumatera Barat",
     prov: "Sumatera Barat",
     kabkota: "Kota Padang",
@@ -561,6 +730,234 @@ const RAW_DATA = [
     statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
     badgeColor: "bg-amber-100 text-amber-800 border-amber-300"
   },
+  {
+    id: "AKI-2025-00108",
+    nama: "Yayasan Bentara Budaya Nusantara",
+    programKey: "AKI",
+    programName: "Anugerah Kebudayaan Indonesia",
+    kategori: "Lembaga",
+    subcat: "Lembaga",
+    kategoriLabel: "Kategori Lembaga",
+    wilayah: "Jakarta Pusat, DKI Jakarta",
+    prov: "DKI Jakarta",
+    kabkota: "Jakarta Pusat",
+    tahun: "2025",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-300"
+  },
+  {
+    id: "AKI-2025-00219",
+    nama: "Harian Suara Kebudayaan Nasional",
+    programKey: "AKI",
+    programName: "Anugerah Kebudayaan Indonesia",
+    kategori: "Media",
+    subcat: "Media",
+    kategoriLabel: "Kategori Media Massa",
+    wilayah: "Kota Bandung, Jawa Barat",
+    prov: "Jawa Barat",
+    kabkota: "Kota Bandung",
+    tahun: "2025",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-300"
+  },
+  {
+    id: "AKI-2026-00034",
+    nama: "Pemerintah Provinsi DI Yogyakarta",
+    programKey: "AKI",
+    programName: "Anugerah Kebudayaan Indonesia",
+    kategori: "Provinsi",
+    subcat: "Provinsi",
+    kategoriLabel: "Pemerintah Daerah Peduli Budaya",
+    wilayah: "Kota Yogyakarta, DI Yogyakarta",
+    prov: "DI Yogyakarta",
+    kabkota: "Kota Yogyakarta",
+    tahun: "2026",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-300"
+  },
+  {
+    id: "AKI-2025-00077",
+    nama: "Prof. Dr. Elizabeth Ingrams (Oxford Heritage)",
+    programKey: "AKI",
+    programName: "Anugerah Kebudayaan Indonesia",
+    kategori: "Negara",
+    subcat: "Negara",
+    kategoriLabel: "Pelestari Budaya Asing",
+    wilayah: "Jakarta Pusat, DKI Jakarta",
+    prov: "DKI Jakarta",
+    kabkota: "Jakarta Pusat",
+    tahun: "2025",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-300"
+  },
+  {
+    id: "AKI-2026-00012",
+    nama: "Ki Manteb Sudarsono (Alm.)",
+    programKey: "AKI",
+    programName: "Anugerah Kebudayaan Indonesia",
+    kategori: "Tanda Kehormatan",
+    subcat: "Tanda Kehormatan",
+    kategoriLabel: "Bintang Budaya Parama Dharma",
+    wilayah: "Kota Surakarta, Jawa Tengah",
+    prov: "Jawa Tengah",
+    kabkota: "Kota Surakarta",
+    tahun: "2026",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-300"
+  },
+  {
+    id: "AKI-2026-00441",
+    nama: "I Gusti Made Arnawa (Pamong Ahli)",
+    programKey: "AKI",
+    programName: "Anugerah Kebudayaan Indonesia",
+    kategori: "Tenaga",
+    subcat: "Tenaga",
+    kategoriLabel: "Tenaga Teknis Kebudayaan",
+    wilayah: "Kota Denpasar, Bali",
+    prov: "Bali",
+    kabkota: "Kota Denpasar",
+    tahun: "2026",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-amber-100 text-amber-800 border-amber-300"
+  },
+
+  // GBN Entries (Paduan Suara & Orkestra)
+  {
+    id: "GBN-2026-00101",
+    nama: "Ni Putu Ayu Saraswati",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Paduan Suara",
+    subcat: "Paduan Suara",
+    kategoriLabel: "Paduan Suara (Sopran 1)",
+    wilayah: "Kab. Gianyar, Bali",
+    prov: "Bali",
+    kabkota: "Kab. Gianyar",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+  {
+    id: "GBN-2026-00102",
+    nama: "Yohanes Kevin Situmorang",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Paduan Suara",
+    subcat: "Paduan Suara",
+    kategoriLabel: "Paduan Suara (Tenor)",
+    wilayah: "Kota Medan, Sumatera Utara",
+    prov: "Sumatera Utara",
+    kabkota: "Kota Medan",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+  {
+    id: "GBN-2026-00103",
+    nama: "Annisa Rahmadani",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Paduan Suara",
+    subcat: "Paduan Suara",
+    kategoriLabel: "Paduan Suara (Alto)",
+    wilayah: "Kota Surabaya, Jawa Timur",
+    prov: "Jawa Timur",
+    kabkota: "Kota Surabaya",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+  {
+    id: "GBN-2026-00104",
+    nama: "Andreas Pratama Wibowo",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Paduan Suara",
+    subcat: "Paduan Suara",
+    kategoriLabel: "Paduan Suara (Bass)",
+    wilayah: "Kota Surakarta, Jawa Tengah",
+    prov: "Jawa Tengah",
+    kabkota: "Kota Surakarta",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+  {
+    id: "GBN-2026-00201",
+    nama: "Benedictus Arya Pamungkas",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Orkestra",
+    subcat: "Orkestra",
+    kategoriLabel: "Orkestra (Biola 1)",
+    wilayah: "Jakarta Selatan, DKI Jakarta",
+    prov: "DKI Jakarta",
+    kabkota: "Jakarta Selatan",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+  {
+    id: "GBN-2026-00202",
+    nama: "Clara Shinta Dewi",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Orkestra",
+    subcat: "Orkestra",
+    kategoriLabel: "Orkestra (Violoncello)",
+    wilayah: "Kota Bandung, Jawa Barat",
+    prov: "Jawa Barat",
+    kabkota: "Kota Bandung",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+  {
+    id: "GBN-2026-00203",
+    nama: "Muhammad Ilham Fadillah",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Orkestra",
+    subcat: "Orkestra",
+    kategoriLabel: "Orkestra (Flute & Tiup)",
+    wilayah: "Kota Makassar, Sulawesi Selatan",
+    prov: "Sulawesi Selatan",
+    kabkota: "Kota Makassar",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+  {
+    id: "GBN-2026-00204",
+    nama: "Gede Agus Suardana",
+    programKey: "GBN",
+    programName: "Gita Bahana Nusantara",
+    kategori: "Orkestra",
+    subcat: "Orkestra",
+    kategoriLabel: "Orkestra (Instrumen Etnis Kendang)",
+    wilayah: "Kota Denpasar, Bali",
+    prov: "Bali",
+    kabkota: "Kota Denpasar",
+    tahun: "2026",
+    status: "Lulus Seleksi",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+  },
+
+  // Sertifikasi Entries
   {
     id: "SERT-2026-00742",
     nama: "Bambang Soedjatmiko, M.Hum",
@@ -577,7 +974,39 @@ const RAW_DATA = [
     badgeColor: "bg-blue-100 text-blue-800 border-blue-300"
   },
   {
-    id: "BTK-2026-00214",
+    id: "SERT-2025-00411",
+    nama: "Dr. Siti Nurhaliza, M.Pd",
+    programKey: "Sertifikasi",
+    programName: "Sertifikasi Profesi Kebudayaan",
+    kategori: "Permuseuman",
+    kategoriLabel: "Kurator Museum",
+    wilayah: "Jakarta Pusat, DKI Jakarta",
+    prov: "DKI Jakarta",
+    kabkota: "Jakarta Pusat",
+    tahun: "2025",
+    status: "Kompeten",
+    statusColor: "bg-blue-50 text-blue-700 border-blue-200",
+    badgeColor: "bg-blue-100 text-blue-800 border-blue-300"
+  },
+  {
+    id: "SERT-2025-00918",
+    nama: "Rizky Firmansyah, S.Sn",
+    programKey: "Sertifikasi",
+    programName: "Sertifikasi Profesi Kebudayaan",
+    kategori: "Tata Kelola Warisan",
+    kategoriLabel: "Auditor Warisan Budaya",
+    wilayah: "Kota Yogyakarta, DI Yogyakarta",
+    prov: "DI Yogyakarta",
+    kabkota: "Kota Yogyakarta",
+    tahun: "2025",
+    status: "Kompeten",
+    statusColor: "bg-blue-50 text-blue-700 border-blue-200",
+    badgeColor: "bg-blue-100 text-blue-800 border-blue-300"
+  },
+
+  // Bimtek Entries
+  {
+    id: "BIM-2026-00214",
     nama: "Bimtek Konservasi Candi & Warisan",
     programKey: "Bimtek",
     programName: "Bimbingan Teknis Kebudayaan",
@@ -591,6 +1020,23 @@ const RAW_DATA = [
     statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
     badgeColor: "bg-purple-100 text-purple-800 border-purple-300"
   },
+  {
+    id: "BIM-2025-00419",
+    nama: "Bimtek Digitalisasi Naskah Kuno Nusantara",
+    programKey: "Bimtek",
+    programName: "Bimbingan Teknis Kebudayaan",
+    kategori: "Tata Kelola Warisan",
+    kategoriLabel: "Filologi & Preservasi",
+    wilayah: "Jakarta Pusat, DKI Jakarta",
+    prov: "DKI Jakarta",
+    kabkota: "Jakarta Pusat",
+    tahun: "2025",
+    status: "Aktif Berjalan",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-purple-100 text-purple-800 border-purple-300"
+  },
+
+  // MTN Entries
   {
     id: "MTN-2026-00088",
     nama: "Festival Musik Tradisi Rakyat",
@@ -607,20 +1053,54 @@ const RAW_DATA = [
     badgeColor: "bg-rose-100 text-rose-800 border-rose-300"
   },
   {
-    id: "GBN-2025-00438",
-    nama: "Ni Putu Ayu Saraswati",
-    programKey: "GBN",
-    programName: "Gita Bahana Nusantara",
-    kategori: "Paduan Suara",
-    kategoriLabel: "Paduan Suara (Sopran)",
-    wilayah: "Kab. Gianyar, Bali",
+    id: "MTN-2026-00142",
+    nama: "Farrel Putra Dewata",
+    programKey: "MTN",
+    programName: "Manajemen Talenta Nasional",
+    kategori: "Orkestra",
+    kategoriLabel: "Komponis Muda Nusantara",
+    wilayah: "Kota Denpasar, Bali",
     prov: "Bali",
-    kabkota: "Kab. Gianyar",
-    tahun: "2025",
+    kabkota: "Kota Denpasar",
+    tahun: "2026",
     status: "Lulus Seleksi",
     statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    badgeColor: "bg-teal-100 text-teal-800 border-teal-300"
+    badgeColor: "bg-rose-100 text-rose-800 border-rose-300"
   },
+
+  // PKK Entries
+  {
+    id: "PKK-2026-00331",
+    nama: "Paguyuban Macapat Sleman",
+    programKey: "PKK",
+    programName: "Penguatan Tata Kelola Lembaga",
+    kategori: "Yayasan/Komunitas",
+    kategoriLabel: "Yayasan / Komunitas",
+    wilayah: "Kab. Sleman, DI Yogyakarta",
+    prov: "DI Yogyakarta",
+    kabkota: "Kab. Sleman",
+    tahun: "2026",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-300"
+  },
+  {
+    id: "PKK-2025-00194",
+    nama: "Sanggar Seni Langen Budaya",
+    programKey: "PKK",
+    programName: "Penguatan Tata Kelola Lembaga",
+    kategori: "Seni Tradisi",
+    kategoriLabel: "Komunitas Seni Tradisi",
+    wilayah: "Kab. Banyumas, Jawa Tengah",
+    prov: "Jawa Tengah",
+    kabkota: "Kab. Banyumas",
+    tahun: "2025",
+    status: "Terverifikasi SK",
+    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-300"
+  },
+
+  // PKD Entries
   {
     id: "PKD-2026-00109",
     nama: "Desa Wisata Budaya Wolomeze",
@@ -635,83 +1115,254 @@ const RAW_DATA = [
     status: "Aktif Berjalan",
     statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
     badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-300"
-  },
-  {
-    id: "PTKL-2026-00331",
-    nama: "Paguyuban Macapat Sleman",
-    programKey: "PTKL",
-    programName: "Penguatan Tata Kelola Lembaga",
-    kategori: "Yayasan/Komunitas",
-    kategoriLabel: "Yayasan / Komunitas",
-    wilayah: "Kab. Sleman, DI Yogyakarta",
-    prov: "DI Yogyakarta",
-    kabkota: "Kab. Sleman",
-    tahun: "2026",
-    status: "Terverifikasi SK",
-    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-300"
-  },
-  {
-    id: "MTN-2026-00142",
-    nama: "Farrel Putra Dewata",
-    programKey: "MTN",
-    programName: "Manajemen Talenta Nasional",
-    kategori: "Musik/Orkestra",
-    kategoriLabel: "Orkestra (Etnis)",
-    wilayah: "Kota Denpasar, Bali",
-    prov: "Bali",
-    kabkota: "Kota Denpasar",
-    tahun: "2026",
-    status: "Lulus Seleksi",
-    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    badgeColor: "bg-rose-100 text-rose-800 border-rose-300"
-  },
-  {
-    id: "PTKL-2025-00194",
-    nama: "Sanggar Seni Langen Budaya",
-    programKey: "PTKL",
-    programName: "Penguatan Tata Kelola Lembaga",
-    kategori: "Seni Tradisi",
-    kategoriLabel: "Komunitas Seni Tradisi",
-    wilayah: "Kab. Banyumas, Jawa Tengah",
-    prov: "Jawa Tengah",
-    kabkota: "Kab. Banyumas",
-    tahun: "2025",
-    status: "Terverifikasi SK",
-    statusColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-    badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-300"
-  },
-  {
-    id: "SERT-2025-00411",
-    nama: "Dr. Siti Nurhaliza, M.Pd",
-    programKey: "Sertifikasi",
-    programName: "Sertifikasi Profesi Kebudayaan",
-    kategori: "Permuseuman",
-    kategoriLabel: "Kurator Museum",
-    wilayah: "Jakarta Pusat, DKI Jakarta",
-    prov: "DKI Jakarta",
-    kabkota: "Jakarta Pusat",
-    tahun: "2025",
-    status: "Kompeten",
-    statusColor: "bg-blue-50 text-blue-700 border-blue-200",
-    badgeColor: "bg-blue-100 text-blue-800 border-blue-300"
   }
 ];
+
+// App State
+let activeProgram = 'all'; // 'all', 'GBN', 'AKI', 'Sertifikasi', 'Bimtek', 'MTN', 'PKK', 'PKD'
+let activeSubcategory = 'all'; // For GBN or AKI
+let currentFilteredData = [];
+let currentPage = 1;
+let entriesPerPage = 10;
+
+// Subcategory definitions
+const SUBCATEGORIES = {
+  GBN: [
+    { key: 'all', label: 'Semua GBN' },
+    { key: 'Paduan Suara', label: 'Paduan Suara' },
+    { key: 'Orkestra', label: 'Orkestra' }
+  ],
+  AKI: [
+    { key: 'all', label: 'Semua AKI' },
+    { key: 'Lembaga', label: 'Lembaga' },
+    { key: 'Media', label: 'Media' },
+    { key: 'Provinsi', label: 'Provinsi' },
+    { key: 'Negara', label: 'Negara' },
+    { key: 'Tanda Kehormatan', label: 'Tanda Kehormatan' },
+    { key: 'Tenaga', label: 'Tenaga' }
+  ]
+};
+
+// Program Titles Map
+const PROGRAM_TITLES = {
+  all: {
+    title: 'Data Program Kebudayaan',
+    desc: 'Pusat integrasi repositori dan basis data pelaksanaan 7 program prioritas pemajuan kebudayaan nasional. Menyajikan direktori penerima manfaat, asesi sertifikasi, talenta berprestasi, serta sebaran lembaga budaya di seluruh wilayah Republik Indonesia.'
+  },
+  GBN: {
+    title: 'Data Gita Bahana Nusantara (GBN)',
+    desc: 'Basis data komprehensif putra-putri terbaik musisi orkestra dan paduan suara nasional Gita Bahana Nusantara dari 38 provinsi yang menggemakan lagu perjuangan dan kebangsaan di Istana Merdeka.'
+  },
+  AKI: {
+    title: 'Data Anugerah Kebudayaan Indonesia (AKI)',
+    desc: 'Direktori penerima penghargaan kehormatan tertinggi bidang kebudayaan nasional yang dianugerahkan oleh Kementerian Kebudayaan dan Presiden RI kepada individu, komunitas, lembaga, dan pemerintah daerah berdedikasi.'
+  },
+  Sertifikasi: {
+    title: 'Data Sertifikasi Profesi Kebudayaan',
+    desc: 'Daftar asesi dan tenaga profesi kebudayaan tersertifikasi BNSP & Lembaga Sertifikasi Profesi Kebudayaan dalam bidang Cagar Budaya, Permuseuman, Arkeologi, serta Konservasi.'
+  },
+  Bimtek: {
+    title: 'Data Bimbingan Teknis Kebudayaan (Bimtek)',
+    desc: 'Dokumentasi peserta dan penyelenggaraan bimbingan teknis peningkatan kompetensi pamong budaya, konservator naskah, dan pengelola museum di seluruh Indonesia.'
+  },
+  MTN: {
+    title: 'Data Manajemen Talenta Nasional (MTN) Bidang Seni Budaya',
+    desc: 'Pangkalan data kurasi talenta seni pertunjukan, perupa, komponis, sastrawan, dan budayawan muda berprestasi tingkat nasional maupun internasional.'
+  },
+  PKK: {
+    title: 'Data Penguatan Tata Kelola Lembaga (PKK)',
+    desc: 'Registrasi dan status fasilitasi penguatan kelembagaan sanggar, komunitas tradisi, yayasan kebudayaan, dan paguyuban adat nusantara.'
+  },
+  PKD: {
+    title: 'Data Pemajuan Kebudayaan Desa (PKD)',
+    desc: 'Inventarisasi desa budaya binaan, potensi kearifan lokal, ritus tradisi lisan, dan tata ruang kebudayaan pedesaan di wilayah kepulauan Indonesia.'
+  }
+};
+
+function toggleDropdown() {
+  const wrapper = document.getElementById('navProgramDropdown');
+  wrapper.classList.toggle('open');
+}
+
+// Close dropdown if clicked outside
+document.addEventListener('click', function(e) {
+  const wrapper = document.getElementById('navProgramDropdown');
+  if (wrapper && !wrapper.contains(e.target)) {
+    wrapper.classList.remove('open');
+  }
+});
+
+function selectProgramFromNav(programKey, programLabel) {
+  // Close dropdown
+  const wrapper = document.getElementById('navProgramDropdown');
+  if (wrapper) wrapper.classList.remove('open');
+
+  // Update navbar button label
+  const labelEl = document.getElementById('navDropdownLabel');
+  if (programKey === 'all') {
+    labelEl.innerHTML = 'Data Program';
+  } else {
+    labelEl.innerHTML = `Data: ${programKey}`;
+  }
+
+  // Update active state in dropdown list
+  const items = document.querySelectorAll('.dropdown-item');
+  items.forEach(btn => {
+    if (btn.getAttribute('onclick').includes(`'${programKey}'`)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Sync with main select filter
+  const filterSelect = document.getElementById('filterProgram');
+  if (filterSelect) {
+    filterSelect.value = programKey;
+  }
+
+  // Apply program change
+  setProgram(programKey);
+}
+
+function onSelectProgramFilter(programKey) {
+  // Sync dropdown active state
+  const items = document.querySelectorAll('.dropdown-item');
+  items.forEach(btn => {
+    if (btn.getAttribute('onclick').includes(`'${programKey}'`)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  const labelEl = document.getElementById('navDropdownLabel');
+  if (programKey === 'all') {
+    labelEl.innerHTML = 'Data Program';
+  } else {
+    labelEl.innerHTML = `Data: ${programKey}`;
+  }
+
+  setProgram(programKey);
+}
+
+function setProgram(programKey) {
+  activeProgram = programKey;
+  activeSubcategory = 'all'; // reset subcat on program change
+
+  // Update heading & description
+  const meta = PROGRAM_TITLES[programKey] || PROGRAM_TITLES['all'];
+  document.getElementById('pageTitleHeading').textContent = meta.title;
+  document.getElementById('pageTitleDesc').textContent = meta.desc;
+
+  // Render Subcategory Bar if GBN or AKI
+  renderSubcategoryBar();
+
+  // Reset page & filter data
+  currentPage = 1;
+  applyFilters();
+}
+
+function renderSubcategoryBar() {
+  const container = document.getElementById('subcatContainer');
+  const pillGroup = document.getElementById('subcatPillGroup');
+  const title = document.getElementById('subcatTitle');
+
+  if (activeProgram === 'GBN' || activeProgram === 'AKI') {
+    container.classList.remove('hidden');
+    pillGroup.innerHTML = '';
+
+    if (activeProgram === 'GBN') {
+      title.textContent = 'Sub-Kategori Gita Bahana Nusantara:';
+    } else {
+      title.textContent = 'Sub-Kategori Anugerah Kebudayaan Indonesia:';
+    }
+
+    const subcats = SUBCATEGORIES[activeProgram];
+    subcats.forEach(sc => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `subcat-btn ${activeSubcategory === sc.key ? 'active' : ''}`;
+      btn.innerHTML = `<span>${sc.label}</span>`;
+      btn.onclick = () => selectSubcategory(sc.key);
+      pillGroup.appendChild(btn);
+    });
+  } else {
+    container.classList.add('hidden');
+    pillGroup.innerHTML = '';
+  }
+}
+
+function selectSubcategory(key) {
+  activeSubcategory = key;
+  renderSubcategoryBar();
+  currentPage = 1;
+  applyFilters();
+}
+
+function applyFilters() {
+  const query = document.getElementById('searchInput').value.toLowerCase().trim();
+  const kat = document.getElementById('filterKategori').value;
+  const tahun = document.getElementById('filterTahun').value;
+  const prov = document.getElementById('filterProvinsi').value;
+  const kabkota = document.getElementById('filterKabKota').value;
+  const status = document.getElementById('filterStatus').value;
+
+  currentFilteredData = MASTER_DATA.filter(item => {
+    // 1. Program filter
+    if (activeProgram !== 'all' && item.programKey !== activeProgram) {
+      return false;
+    }
+
+    // 2. Subcategory filter (For GBN & AKI)
+    if (activeProgram === 'GBN' && activeSubcategory !== 'all') {
+      if (item.kategori !== activeSubcategory && item.subcat !== activeSubcategory) {
+        return false;
+      }
+    } else if (activeProgram === 'AKI' && activeSubcategory !== 'all') {
+      if (item.subcat !== activeSubcategory && item.kategori !== activeSubcategory) {
+        return false;
+      }
+    }
+
+    // 3. Search query
+    const matchQuery = !query || 
+      item.nama.toLowerCase().includes(query) || 
+      item.id.toLowerCase().includes(query) || 
+      item.kategoriLabel.toLowerCase().includes(query) ||
+      item.wilayah.toLowerCase().includes(query);
+    if (!matchQuery) return false;
+
+    // 4. Dropdown filters
+    if (kat !== 'all' && item.kategori !== kat && item.subcat !== kat) return false;
+    if (tahun !== 'all' && item.tahun !== tahun) return false;
+    if (prov !== 'all' && item.prov !== prov) return false;
+    if (kabkota !== 'all' && item.kabkota !== kabkota) return false;
+    if (status !== 'all' && item.status !== status) return false;
+
+    return true;
+  });
+
+  renderTable(currentFilteredData);
+}
 
 function renderTable(data) {
   const tbody = document.getElementById('tableBody');
   tbody.innerHTML = '';
   
   if (data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9" class="text-center py-10 text-muted text-xs">Tidak ada data ditemukan untuk kriteria pencarian dan filter ini.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" class="text-center py-10 text-muted text-xs">Tidak ada data ditemukan untuk kriteria pencarian dan sub-kategori ini.</td></tr>`;
     document.getElementById('paginationInfo').textContent = 'Showing 0 to 0 of 0 entries';
     return;
   }
 
-  data.forEach((item, index) => {
+  const startIdx = (currentPage - 1) * entriesPerPage;
+  const paginatedData = data.slice(startIdx, startIdx + entriesPerPage);
+
+  paginatedData.forEach((item, index) => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td class="text-center font-semibold text-xs text-muted">${index + 1}</td>
+      <td class="text-center font-semibold text-xs text-muted">${startIdx + index + 1}</td>
       <td class="font-mono text-xs font-bold text-ink">${item.id}</td>
       <td class="font-bold text-ink hover:text-gold-dark cursor-pointer transition" onclick="openDetailModalById('${item.id}')">
         ${item.nama}
@@ -738,40 +1389,104 @@ function renderTable(data) {
     tbody.appendChild(tr);
   });
 
-  document.getElementById('paginationInfo').textContent = `Showing 1 to ${data.length} of 1,240 entries`;
+  // Update pagination info
+  const startNum = startIdx + 1;
+  const endNum = Math.min(startIdx + entriesPerPage, data.length);
+  document.getElementById('paginationInfo').textContent = `Showing ${startNum} to ${endNum} of ${data.length} entries`;
+
+  // Update button states
+  const totalPages = Math.ceil(data.length / entriesPerPage) || 1;
+  document.getElementById('btnPrev').disabled = currentPage <= 1;
+  document.getElementById('btnNext').disabled = currentPage >= totalPages;
+
+  const btnPage1 = document.getElementById('btnPage1');
+  const btnPage2 = document.getElementById('btnPage2');
+  if (btnPage1) {
+    btnPage1.classList.toggle('active', currentPage === 1);
+  }
+  if (btnPage2) {
+    if (totalPages > 1) {
+      btnPage2.style.display = 'inline-flex';
+      btnPage2.classList.toggle('active', currentPage === 2);
+    } else {
+      btnPage2.style.display = 'none';
+    }
+  }
 }
 
 function handleSearch() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
-  const program = document.getElementById('filterProgram').value;
-  const kat = document.getElementById('filterKategori').value;
-  const tahun = document.getElementById('filterTahun').value;
-  const prov = document.getElementById('filterProvinsi').value;
-  const kabkota = document.getElementById('filterKabKota').value;
-  const status = document.getElementById('filterStatus').value;
-
-  const filtered = RAW_DATA.filter(item => {
-    const matchQuery = !query || 
-      item.nama.toLowerCase().includes(query) || 
-      item.id.toLowerCase().includes(query) || 
-      item.kategoriLabel.toLowerCase().includes(query) ||
-      item.wilayah.toLowerCase().includes(query);
-
-    const matchProgram = (program === 'all' || item.programKey === program);
-    const matchCat = (kat === 'all' || item.kategori === kat);
-    const matchTahun = (tahun === 'all' || item.tahun === tahun);
-    const matchProv = (prov === 'all' || item.prov === prov);
-    const matchKabKota = (kabkota === 'all' || item.kabkota === kabkota);
-    const matchStatus = (status === 'all' || item.status === status);
-
-    return matchQuery && matchProgram && matchCat && matchTahun && matchProv && matchKabKota && matchStatus;
-  });
-
-  renderTable(filtered);
+  currentPage = 1;
+  applyFilters();
 }
 
 function handleFilterChange() {
-  handleSearch();
+  currentPage = 1;
+  applyFilters();
+}
+
+function handleEntriesChange() {
+  const sel = document.getElementById('entriesSelect');
+  entriesPerPage = parseInt(sel.value, 10);
+  currentPage = 1;
+  applyFilters();
+}
+
+function changePage(pageNum) {
+  const totalPages = Math.ceil(currentFilteredData.length / entriesPerPage) || 1;
+  if (pageNum < 1 || pageNum > totalPages) return;
+  currentPage = pageNum;
+  renderTable(currentFilteredData);
+}
+
+// EXPORT DATA KE MICROSOFT EXCEL (.XLSX)
+function exportCurrentTableToExcel() {
+  if (!currentFilteredData || currentFilteredData.length === 0) {
+    alert('Tidak ada data untuk diekspor.');
+    return;
+  }
+
+  // Pastikan library Excel sudah berhasil dimuat
+  if (typeof XLSX === 'undefined') {
+    alert('Fitur ekspor Excel belum dapat dimuat. Periksa koneksi internet, lalu coba kembali.');
+    return;
+  }
+
+  const excelData = currentFilteredData.map((item, index) => ({
+    "No": index + 1,
+    "Kode Registrasi": item.id,
+    "Nama Penerima / Kegiatan": item.nama,
+    "Program": `${item.programName} (${item.programKey})`,
+    "Kategori Bidang": item.kategoriLabel,
+    "Wilayah Domisili": item.wilayah,
+    "Tahun Penetapan": item.tahun,
+    "Status Verifikasi": item.status
+  }));
+
+  // Membuat worksheet dan workbook Excel
+  const worksheet = XLSX.utils.json_to_sheet(excelData);
+  worksheet['!cols'] = [
+    { wch: 6 },
+    { wch: 20 },
+    { wch: 35 },
+    { wch: 38 },
+    { wch: 28 },
+    { wch: 32 },
+    { wch: 16 },
+    { wch: 22 }
+  ];
+
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Data Kebudayaan');
+
+  // Nama file mengikuti program dan subkategori yang dipilih
+  const progTag = activeProgram === 'all' ? 'Semua_Program' : activeProgram;
+  const subcatTag = activeSubcategory !== 'all'
+    ? `_${activeSubcategory.replace(/\s+/g, '_')}`
+    : '';
+  const filename = `Data_Kebudayaan_RI_${progTag}${subcatTag}_${new Date().toISOString().slice(0, 10)}.xlsx`;
+
+  // Mengunduh file Excel
+  XLSX.writeFile(workbook, filename);
 }
 
 document.getElementById('searchInput').addEventListener('keyup', function(e) {
@@ -780,8 +1495,9 @@ document.getElementById('searchInput').addEventListener('keyup', function(e) {
   }
 });
 
+// Modal Detail Handler
 function openDetailModalById(id) {
-  const item = RAW_DATA.find(d => d.id === id);
+  const item = MASTER_DATA.find(d => d.id === id);
   if (!item) return;
 
   document.getElementById('modalObjekName').textContent = item.nama;
@@ -815,7 +1531,7 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Initial Render
-renderTable(RAW_DATA);
+// Initial boot
+setProgram('all');
 </script>
 </body></html>
